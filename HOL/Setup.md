@@ -51,7 +51,7 @@ If you do not have a machine with Visual Studio Community 2017 (or greater) with
 
 1.  Create a virtual machine (VM) in Azure using the Visual Studio Community 2017 on Windows Server 2016 (x64) image. A Windows 10 image will work as well
 
-    ![In the Azure Portal search results, Visual Studio Community 2017 on Windows Server 2016 (x64) is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image3.png "Azure Portal search results")
+    ![In the Azure Portal search results, Visual Studio Community 2017 on Windows Server 2016 (x64) is selected.](images/Setup/image3.png "Azure Portal search results")
 
 It is highly recommended to use a DS2 or D2 instance size for this VM. If you decide to use a VM, you will not be able to run the Android emulator in later steps of the lab.
 
@@ -61,19 +61,19 @@ It is highly recommended to use a DS2 or D2 instance size for this VM. If you de
 
 1.  On the new VM you just created, click the **Server Manager** icon
 
-    ![Screenshot of the Server Manager icon.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image4.png "Server Manager icon")
+    ![Screenshot of the Server Manager icon.](images/Setup/image4.png "Server Manager icon")
 
 2.  Click **Local Server**
 
-    ![Local Server is selected in the Server Manager menu.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image5.png "Server Manager menu")
+    ![Local Server is selected in the Server Manager menu.](images/Setup/image5.png "Server Manager menu")
 
 3.  On the right side of the pane, click **On** by IE Enhanced Security Configuration
 
-    ![Next to IE Enhanced Security Configuration, On is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image6.png "IE Enhanced Security Configuration option")
+    ![Next to IE Enhanced Security Configuration, On is selected.](images/Setup/image6.png "IE Enhanced Security Configuration option")
 
 4.  Change to **Off** for Administrators and click **OK**
 
-    ![In the Internet Explorer Enhanced Security Configuration dialog box, Administrators are set to Off.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image7.png "Internet Explorer Enhanced Security Configuration dialog box")
+    ![In the Internet Explorer Enhanced Security Configuration dialog box, Administrators are set to Off.](images/Setup/image7.png "Internet Explorer Enhanced Security Configuration dialog box")
 
 ### Task 3: Install Xamarin and Android SDK
 
@@ -81,11 +81,11 @@ It is highly recommended to use a DS2 or D2 instance size for this VM. If you de
 
 2.  Select the **Mobile development with .NET** workload from the installation screen\
     
-    ![In the Visual Studio Installer screen, under Mobile and Gaming, Mobile development with .NET is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image8.png "Visual Studio Installer installation screen")
+    ![In the Visual Studio Installer screen, under Mobile and Gaming, Mobile development with .NET is selected.](images/Setup/image8.png "Visual Studio Installer installation screen")
 
 3.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Make sure you have the following options selected: Xamarin Workbooks, Xamarin Profiler, Xamarin Remoted Simulator, Xamarin SDK Manager, Android NDK, Android SDK setup, Java SE Development Kit, Google Android Emulator, and Intel Hardware Accelerated Execution Manager.
     
-    ![Screenshot of the Summary panel Optional section with the previously mentioned options selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image9.png "Summary panel, Optional section")
+    ![Screenshot of the Summary panel Optional section with the previously mentioned options selected.](images/Setup/image9.png "Summary panel, Optional section")
 
 4.  Be sure to allot for extra time, since the Android SDK can be more than 3.0 GB.
 
@@ -102,11 +102,11 @@ It is highly recommended to use a DS2 or D2 instance size for this VM. If you de
 
 3.  Select **New SQL Server stand-alone installation**.
     
-    ![On the SQL Server Installation Center, Installation page, New SQL Server stand-alone installation is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image10.png "SQL Server Installation Center, Installation page")
+    ![On the SQL Server Installation Center, Installation page, New SQL Server stand-alone installation is selected.](images/Setup/image10.png "SQL Server Installation Center, Installation page")
 
 4.  Once installation starts, accept the default settings for each step until you reach the **Database Engine Configuration** section. At this step, select the **Mixed Mode** radio button under the Authentication Mode segment of the Server Configuration tab. Enter a password (such as P\@ssword) for the SA account, and make sure your username is listed under Specify SQL Server administrators. **Please make note of the password you entered in this step**. This will be used later when updating the connection strings in the project configuration files.
     
-    ![On the SQL Server 2016 Setup, Database Engine Configuration page, Server Configuration tab, Mixed Mode is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image11.png "SQL Server 2016 Setup, Database Engine Configuration page")
+    ![On the SQL Server 2016 Setup, Database Engine Configuration page, Server Configuration tab, Mixed Mode is selected.](images/Setup/image11.png "SQL Server 2016 Setup, Database Engine Configuration page")
 
 5.  Complete the installation, accepting defaults for the remaining steps.
 
@@ -114,15 +114,15 @@ It is highly recommended to use a DS2 or D2 instance size for this VM. If you de
 
 1.  On the new VM, click on **Start**, then run the **SQL Server 2016 Installation Center**. When it launches, click on **Installation** on the left-hand pane, then **Install SQL Server Management Tools**.
     
-    ![On the SQL Server Installation Center, Installation page, Install SQL Server management Tools is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image12.png "SQL Server Installation Center, Installation page")
+    ![On the SQL Server Installation Center, Installation page, Install SQL Server management Tools is selected.](images/Setup/image12.png "SQL Server Installation Center, Installation page")
 
 2.  This will launch a web browser window, prompting you to download the latest SQL Server Management Studio version. Click on the **Download** link, and then run the executable file on completion.
     
-    ![On the Download SQL Server Management Studio download webpage, the link to Download SQL Server Management Studio - 17.0 is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image13.png "Download SQL Server Management Studio download webpage")
+    ![On the Download SQL Server Management Studio download webpage, the link to Download SQL Server Management Studio - 17.0 is selected.](images/Setup/image13.png "Download SQL Server Management Studio download webpage")
 
 3.  Once the download is complete, the Microsoft SQL Server Management Studio installation window will open. Click **Install** to complete the installation. 
 
-    ![The Microsoft SQL Server Management Studio installation window displays with the Install button selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image14.png "Microsoft SQL Server Management Studio installation window ")
+    ![The Microsoft SQL Server Management Studio installation window displays with the Install button selected.](images/Setup/image14.png "Microsoft SQL Server Management Studio installation window ")
 
 ### Task 6: (optional) Create and configure self-signed certificate
 
@@ -152,7 +152,7 @@ Task 6 is **optional** for users who wish to run the PolicyConnect desktop appli
 
 8.  In the **Add Standalone Snap-in** dialog box, select **Certificates** and click **Add**
 
-    ![In the Add or Remove Snap-ins dialog box, the Certificates snap-in and the Add button are selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image15.png "Add or Remove Snap-ins dialog box")
+    ![In the Add or Remove Snap-ins dialog box, the Certificates snap-in and the Add button are selected.](images/Setup/image15.png "Add or Remove Snap-ins dialog box")
 
 9.  In the **Certificates snap-in** dialog box, select the **Computer account** radio button because the certificate needs to be made available to all users, and click **Next**
 
@@ -176,7 +176,7 @@ Task 6 is **optional** for users who wish to run the PolicyConnect desktop appli
 
 19. On the **Completing the Certificate Import Wizard** screen, click **Finish**.
     
-    ![In the MMC window - console1, under Console Root\\Certificates (Local Computer), Trusted Root Certification Authorities is selected. Under Issued To, RootCATest is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image16.png "MMC window - console1")
+    ![In the MMC window - console1, under Console Root\\Certificates (Local Computer), Trusted Root Certification Authorities is selected. Under Issued To, RootCATest is selected.](images/Setup/image16.png "MMC window - console1")
 
 20. Leave the MMC window open, as it will be required below
 
@@ -197,7 +197,7 @@ Task 6 is **optional** for users who wish to run the PolicyConnect desktop appli
 
 6.  **Expand** the Personal certificates node on the Certificates tree to the left. You should see a certificate issued to your machine name, and issued by RootCATest. **Double-click your certificate**, and selectthe **Thumbprint** field under the Details tab. **Copy the Thumbprint value**.
     
-    ![In the MMC window - console1, under Certificate\\Personal, Certificates is selected. Under Issued To, the RootCATest certificate is selected. In the Certificate dialog box Details tab, the thumbprint value is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image17.png "MMC window - console1, and Certificate dialog box")
+    ![In the MMC window - console1, under Certificate\\Personal, Certificates is selected. Under Issued To, the RootCATest certificate is selected. In the Certificate dialog box Details tab, the thumbprint value is selected.](images/Setup/image17.png "MMC window - console1, and Certificate dialog box")
 
 7.  **Launch PowerShell** from the start menu. We will run a command to remove the spaces from the Thumbprint value we copied on the previous step. We will also execute a command to generate a new Guid value.
 
@@ -247,7 +247,7 @@ On the new VM, verify that the IIS Express developer certificate bound to localh
 
 10. You should see a certificate issued to and issued by "localhost".
     
-    ![In the MMC window - console1 window, the certificate issued to localhost is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image18.png "MMC window - console1")
+    ![In the MMC window - console1 window, the certificate issued to localhost is selected.](images/Setup/image18.png "MMC window - console1")
 
 11. If this certificate is not present, you will need to run a repair command for the IIS Express application. If it is present, continue to step 12.
 
@@ -255,21 +255,21 @@ On the new VM, verify that the IIS Express developer certificate bound to localh
 
     -   Find and right-click on the IIS Express application listing, and select **Repair**.
         
-        ![The right-click menu for IIS 10.0 Express displays with Repair selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image19.png "Repair menu option")
+        ![The right-click menu for IIS 10.0 Express displays with Repair selected.](images/Setup/image19.png "Repair menu option")
 
     -   Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder
 
 12. From the Certificates MMC snap-in, right-click on the localhost certificate within the Personal certificates container, then choose **All Tasks Export**...
     
-    ![In the MMC window - console1 window, under Certificates\\Personal, Certificates is selected. Under Issued to, the right-click menu for localhost displays, and All Tasks / Export is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image20.png "MMC window - console1 window")
+    ![In the MMC window - console1 window, under Certificates\\Personal, Certificates is selected. Under Issued to, the right-click menu for localhost displays, and All Tasks / Export is selected.](images/Setup/image20.png "MMC window - console1 window")
 
 13. When the Certificate Export Wizard dialog appears, click on **Next**. Under **Export Private Key**, select **Yes, export the private key**, and click **Next**.
     
-    ![The Certificate Export Wizard displays.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image21.png "Certificate Export Wizard")
+    ![The Certificate Export Wizard displays.](images/Setup/image21.png "Certificate Export Wizard")
 
 14. Make sure the **Personal Information Exchange -- PKCS \#12 (.PFX)** file format is selected, and that the first checkbox (include all certificates in the certification path if possible) is checked, leaving the other three unchecked. Click **Next**.
     
-    ![In the Certificate Export Wizard, Export File Format section, Personal Information Exchange -- PKCS \#12 (.PFX) is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image22.png "Certificate Export Wizard")
+    ![In the Certificate Export Wizard, Export File Format section, Personal Information Exchange -- PKCS \#12 (.PFX) is selected.](images/Setup/image22.png "Certificate Export Wizard")
 
 15. Enter and confirm a password on the next step. **Make note of the password** for the certificate import process. Click **Next**.
 
@@ -291,7 +291,7 @@ On the new VM, verify that the IIS Express developer certificate bound to localh
 
 2.  Validate connectivity to your Azure subscription. Launch Visual Studio, open Server Explorer from the View menu, and ensure that you can connect to your Azure subscription.
 
-    ![In Server Explorer, the right-click menu for the Azure subscription menu displays.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image23.png "Server Explorer")
+    ![In Server Explorer, the right-click menu for the Azure subscription menu displays.](images/Setup/image23.png "Server Explorer")
 
 ### Task 8: Download and explore the ContosoInsurance sample
 
@@ -327,7 +327,7 @@ On the new VM, verify that the IIS Express developer certificate bound to localh
 
 1.  In the Attach Databases dialog, click the **Add...** button and browse to C:\\Hackathon\\Database and select ContosoInsurance.mdf. Click OK, then OK once again.
     
-    ![In the Attach Databases dialog box, the Add button is selected. In the Local Database Files window, C:\\Hackathon\|Database displays in the address bar.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image24.png "Attach Databases dialog box, Local Database Files window")
+    ![In the Attach Databases dialog box, the Add button is selected. In the Local Database Files window, C:\\Hackathon\|Database displays in the address bar.](images/Setup/image24.png "Attach Databases dialog box, Local Database Files window")
 
 5.  You should now see the ContosoInsurance database listed underneath the Databases folder.
 
@@ -360,10 +360,10 @@ On the new VM, verify that the IIS Express developer certificate bound to localh
 
 1.  Within the Azure Management Portal, open the **Resource groups** tile, and click **Add**.
 
-    ![In the Azure portal Resource groups blade, the Add button is selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image25.png "Azure portal, Resource groups blade")
+    ![In the Azure portal Resource groups blade, the Add button is selected.](images/Setup/image25.png "Azure portal, Resource groups blade")
 
 2.  Specify the name of the resource group as **ContosoInsuranceHackathon**, and choose the Azure region you want to deploy the lab to. This resource group will be used throughout the rest of the lab. Click **Create** to create the resource group.
 
-    ![Screenshot of the Resource group blade.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image26.png "Resource group blade")
+    ![Screenshot of the Resource group blade.](images/Setup/image26.png "Resource group blade")
 
 You should follow all steps provided *before* attending the Hands-on lab.
