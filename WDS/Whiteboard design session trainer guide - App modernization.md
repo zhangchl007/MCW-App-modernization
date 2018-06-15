@@ -129,7 +129,7 @@ Outcome: Present solution to your customer
 
 Before conducting your first whiteboard design session:
 
--   Read the Student Guide (including the case study) and Trainer Guide.
+-   Read the Student guide (including the case study) and Trainer Guide.
 
 -   Become familiar with all key points and activities.
 
@@ -167,36 +167,45 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 ## Abstract and learning objectives 
 
-In this whiteboard design session, participants will design a solution to modernize legacy on-premises applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory (Azure AD). By completing this design session, attendees will gain a better understanding of using Azure App Services for hosting applications, protecting app secrets using Key Vault, leveraging Azure Functions Proxies to create light-weight APIs, centralizing authorization across Azure services using Azure AD, and implementing Azure Search to make files full-text searchable. In addition, they will empower business users to create ad-hoc create, read, update, and delete (CRUD) mobile apps with PowerApps and orchestrate between services such as Office 365 email and mobile using Flow.
+Modernize legacy on-premise applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using AAD.
+
+Learning Objectives:
+- Use Azure App Services
+- Protect app secrets using Key Vault
+- Empower business users to create ad-hoc CRUD mobile apps with PowerApps
+- Centralize authorization across Azure services using AAD
+- Orchestrate between services such as Office 365 email and mobile using Flow-Use Search to make files full text searchable
 
 ## Step 1: Review the customer case study 
 
 **Outcome** 
 
 Analyze your customer’s needs.
+
 Time frame: 15 minutes 
+
 Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips. 
-1.  Meet your table participants and trainer 
-2.  Read all of the directions for steps 1–3 in the student guide 
-3.  As a table team, review the following customer case study
+1.  Meet your table participants and trainer. 
+2.  Read all of the directions for steps 1–3 in the Student guide. 
+3.  As a table team, review the following customer case study.
 
 
 
 ### Customer situation
 
-Contoso Ltd. is a new company in a very old business. Founded in Auckland, New Zealand, in 2005 by senior life insurance executives, the ambitious new company provides a full range of long-term insurance services to help people who are underinsured.
+Contoso, Ltd. is a new company in a very old business. Founded in Auckland, New Zealand, in 2005 by senior life insurance executives, the ambitious new company provides a full range of long-term insurance services to help people who are underinsured.
 
 Almost from the start, the company grew far faster than anticipated. An avalanche of business meant that the original processes created to manage policy documentation became overloaded. Employees struggled to cope, even as the headcount rose from five to 110 during the first year.
 
-"By the beginning of 2007, we had over 750,000 pages of partly hand-written policy documents filed in our offices," says Mirand Lark, General Manager, Contoso Ltd. "Customer-facing employees could not retrieve policies quickly, and we faced a service bottleneck. Slow response times impacted customer service, and the ability to locate documents quickly cost us time and money."
+"By the beginning of 2007, we had over 750,000 pages of partly hand-written policy documents filed in our offices," says Mirand Lark, General Manager, Contoso, Ltd. "Customer-facing employees could not retrieve policies quickly, and we faced a service bottleneck. Slow response times impacted customer service, and the ability to locate documents quickly cost us time and money."
 
-With a combined 150 years of industry experience, the founders of Contoso Ltd. knew exactly what capabilities they wanted: automated document forwarding from brokers, secure access for brokers to Contoso Ltd., access to policy information, and ready policy retrieval for a dispersed workforce.
+With a combined 150 years of industry experience, the founders of Contoso, Ltd. knew exactly what capabilities they wanted: automated document forwarding from brokers, secure access for brokers to Contoso, Ltd., access to policy information, and ready policy retrieval for a dispersed workforce.
 
-To overcome its challenges, executives set about to digitize and file all existing policy documents and find a way to automatically file new policies as soon as brokers submitted them. To accomplish this, Contoso Ltd. implemented PolicyConnect, a custom Windows Forms application used by its staff to input key metadata that includes policyholder information such as insured amount, beneficiary, policy type, and any deductible and out-of-pocket requirements.
+To overcome its challenges, executives set about to digitize and file all existing policy documents and find a way to automatically file new policies as soon as brokers submitted them. To accomplish this, Contoso, Ltd. implemented PolicyConnect, a custom Windows Forms application used by its staff to input key metadata that includes policyholder information such as insured amount, beneficiary, policy type, and any deductible and out-of-pocket requirements.
 
 Contoso employees access this application, which ultimately stores its data in a SQL Server 2008 and a file server on their local area network.
 
-Contoso Ltd. provided the following diagram about its current topology:
+Contoso, Ltd. provided the following diagram about its current topology:
 
 ![The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](images/Whiteboarddesignsessiontrainerguide-Appmodernizationimages/media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
@@ -284,7 +293,7 @@ Directions: With all participants at your table, respond to the following questi
 
 3.  What Azure service would host the services supporting the mobile app backend? Would you suggest a Mobile App or an API App? Why?
 
-4.  What Azure service would provide a light weight, serverless API solution for retrieving policy documents from Azure blob storage?
+4.  What Azure service would provide a lightweight, serverless API solution for retrieving policy documents from Azure blob storage?
 
 5.  How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
@@ -307,19 +316,11 @@ Directions: With all participants at your table, respond to the following questi
 **Prepare**
 
 Directions: With all participants at your table: 
-
 1.  Identify any customer needs that are not addressed with the proposed solution. 
 2.  Identify the benefits of your solution. 
 3.  Determine how you will respond to the customer’s objections. 
 
 Prepare a 15-minute chalk-talk style presentation to the customer. 
-
-
-## Step 3: Present the solution
-
-**Outcome **
-
-Present a solution to the target customer audience in a 15-minute chalk-talk format.
 
 
 ## Step 3: Present the solution
@@ -414,13 +415,13 @@ Time frame: 15 minutes
 
 ##  Preferred target audience
 
-Mirand Lark, General Manager, Contoso Ltd.
+Mirand Lark, General Manager, Contoso, Ltd.
 
-The primary audience is the business decision makers and technology decision makers. From the case study scenario, this includes Mirand Lark, General Manager of Contoso Ltd. Usually we talk to the infrastructure managers who report to the chief information officers (CIOs), or to application sponsors (like a vice president \[VP\] line of business \[LOB\], or chief marketing officer \[CMO\]), or to those who represent the business unit IT or developers that report to application sponsors.
+The primary audience is the business decision makers and technology decision makers. From the case study scenario, this includes Mirand Lark, General Manager of Contoso, Ltd. Usually we talk to the infrastructure managers who report to the chief information officers (CIOs), or to application sponsors (like a vice president \[VP\] line of business \[LOB\], or chief marketing officer \[CMO\]), or to those who represent the business unit IT or developers that report to application sponsors.
 
 ## Preferred solution
 
-After lawyers affirmed that Contoso Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure.
+After lawyers affirmed that Contoso, Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure.
 
 *High-level architecture*
 
@@ -458,7 +459,7 @@ After lawyers affirmed that Contoso Ltd. could legally store customer data in th
 
 1.  *What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.*
 
-    Contoso could use the SQL Server Data Tools (SSDT) for Visual Studio to detect any incompatibilities and fix any detected issues. It could also use the SQL Azure Migration Wizard (SAMW) to perform the incompatibility testing (albeit its rule set is a little older than SSDT, so it may indicate errors that no longer cause incompatibility). Contoso could consider using SAMW to perform the migration of schema and data, assuming the database is small to medium in size. If the database is large, then Contoso would be better served by using SQL Server Management Studio (SSMS). It would export to a BACPAC from SQL Server (by using the Export Data-tier Application task) and then import that BACPAC into SQL Database (using the Import Data-tier Application task). The SQL Database would be created a part of the import process.
+    Contoso could use the SQL Server Data Tools (SSDT) for Visual Studio to detect any incompatibilities and fix any detected issues. It could also use the SQL Azure Migration Wizard (SAMW) to perform the incompatibility testing (albeit its rule set is a little older than SSDT, so it may indicate errors that no longer cause incompatibility). Contoso could consider using SAMW to perform the migration of schema and data, assuming the database is small to medium in size. If the database is large, then Contoso would be better served by using SQL Server Management Studio (SSMS). It would export to a BACPAC from SQL Server (by using the Export Data-tier Application task) and then import that BACPAC into SQL Database (using the Import Data-tier Application task). The SQL Database would be created as part of the import process.
 
 2.  *What patterns and services would you use to reduce load on the database? Implement the scoreboards? Be specific on the Azure services used and how the application would take advantage of them.*
 
@@ -483,7 +484,7 @@ After lawyers affirmed that Contoso Ltd. could legally store customer data in th
 
 1.  *We have seen services like IFTTT that let business users automate processes. Does Azure offer something similar?*
 
-    Yes, Microsoft Flow is a service that lets students and business professionals automate business processes.
+    Yes, Microsoft Flow is a service that lets attendees and business professionals automate business processes.
 
 2.  *Our developers have heard of Logic Apps---will these be replaced by Microsoft Flow?*
 
@@ -493,7 +494,7 @@ After lawyers affirmed that Contoso Ltd. could legally store customer data in th
 
     Yes, Key Vault provides a mechanism to encrypt and securely store secrets within the confines of specialized hardware called Hardware Security Modules (HSM).
 
-4.  *We noticed that Azure SQL Database does not support all of the features we are accustomed to in SQL Server---not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?*
+4.  *We noticed that Azure SQL Database does not support all of the features that we are accustomed to in SQL Server---not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?*
 
     Addressing each service, it is likely the case that a feature that was previously built into SQL Server and used from applications directly, now runs external to Azure SQL Database in the form of a separate Azure service. Linked servers are not supported by SQL Server, but cross-database read-only querying is possible using elastic database query. Database Mail, which was used to send email directly from SQL Server, is not supported, but there are multiple alternatives (such as using Office 365 and SendGrid) that applications can use to send email. Regarding SQL Server Agent Jobs, these background processes can usually be migrated to a Web Job (running within an App Service), Azure Functions, or to a Cloud Service Worker Role. Finally, regarding Service Broker, numerous alternative messaging options exist in Azure, including Azure Storage Queues and Azure Service Bus Brokered Messaging.
 
@@ -501,5 +502,5 @@ After lawyers affirmed that Contoso Ltd. could legally store customer data in th
 
 *"Microsoft has done a very smart job with the technology they have put into the cloud, so that applications are modifiable, interoperable, and secure...we could not be happier running PolicyConnect on Azure."*
 
----Mirand Lark, General Manager, Contoso Ltd.
+---Mirand Lark, General Manager, Contoso, Ltd.
 
