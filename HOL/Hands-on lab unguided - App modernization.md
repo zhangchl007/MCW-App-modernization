@@ -186,7 +186,16 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 ## Abstract and learning objectives 
 
-In this hands-on lab, participants will modernize legacy on-premises applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory (Azure AD). By completing this lab, attendees will gain a better understanding of using Azure App Services for hosting applications, protecting app secrets using Key Vault, leveraging Azure Functions Proxies to create light-weight APIs, centralizing authorization across Azure services using Azure AD, and implementing Azure Search to make files full-text searchable. In addition, they will empower business users to create ad-hoc create, read, update, and delete (CRUD) mobile apps with PowerApps and orchestrate between services such as Office 365 email and mobile using Flow.
+Modernize legacy on-premise applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using AAD.
+
+Learning Objectives:
+
+- Use Azure App Services
+- Protect app secrets using Key Vault
+- Empower business users to create ad-hoc CRUD mobile apps with PowerApps
+- Centralize authorization across Azure services using AAD
+- Orchestrate between services such as Office 365 email and mobile using Flow
+- Use Search to make files full text searchable
 
 ## Overview
 
@@ -194,11 +203,11 @@ The App Modernization hands-on lab is an exercise that will challenge you to imp
 
 ## Solution architecture
 
-After lawyers affirmed that Contoso Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure. Below is a diagram of the solution architecture you will build in the lab. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
+After lawyers affirmed that Contoso, Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure. Below is a diagram of the solution architecture you will build in the lab. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
 
 ![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications.](images/Hands-onlabunguided-Appmodernizationimages/media/image2.png "Solution architecture")
 
-The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a light-weight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
+The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a lightweight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
 
 ## Requirements
 
@@ -227,7 +236,7 @@ The solution begins with mobile apps (built for Android and iOS using **Xamarin*
 
 Duration: 15 minutes
 
-Contoso Insurance has asked you to migrate their on-premises SQL database to Azure SQL Database. In this exercise, you will provision a new SQL Server in Azure, configure the firewall for that SQL Server, and then use SSMS to migrate the ContosoInsurance database from on-premises to Azure SQL Database.
+Contoso Insurance has asked you to migrate their on-premises SQL database to Azure SQL Database. In this exercise, you will provision a new SQL Server in Azure, configure the firewall for that SQL Server, and then use SSMS to migrate the Contoso Insurance database from on-premises to Azure SQL Database.
 
 ### Task 1: Provision a SQL Server
 
@@ -257,11 +266,11 @@ In this task, you will create a firewall rule to allow access to your SQL Server
 
 ### Task 3: Migrate the on-premises SQL database to Azure
 
-In this task, you will migrate the ContosoInsurance database from on-premises (Lab VM) into Azure SQL Database
+In this task, you will migrate the Contoso Insurance database from on-premises (Lab VM) into Azure SQL Database
 
 #### Tasks to complete
 
--   Use SSMS to deploy the ContosoInsurance database to Microsoft Azure SQL Database
+-   Use SSMS to deploy the Contoso Insurance database to Microsoft Azure SQL Database
 
 #### Exit criteria 
 
@@ -301,7 +310,7 @@ Duration: 45 minutes
 
 Azure Active Directory (Azure AD) will be used to allow users to authenticate to the web app, PolicyConnect desktop app, mobile apps, and PowerApps solutions. Azure AD will also be used to manage application access to Key Vault secrets. You have been asked to create a new Azure AD Tenant and secure the application so only users from the tenant can log on.
 
-**Note**: Tasks 1 and 2 require global admin permissions on the Azure AD Tenant. Task 3 requires the permission to create an app in the Azure AD tenant. Task 1 and 2 cannot be completed if you use Microsoft's Azure AD tenant.
+**Note**: Tasks 1 and 2 require global admin permissions on the Azure AD Tenant. Task 3 requires the permission to create an app in the Azure AD tenant. Task 1 and 2 cannot be completed if you use Microsoft Azure AD tenant.
 
 ### Task 1: Create a new Contoso user
 
@@ -311,11 +320,11 @@ In this task, you will create an Azure AD user account that will be used for aut
 
 #### Tasks to complete
 
--   Create a new Contoso user named **Contoso User** in your Azure AD tenant and retrieved the temporary password auto-generated by Azure AD for later reference
+-   Create a new Contoso user named **Contoso User** in your Azure AD tenant and retrieve the temporary password auto-generated by Azure AD for later reference
 
 #### Exit criteria
 
--   You have made note of the full user name for later use. The user name will be in the following format: contosouser@\[your tenant\].onmicrosoft.com
+-   You have made note of the full username for later use. The username will be in the following format: contosouser@\[your tenant\].onmicrosoft.com
 
 -   You have saved the temporary password for later
 
@@ -351,7 +360,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
 -   Your Web API manifest has been updated to enable oauth2AllowImplicitFlow
 
--   You have an oauth2Permissions entry with the following information (replace the id value with a new GUID):\
+-   You have an oauth2Permissions entry with the following information (replace the id value with a new GUID):
 
     ```
     {
@@ -509,7 +518,7 @@ In this task, you will create an Azure Function Proxy, which is a simple way to 
 
 #### Tasks to complete
 
--   In your Function App, create a new Proxy named PolicyDocs that allows GET HTTP requests to the URL of the policy document you copied in the previous task.
+-   In your Function App, create a new Proxy named PolicyDocs that allows GET HTTP requests to the URL of the policy document you copied in the previous task
 
 #### Exit criteria
 
@@ -521,7 +530,7 @@ In the previous task, you created an Azure Functions Proxy to download a specifi
 
 #### Tasks to complete
 
--   Modify your Azure Functions Proxy to provide the following named parameters in the route template
+-   Modify your Azure Functions Proxy to provide the following named parameters in the route template:
 
     -   policyHolder
 
@@ -539,7 +548,7 @@ In the previous task, you created an Azure Functions Proxy to download a specifi
 
 Duration: 15 minutes
 
-Contoso Insurance has asked for full-text searching on the documents. In this exercise, you will provision an Azure Search service, then configure search indexing on the policies blob storage container.
+Contoso Insurance has asked for full-text search in the documents. In this exercise, you will provision an Azure Search service, then configure search indexing on the policies blob storage container.
 
 ### Task 1: Create an Azure search service
 
@@ -555,7 +564,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 #### Tasks to complete
 
--   Use the import data feature of the newly provisioned search service to connect to your blob storage container (policies) which contain the PDF files
+-   Use the import data feature of the newly provisioned search service to connect to your blob storage container (policies), which contain the PDF files
 
 -   Name the new index **policies**, using the detected metadata\_storage\_path as the key
 
@@ -611,7 +620,7 @@ In this task you will add the required permissions to allow the Web API applicat
 
 #### Tasks to complete
 
--   Set an Access policy to your Key vault allowing the Contoso Insurance Web API to access the SqlConnectionString secret
+-   Set an Access policy to your Key vault to allow the Contoso Insurance Web API to access the SqlConnectionString secret
 
 #### Exit criteria
 
@@ -621,7 +630,7 @@ In this task you will add the required permissions to allow the Web API applicat
 
 Duration: 10 minutes
 
-The developers at Contoso Insurance have been working toward migrating their apps to the cloud. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services, such as Web API. Since the required services have already been provisioned in, what remains is applying application-level configuration settings, and then deploying any hosted apps and services from the Visual Studio starter project solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web API from the Visual Studio.
+The developers at Contoso Insurance have been working toward migrating their apps to the cloud. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services, such as Web API. Since the required services have already been provisioned, what remains is applying application-level configuration settings and then deploying any hosted apps and services from the Visual Studio starter project solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will then deploy the Web API from the Visual Studio.
 
 ### Task 1: Add Application Settings to the API App
 
@@ -695,7 +704,7 @@ In this task, you will use Visual Studio to deploy the Web API to your API App i
 
 #### Exit criteria
 
--   You should see a list of the available REST APIs. However, you will not be able to execute them from here, as they are protected by AAD application permissions, accepting only token-based calls from registered apps.\
+-   You should see a list of the available REST APIs. However, you will not be able to execute them from here as they are protected by AAD application permissions, which accept only token-based calls from registered apps.\
     ![The Swagger page for the published Web API is displayed.](images/Hands-onlabunguided-Appmodernizationimages/media/image40.png "Swagger")
 
 ## Exercise 9: Configure and deploy the Contoso Insurance web app
@@ -764,7 +773,7 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
 #### Tasks to complete
 
--   Deploy the web app from the **Contoso.Apps.Insurance.Web** Starter Project in Visual Studio.
+-   Deploy the web app from the **Contoso.Apps.Insurance.Web** Starter Project in Visual Studio
 
 #### Exit criteria
 
@@ -788,7 +797,7 @@ Duration: 15 minutes
 
 Contoso Insurance has created a web and mobile version of their desktop application, but they have opted to update it to communicate with the new Web API service for business and data functionality, doing away with their old WCF services (also included in the solution). They have also replaced their SQL membership-based user authentication with Azure Active Directory (AAD).
 
-If you would like to run the desktop application in its original configuration, you will need to set up a local self-signed certificate, as detailed in [Appendix A](#_Appendix_A:_Create). Also, make sure that you run both WCF services when debugging the desktop application by right clicking on the Solution, then clicking on Select StartUp Projects... From here, select the Multiple startup projects radio button, then select the Start action for the following projects, moving them from top to bottom in this order: PolicyConnectDataService, PolicyConnectManagementService, and PolicyConnectDesktop. Also, make sure that the UseWebApi app setting is set to false in App.config.
+If you would like to run the desktop application in its original configuration, you will need to set up a local self-signed certificate, as detailed in [Appendix A](#_Appendix_A:_Create). Also, make sure that you run both WCF services when debugging the desktop application by right-clicking on the Solution, then clicking on Select StartUp Projects. From here, select the Multiple startup projects radio button then select the Start action for the following projects, moving them from top to bottom in this order: PolicyConnectDataService, PolicyConnectManagementService, and PolicyConnectDesktop. Also, make sure that the UseWebApi app setting is set to false in App.config.
 
 ### Task 1: Configure application settings in App.config
 
@@ -813,8 +822,7 @@ In this task, you will update the application settings in the App.config file, a
     -   **AzureAdLoginUrl**: This is the URL of your Azure AD tenant, which should be: [https://login.windows.net/\<tenantID](https://login.windows.net/%3ctenantID)\>. You can find your Tenant ID by opening Azure AD and selecting Properties. Your Tenant ID is the Directory ID value
 
     -   **AzureADTenantId**: This is the Guid value of your tenant, which you retrieved from Azure AD for the previous key
-
-    -   
+    
 
 #### Exit criteria
 
@@ -826,7 +834,7 @@ In this task, you will update the application settings in the App.config file, a
 
 -   Successfully run the desktop application by debugging it in Visual Studio
 
--   Select the **Log in** button to begin, and login with the credentials for the Contoso User account you created in your AAD directory. Username is **contosouser@\<your tenant\>.onmicrosoft.com**.
+-   Select the **Log in** button to begin, and login with the credentials for the Contoso User account you created in your AAD directory. The username is **contosouser@\<your tenant\>.onmicrosoft.com**.
 
 #### Exit criteria
 
@@ -838,7 +846,7 @@ In this task, you will update the application settings in the App.config file, a
 
 Duration: 15 minutes
 
-The mobile application was built using Xamarin Forms, capitalizing on the .NET expertise of the Contoso Insurance development team. As a bonus, they can easily add additional platforms, such as iOS and Windows phone, as well as target multi-platform desktop environments. For now, their focus has been on deploying to Android, since they can run the Android emulator right from their development machines, which are Windows-based. You will need to have completed the Xamarin installation steps outlined at the beginning of this hands-on lab guide.
+The mobile application was built using Xamarin Forms, capitalizing on the .NET expertise of the Contoso Insurance development team. As a bonus, they can easily add additional platforms, such as iOS and Windows phone, as well as target multi-platform desktop environments. For now their focus has been on deploying to Android, since they can run the Android emulator right from their development machines, which are Windows-based. You will need to have completed the Xamarin installation steps outlined at the beginning of this hands-on lab guide.
 
 In this exercise, you will update the application settings in the ApplicationSettings.cs file, and then run the mobile application within the Android emulator.
 
@@ -868,7 +876,7 @@ In this exercise, you will update the application settings in the ApplicationSet
 
     -   **AzureSearchServiceUrl**: To get this value, go into the Azure portal, select your search service, then the \"policies\" index, and then \"Search explorer." Copy the full URL within the URL field. Make sure to include the entire path, even the \"&search=\*\" at the end (e.g., <https://contosoinsurance.search.windows.net/indexes/policies/docs?api-version=2015-02-28&search=*>)
 
-    -   **AzureSearchQueryApiKey**: Insert the query key value from your Azure Search service, which can be found by selecting your search service in Azure, selecting Keys, then selecting Manage query keys, and coping the displayed key (or create one if none exist) (e.g., 1A80181B30F975CFE252E4FDDAA657DC)
+    -   **AzureSearchQueryApiKey**: Insert the query key value from your Azure Search service, which can be found by selecting your search service in Azure, selecting Keys, then selecting Manage query keys, and copying the displayed key (or create one if none exist) (e.g., 1A80181B30F975CFE252E4FDDAA657DC)
 
 #### Exit criteria
 
@@ -885,27 +893,27 @@ In this exercise, you will update the application settings in the ApplicationSet
 -   The Android emulator should appear, and then launch the PolicyConnect app within\
     ![Screenshot of the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image44.png "Android emulator")
 
--   Click the **Sign In** button to begin
+-   Select the **Sign In** button to begin
 
--   You will be presented with an AAD login window. Enter the login credentials for the Contoso User account you created in your AAD directory. Username is **contosouser@\<your tenant\>.onmicrosoft.com**After authentication is complete, you should see a list of policyholders. You cannot interact with the records in any way for this demo.
+-   You will be presented with an AAD login window. Enter the login credentials for the Contoso User account you created in your AAD directory. Username is **contosouser@\<your tenant\>.onmicrosoft.com**. After authentication is complete, you should see a list of policyholders. You cannot interact with the records in any way for this demo.
 
--   Click on the menu button on the upper-left to explore other parts of the app\
+-   Select the menu button on the upper-left to explore other parts of the app\
     ![Policy Holders list viewed in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image45.png "Android emulator")
 
--   Click on the menu and choose **Search Policy \#**\
+-   Select the menu and choose **Search Policy \#**\
     ![Search Policy \# is highlighted in the Android emulation.](images/Hands-onlabunguided-Appmodernizationimages/media/image46.png "Android emulator")
 
 -   You can either enter a full policy \# or perform a partial search of all content and metadata fields within the search field. Type in at least 3 characters to activate the search button. Try searching with the letters **MON**. The most relevant search results will appear first. Now try searching by an exact policy number, such as **DOW586IJCG493F**. You should see a single result matching that policy number.\
     ![Search results are displayed in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image47.png "Android Emulator")
 
--   Click on a search result to view the content that was extracted by the Azure Search indexer. There is a link to download the actual PDF at the bottom of the result page. This will display the file that is stored in blob storage![Search resullt details in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image48.png "Android emulator")\
+-   Select a search result to view the content that was extracted by the Azure Search indexer. There is a link to download the actual PDF at the bottom of the result page. This will display the file that is stored in blob storage![Search resullt details in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image48.png "Android emulator")\
     ![Policy document in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image49.png "Android emulator")
 
 ## Exercise 12: Create a Flow app that sends push notifications
 
 Duration: 10 minutes
 
-Contoso wants to receive push notifications when important emails arrive, since any newly scanned policies that are emailed to the data entry employees are marked as important. Since they use Office 365 for their email services, you can easily meet this requirement with Flow.
+Contoso wants to receive push notifications when important emails arrive, since any newly scanned policies that are emailed to the data entry employees are marked as important. As they use Office 365 for their email services, you can easily meet this requirement with Flow.
 
 ### Task 1: Sign up for a Flow account
 
@@ -923,9 +931,9 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
 #### Tasks to complete
 
--   Create a new trigger that connects to Office 365 Outlook, watching for any that is of high importance and have an attachment
+-   Create a new trigger that connects to Office 365 Outlook. Watch for any that is of high importance and have an attachment.
 
--   Execute a push notification if an email with the preferred criteria arrives in the user's inbox. Make sure that the subject is part of the notification title
+-   Execute a push notification if an email with the preferred criteria arrives in the user's inbox. Make sure that the subject is part of the notification title.
 
 #### Exit criteria
 
@@ -941,14 +949,14 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
 -   If you have installed the Flow mobile app that supports push notifications, you should have received one after the message has been sent
 
--   Alternatively, check the status of your flow by going to **My flows**, then clicking on the name of the flow. The resulting page will display a log of each time it was executed. When you click on the log entry, you will see which of the steps, the email trigger or the push notification, were successful.\
+-   Alternatively, check the status of your flow by going to **My flows**, and then selecting the name of the flow. The resulting page will display a log of each time it was executed. When you select the log entry, you will see which of the steps the email trigger or the push notification was successful.\
     ![On the My flows tab, the option to send a mobile notification when a new email arrives is set to On.](images/Hands-onlabunguided-Appmodernizationimages/media/image50.png "My Flows tab")
 
 ## Exercise 13: Create an app in PowerApps
 
 Duration: 15 minutes
 
-Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications in order to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app.
+Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications in order to quickly add functionality not currently offered by their app. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app.
 
 Get them up and running with a new app created in PowerApps, which connects to the ContosoInsurance database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
 
@@ -972,7 +980,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 #### Tasks to complete
 
--   From the <https://web.powerapps.com> website, create a new SQL connection, entering the server name, database name, username, and password for the ContosoInsurance database hosted in Azure
+-   From the <https://web.powerapps.com> website, create a new SQL connection and enter the server name, database name, username, and password for the ContosoInsurance database hosted in Azure
 
 #### Exit criteria
 
@@ -982,7 +990,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 #### Tasks to complete
 
--   Launch the PowerApps desktop application and create a new app, using the SQL connection, pointing to the Policies table
+-   Launch the PowerApps desktop application and create a new app, using the SQL connection pointing to the Policies table
 
 #### Exit criteria
 
@@ -1042,7 +1050,7 @@ In this exercise, you will deprovision any Azure resources that were created in 
 
 ### Task 3: Delete Flow
 
--   In your Microsoft Flow account, delete the Flow you created to send a push notification when email messages marked as important with an attachment are received in your inbox.
+-   In your Microsoft Flow account, delete the Flow you created to send a push notification when email messages marked as important with an attachment are received in your inbox
 
 You should follow all steps provided *after* attending the hands-on lab.
 
@@ -1054,7 +1062,7 @@ For users who wish to run the PolicyConnect desktop application within its legac
 
 1.  On the new VM, run the **Developer Command Prompt** for the appropriate version of Visual Studio as an [administrator]{.underline} from the Start menu
 
-2.  Browse to a folder location you wish to store the certificate files, taking note of the path
+2.  Browse to a folder location you wish to store the certificate files. Take note of the path.
 
 3.  Run the following command to create the root CA, and execute:
 
@@ -1063,39 +1071,39 @@ For users who wish to run the PolicyConnect desktop application within its legac
     ```
 By default, no **makecert** tool is installed on Windows 10 PC. To install, you need to download Windows 10 SDK from here: <https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk>
 
-4.  In the **Create Private Key Password** dialog box, click **None** without entering the password. Normally this is not recommended for security reasons but is acceptable for test purposes only.
+4.  In the **Create Private Key Password** dialog box, select **None** without entering the password. Normally this is not recommended for security reasons but is acceptable for test purposes only.
 
 5.  Now you will install the certificate in the Trusted Root Certification Authorities container
 
-6.  Click **Start**, then type **MMC** and then click **OK**. On Windows 10, you will need to type **mmc.exe** after clicking **Start**
+6.  Select **Start**, then type **MMC** and then select **OK**. On Windows 10, you will need to type **mmc.exe** after selecting **Start**
 
-7.  In the Microsoft Management Console (MMC), on the **File** menu, click **Add/Remove Snap-in**.
+7.  In the Microsoft Management Console (MMC), on the **File** menu, select **Add/Remove Snap-in**
 
-8.  In the **Add Standalone Snap-in** dialog box, select **Certificates** and then click **Add**
+8.  In the **Add Standalone Snap-in** dialog box, select **Certificates** and then select **Add**
 
     ![In the Add or Remove Snap-ins dialog box, the Certificates snap-in and the Add button are selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image52.png "Add or Remove Snap-ins dialog box")
 
-9.  In the **Certificates snap-in** dialog box, select the **Computer account** radio button because the certificate needs to be made available to all users, and then click **Next**
+9.  In the **Certificates snap-in** dialog box, select the **Computer account** radio button because the certificate needs to be made available to all users, and then select **Next**
 
-10. In the **Select Computer** dialog box, leave the default **Local computer** (the computer this console is running on) selected and then click **Finish**
+10. In the **Select Computer** dialog box, leave the default **Local computer** (the computer this console is running on) selected and then select **Finish**
 
-11. In the **Add/Remove Snap-in** dialog box, click **OK**
+11. In the **Add/Remove Snap-in** dialog box, select **OK**
 
 12. In the left pane, expand the **Certificates (Local Computer)** node, and then expand the Trusted Root Certification Authorities folder
 
-13. Under **Trusted Root Certification Authorities**, right-click the Certificates subfolder, select **All Tasks**, and then click **Import**
+13. Under **Trusted Root Certification Authorities**, right-click the Certificates subfolder, select **All Tasks**, and then select **Import**
 
-14. On the **Certificate Import Wizard** welcome screen, click **Next**
+14. On the **Certificate Import Wizard** welcome screen, select **Next**
 
-15. On the **File to Import** screen, click **Browse**
+15. On the **File to Import** screen, select **Browse**
 
-16. Browse to the location of the signed Root Certificate Authority RootCATest.cer file copied in Step 3, select the file, and then click **Open**
+16. Browse to the location of the signed Root Certificate Authority RootCATest.cer file copied in Step 3, select the file, and then select **Open**
 
-17. On the **File to Import** screen, click **Next**
+17. On the **File to Import** screen, select **Next**
 
-18. On the **Certificate Store** screen, accept the default choice and then click **Next**
+18. On the **Certificate Store** screen, accept the default choice and then select **Next**
 
-19. On the **Completing the Certificate Import Wizard** screen, click **Finish**\
+19. On the **Completing the Certificate Import Wizard** screen, select **Finish**\
     ![In the MMC window - console1, under Console Root\\Certificates (Local Computer), Trusted Root Certification Authorities is selected. Under Issued To, RootCATest is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image53.png "MMC window - console1")
 
 20. Leave the MMC window open, as it will be required below
@@ -1120,7 +1128,7 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 
 7.  **Launch PowerShell** from the start menu. You will run a command to remove the spaces from the Thumbprint value you copied on the previous step. You will also execute a command to generate a new Guid value.
 
-8.  From the PowerShell command prompt, **paste your certificate's thumbprint between double quotes**, executing the following command (replacing the thumbprint value with your own):\
+8.  From the PowerShell command prompt, **paste your certificate's thumbprint between double quotes** and execute the following command (replacing the thumbprint value with your own):\
     \"a1 b6 9e 7a be 27 fe 21 fa c7 21 f5 40 72 9f c1 f5 8c dc 4e\" -replace \" \"
 
 9.  **Copy the output value**, which is your thumbprint with the spaces removed
@@ -1142,21 +1150,21 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 
 1.  On the new VM, verify that the IIS Express developer certificate bound to localhost is present
 
-2.  Click **Start**, type **MMC,** and then click **OK**
+2.  Select **Start**, type **MMC,** and then select **OK**
 
-3.  In the Microsoft Management Console (MMC), on the **File** menu, click **Add/Remove Snap-in**
+3.  In the Microsoft Management Console (MMC), on the **File** menu, select **Add/Remove Snap-in**
 
-4.  In the **Add Remove Snap-in** dialog box, click **Add**
+4.  In the **Add Remove Snap-in** dialog box, select **Add**
 
-5.  In the **Add Standalone Snap-in** dialog box, select **Certificates,** and then click **Add**
+5.  In the **Add Standalone Snap-in** dialog box, select **Certificates,** and then select **Add**
 
-6.  In the **Certificates snap-in** dialog box, select the **Computer account** radio button because the certificate needs to be made available to all users, and then click **Next**
+6.  In the **Certificates snap-in** dialog box, select the **Computer account** radio button because the certificate needs to be made available to all users, and then select **Next**
 
-7.  In the **Select Computer** dialog box, leave the default **Local computer** (the computer this console is running on) selected, and then click **Finish**
+7.  In the **Select Computer** dialog box, leave the default **Local computer** (the computer this console is running on) selected, and then select **Finish**
 
-8.  In the **Add Standalone Snap-in** dialog box, click **Close**
+8.  In the **Add Standalone Snap-in** dialog box, select **Close**
 
-9.  In the **Add/Remove Snap-in** dialog box, click **OK**
+9.  In the **Add/Remove Snap-in** dialog box, select **OK**
 
 10. In the left pane, expand the **Certificates (Local Computer)** node, and then expand the **Personal** folder
 
@@ -1165,7 +1173,7 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 
 12. If this certificate is not present, you will need to run a repair command for the IIS Express application. If it is present, continue to step 12.
 
-    a.  Click on **Start**, then type in **Programs and Features**. Click on the **Programs and Features** application link.
+    a.  Select **Start**, then type in **Programs and Features**. Select the **Programs and Features** application link.
 
     b.  Find and right-click on the IIS Express application listing, then select **Repair**\
         ![The right-click menu for IIS 10.0 Express displays with Repair selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image56.png "Repair menu option")
@@ -1175,23 +1183,23 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 13. From the Certificates MMC snap-in, right-click on the localhost certificate within the Personal certificates container, then choose **All Tasks Export**...\
     ![In the MMC window - console1 window, under Certificates\\Personal, Certificates is selected. Under Issued to, the right-click menu for localhost displays, and All Tasks / Export is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image57.png "MMC window - console1 window")
 
-14. When the Certificate Export Wizard dialog appears, click on **Next**. Under **Export Private Key**, select **Yes, export the private key**, and then click **Next**\
+14. When the Certificate Export Wizard dialog appears, select **Next**. Under **Export Private Key**, select **Yes, export the private key**, and then click **Next**\
     ![The Certificate Export Wizard displays.](images/Hands-onlabunguided-Appmodernizationimages/media/image58.png "Certificate Export Wizard")
 
-15. Make sure the **Personal Information Exchange -- PKCS \#12 (.PFX)** file format is selected, and that the first checkbox (include all certificates in the certification path if possible) is checked, leaving the other three unchecked. Click **Next**.\
+15. Make sure the **Personal Information Exchange -- PKCS \#12 (.PFX)** file format is selected, and that the first checkbox (include all certificates in the certification path if possible) is checked, leaving the other three unchecked. Select **Next**.\
     ![In the Certificate Export Wizard, Export File Format section, Personal Information Exchange -- PKCS \#12 (.PFX) is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image59.png "Certificate Export Wizard")
 
-16. Enter and confirm a password on the next step. **Make note of the password** for the certificate import process. Click **Next**.
+16. Enter and confirm a password on the next step. **Make note of the password** for the certificate import process. Select **Next**.
 
-17. Specify the name of your exported file by browsing to a folder and typing in the name of the file (such as localhost). Click **Next**.
+17. Specify the name of your exported file by browsing to a folder and typing in the name of the file (such as localhost). Select **Next**.
 
-18. Click **Finish** on the confirmation screen. You will receive a prompt stating that the export was successful. Click **OK** to close the dialog.
+18. Select **Finish** on the confirmation screen. You will receive a prompt stating that the export was successful. Select **OK** to close the dialog.
 
 19. After the export is complete, expand the **Trusted Root Certification Authorities** folder, then right-click on the Certificates subfolder and select **All Tasks...** **Import**
 
-20. Click Next, and then browse to the exported certificate location. You may need to select **Personal Information Exchange (\*.pfx,\*.p12)** from the file types dropdown next to the filename field in order to see your certificate listed. Select the certificate, click **Open**, and then **Next**.
+20. Select **Next**, and then browse to the exported certificate location. You may need to select **Personal Information Exchange (\*.pfx,\*.p12)** from the file types dropdown next to the filename field in order to see your certificate listed. Select the certificate, select **Open**, and then **Next**.
 
-21. Type the password you entered while exporting the certificate in step 15, then click **Next**
+21. Type the password you entered while exporting the certificate in step 15, then select **Next**
 
-22. Make sure that the **Trusted Root Certification Authorities** certificate store is selected, then click Next, then Finish. You will receive a prompt stating that the import was successful. Click **OK** to close the dialog.
+22. Make sure that the **Trusted Root Certification Authorities** certificate store is selected, then select **Next**, then **Finish**. You will receive a prompt stating that the import was successful. Select **OK** to close the dialog.
 
