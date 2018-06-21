@@ -285,7 +285,7 @@ Directions: With all participants at your table, respond to the following questi
 
 1.  Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, and extensibility.
 
-    *Mobile and web applications*
+*Mobile and web applications*
 
 1.  How should Contoso implement the PolicyConnect mobile app?
 
@@ -297,8 +297,7 @@ Directions: With all participants at your table, respond to the following questi
 
 5.  How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-    *Data management*
-
+*Data management*
 
 1.  What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
 
@@ -306,7 +305,7 @@ Directions: With all participants at your table, respond to the following questi
 
 3.  Given their requirements, how would you enable full-text search on the stored policy documents?
 
-    *Extensibility*
+*Extensibility*
 
 
 1.  How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
