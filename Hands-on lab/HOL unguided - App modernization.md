@@ -182,7 +182,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-#App modernization hands-on lab unguided
+# App modernization hands-on lab unguided
 
 ## Abstract and learning objectives 
 
