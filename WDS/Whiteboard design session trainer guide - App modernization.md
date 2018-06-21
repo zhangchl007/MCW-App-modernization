@@ -277,7 +277,8 @@ Directions: With all participants at your table, answer the following questions 
 1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers? 
 2.  What customer business needs do you need to address with your solution?
 
-**Design** 
+**Design**
+
 Directions: With all participants at your table, respond to the following questions on a flip chart.
 
 
