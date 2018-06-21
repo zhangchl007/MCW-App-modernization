@@ -25,7 +25,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 **Contents**
 
-
 <!-- TOC -->
 
 - [Trainer information](#trainer-information)
@@ -64,25 +63,25 @@ Thank you for taking time to support the whiteboard design sessions as a trainer
 
 An amazing trainer:
 
--   Creates a safe environment in which learning can take place.
+-   Creates a safe environment in which learning can take place
 
--   Stimulates the participant's thinking.
+-   Stimulates the participant's thinking
 
--   Involves the participant in the learning process.
+-   Involves the participant in the learning process
 
--   Manages the learning process (on time, on topic, and adjusting to benefit participants).
+-   Manages the learning process (on time, on topic, and adjusting to benefit participants)
 
--   Ensures individual participant accountability.
+-   Ensures individual participant accountability
 
--   Ties it all together for the participant.
+-   Ties it all together for the participant
 
--   Provides insight and experience to the learning process.
+-   Provides insight and experience to the learning process
 
--   Effectively leads the whiteboard design session discussion.
+-   Effectively leads the whiteboard design session discussion
 
--   Monitors quality and appropriateness of participant deliverables.
+-   Monitors quality and appropriateness of participant deliverables
 
--   Effectively leads the feedback process.
+-   Effectively leads the feedback process
 
 ## Whiteboard design session flow 
 
@@ -128,15 +127,15 @@ Outcome: Present solution to your customer
 
 Before conducting your first whiteboard design session:
 
--   Read the Student guide (including the case study) and Trainer Guide.
+-   Read the Student guide (including the case study) and Trainer Guide
 
--   Become familiar with all key points and activities.
+-   Become familiar with all key points and activities
 
--   Plan the point you want to stress, which questions you want to drive, transitions, and be ready to answer questions.
+-   Plan the point you want to stress, which questions you want to drive, transitions, and be ready to answer questions
 
--   Prior to the whiteboard design session, discuss the case study to pick up more ideas.
+-   Prior to the whiteboard design session, discuss the case study to pick up more ideas
 
--   Make notes for later.
+-   Make notes for later
 
 ## During the whiteboard design session: tips for an effective whiteboard design session
 
