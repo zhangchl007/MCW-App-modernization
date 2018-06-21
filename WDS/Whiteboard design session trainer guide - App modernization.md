@@ -308,7 +308,6 @@ Directions: With all participants at your table, respond to the following questi
 
 *Extensibility*
 
-
 1.  How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
 
 2.  Given your answer to the previous question, how would a Contoso business user implement the scenario where a high-priority email is sent to his Office 365 email and in response an application notification appears on his device?
@@ -470,7 +469,7 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
     Contoso could use Azure Search and the Indexer for Azure Storage Blobs. For files stored in Azure Storage Blobs, this indexer will full-text index PDFs, Microsoft Office Documents (DOCX, DOC, XLSX, XLS, PPTX, PPT, and MSG), HTML, XML, ZIP, EML, JSON, and plain text files. Contoso could then use the Azure Search .NET SDK from the API App to kick off searches.
 
-    *Extensibility*
+*Extensibility*
 
 1.  *How would you enable Contoso business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?*
 
