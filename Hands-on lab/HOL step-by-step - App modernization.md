@@ -1667,6 +1667,106 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
     ![Screenshot of the Run button.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image200.png "Run button")
 
+
+## Exercise 14: Add Azure Function to Azure API Management
+
+Duration: 15 minutes
+
+Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create a API Managemenent portal and import the Function app you created earlier.
+
+### Task 1: Provision Azure API Management
+
+In this task, you will create a new API Management Resource.
+
+1.  Connect to the Azure portal at: <https://portal.azure.com>, select **Integration** and then select **API management**
+
+    ![Integration is selected, and the API management button is clicked.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image209.png "Azure Portal New blade")
+
+2.  On the **API management** blade, specify the following configuration and select **Create**:
+
+    a.  **Name**: Enter a unique value, such as contosoinsuranceSUFFIX (ensure the green checkmark appears)
+
+    b.  **Subscription**: Select the subscription you are using for this hands-on lab.
+
+    c.  **Resource Group**: Select the resource group you are using for this hands-on lab.
+
+    d.  **Organization Name**: Contoso Insurance
+
+    e.  **Administrator Email**: Enter the email address associated with the Azure account you are using for this hands-on lab.
+
+    f.  **Pricing Tier**: Develper (No SLA)
+
+    
+       ![API management Create blade with the values specified above entered into the appropriate fields.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image210.png "API Management Configured")
+
+    > **Note**: It will take several minutes to provision the APIM resource. You can safely move on to the next task.
+
+### Task 2: Add API Definition to Function App
+
+In this task, you will generate a swagger api definition for the policy documents Function App. This is required for API Management to discover the API.
+
+1.  Navigate to the Function App you created earlier (contosoinsurancedocsSUFFIX) and select the **Platform features** blade.
+
+2.  Select **Api definition**
+
+  ![App function blade with Platform features open and Api definition selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image211.png "Function App Platform Features Selected")
+
+3.  Delete the placeholder text if it exists in the text area labeled #1.
+
+  ![Api definition blade with blank text area and Generate api definition template selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image212.png "Api Defintion Open")
+
+4.  Select **Generate api defintiion template**. The error window should disappear and the swagger json will appear.
+
+  ![Api definition blade after Generate api definition template selected and swagger json template appearing](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image213.png "API Defintion Template Generated")
+
+5. Select **Save**
+
+### Task 3: Import the Funtion App to API Management(APIM)
+
+In this task, you will add your function app to the APIM's api collection.
+
+1.  Return to the **API Management** service and  select the **APIs** blade.
+
+2.  Select **Function app** to begin importing your Policy Docs api into APIM.
+
+  ![APIs blade open and Function App selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image215.png "Import Function APP into API Management")
+
+3.  Select **Function App (Please select Function App)** and choose your contosoinsurancedocsSUFFIX app.
+
+  ![Function App blade open and contoso insurance docs app selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image216.png "Contoso Inurance Docs App Selected")
+
+4.  On the **Function App** blade, specify the following configuration and select **Create**:
+
+    a.  **Display Name**: Policy Doc Function
+
+    b.  **Products**: Unlimited
+
+    ![Function App blade open with the values specified above entered into the appropriate fields](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image217.png "Imported Function App Configured")
+
+    > **Note**: A pop up indicating that you should replace the Named Values with the function secrets will appear. In this lab, this step will not be required. Select Ok to disregard.
+
+    ![Import Function App pop up is displayed](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image218.png "Import Function App Pop")
+
+### Task 4: Test the APIM Developer Portal
+
+In this task, you will test an API from the APIM Developer Portal.
+
+1.  Navigate to the Developers portal URL - found in the APIM Overview Blade. You should already be signed in as the APIM Administrator.
+
+2. Select **Try It**
+
+  ![Policy Doc function definition is displayed and Try It is selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image219.png "Policy Doc Function Try It")
+
+3. Enter the values for **policyHolder** and **policyNumber** in the text fields and select **Send**.
+
+    a. (for example)
+      policyHolder: Albert
+      policyNumber: ALB417974T1SV1
+
+  ![Policy Doc function Try It form is displayed, the above information is entered into the appropriate fields, and Send is selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image220.png "Policy Doc Function Try It Parameters Entered")
+
+4.  The response should be a 200 Okay with binary data representing a pdf file.
+
 ## After the hands-on lab 
 
 Duration: 10 minutes
