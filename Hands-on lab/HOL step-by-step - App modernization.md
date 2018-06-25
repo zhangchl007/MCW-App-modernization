@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-May 2018
+June 2018
 </div>
 
 
@@ -1766,8 +1766,8 @@ In this task, you will test an API from the APIM Developer Portal.
 3. Enter the values for **policyHolder** and **policyNumber** in the text fields and select **Send**.
 
     a. (for example)
-      policyHolder: Albert
-      policyNumber: ALB417974T1SV1
+      - policyHolder: Albert
+      - policyNumber: ALB417974T1SV1
 
   ![Policy Doc function Try It form is displayed, the above information is entered into the appropriate fields, and Send is selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image220.png "Policy Doc Function Try It Parameters Entered")
 

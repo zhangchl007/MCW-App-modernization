@@ -9,7 +9,7 @@ Hands-on lab unguided
 </div>
 
 <div class="MCWHeader3">
-May 2018
+June 2018
 </div>
 
 
@@ -1100,9 +1100,9 @@ In this task, you will test an API from the APIM Developer Portal.
 
 -  Use the Try It feature on the APIM developer portal to test the function app api.
 
-      example testing values:
-      policyHolder: Albert
-      policyNumber: ALB417974T1SV1
+    -  example testing values:
+    -  policyHolder: Albert
+    -  policyNumber: ALB417974T1SV1
 
 #### Exit criteria
 
