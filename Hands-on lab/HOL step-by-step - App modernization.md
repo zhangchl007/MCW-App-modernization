@@ -118,7 +118,7 @@ Learning Objectives:
 - Centralize authorization across Azure services using AAD
 - Orchestrate between services such as Office 365 email and mobile using Flow
 - Use Search to make files full text searchable
-- Use Azure API Management to import an existing api
+- Use Azure API Management to import an existing API
 
 ## Overview
 
