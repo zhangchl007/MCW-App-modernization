@@ -171,6 +171,19 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
         - [Task 5: Edit the app settings and run the app](#task-5-edit-the-app-settings-and-run-the-app)
             - [Tasks to complete](#tasks-to-complete-40)
             - [Exit criteria](#exit-criteria-41)
+    - [Exercise 14: Add Azure Function to Azure API Management](#exercise-14-add-azure-function-to-azure-api-management)
+        - [Task 1: Provision Azure API Management](#task-1-provision-azure-api-management)
+            - [Tasks to complete](#tasks-to-complete-41)
+            - [Exit criteria](#exit-criteria-42)
+        - [Task 2: Add API Definition to Function App](#task-2-add-api-definition-to-function-app)
+            - [Tasks to complete](#tasks-to-complete-42)
+            - [Exit criteria](#exit-criteria-43)
+        - [Task 3: Import the Funtion App to API Management(APIM)](#task-3-import-the-funtion-app-to-api-managementapim)
+            - [Tasks to complete](#tasks-to-complete-43)
+            - [Exit criteria](#exit-criteria-44)
+        - [Task 4: Test the APIM Developer Portal](#task-4-test-the-apim-developer-portal)
+            - [Tasks to complete](#tasks-to-complete-44)
+            - [Exit criteria](#exit-criteria-45)
     - [After the hands-on lab](#after-the-hands-on-lab)
         - [Task 1: Delete the Resource group in which you placed your Azure resources.](#task-1-delete-the-resource-group-in-which-you-placed-your-azure-resources)
         - [Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile](#task-2-delete-the-azure-active-directory-app-registrations-for-desktop-and-mobile)
@@ -196,6 +209,7 @@ Learning Objectives:
 - Centralize authorization across Azure services using AAD
 - Orchestrate between services such as Office 365 email and mobile using Flow
 - Use Search to make files full text searchable
+- Use Azure API Management to import an existing api
 
 ## Overview
 
@@ -205,9 +219,9 @@ The App Modernization hands-on lab is an exercise that will challenge you to imp
 
 After lawyers affirmed that Contoso, Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure. Below is a diagram of the solution architecture you will build in the lab. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
 
-![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications.](images/Hands-onlabunguided-Appmodernizationimages/media/image2.png "Solution architecture")
+![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications. Azure API Management is used to provide an API Store experience for developers.](images/Hands-onlabunguided-Appmodernizationimages/media/image2.png "Solution architecture")
 
-The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a lightweight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
+The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a lightweight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create a API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
 
 ## Requirements
 
@@ -1027,6 +1041,73 @@ Get them up and running with a new app created in PowerApps, which connects to t
 -   The PowerApps Studio application comes with a powerful app simulator in which you can test the app against your data source in real time. You should be able to view all of the Policies, edit them, create new ones, and delete the newly created ones. You will be unable to delete existing Policies since they are being referenced by other table records.
 
     ![All of the Policy options display.](images/Hands-onlabunguided-Appmodernizationimages/media/image51.png "Policies section")
+
+## Exercise 14: Add Azure Function to Azure API Management
+
+Duration: 15 minutes
+
+Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Managemenent portal and import the Function app you created earlier.
+
+### Task 1: Provision Azure API Management
+
+In this task, you will create a new API Management Resource.
+
+#### Tasks to complete
+
+-   Create a new Azure API Management Service
+
+    > **Note**: It will take several minutes to provision the APIM resource. You can safely move on to the next task.
+
+#### Exit criteria
+
+-   You have set up your API Management Service
+
+### Task 2: Add API Definition to Function App
+
+In this task, you will generate a swagger api definition for the policy documents Function App. This is required for API Management to discover the API.
+
+#### Tasks to complete
+
+-  Generate a swagger 2.0 api definition for the Policy Docs function app.
+
+#### Exit criteria
+
+-   The function app has a swagger definition. 
+
+### Task 3: Import the Funtion App to API Management(APIM)
+
+In this task, you will add your function app to the APIM's api collection.
+
+#### Tasks to complete
+
+-  Use the APIs blade to import your function app into the APIM service.
+
+    > **Note**: A pop up indicating that you should replace the Named Values with the function secrets will appear. In this lab, this step will not be required. Select Ok to disregard.
+
+    ![Import Function App pop up is displayed](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image218.png "Import Function App Pop")
+
+#### Exit criteria
+
+-  The function app api is available within the APIM service.
+
+
+### Task 4: Test the APIM Developer Portal
+
+In this task, you will test an API from the APIM Developer Portal.
+
+
+#### Tasks to complete
+
+-  Use the Try It feature on the APIM developer portal to test the function app api.
+
+      example testing values:
+      policyHolder: Albert
+      policyNumber: ALB417974T1SV1
+
+#### Exit criteria
+
+-  You receive a 200 okay response with a payload of binary data representing a pdf file.
+
 
 ## After the hands-on lab 
 

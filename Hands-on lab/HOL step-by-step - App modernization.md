@@ -1678,15 +1678,15 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 Duration: 15 minutes
 
-Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create a API Managemenent portal and import the Function app you created earlier.
+Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Managemenent portal and import the Function app you created earlier.
 
 ### Task 1: Provision Azure API Management
 
 In this task, you will create a new API Management Resource.
 
-1.  Connect to the Azure portal at: <https://portal.azure.com>, select **Integration** and then select **API management**
+1.  Connect to the Azure portal at: <https://portal.azure.com>, select +Create a resource, **Integration** and then select **API management**
 
-    ![Integration is selected, and the API management button is clicked.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image209.png "Azure Portal New blade")
+    ![Create a resource is selected. Integration is selected, and the API management button is clicked.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image209.png "Azure Portal New blade")
 
 2.  On the **API management** blade, specify the following configuration and select **Create**:
 
@@ -1717,7 +1717,7 @@ In this task, you will generate a swagger api definition for the policy document
 
   ![App function blade with Platform features open and Api definition selected.](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image211.png "Function App Platform Features Selected")
 
-3.  Delete the placeholder text if it exists in the text area labeled #1.
+3.  Delete the placeholder text if it exists in the text area.
 
   ![Api definition blade with blank text area and Generate api definition template selected](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image212.png "Api Defintion Open")
 
