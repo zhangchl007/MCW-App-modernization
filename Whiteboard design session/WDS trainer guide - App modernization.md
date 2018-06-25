@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-May 2018
+June 2018
 </div>
 
 
@@ -46,7 +46,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 - [App modernization whiteboard design session trainer guide](#app-modernization-whiteboard-design-session-trainer-guide)
     - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
     - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
-    - [Step 3: Present the solution](#step-3-present-the-solution-2)
+    - [Step 3: Present the solution](#step-3-present-the-solution-1)
     - [Wrap-up](#wrap-up-1)
     - [Preferred target audience](#preferred-target-audience)
     - [Preferred solution](#preferred-solution)
@@ -173,6 +173,7 @@ Learning Objectives:
 - Empower business users to create ad-hoc CRUD mobile apps with PowerApps
 - Centralize authorization across Azure services using AAD
 - Orchestrate between services such as Office 365 email and mobile using Flow-Use Search to make files full text searchable
+- Explore the benefits of using Azure API Management
 
 ## Step 1: Review the customer case study 
 
@@ -221,6 +222,8 @@ Contoso would like to migrate its SQL Server-based database to SQL Database. Acc
 
 Given all these new clients, their databases will become overloaded, so they want to ensure they employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in a 24-hour period, as well approximates the number of operations that user performed with the system in perpetuity. Both metrics are interesting to management to be able to get a cursory understanding of who the heaviest users are and how much they really use the system.
 
+Contoso has multiple development teams that focus on separate business units, e.g. underwriting, sales and brokers, compliance, etc. IT leadership is excited to move as much business logic to APIs as possible, but concerned that overtime, there will duplication of effort as each team develops new APIs. Contoso would also like to open up a subset of APIs to a network of affiliated partners. They are interested in strategies that will help them provide discoverability, security and lifecycle management of an evolving API ecosystem. In the future, they realize they will need advanced analytics and data visualizations of API usage to help manage the API inventory.
+
 According to Mirand Lark, "Mobile applications represent a way to empower our brokers and our employees by bringing our software to the palm of their hands. While we will invest in making the best mobile app version of PolicyConnect possible, we also want to make sure we have a streamlined way for our internal departments to quickly build their own apps to automate their own time-saving micro-processes without having to involve the PolicyConnect development team or ideally even developers." He cited additional examples of these micro-processes, such as enabling employees to set rules, such as when a VIP customer sends an email, they get an application notification on their mobile device; or enabling them to set workflows, like automatically saving attachments in emails with policy documents to the proper location in cloud storage.
 
 With this new system, Contoso would like to improve its security practices. In the previous version, each application tier maintained its configuration settings locally. For example, the data access layer would store the connection strings for SQL Server locally on disk. It would like to take an approach of externalizing secrets such as these from the web apps and APIs, and storing them in an encrypted location accessible only to authorized services.
@@ -256,6 +259,8 @@ Cost containment will be achieved through use of cloud-based services. The aging
 3.  Is there really a way to securely store application secrets in the cloud?
 
 4.  We noticed that Azure SQL Database does not support all the features we are accustomed to in SQL Server, not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?
+
+5.  Moving everything to APIs sounds great but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to easily develop a proof of concept now?
 
 
 ### Infographic for common scenarios
@@ -295,6 +300,8 @@ Directions: With all participants at your table, respond to the following questi
 4.  What Azure service would provide a lightweight, serverless API solution for retrieving policy documents from Azure blob storage?
 
 5.  How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
+
+6.  What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
 
 *Data management*
 
@@ -362,6 +369,7 @@ Time frame: 15 minutes
 | Get Started with Flow                        | <https://flow.microsoft.com/en-us/documentation/getting-started/>                                          |
 | Indexing Documents in Blob Storage           | <https://azure.microsoft.com/en-us/documentation/articles/search-howto-indexing-azure-blob-storage/>       |
 | Working with Azure Functions Proxies         | <https://docs.microsoft.com/azure/azure-functions/functions-proxies>                                       |
+| Azure API Management Overview         | <https://docs.microsoft.com/en-us/azure/api-management/api-management-key-concepts>                                       |
 
 
 # App modernization whiteboard design session trainer guide
@@ -425,7 +433,7 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 1.  *Without getting into the details (the following sections will address them), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, and extensibility.\
     *![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications.](images/Whiteboarddesignsessiontrainerguide-Appmodernizationimages/media/image4.png "Preferred solution architecture")
 
-    The solution begins with mobile apps (built for Android and iOS using Xamarin) and a website, both of which provide access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an API App. In addition to the API App, a light-weight, serverless API is provided by Azure Functions Proxies to provide access to policy documents stored in Blob Storage. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the API App or Web App on demand so that these settings never live in their file system. The API App uses the Azure Redis Cache to implement the cache aside pattern, caching data as it is retrieved from SQL Database. Full-text search of policy documents is enabled by the Indexer for Blob Storage (which indexes text in the Word and PDF documents) and stores the results in an Azure Search index. PowerApps enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with SQL Database and Azure Storage, while Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
+    The solution begins with mobile apps (built for Android and iOS using Xamarin) and a website, both of which provide access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an API App. In addition to the API App, a light-weight, serverless API is provided by Azure Functions Proxies to provide access to policy documents stored in Blob Storage. Azure API Management is used as a proof of concept for the future goal to create a API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the API App or Web App on demand so that these settings never live in their file system. The API App uses the Azure Redis Cache to implement the cache aside pattern, caching data as it is retrieved from SQL Database. Full-text search of policy documents is enabled by the Indexer for Blob Storage (which indexes text in the Word and PDF documents) and stores the results in an Azure Search index. PowerApps enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with SQL Database and Azure Storage, while Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD. 
 
     > NOTE: The preferred solution is only one of many possible, viable approaches.
 
@@ -451,6 +459,9 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
     Rather than storing sensitive application secrets like credentials and database connection strings in the web.config of the Web and API Apps, Contoso should use Key Vault to store these secrets. After provisioning its Web and API Apps, Contoso would need to register each in Azure Active Directory. This would yield it a Client ID and Key for each registered application (for example, the Web gets a pair, and the API app gets a different pair). This pair of credentials could then be provided to the Apps via the portal using the Settings \> Application Settings blade off of the main Web/API App and adding new entries to the App settings tables. By doing so, Contoso is storing the credentials to access Key Vault in a manner that reduces the risk of storing sensitive settings in a config file---which can be accidentally shared or checked into source control. Contoso would need to use the PowerShell cmdlets to create a new Key Vault (New-AzureKeyVault) and to set ACLs on the Key Vault (Set-AzureKeyVaultAccessPolicy) that grant access to the applications. Contoso could use PowerShell to add the secrets required by the apps into Key Vault. Contoso would then need to use the Key Vault SDK for .NET, which requires the Key Vault Uniform Resource Identifier (URI) of their provisioned Key Vault instance, the Client ID and Key for the Web/API App together to acquire an access token from AAD, and then with a KeyVaultClient instance in hand get the secret from Key Vault. This logic would run when the application needs to access the secret information (for example to open a connection to SQL Database).
 
+6.  What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
+
+    Contoso should use Azure API Management now to put together a proof of concept solution. APIM has features to help Contoso quickly build and scale an API ecosystem and grow into the future. APIs can be organized into Product groups to provide organization and AAD integration comes out of the box. It will be relatively easy to develop new customer channels for affiliated partners and provide controlled discoverability and lifecycle management to development teams. Azure API Management does not have a strong opinion on change management but instead provides flexible options to handle API versioning and revisions.
 
 *Data management*
 
@@ -494,6 +505,10 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 4.  *We noticed that Azure SQL Database does not support all of the features that we are accustomed to in SQL Server---not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?*
 
     Addressing each service, it is likely the case that a feature that was previously built into SQL Server and used from applications directly, now runs external to Azure SQL Database in the form of a separate Azure service. Linked servers are not supported by SQL Server, but cross-database read-only querying is possible using elastic database query. Database Mail, which was used to send email directly from SQL Server, is not supported, but there are multiple alternatives (such as using Office 365 and SendGrid) that applications can use to send email. Regarding SQL Server Agent Jobs, these background processes can usually be migrated to a Web Job (running within an App Service), Azure Functions, or to a Cloud Service Worker Role. Finally, regarding Service Broker, numerous alternative messaging options exist in Azure, including Azure Storage Queues and Azure Service Bus Brokered Messaging.
+
+5.  Moving everything to APIs sounds great but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to easily develop a proof of concept now? 
+
+    Discoverability for development teams was a primary consideration in the development of Azure API Management. Access can be controlled through several provider models, including AAD. Concepts such as Policy Scopes and Expressions provide flexible options for fine-grained control and monitoring. In addition, when APIM is provisioned the instance will automatically have the capability to provide advanced analytics and Power BI visualizations, including ML-based analysis developed by Microsoft Research specifically for API management. A proof of concept that demonstrates all of these capabilities can be put together quickly and can easily be scaled up to create the API Store experience Contoso is looking for.
 
 ## Customer quote (to be read back to the attendees at the end)
 

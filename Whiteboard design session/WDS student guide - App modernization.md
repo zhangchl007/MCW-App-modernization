@@ -82,7 +82,7 @@ Contoso would like to migrate its SQL Server-based database to SQL Database. Acc
 
 Given all these new clients, their databases will become overloaded, so they want to ensure they employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in a 24-hour period, as well approximates the number of operations that user performed with the system in perpetuity. Both metrics are interesting to management to be able to get a cursory understanding of who the heaviest users are and how much they really use the system.
 
-Contoso has multiple development teams that focus on separate business units, e.g. underwriting, sales and brokers, compliance, etc. IT leadership is excited to move as much business logic to apis as possible, but concerned that overtime, there will duplication of effort as each team develops new apis. They are interested in strategies that will help them provide discoverability and lifecycle management of an evolving api ecosystem. In the future, they realize they will need advanced analytics and data visualizations of api usage to help manage the api inventory.
+Contoso has multiple development teams that focus on separate business units, e.g. underwriting, sales and brokers, compliance, etc. IT leadership is excited to move as much business logic to APIs as possible, but concerned that overtime, there will duplication of effort as each team develops new APIs. Contoso would also like to open up a subset of APIs to a network of affiliated partners. They are interested in strategies that will help them provide discoverability, security and lifecycle management of an evolving API ecosystem. In the future, they realize they will need advanced analytics and data visualizations of API usage to help manage the API inventory.
 
 According to Mirand Lark, "Mobile applications represent a way to empower our brokers and our employees by bringing our software to the palm of their hands. While we will invest in making the best mobile app version of PolicyConnect possible, we also want to make sure we have a streamlined way for our internal departments to quickly build their own apps to automate their own time-saving micro-processes without having to involve the PolicyConnect development team or ideally even developers." He cited additional examples of these micro-processes, such as enabling employees to set rules, such as when a VIP customer sends an email, they get an application notification on their mobile device; or enabling them to set workflows, like automatically saving attachments in emails with policy documents to the proper location in cloud storage.
 
@@ -120,7 +120,7 @@ Cost containment will be achieved through use of cloud-based services. The aging
 
 4.  We noticed that Azure SQL Database does not support all the features we are accustomed to in SQL Server, not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?
 
-5.  Moving everything to APIs sounds great but how can we stay on top of our api inventory and manage discoverability, security, lifecycle, and monitoring into the future?   
+5.  Moving everything to APIs sounds great but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to easily develop a proof of concept now? 
 
 
 ### Infographic for common scenarios
@@ -160,7 +160,7 @@ Directions: With all participants at your table, respond to the following questi
 
 5.  How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-6.  What recommendations can you make to help Contoso manage its api inventory as it grows in the future? Are there services in Azure that can provide an *API Store* experience?
+6.  What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
 
     *Data management*
 
