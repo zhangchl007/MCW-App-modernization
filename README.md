@@ -47,7 +47,7 @@ At the end of this hands-on lab, you will be better able to build solutions for 
 ## Azure solution
 
 ## Related references
-[Reference architecture for Managed Web Applications](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/) 
-[Azure application architecture guide](https://docs.microsoft.com/en-us/azure/architecture/guide/) 
+- [Reference architecture for Managed Web Applications](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/) 
+- [Azure application architecture guide](https://docs.microsoft.com/en-us/azure/architecture/guide/) 
 
 [MCW](https://github.com/Microsoft/MCW)
