@@ -18,13 +18,13 @@ In this workshop, you will gain a better understanding how the steps involved in
 
 At the end of this workshop, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
 
-### Whiteboard Design Session
+### Whiteboard design session
 
 In this whiteboard design session, you will work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
 
 At the end of this whiteboard design session, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
 
-### Hands-on Lab
+### Hands-on lab
 
 In this hands-on lab, you will implement the steps to modernize legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
 
