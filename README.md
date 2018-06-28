@@ -1,33 +1,38 @@
-# Abstract
+# App modernization
+
+[Download Cloud Workshop](https://github.com/Microsoft/MCW-App-modernization/archive/master.zip)
+
+Contoso, Ltd. is a new company providing a full range of long-term insurance services to help people who are underinsured. Struggling to cope with rapid growth, the company founders are looking for improved technological capabilities, including: automated document forwarding from brokers, secure access for brokers to Contoso, Ltd., access to policy information, and ready policy retrieval for a dispersed workforce.
+
+Contoso Insurance also wants to make its policyholder system available to its employees and brokers via web and mobile applications without requiring VPN. They also want to store policies in cloud storage for retrieval via the web and mobile applications. Contoso would like to migrate its SQL Server-based database to SQL Database.
+
+## Target audience
+
+- Application developer
+
+## Abstract
 
 ## Workshop
 
-Modernize legacy on-premise applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using AAD.
+In this workshop, you will gain a better understanding how the steps involved in modernizing legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
 
-Learning Objectives:
-
--   Use Azure App Services
-
--   Protect app secrets using Key Vault
-
--   Empower business users to create ad-hoc CRUD mobile apps with PowerApps
-
--   Centralize authorization across Azure services using AAD
-
--   Orchestrate between services such as Office 365 email and mobile using Flow
-
--   Use Search to make files full text searchable
-
-
+At the end of this workshop, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
 
 ## Whiteboard Design Session
-TBD
+
+In this whiteboard design session, you will work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
+
+At the end of this whiteboard design session, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
 
 ## Hand-on Lab
-TBD
+
+In this hands-on lab, you will implement the steps to modernize legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
+
+At the end of this hands-on lab, you will be better able to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services, and implement a mix of web and mobile services secured by Azure Active Directory.
 
 
 ## Azure services and related products
+
 - Xamarin
 - Web APIs
 - PowerApps
@@ -37,19 +42,10 @@ TBD
 - Azure Redis
 - Azure SQL Database
 - Azure Active Directory
+- API Management
 
+## Azure solution
 
-# Contributing
+## Related references
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
+[MCW](https://github.com/Microsoft/MCW)

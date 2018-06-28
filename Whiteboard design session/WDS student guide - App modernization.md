@@ -21,19 +21,13 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
-#  App modernization whiteboard design session student guide
+# App modernization whiteboard design session student guide
 
-## Abstract and learning objectives 
+## Abstract and learning objectives
 
-Modernize legacy on-premise applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using AAD.
+In this whiteboard design session, you will work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
 
-Learning Objectives:
-- Use Azure App Services
-- Protect app secrets using Key Vault
-- Empower business users to create ad-hoc CRUD mobile apps with PowerApps
-- Centralize authorization across Azure services using AAD
-- Orchestrate between services such as Office 365 email and mobile using Flow-Use Search to make files full text searchable
-- Explore the benefits of using Azure API Management
+At the end of this whiteboard design session, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
 
 ## Step 1: Review the customer case study 
 

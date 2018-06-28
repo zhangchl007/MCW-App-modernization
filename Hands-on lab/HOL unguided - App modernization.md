@@ -197,19 +197,11 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 # App modernization hands-on lab unguided
 
-## Abstract and learning objectives 
+## Abstract and learning objectives
 
-Modernize legacy on-premise applications and infrastructure by leveraging several cloud services, while adding a mix of web and mobile services, all secured using AAD.
+In this hands-on lab, you will implement the steps to modernize legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
 
-Learning Objectives:
-
-- Use Azure App Services
-- Protect app secrets using Key Vault
-- Empower business users to create ad-hoc CRUD mobile apps with PowerApps
-- Centralize authorization across Azure services using AAD
-- Orchestrate between services such as Office 365 email and mobile using Flow
-- Use Search to make files full text searchable
-- Use Azure API Management to import an existing API
+At the end of this hands-on lab, you will be better able to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services, and implement a mix of web and mobile services secured by Azure Active Directory.
 
 ## Overview
 
