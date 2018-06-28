@@ -44,7 +44,7 @@ At the end of this hands-on lab, you will be better able to build solutions for 
 - Azure Active Directory
 - API Management
 
-## Azure solution
+## Azure solutions
 
 ## Related references
 - [Reference architecture for Managed Web Applications](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/app-service-web-app/) 
