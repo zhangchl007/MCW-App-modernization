@@ -1,4 +1,4 @@
-3 App modernization
+# App modernization
 
 [Download Cloud Workshop](https://github.com/Microsoft/MCW-App-modernization/archive/master.zip)
 
