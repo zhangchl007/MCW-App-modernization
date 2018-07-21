@@ -269,7 +269,7 @@ In this task, you will download and install SQL Server Management Studio (SSMS) 
 
 ### Task 8: Download the ContosoInsurance sample application
 
-1.  On your Lab VM, open a web browser and download the sample application from <http://bit.ly/2L4OSyH>. (Note: bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.)
+1.  On your Lab VM, open a web browser and download the sample application from <https://bit.ly/2Nvn9aO>. (Note: bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.)
 
 2.  When the download completes, extract the ZIP file to C:\\ContosoInsurance.
 
