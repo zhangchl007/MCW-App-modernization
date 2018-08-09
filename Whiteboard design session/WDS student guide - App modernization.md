@@ -39,8 +39,8 @@ Timeframe: 15 minutes
 
 Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips. 
 
-1.  Meet your table participants and trainer.
-2.  Read all of the directions for steps 1–3 in the Student guide.
+1.  Meet your table participants and trainer
+2.  Read all of the directions for steps 1–3 in the Student guide
 3.  As a table team, review the following customer case study
 
 
