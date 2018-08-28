@@ -9,7 +9,7 @@ Hands-on lab unguided
 </div>
 
 <div class="MCWHeader3">
-June 2018
+August 2018
 </div>
 
 
@@ -211,7 +211,7 @@ The App Modernization hands-on lab is an exercise that will challenge you to imp
 
 After lawyers affirmed that Contoso, Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure. Below is a diagram of the solution architecture you will build in the lab. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
 
-![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications. Azure API Management is used to provide an API Store experience for developers.](images/Hands-onlabunguided-Appmodernizationimages/media/image2.png "Solution architecture")
+![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications. Azure API Management is used to provide an API Store experience for developers.](media/unguided-image2.png "Solution architecture")
 
 The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a lightweight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create a API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
 
@@ -711,7 +711,7 @@ In this task, you will use Visual Studio to deploy the Web API to your API App i
 #### Exit criteria
 
 -   You should see a list of the available REST APIs. However, you will not be able to execute them from here as they are protected by AAD application permissions, which accept only token-based calls from registered apps.\
-    ![The Swagger page for the published Web API is displayed.](images/Hands-onlabunguided-Appmodernizationimages/media/image40.png "Swagger")
+    ![The Swagger page for the published Web API is displayed.](media/unguided-image40.png "Swagger")
 
 ## Exercise 9: Configure and deploy the Contoso Insurance web app
 
@@ -793,9 +793,9 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
 #### Exit criteria
 
--   You are able to view policies in the web application ![Policies page of the PolicyConnect app.](images/Hands-onlabunguided-Appmodernizationimages/media/image41.png "PolicyConnect")
+-   You are able to view policies in the web application ![Policies page of the PolicyConnect app.](media/unguided-image41.png "PolicyConnect")
 
--   Validate you can download policy documents from the Policy Holder details page (File Path) ![The File Path and underlying URL are highlighted, showing the link to the Azure Function Proxy URL created previously.](images/Hands-onlabunguided-Appmodernizationimages/media/image42.png "PolicyConnect")
+-   Validate you can download policy documents from the Policy Holder details page (File Path) ![The File Path and underlying URL are highlighted, showing the link to the Azure Function Proxy URL created previously.](media/unguided-image42.png "PolicyConnect")
 
 ## Exercise 10: Configure and run the legacy desktop (Windows Forms) application
 
@@ -846,7 +846,7 @@ In this task, you will update the application settings in the App.config file, a
 
 -   You can see a list of policyholders, and you should see a label on the upper-right saying you are logged in as your Contoso User account. Feel free to explore the different capabilities of the application. Some functionality is intentionally left out. To open a policyholder record, simply double-click on any of the rows.
 
-    ![Screenshot of the PolicyConnect Desktop app.](images/Hands-onlabunguided-Appmodernizationimages/media/image43.png "PolicyConnect Desktop app")
+    ![Screenshot of the PolicyConnect Desktop app.](media/unguided-image43.png "PolicyConnect Desktop app")
 
 ## Exercise 11: Configure and run the mobile application
 
@@ -897,23 +897,23 @@ In this exercise, you will update the application settings in the ApplicationSet
 #### Exit criteria
 
 -   The Android emulator should appear, and then launch the PolicyConnect app within\
-    ![Screenshot of the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image44.png "Android emulator")
+    ![Screenshot of the Android emulator.](media/unguided-image44.png "Android emulator")
 
 -   Select the **Sign In** button to begin
 
 -   You will be presented with an AAD login window. Enter the login credentials for the Contoso User account you created in your AAD directory. Username is **contosouser@\<your tenant\>.onmicrosoft.com**. After authentication is complete, you should see a list of policyholders. You cannot interact with the records in any way for this demo.
 
 -   Select the menu button on the upper-left to explore other parts of the app\
-    ![Policy Holders list viewed in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image45.png "Android emulator")
+    ![Policy Holders list viewed in the Android emulator.](media/unguided-image45.png "Android emulator")
 
 -   Select the menu and choose **Search Policy \#**\
-    ![Search Policy \# is highlighted in the Android emulation.](images/Hands-onlabunguided-Appmodernizationimages/media/image46.png "Android emulator")
+    ![Search Policy \# is highlighted in the Android emulation.](media/unguided-image46.png "Android emulator")
 
 -   You can either enter a full policy \# or perform a partial search of all content and metadata fields within the search field. Type in at least 3 characters to activate the search button. Try searching with the letters **MON**. The most relevant search results will appear first. Now try searching by an exact policy number, such as **DOW586IJCG493F**. You should see a single result matching that policy number.\
-    ![Search results are displayed in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image47.png "Android Emulator")
+    ![Search results are displayed in the Android emulator.](media/unguided-image47.png "Android Emulator")
 
--   Select a search result to view the content that was extracted by the Azure Search indexer. There is a link to download the actual PDF at the bottom of the result page. This will display the file that is stored in blob storage![Search resullt details in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image48.png "Android emulator")\
-    ![Policy document in the Android emulator.](images/Hands-onlabunguided-Appmodernizationimages/media/image49.png "Android emulator")
+-   Select a search result to view the content that was extracted by the Azure Search indexer. There is a link to download the actual PDF at the bottom of the result page. This will display the file that is stored in blob storage![Search resullt details in the Android emulator.](media/unguided-image48.png "Android emulator")\
+    ![Policy document in the Android emulator.](media/unguided-image49.png "Android emulator")
 
 ## Exercise 12: Create a Flow app that sends push notifications
 
@@ -956,7 +956,7 @@ Contoso wants to receive push notifications when important emails arrive, since 
 -   If you have installed the Flow mobile app that supports push notifications, you should have received one after the message has been sent
 
 -   Alternatively, check the status of your flow by going to **My flows**, and then selecting the name of the flow. The resulting page will display a log of each time it was executed. When you select the log entry, you will see which of the steps the email trigger or the push notification was successful.\
-    ![On the My flows tab, the option to send a mobile notification when a new email arrives is set to On.](images/Hands-onlabunguided-Appmodernizationimages/media/image50.png "My Flows tab")
+    ![On the My flows tab, the option to send a mobile notification when a new email arrives is set to On.](media/unguided-image50.png "My Flows tab")
 
 ## Exercise 13: Create an app in PowerApps
 
@@ -1032,7 +1032,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 -   The PowerApps Studio application comes with a powerful app simulator in which you can test the app against your data source in real time. You should be able to view all of the Policies, edit them, create new ones, and delete the newly created ones. You will be unable to delete existing Policies since they are being referenced by other table records.
 
-    ![All of the Policy options display.](images/Hands-onlabunguided-Appmodernizationimages/media/image51.png "Policies section")
+    ![All of the Policy options display.](media/unguided-image51.png "Policies section")
 
 ## Exercise 14: Add Azure Function to Azure API Management
 
@@ -1154,7 +1154,7 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 
 8.  In the **Add Standalone Snap-in** dialog box, select **Certificates** and then select **Add**
 
-    ![In the Add or Remove Snap-ins dialog box, the Certificates snap-in and the Add button are selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image52.png "Add or Remove Snap-ins dialog box")
+    ![In the Add or Remove Snap-ins dialog box, the Certificates snap-in and the Add button are selected.](media/unguided-image52.png "Add or Remove Snap-ins dialog box")
 
 9.  In the **Certificates snap-in** dialog box, select the **Computer account** radio button because the certificate needs to be made available to all users, and then select **Next**
 
@@ -1177,7 +1177,7 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 18. On the **Certificate Store** screen, accept the default choice and then select **Next**
 
 19. On the **Completing the Certificate Import Wizard** screen, select **Finish**\
-    ![In the MMC window - console1, under Console Root\\Certificates (Local Computer), Trusted Root Certification Authorities is selected. Under Issued To, RootCATest is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image53.png "MMC window - console1")
+    ![In the MMC window - console1, under Console Root\\Certificates (Local Computer), Trusted Root Certification Authorities is selected. Under Issued To, RootCATest is selected.](media/unguided-image53.png "MMC window - console1")
 
 20. Leave the MMC window open, as it will be required below
 
@@ -1197,7 +1197,7 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 5.  You must now associate this certificate with all SSL transactions within IIS Express. To do this, **re-open the Certificates MMC snap-in** from the previous section.
 
 6.  **Expand** the Personal certificates node on the Certificates tree to the left. You should see a certificate issued to your machine name and issued by RootCATest. **Double-click your certificate**, then select the **Thumbprint** field under the Details tab. **Copy the Thumbprint value**.\
-    ![In the MMC window - console1, under Certificate\\Personal, Certificates is selected. Under Issued To, the RootCATest certificate is selected. In the Certificate dialog box Details tab, the thumbprint value is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image54.png "MMC window - console1, and Certificate dialog box")
+    ![In the MMC window - console1, under Certificate\\Personal, Certificates is selected. Under Issued To, the RootCATest certificate is selected. In the Certificate dialog box Details tab, the thumbprint value is selected.](media/unguided-image54.png "MMC window - console1, and Certificate dialog box")
 
 7.  **Launch PowerShell** from the start menu. You will run a command to remove the spaces from the Thumbprint value you copied on the previous step. You will also execute a command to generate a new Guid value.
 
@@ -1242,25 +1242,25 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 10. In the left pane, expand the **Certificates (Local Computer)** node, and then expand the **Personal** folder
 
 11. You should see a certificate issued to and issued by "localhost"\
-    ![In the MMC window - console1 window, the certificate issued to localhost is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image55.png "MMC window - console1")
+    ![In the MMC window - console1 window, the certificate issued to localhost is selected.](media/unguided-image55.png "MMC window - console1")
 
 12. If this certificate is not present, you will need to run a repair command for the IIS Express application. If it is present, continue to step 12.
 
     a.  Select **Start**, then type in **Programs and Features**. Select the **Programs and Features** application link.
 
     b.  Find and right-click on the IIS Express application listing, then select **Repair**\
-        ![The right-click menu for IIS 10.0 Express displays with Repair selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image56.png "Repair menu option")
+        ![The right-click menu for IIS 10.0 Express displays with Repair selected.](media/unguided-image56.png "Repair menu option")
 
     c.  Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder
 
 13. From the Certificates MMC snap-in, right-click on the localhost certificate within the Personal certificates container, then choose **All Tasks Export**...\
-    ![In the MMC window - console1 window, under Certificates\\Personal, Certificates is selected. Under Issued to, the right-click menu for localhost displays, and All Tasks / Export is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image57.png "MMC window - console1 window")
+    ![In the MMC window - console1 window, under Certificates\\Personal, Certificates is selected. Under Issued to, the right-click menu for localhost displays, and All Tasks / Export is selected.](media/unguided-image57.png "MMC window - console1 window")
 
 14. When the Certificate Export Wizard dialog appears, select **Next**. Under **Export Private Key**, select **Yes, export the private key**, and then click **Next**\
-    ![The Certificate Export Wizard displays.](images/Hands-onlabunguided-Appmodernizationimages/media/image58.png "Certificate Export Wizard")
+    ![The Certificate Export Wizard displays.](media/unguided-image58.png "Certificate Export Wizard")
 
 15. Make sure the **Personal Information Exchange -- PKCS \#12 (.PFX)** file format is selected, and that the first checkbox (include all certificates in the certification path if possible) is checked, leaving the other three unchecked. Select **Next**.\
-    ![In the Certificate Export Wizard, Export File Format section, Personal Information Exchange -- PKCS \#12 (.PFX) is selected.](images/Hands-onlabunguided-Appmodernizationimages/media/image59.png "Certificate Export Wizard")
+    ![In the Certificate Export Wizard, Export File Format section, Personal Information Exchange -- PKCS \#12 (.PFX) is selected.](media/unguided-image59.png "Certificate Export Wizard")
 
 16. Enter and confirm a password on the next step. **Make note of the password** for the certificate import process. Select **Next**.
 

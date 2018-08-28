@@ -9,7 +9,7 @@ Before the hands-on lab
 </div>
 
 <div class="MCWHeader3">
-June 2018
+August 2018
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -80,7 +80,7 @@ In this task, you will create an Azure resource group for the resources used thr
 
     b.  **Subscription**: Select the subscription you are using for this hands-on lab
 
-    c.  **Resource group location**: Select a nearby location. Remember this location for other resources in this hands-on lab ![Resource groups is highlighted in the navigation pane of the Azure portal, + Add is highlighted in the Resource groups blade, and \"hands-on-labs\" is entered into the Resource group name textbox on the Resource Group, Create an empty resource group blade.](images/Setup/image3.png "Azure portal Add Resource group")
+    c.  **Resource group location**: Select a nearby location. Remember this location for other resources in this hands-on lab ![Resource groups is highlighted in the navigation pane of the Azure portal, + Add is highlighted in the Resource groups blade, and \"hands-on-labs\" is entered into the Resource group name textbox on the Resource Group, Create an empty resource group blade.](media/b4-image3.png "Azure portal Add Resource group")
 
 2.  Select **Create**.
 
@@ -90,11 +90,11 @@ In this task, you will provision an Azure virtual machine (VM) using the Visual 
 
 It is recommended you use a DS2 or D2 instance size for this VM. If you decide to use a VM, you will not be able to run the Android emulator in later steps of the lab.
 
-1.  In the [Azure Portal](https://portal.azure.com/), select **+Create a resource**, enter "Visual Studio" into the Search the Marketplace box, and select **Visual Studio Community 2017 (latest release) on Windows Server 2016 (x64)** from the results. ![In the Azure Portal Everything section, under Results, under Name, Visual Studio Community 2017 on Windows Server 2016 is circled.](images/Setup/image4.png "Azure Portal Everything section")
+1.  In the [Azure Portal](https://portal.azure.com/), select **+Create a resource**, enter "Visual Studio" into the Search the Marketplace box, and select **Visual Studio Community 2017 (latest release) on Windows Server 2016 (x64)** from the results. ![In the Azure Portal Everything section, under Results, under Name, Visual Studio Community 2017 on Windows Server 2016 is circled.](media/b4-image4.png "Azure Portal Everything section")
 
 2.  On the blade that comes up, at the bottom, ensure the deployment model is set to Resource Manager, and select **Create**.
 
-    ![At the Bottom of the blade, Resource Manager is selected as the deployment model.](images/Setup/image5.png "Bottom of the blade")
+    ![At the Bottom of the blade, Resource Manager is selected as the deployment model.](media/b4-image5.png "Bottom of the blade")
 
 3.  Set the following configuration on the Basics tab.
 
@@ -110,15 +110,15 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
     f.  **Resource Group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group
 
-    g.  **Location**: Select the location you are using for this hands-on-lab![Create virtual machine basics blade with values specified above enter into the fields](images/Setup/image6.png "Create virtual machine basics blade")
+    g.  **Location**: Select the location you are using for this hands-on-lab![Create virtual machine basics blade with values specified above enter into the fields](media/b4-image6.png "Create virtual machine basics blade")
 
 4.  Select **OK** to move to the next step.
 
-5.  On the Choose a size blade, select **DS2\_V3 Standard**. ![The Choose a size blade has the D2S\_V3 Standard option circled. The circled fields are Supported disk type, which is set to SSD, and the View all button.](images/Setup/image7.png "Choose a size blade")
+5.  On the Choose a size blade, select **DS2\_V3 Standard**. ![The Choose a size blade has the D2S\_V3 Standard option circled. The circled fields are Supported disk type, which is set to SSD, and the View all button.](media/b4-image7.png "Choose a size blade")
 
 6.  Select **Select** to move on to the Settings blade.
 
-7.  On the Settings blade, locate the **Select public inbound ports** drop down, and select **RDP (3389)** and **MS SQL (1433).** ![Settings blade with RDP and MS SQL inbound ports selected.](images/Setup/image8.png "Create virtual machine settings blade")
+7.  On the Settings blade, locate the **Select public inbound ports** drop down, and select **RDP (3389)** and **MS SQL (1433).** ![Settings blade with RDP and MS SQL inbound ports selected.](media/b4-image8.png "Create virtual machine settings blade")
 
 8.  Select **OK**.
 
@@ -132,15 +132,15 @@ In this task, you will open an RDP connection to your Lab VM and disable Interne
 
 1.  Connect to the Lab VM. (If you are already connected to your Lab VM, skip to Step 9.)
 
-2.  From the left-hand menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list. ![In the Azure Portal, Resource groups pane, hands-on is typed in the search field, and under Name, hands-on-labs is circled.](images/Setup/image9.png "Azure Portal, Resource groups pane")
+2.  From the left-hand menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list. ![In the Azure Portal, Resource groups pane, hands-on is typed in the search field, and under Name, hands-on-labs is circled.](media/b4-image9.png "Azure Portal, Resource groups pane")
 
-3.  Next, select your lab virtual machine, LabVM, from the list. ![In the Name list, the LabVM Virtual Machine is circled.](images/Setup/image10.png "Name list")
+3.  Next, select your lab virtual machine, LabVM, from the list. ![In the Name list, the LabVM Virtual Machine is circled.](media/b4-image10.png "Name list")
 
-4.  On you Lab VM blade, select Connect from the top menu. ![The Connect button is circled on the lab VM blade top menu.](images/Setup/image11.png "Lab VM blade top menu")
+4.  On you Lab VM blade, select Connect from the top menu. ![The Connect button is circled on the lab VM blade top menu.](media/b4-image11.png "Lab VM blade top menu")
 
-5.  Select Download RDP file, then open the downloaded RDP file.![Connect to virtual machine dialog with Download RDP file button highlighted](images/Setup/image12.png "Connect to virtual machine dialog")
+5.  Select Download RDP file, then open the downloaded RDP file.![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
 
-6.  Select Connect on the Remote Desktop Connection dialog. ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](images/Setup/image13.png "Remote Desktop Connection Dialog Box")
+6.  Select Connect on the Remote Desktop Connection dialog. ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
 
 7.  Enter the following credentials when prompted.
 
@@ -148,13 +148,13 @@ In this task, you will open an RDP connection to your Lab VM and disable Interne
 
     b.  Password: Password.1!!
 
-8.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](images/Setup/image14.png "Remote Desktop Connection dialog box")
+8.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/b4-image14.png "Remote Desktop Connection dialog box")
 
-9.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. ![The Server Manager tile is circled in the Start Menu.](images/Setup/image15.png "Start Menu")
+9.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. ![The Server Manager tile is circled in the Start Menu.](media/b4-image15.png "Start Menu")
 
-10. Select Local Server, then select **On** next to IE Enhanced Security Configuration. ![In Server manager, in the left pane, Local Server is selected. In the right, Properties pane, IE Enhanced Security Configuration is circled, and a callout arrow points to On.](images/Setup/image16.png "Server manager")
+10. Select Local Server, then select **On** next to IE Enhanced Security Configuration. ![In Server manager, in the left pane, Local Server is selected. In the right, Properties pane, IE Enhanced Security Configuration is circled, and a callout arrow points to On.](media/b4-image16.png "Server manager")
 
-11. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and Users. ![Internet Explorer Enhanced Security Configuration dialog with Off selected under both Administrators and Users.](images/Setup/image17.png "IE Enhanced Security Configuration")
+11. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and Users. ![Internet Explorer Enhanced Security Configuration dialog with Off selected under both Administrators and Users.](media/b4-image17.png "IE Enhanced Security Configuration")
 
 12. Select **OK**.
 
@@ -166,12 +166,12 @@ In this task, you will add the Mobile Development with .NET workload to the Visu
 
 1.  On your Lab VM, launch **Visual Studio Installer**.
 
-2.  Select **More** and **Modify** for the Visual Studio Community 2017 installation. Note: If updates are available, select the Update button first, and install the updates before moving on to installing the Xamarin components. Once the updates are installed, the Update button will be replaced with the Modify button. ![Visual Studio Installer dialog with More -\> Modify highlighted](images/Setup/image18.png "Visual Studio Installer")
+2.  Select **More** and **Modify** for the Visual Studio Community 2017 installation. Note: If updates are available, select the Update button first, and install the updates before moving on to installing the Xamarin components. Once the updates are installed, the Update button will be replaced with the Modify button. ![Visual Studio Installer dialog with More -\> Modify highlighted](media/b4-image18.png "Visual Studio Installer")
 
-3.  Select the **Mobile development with .NET** workload from the Workloads screen. ![Visual Studio Installer workloads screen, with Mobile development for .NET workload highlighted.](images/Setup/image19.png "Visual Studio Installer workloads")
+3.  Select the **Mobile development with .NET** workload from the Workloads screen. ![Visual Studio Installer workloads screen, with Mobile development for .NET workload highlighted.](media/b4-image19.png "Visual Studio Installer workloads")
 
 4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Xamarin Workbooks, Java SE Development Kit, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected..\
-    ![Summary view of the Visual Studio Installer;s Mobile development with .NET components.](images/Setup/image20.png "Workload summary")
+    ![Summary view of the Visual Studio Installer;s Mobile development with .NET components.](media/b4-image20.png "Workload summary")
 
 5.  Select **Modify**.
 
@@ -185,19 +185,19 @@ To complete these exercises, you will need to make sure you have all the correct
 
 2.  Select **Tools \> Android \> Android SDK Manager**.
 
-3.  When the Android SDKs and Tools dialog opens, check the bottom left corner of the dialog for an x Updates Available button. ![Android SDKs and Tools dialog, with updates highlighted.](images/Setup/image21.png "Android SDKs and Tools dialog")
+3.  When the Android SDKs and Tools dialog opens, check the bottom left corner of the dialog for an x Updates Available button. ![Android SDKs and Tools dialog, with updates highlighted.](media/b4-image21.png "Android SDKs and Tools dialog")
 
 4.  If this button is visible, select it to apply any updates before selecting Android SDK platforms and tools.
 
-    a.  Select all available updates and select Install Updates. ![Android SDKs and Tools dialog review updates screen](images/Setup/image22.png "Android SDKs and Tools dialog")
+    a.  Select all available updates and select Install Updates. ![Android SDKs and Tools dialog review updates screen](media/b4-image22.png "Android SDKs and Tools dialog")
 
     b.  Accept any license agreements required to complete the installation.
 
     c.  Close the Android SDKs and Tools dialog when installation completes.
 
-5.  On the **Platforms** tab, select each of the Android SDK platforms from 5.0 (Lollipop) to 8.0 (Oreo), selecting only the Android SDK platform box under each item (API Levels 21, 22, 23, 24, 25, and 26).![Android SDKs and Tools dialog with platforms 5.0 - 8.0 selected.](images/Setup/image23.png "Android SDKs and Tools dialog")
+5.  On the **Platforms** tab, select each of the Android SDK platforms from 5.0 (Lollipop) to 8.0 (Oreo), selecting only the Android SDK platform box under each item (API Levels 21, 22, 23, 24, 25, and 26).![Android SDKs and Tools dialog with platforms 5.0 - 8.0 selected.](media/b4-image23.png "Android SDKs and Tools dialog")
 
-6.  Select the **Tools** tab, expand Android SDK Build Tools, and select Android SDK Build Tools 27.0.1 and Android SDK Build Tools 27. ![Android SDKs and Tools dialog with Android SDK Build-Tools 27 and 27.0.1 selected under Android SDK Build Tools.](images/Setup/image24.png "Android SDKs and Tools dialog")
+6.  Select the **Tools** tab, expand Android SDK Build Tools, and select Android SDK Build Tools 27.0.1 and Android SDK Build Tools 27. ![Android SDKs and Tools dialog with Android SDK Build-Tools 27 and 27.0.1 selected under Android SDK Build Tools.](media/b4-image24.png "Android SDKs and Tools dialog")
 
 7.  Select **Apply Changes** to install the platforms and tools, accepting any license agreements required.
 
@@ -209,15 +209,15 @@ To complete these exercises, you will need to make sure you have all the correct
 
     <https://technet.microsoft.com/en-us/library/ms188670(v=sql.110).aspx>
 
-2.  Select **Download now** on the SQL Server 2017 Express edition page. ![SQL Server 2017 Express edition download](images/Setup/image25.png "SQL Server 2017 Express")
+2.  Select **Download now** on the SQL Server 2017 Express edition page. ![SQL Server 2017 Express edition download](media/b4-image25.png "SQL Server 2017 Express")
 
 3.  If you receive a message that your current security settings do not allow this file to be downloaded, do the following:
 
-    a.  In the top right corner of your Internet Explorer window, select **Settings**, the **Internet options**. ![Internet Explorer options menu with Internet Options selected.](images/Setup/image26.png "Internet Explorer options menu")
+    a.  In the top right corner of your Internet Explorer window, select **Settings**, the **Internet options**. ![Internet Explorer options menu with Internet Options selected.](media/b4-image26.png "Internet Explorer options menu")
 
-    b.  In the Internet Options dialog, select the **Security** tab, then select the **Custom level** button. ![Internet Options dialog with the Security tab selected, and the Custom level button highlighted.](images/Setup/image27.png "Internet Options dialog")
+    b.  In the Internet Options dialog, select the **Security** tab, then select the **Custom level** button. ![Internet Options dialog with the Security tab selected, and the Custom level button highlighted.](media/b4-image27.png "Internet Options dialog")
 
-    c.  On the Security Settings dialog, scroll down until you find the **Downloads** section, and select **Enable**. ![Security Settings - Internet Zone dialog with Downloads -\> File download -\> Enable selected.](images/Setup/image28.png "Security Settings - Internet Zone dialog")
+    c.  On the Security Settings dialog, scroll down until you find the **Downloads** section, and select **Enable**. ![Security Settings - Internet Zone dialog with Downloads -\> File download -\> Enable selected.](media/b4-image28.png "Security Settings - Internet Zone dialog")
 
     d.  Select **OK**.
 
@@ -227,11 +227,11 @@ To complete these exercises, you will need to make sure you have all the correct
 
 4.  Run the downloaded installer
 
-5.  Choose **Custom** installation once the install dialog box appears. ![SQL Server 2017 Express Edition Installer with Custom selected.](images/Setup/image29.png "SQL Server 2017 Express Edition Installer")
+5.  Choose **Custom** installation once the install dialog box appears. ![SQL Server 2017 Express Edition Installer with Custom selected.](media/b4-image29.png "SQL Server 2017 Express Edition Installer")
 
-6.  Accept the default Media location and select Install. ![SQL Server 2017 Express Edition Installer media location screen](images/Setup/image30.png "SQL Server 2017 Express Edition Installer")
+6.  Accept the default Media location and select Install. ![SQL Server 2017 Express Edition Installer media location screen](media/b4-image30.png "SQL Server 2017 Express Edition Installer")
 
-7.  When the install package finishes downloading, select **New SQL Server stand-alone installation** from the Installation tab. ![SQL Server Installation Center with New SQL Server stand-alone installation selected.](images/Setup/image31.png "SQL Server Installation Center")
+7.  When the install package finishes downloading, select **New SQL Server stand-alone installation** from the Installation tab. ![SQL Server Installation Center with New SQL Server stand-alone installation selected.](media/b4-image31.png "SQL Server Installation Center")
 
 8.  Once installation starts, accept the license terms.
 
@@ -243,7 +243,7 @@ To complete these exercises, you will need to make sure you have all the correct
 
     b.  Specify **Password.1!!** as the password for the SA account (**Please make note of the password you entered in this step**. It will be used later when updating the connection strings in the project configuration files.)
 
-    c.  Make sure your username is listed under Specify SQL Server administrators. If it is not, select **Add Current User** to add it. ![SQL Server 2017 Setup Database Engine Configuration screen with Mixed Mode (SQL Server authentication and Windows Authentication) selected. Add Current User button is highlighted.](images/Setup/image32.png "SQL Server 2017 Setup")
+    c.  Make sure your username is listed under Specify SQL Server administrators. If it is not, select **Add Current User** to add it. ![SQL Server 2017 Setup Database Engine Configuration screen with Mixed Mode (SQL Server authentication and Windows Authentication) selected. Add Current User button is highlighted.](media/b4-image32.png "SQL Server 2017 Setup")
 
     d.  Select **Next**.
 
@@ -256,14 +256,14 @@ To complete these exercises, you will need to make sure you have all the correct
 In this task, you will download and install SQL Server Management Studio (SSMS) from the SQL Server Installation Center.
 
 1.  In the **SQL Server Installation Center**, select **Install SQL Server Management Tools** on the Installation tab.\
-    ![SQL Server Installation Center with Install SQL Server Management Tools highlighted.](images/Setup/image33.png "SQL Server Installation Center")
+    ![SQL Server Installation Center with Install SQL Server Management Tools highlighted.](media/b4-image33.png "SQL Server Installation Center")
 
 2.  This will launch a web browser window, prompting you to download the latest SQL Server Management Studio version.
 
 3.  Select **Download SQL Server Management Studio 17.x**, then run the executable file.\
-    ![Download SQL Server Management Studio (SSMS) web page, with Download SQL Server Management Studio link highlighted.](images/Setup/image34.png "Download SQL Server Management Studio (SSMS)")
+    ![Download SQL Server Management Studio (SSMS) web page, with Download SQL Server Management Studio link highlighted.](media/b4-image34.png "Download SQL Server Management Studio (SSMS)")
 
-4.  Once the download is complete, the Microsoft SQL Server Management Studio installation window will open. Click **Install** to complete the installation. ![SQL Server Management Studio installer welcome screen with Install button highlighted.](images/Setup/image35.png "SQL Server Management Studio installer")
+4.  Once the download is complete, the Microsoft SQL Server Management Studio installation window will open. Click **Install** to complete the installation. ![SQL Server Management Studio installer welcome screen with Install button highlighted.](media/b4-image35.png "SQL Server Management Studio installer")
 
 5.  Select Close when the installation is complete.
 
@@ -279,17 +279,17 @@ In this task, you will attach the ContosoInsurance database to your local databa
 
 1.  On your Lab VM, launch **SQL Server Management Studio** (SSMS) from the Start menu.
 
-2.  **Connect** to the local SQLEXPRESS instance using Windows Authentication. ![SQL Server Connect to Server dialog](images/Setup/image36.png "Connect to Server")
+2.  **Connect** to the local SQLEXPRESS instance using Windows Authentication. ![SQL Server Connect to Server dialog](media/b4-image36.png "Connect to Server")
 
 3.  Right-click on **Databases** on the left-hand menu, then select **Attach...**
 
-4.  In the Attach Databases dialog, select the **Add...** button. ![Attach Databases dialog](images/Setup/image37.png "Attach Databases dialog")
+4.  In the Attach Databases dialog, select the **Add...** button. ![Attach Databases dialog](media/b4-image37.png "Attach Databases dialog")
 
-5.  In the file dialog, browse to **C:\\ContosoInsurance\\Hackathon\\Database**, select **ContosoInsurance.mdf**, and select **OK**. ![Attach Databases dialog locate database files screen, with the database data file location field highlighted and C:\\ContosoInsurance\\Hackathon\\Database entered into the field.](images/Setup/image38.png "Attach Databases dialog")
+5.  In the file dialog, browse to **C:\\ContosoInsurance\\Hackathon\\Database**, select **ContosoInsurance.mdf**, and select **OK**. ![Attach Databases dialog locate database files screen, with the database data file location field highlighted and C:\\ContosoInsurance\\Hackathon\\Database entered into the field.](media/b4-image38.png "Attach Databases dialog")
 
 6.  Select OK on the Attach Databases dialog.
 
-7.  You should now see the ContosoInsurance database listed underneath the Databases folder. ![ContosoInsurance database highlighted within the SSMS Object Explorer.](images/Setup/image39.png "SSMS Object Explorer")
+7.  You should now see the ContosoInsurance database listed underneath the Databases folder. ![ContosoInsurance database highlighted within the SSMS Object Explorer.](media/b4-image39.png "SSMS Object Explorer")
 
 8.  Next, you need to create the ContosoUser account.
 
