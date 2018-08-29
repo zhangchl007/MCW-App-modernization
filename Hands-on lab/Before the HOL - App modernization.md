@@ -100,7 +100,7 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
     a.  **Name**: Enter LabVM
 
-    b.  **VM disk type**: Select SSD
+    b.  **VM disk type**: Select Premium SSD
 
     c.  **User name**: Enter demouser
 
@@ -110,7 +110,10 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
     f.  **Resource Group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group
 
-    g.  **Location**: Select the location you are using for this hands-on-lab![Create virtual machine basics blade with values specified above enter into the fields](media/b4-image6.png "Create virtual machine basics blade")
+    g.  **Location**: Select the location you are using for this hands-on-lab
+    
+    ![Create virtual machine basics blade with values specified above enter into the fields](media/create-labvm-resource.png "Create virtual machine basics blade")
+    
 
 4.  Select **OK** to move to the next step.
 
@@ -166,12 +169,16 @@ In this task, you will add the Mobile Development with .NET workload to the Visu
 
 1.  On your Lab VM, launch **Visual Studio Installer**.
 
-2.  Select **More** and **Modify** for the Visual Studio Community 2017 installation. Note: If updates are available, select the Update button first, and install the updates before moving on to installing the Xamarin components. Once the updates are installed, the Update button will be replaced with the Modify button. ![Visual Studio Installer dialog with More -\> Modify highlighted](media/b4-image18.png "Visual Studio Installer")
+2.  Select **Modify** for the Visual Studio Community 2017 installation. Note: If updates are available, select the Update button first, and install the updates before moving on to installing the Xamarin components. Once the updates are installed, the Update button will be replaced with the Modify button. 
+
+![Visual Studio Installer dialog with Modify highlighted](media/visual-studio-installer-modify.png "Visual Studio Installer")
+
 
 3.  Select the **Mobile development with .NET** workload from the Workloads screen. ![Visual Studio Installer workloads screen, with Mobile development for .NET workload highlighted.](media/b4-image19.png "Visual Studio Installer workloads")
 
-4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Xamarin Workbooks, Java SE Development Kit, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected..\
-    ![Summary view of the Visual Studio Installer;s Mobile development with .NET components.](media/b4-image20.png "Workload summary")
+4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Android SDK Setup, Xamarin Workbooks, Java SE Development Kit, Google Android Emulator, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected..\
+    
+    ![Summary view of the Visual Studio Installer;s Mobile development with .NET components.](media/installation-details=panel.png "Workload installation details summary")
 
 5.  Select **Modify**.
 
