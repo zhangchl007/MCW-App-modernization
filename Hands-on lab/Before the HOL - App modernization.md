@@ -22,24 +22,29 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
-## 0.1. Contents
+## Contents
 
+<!-- TOC -->
+
+    - [Contents](#contents)
 - [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)
-- [Requirements](#requirements)
-- [Before the hands-on lab](#before-the-hands-on-lab)
-  - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)
-  - [Task 2: Create a development virtual machine](#task-2-create-a-development-virtual-machine)
-  - [Task 3: Connect to your Lab VM](#task-3-connect-to-your-lab-vm)
-  - [Task 4: Update Visual Studio and Install Xamarin and Android SDK](#task-4-update-visual-studio-and-install-xamarin-and-android-sdk)
-  - [Task 5: Update Android SDKs](#task-5-update-android-sdks)
-  - [Task 6: Install SQL Server 2017 Express edition](#task-6-install-sql-server-2017-express-edition)
-  - [Task 7: Install SQL Server Management Studio](#task-7-install-sql-server-management-studio)
-  - [Task 8: Download the ContosoInsurance sample application](#task-8-download-the-contosoinsurance-sample-application)
-  - [Task 9: Attach the ContosoInsurance Database](#task-9-attach-the-contosoinsurance-database)
+    - [Requirements](#requirements)
+    - [Before the hands-on lab](#before-the-hands-on-lab)
+        - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)
+        - [Task 2: Create a development virtual machine](#task-2-create-a-development-virtual-machine)
+        - [Task 3: Connect to your Lab VM](#task-3-connect-to-your-lab-vm)
+        - [Task 4: Update Visual Studio and Install Xamarin and Android SDK](#task-4-update-visual-studio-and-install-xamarin-and-android-sdk)
+        - [Task 5: Update Android SDKs](#task-5-update-android-sdks)
+        - [Task 6: Install SQL Server 2017 Express edition](#task-6-install-sql-server-2017-express-edition)
+        - [Task 7: Install SQL Server Management Studio](#task-7-install-sql-server-management-studio)
+        - [Task 8: Download the ContosoInsurance sample application](#task-8-download-the-contosoinsurance-sample-application)
+        - [Task 9: Attach the ContosoInsurance Database](#task-9-attach-the-contosoinsurance-database)
 
-# 1. App modernization before the hands-on lab setup guide
+<!-- /TOC -->
 
-## 1.1. Requirements
+# App modernization before the hands-on lab setup guide
+
+## Requirements
 
 -   Microsoft Azure subscription (non-Microsoft subscription)
 
@@ -62,7 +67,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     -   PowerShell 1.1.0 or higher
 
 
-## 1.2. Before the hands-on lab
+## Before the hands-on lab
 
 Duration: 60 minutes
 
@@ -70,7 +75,7 @@ In this exercise, you will set up your environment for use in the rest of the ha
 
 **IMPORTANT:** Most Azure resources require unique names. Throughout this lab you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure the resource is uniquely named.
 
-### 1.2.1. Task 1: Provision a resource group
+### Task 1: Provision a resource group
 
 In this task, you will create an Azure resource group for the resources used throughout this lab.
 
@@ -84,7 +89,7 @@ In this task, you will create an Azure resource group for the resources used thr
 
 2.  Select **Create**.
 
-### 1.2.2. Task 2: Create a development virtual machine
+### Task 2: Create a development virtual machine
 
 In this task, you will provision an Azure virtual machine (VM) using the Visual Studio Community 2017 on Windows Server 2016 (x64) image. This will be used as your development machine throughout this lab. If you already have a machine running Visual Studio Community 2017 (or later) and would like to use it as your development machine, you can skip this task.
 
@@ -129,7 +134,7 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
 10. It may take 10+ minutes for the virtual machine to complete provisioning.
 
-### 1.2.3. Task 3: Connect to your Lab VM
+### Task 3: Connect to your Lab VM
 
 In this task, you will open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
 
@@ -163,7 +168,7 @@ In this task, you will open an RDP connection to your Lab VM and disable Interne
 
 13. Close the Server Manager.
 
-### 1.2.4. Task 4: Update Visual Studio and Install Xamarin and Android SDK
+### Task 4: Update Visual Studio and Install Xamarin and Android SDK
 
 In this task, you will add the Mobile Development with .NET workload to the Visual Studio Community 2017 installation on your Lab VM.
 
@@ -184,7 +189,7 @@ In this task, you will add the Mobile Development with .NET workload to the Visu
 
 6.  Be sure to allot for extra time, since the Android SDK can be more than 3.0 GB
 
-### 1.2.5. Task 5: Update Android SDKs
+### Task 5: Update Android SDKs
 
 To complete these exercises, you will need to make sure you have all the correct Android SDKs installed.
 
@@ -208,7 +213,7 @@ To complete these exercises, you will need to make sure you have all the correct
 
 7.  Select **Apply Changes** to install the platforms and tools, accepting any license agreements required.
 
-### 1.2.6. Task 6: Install SQL Server 2017 Express edition
+### Task 6: Install SQL Server 2017 Express edition
 
 1.  On the Lab VM, download and install SQL Server 2017 Express edition from <https://www.microsoft.com/en-us/sql-server/sql-server-editions-express>.\
     \
@@ -258,7 +263,7 @@ To complete these exercises, you will need to make sure you have all the correct
 
 12. Select Close on the Complete screen and return to the SQL Server Installation Center for the next task.
 
-### 1.2.7. Task 7: Install SQL Server Management Studio
+### Task 7: Install SQL Server Management Studio
 
 In this task, you will download and install SQL Server Management Studio (SSMS) from the SQL Server Installation Center.
 
@@ -274,7 +279,7 @@ In this task, you will download and install SQL Server Management Studio (SSMS) 
 
 5.  Select Close when the installation is complete.
 
-### 1.2.8. Task 8: Download the ContosoInsurance sample application
+### Task 8: Download the ContosoInsurance sample application
 
 1.  On your Lab VM, open a web browser and download the sample application from <https://bit.ly/2Nvn9aO>. (Note: bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.)
 
@@ -284,7 +289,7 @@ In this task, you will download and install SQL Server Management Studio (SSMS) 
 
 3.   Extract the ZIP file to C:\\ContosoInsurance. 
 
-### 1.2.9. Task 9: Attach the ContosoInsurance Database
+### Task 9: Attach the ContosoInsurance Database
 
 In this task, you will attach the ContosoInsurance database to your local database instance using SSMS. This will serve as your on-premises database for the following exercises.
 
