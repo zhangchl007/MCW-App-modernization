@@ -104,19 +104,19 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-# App modernization hands-on lab step-by-step
+# 1. App modernization hands-on lab step-by-step
 
-## Abstract and learning objectives
+## 1.1. Abstract and learning objectives
 
 In this hands-on lab, you will implement the steps to modernize legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
 
 At the end of this hands-on lab, you will be better able to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services, and implement a mix of web and mobile services secured by Azure Active Directory.
 
-## Overview
+## 1.2. Overview
 
 The App Modernization hands-on lab is an exercise that will challenge you to implement an end-to-end scenario using a supplied sample that is based on Microsoft Azure App Services and related services. The scenario will include implementing compute, storage, security, and search, using various components of Microsoft Azure. The hands-on lab can be implemented on your own, but it is highly recommended to pair up with other members at the lab to model a real-world experience and to allow each member to share their expertise for the overall solution.
 
-## Solution architecture
+## 1.3. Solution architecture
 
 After lawyers affirmed that Contoso, Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure. Below is a diagram of the solution architecture you will build in the lab. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
 
@@ -124,7 +124,7 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
 The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a light-weight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create a API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
 
-## Requirements
+## 1.4. Requirements
 
 -   Microsoft Azure subscription (non-Microsoft subscription)
 
@@ -146,13 +146,13 @@ The solution begins with mobile apps (built for Android and iOS using **Xamarin*
 
     -   PowerShell 1.1.0 or higher
 
-## Exercise 1: Migrate the database to Azure SQL Database
+## 1.5. Exercise 1: Migrate the database to Azure SQL Database
 
 Duration: 15 minutes
 
 Contoso Insurance has asked you to migrate their on-premises SQL database to Azure SQL Database. In this exercise, you will provision a new SQL Server in Azure, configure the firewall for that SQL Server, and then use SSMS to migrate the Contoso Insurance database from on-premises to Azure SQL Database.
 
-### Task 1: Provision a SQL Server
+### 1.5.1. Task 1: Provision a SQL Server
 
 In this task, you will create a SQL Server (logical server). You will not create the databases at this time since it will be created during the database migration step.
 
@@ -180,7 +180,7 @@ In this task, you will create a SQL Server (logical server). You will not create
 
 5.  Select **Create**.
 
-### Task 2: Configure SQL Server firewall
+### 1.5.2. Task 2: Configure SQL Server firewall
 
 In this task, you will create a firewall rule to allow access to your SQL Server.
 
@@ -202,7 +202,7 @@ In this task, you will create a firewall rule to allow access to your SQL Server
 
 5.  On the Success dialog box, select **OK**.
 
-### Task 3: Migrate the on-premises SQL database to Azure
+### 1.5.3. Task 3: Migrate the on-premises SQL database to Azure
 
 In this task, you will migrate the Contoso Insurance database from on-premises (Lab VM) into Azure SQL Database.
 
@@ -252,13 +252,13 @@ In this task, you will migrate the Contoso Insurance database from on-premises (
 
 13. You can verify that the database is operational, and its tables populated by connecting to it through SSMS, using the same credentials used in Step 7 above.
 
-## Exercise 2: Provision App Services
+## 1.6. Exercise 2: Provision App Services
 
 Duration: 15 minutes
 
 Contoso Insurance has asked you to provision resources in Azure for hosting their web and API applications. In this exercise you will create a Web App and an API App in Azure.
 
-### Task 1: Create a Web App
+### 1.6.1. Task 1: Create a Web App
 
 In this task, you will provision a Web App and API App for hosting the Contoso Insurance applications in Azure.
 
@@ -296,7 +296,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     ![Web App Create blade with the values specified above entered into the appropriate fields.](media/image52.png "Web App Create blade")
 
-### Task 2: Provision an API App
+### 1.6.2. Task 2: Provision an API App
 
 1.  In the Azure portal (<http://portal.azure.com>), select **+Create a resource**, enter "api app" in the Marketplace Search box, and select **API App** from the results. 
 
@@ -318,7 +318,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
 4.  Select **Create**.
 
-## Exercise 3: Identity and security
+## 1.7. Exercise 3: Identity and security
 
 Duration: 45 minutes
 
@@ -326,7 +326,7 @@ Azure Active Directory (Azure AD) will be used to allow users to authenticate to
 
 **Note**: Tasks 1 and 2 require global admin permissions on the Azure AD Tenant and cannot be completed if you use Microsoft's Azure AD tenant. Task 3 requires the permission to create an app in the Azure AD tenant.
 
-### Task 1: Create a new Contoso user
+### 1.7.1. Task 1: Create a new Contoso user
 
 In this task, you will create an Azure AD user account that will be used for authenticating against the web and mobile apps.
 
@@ -366,7 +366,7 @@ In this task, you will create an Azure AD user account that will be used for aut
     
     ![On the Azure AD new user blade, the values specified above are entered into the appropriate fields.](media/image58.png "Azure AD new user blade")
 
-### Task 2: Register the Web API application
+### 1.7.2. Task 2: Register the Web API application
 
 1.  Open **Azure Active Directory** from the left-hand menu in the Azure portal, select **App registrations**, and select **+New application registration**. 
 
@@ -420,7 +420,7 @@ In this task, you will create an Azure AD user account that will be used for aut
 
 11. Select **Save** on the Properties blade.
 
-### Task 3: Expose Web API to other applications 
+### 1.7.3. Task 3: Expose Web API to other applications 
 
 To make the Web API accessible to other applications added to Azure AD, you must define the appropriate permissions. You will modify the manifest for the Web API to configure these settings, since, as of now, the Azure portal does not provide an interface for this.
 
@@ -475,7 +475,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ![The Save button for the manifest is selected.](media/image73.png "Edit manifest")
 
-### Task 4: Register the Desktop (WinForms) application 
+### 1.7.4. Task 4: Register the Desktop (WinForms) application 
 
 1.  Open **Azure Active Directory** from the left-hand menu in the Azure portal, select **App registrations**, and select **+New application registration**. 
 
@@ -525,7 +525,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
 12. Select **Save**.
 
-### Task 5: Register the mobile application 
+### 1.7.5. Task 5: Register the mobile application 
 
 1.  Open **Azure Active Directory** from the left-hand menu in the Azure portal, select **App registrations**, and select **+New application registration**. 
 
@@ -573,7 +573,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
 12. Select **Save**.
 
-### Task 6: Configure access control for the PolicyConnect web application
+### 1.7.6. Task 6: Configure access control for the PolicyConnect web application
 
 1.  In the [Azure Portal](https://portal.azure.com), navigate to your web app by selecting Resource groups from the Azure navigation menu, selecting the hands-on-lab-SUFFIX resource group, and then selecting your Web app from the list of available resources. 
 
@@ -593,7 +593,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     d.  Select **Save**
 
-### Task 7: Grant the ContosoInsurance Web app permissions to the Web API app 
+### 1.7.7. Task 7: Grant the ContosoInsurance Web app permissions to the Web API app 
 
 1.  Open **Azure Active Directory** from the left-hand menu in the Azure portal, select **App registrations**, and select your web application, which was automatically added to Azure AD in the previous task. (You may need to select View all applications to see the list of applications). 
 
@@ -649,13 +649,13 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
 14. Select **Save**.
 
-## Exercise 4: Upload PDFs to blob storage
+## 1.8. Exercise 4: Upload PDFs to blob storage
 
 Duration: 15 minutes
 
 Contoso Insurance is currently storing all of their scanned PDF documents on a local network share. They have asked to be able to store them in the cloud automatically from a workflow. In this exercise, you will provision a storage account that will be used to store the files in a blob container. Then, you will provide a way to bulk upload their existing PDFs.
 
-### Task 1: Provision a storage account
+### 1.8.1. Task 1: Provision a storage account
 
 1.  In the [Azure Portal](https://portal.azure.com/), select **+Create a resource**, enter "storage account" into the Search the Marketplace box, and select **Storage account -- blob, file, table, queue** from the results. 
 
@@ -704,7 +704,7 @@ Contoso Insurance is currently storing all of their scanned PDF documents on a l
 
 8.  Paste the value into a text editor, such as Notepad, for later reference.
 
-### Task 2: Create container for storing PDFs in Azure storage
+### 1.8.2. Task 2: Create container for storing PDFs in Azure storage
 
 In this task, you will create a new container in your storage account for the scanned PDF policy documents.
 
@@ -722,7 +722,7 @@ In this task, you will create a new container in your storage account for the sc
 
     ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/image101.png "Blob server properties")
 
-### Task 3: Bulk upload PDFs to blob storage using AzCopy
+### 1.8.3. Task 3: Bulk upload PDFs to blob storage using AzCopy
 
 In this task, you will download and install [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy). You will then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
 
@@ -757,13 +757,13 @@ In this task, you will download and install [AzCopy](https://docs.microsoft.com/
 
     ![The output of the AzCopy command is displayed.](media/image102.png "AzCopy output")
 
-## Exercise 5: Create serverless API for accessing PDFs
+## 1.9. Exercise 5: Create serverless API for accessing PDFs
 
 Duration: 15 minutes
 
 Contoso Insurance has made some updates to prepare their applications, but there are some features that they have not been able to build into the API yet. They have requested that you assist them in setting up a proof-of-concept (POC) API solution to enable users of their application to retrieve their policy documents directly from their Azure Storage account. In this exercise, you will create a Function App, and an Azure Functions Proxy to enable this functionality using serverless technologies.
 
-### Task 1: Provision a Function App
+### 1.9.1. Task 1: Provision a Function App
 
 1.  In the Azure portal, select **+Create a resource**, enter "function" into the search box, select **Function App** in the results, and select **Create**. 
 
@@ -791,7 +791,7 @@ Contoso Insurance has made some updates to prepare their applications, but there
 
 3.  Select **Create**.
 
-### Task 2: Retrieve URL for policy documents in Azure storage
+### 1.9.2. Task 2: Retrieve URL for policy documents in Azure storage
 
 In this task, you will retrieve the URL associated with the PDF policy documents you uploaded into Azure storage in the previous exercise.
 
@@ -805,7 +805,7 @@ In this task, you will retrieve the URL associated with the PDF policy documents
 
     ![The URL of the selected blob is highlighted on its properties page.](media/image106.png "Blob properties")
 
-### Task 3: Create an Azure Functions Proxy
+### 1.9.3. Task 3: Create an Azure Functions Proxy
 
 In this task, you will create an Azure Function Proxy, which is a simple way to provide a clean API endpoint. To learn more, check out [Working with Azure Functions Proxies](https://docs.microsoft.com/en-us/azure/azure-functions/functions-proxies).
 
@@ -833,7 +833,7 @@ In this task, you will create an Azure Function Proxy, which is a simple way to 
 
 6.  This will result in the policy document being downloaded. You can open the downloaded file and inspect the policy document.
 
-### Task 4: Parameterize Azure Functions Proxy
+### 1.9.4. Task 4: Parameterize Azure Functions Proxy
 
 In the previous task, you created an Azure Functions Proxy to download a specific policy document from Azure storage. In this task, you will update the Proxy to parameterize the URL, so you can retrieve any policy document using the policy holder's last name and their policy number.
 
@@ -861,13 +861,13 @@ In the previous task, you created an Azure Functions Proxy to download a specifi
 
 5.  The Azure Functions Proxy is now ready for use within the Contoso Insurance applications.
 
-## Exercise 6: Create an Azure Search service
+## 1.10. Exercise 6: Create an Azure Search service
 
 Duration: 15 minutes
 
 Contoso Insurance has asked for full-text searching on the documents. In this exercise, you will provision an Azure Search service, then configure search indexing on the policies blob storage container.
 
-### Task 1: Create an Azure search service 
+### 1.10.1. Task 1: Create an Azure search service 
 
 1.  In the [Azure portal](http://portal.azure.com), select **+Create a resource**, enter "azure search" into the search box**,** select **Azure Search** from the results and select **Create**. 
 
@@ -889,7 +889,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 3.  Select **Create**.
 
-### Task 2: Configure full-text search indexing 
+### 1.10.2. Task 2: Configure full-text search indexing 
 
 1.  Navigate to the newly created search service, and select **Import data**.
 
@@ -983,13 +983,13 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
     ![The Key is highlighted on the Manage query keys blade.](media/image127.png "Manage query keys")
 
-## Exercise 7: Configure Key Vault
+## 1.11. Exercise 7: Configure Key Vault
 
 Duration: 15 minutes
 
 Key Vault will be used to protect sensitive information, such as database connection strings and storage account keys. The application services that you have registered within Azure Active Directory will be granted access to the Key Vault secrets you create in this section. You will use secrets instead of keys, due to the small size of the strings being stored, as well as how often you need to retrieve the values. Retrieving secrets from Key Vault is a lower latency operation than retrieving keys, due to the real-time encryption and decryption involved.
 
-### Task 1: Create a new Key Vault
+### 1.11.1. Task 1: Create a new Key Vault
 
 1.  In the Azure portal, select **+Create a resource**, enter "key vault" in the search box, select **Key Vault** from the search results, and select **Create**. 
 
@@ -997,7 +997,7 @@ Key Vault will be used to protect sensitive information, such as database connec
 
 2.  On the Create key vault blade, enter the following:
 
-    a.  **Name**: Enter a unique name, such as ContosoInsuranceKeyVaultSUFFIX
+    a.  **Name**: Enter a unique name, such as ContosoInsKeyVaultSUFFIX
 
     b.  **Subscription**: Select the subscription you are using for this hands-on lab
 
@@ -1009,11 +1009,12 @@ Key Vault will be used to protect sensitive information, such as database connec
 
     f.  **Access policies**: Leave set to the default value (1 principal selected)
     
-    ![On the Create key vault blade, the values specified above are entered into the appropriate fields.](media/image129.png "Create key vault")
+    ![On the Create key vault blade, the values specified above are entered into the appropriate fields.](media/create-key-vault-resource-settings.png "Create key vault")
+    
 
 3.  Select **Create**.
 
-### Task 2: Create a new secret to store the SQL connection string 
+### 1.11.2. Task 2: Create a new secret to store the SQL connection string 
 
 1.  Now, you will add a secret to the Key Vault containing the connection string for the Contoso Insurance database in Azure SQL.
 
@@ -1075,7 +1076,7 @@ Key Vault will be used to protect sensitive information, such as database connec
 
 > <https://contosoinsurancekeyvault.vault.azure.net/secrets/SqlConnectionString/>
 
-### Task 3: Grant access to the secret to the Web API application
+### 1.11.3. Task 3: Grant access to the secret to the Web API application
 
 In this task you will add the required permissions to allow the Web API application to read the SqlConnectionString secret from your Key Vault.
 
@@ -1097,13 +1098,13 @@ In this task you will add the required permissions to allow the Web API applicat
 
     ![On the Access Policies blade, Save is highlighted.](media/image138.png "Save Access Policy")
 
-## Exercise 8: Configure and deploy the Contoso Insurance Web API
+## 1.12. Exercise 8: Configure and deploy the Contoso Insurance Web API
 
 Duration: 10 minutes
 
 The developers at Contoso Insurance have been working toward migrating their apps to the cloud. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services, such as Web API. Since the required services have already been provisioned in, what remains is applying application-level configuration settings, and then deploying any hosted apps and services from the Visual Studio starter project solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web API from the Visual Studio.
 
-### Task 1: Add Application Settings to the API App
+### 1.12.1. Task 1: Add Application Settings to the API App
 
 In this task, you will add the application settings to the API App for the Web API in the Azure portal.
 
@@ -1191,7 +1192,7 @@ In this task, you will add the application settings to the API App for the Web A
 
 13. Select **Save** on the Application settings blade.
 
-### Task 2: Deploy the Web API app from Visual Studio
+### 1.12.2. Task 2: Deploy the Web API app from Visual Studio
 
 In this task, you will use Visual Studio to deploy the Web API to your API App in Azure.
 
@@ -1203,7 +1204,7 @@ In this task, you will use Visual Studio to deploy the Web API to your API App i
 
     ![The Publish link is selected in the properties menu for Contoso.Apps.Insurance.WebAPI.](media/image147.png "Publish Web API")
 
-3.  On the Pick a publish target dialog, select **App Service** as the publish target, and select **Select Existing,** then select **Publish**. 
+3.  On the Pick a publish target dialog, select **App Service** as the publish target, and select **Select Existing,** then select **Publish**. If the Pick a publish target dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Select Existing is chosen under App Service as the publish target.](media/image148.png "Publish")
 
@@ -1219,7 +1220,7 @@ In this task, you will use Visual Studio to deploy the Web API to your API App i
 
     ![Publish Succeeded message is displayed.](media/image150.png "Publish")
 
-### Task 3: Verify the Web API deployment
+### 1.12.3. Task 3: Verify the Web API deployment
 
 1.  Open the URL of the published Web API in a browser window.
 
@@ -1229,19 +1230,19 @@ In this task, you will use Visual Studio to deploy the Web API to your API App i
 
     ![The Swagger page for the published Web API is displayed.](media/image151.png "Swagger")
 
-## Exercise 9: Configure and deploy the Contoso Insurance web app
+## 1.13. Exercise 9: Configure and deploy the Contoso Insurance web app
 
 Duration: 10 minutes
 
 In this exercise, you will apply application settings using the Microsoft Azure Portal. You will also edit a .js file in Visual Studio and deploy the Web app from the starter project.
 
-### Task 1: Configure application settings in Azure 
+### 1.13.1. Task 1: Configure application settings in Azure 
 
 1.  Expand the **Contoso.Apps.Insurance.Web** project in the Visual Studio Solution Explored, in the Web folder, and open **Web.config**.
 
     ![Contoso.Apps.Insurance.Web and Web.config are highlighted in the Visual Studio Solution Explorer.](media/image152.png "Solution Explorer")
 
-2.  Locate the **appSettings** section and used these keys as a reference for the steps below. Instead of updating the application settings in the config file, you are setting them in the application settings for Web API in the portal as an added security measure. If you would like to debug locally, you will need to place the values in the Web.config file as well.
+2.  Locate the **appSettings** section and use these keys as a reference for the steps below. Instead of updating the application settings in the config file, you are setting them in the application settings for Web API in the portal as an added security measure. If you would like to debug locally, you will need to place the values in the Web.config file as well.
 
 3.  In the Azure portal, navigate to your Web App by selecting it from the list of resources in the hands-on-lab-SUFFIX resource group.
 
@@ -1315,7 +1316,7 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
 12. Save app.js.
 
-### Task 2: Deploy the Contoso Insurance Web App from Visual Studio
+### 1.13.2. Task 2: Deploy the Contoso Insurance Web App from Visual Studio
 
 1.  Navigate to the **Contoso.Apps.Insurance.Web** project located in the **Web** folder using the **Solution Explorer** of Visual Studio.
 
@@ -1325,7 +1326,7 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
     ![Publish is selected in the properties menu for Contoso.Apps.Insurance.Web.](media/image158.png "Publish")
 
-3.  On the Pick a publish target dialog, select **App Service** as the publish target, and select **Select Existing,** then select **Publish**.
+3.  On the Pick a publish target dialog, select **App Service** as the publish target, and select **Select Existing,** then select **Publish**. If the Pick a publish target dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Select Existing is chosen under App Service as the publish targer.](media/image148.png "Publish")
 
@@ -1341,7 +1342,7 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
     ![Publish Succeeded message is displayed.](media/image160.png "Publish")
 
-### Task 3: Login and verify the Web App deployment
+### 1.13.3. Task 3: Login and verify the Web App deployment
 
 1.  Open the URL of the published Web App in a browser window.
 
@@ -1369,7 +1370,7 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
     ![The File Path and underlying URL are highlighted, showing the link to the Azure Function Proxy URL created previously.](media/image165.png "PolicyConnect")
 
-## Exercise 10: Configure and run the legacy desktop (Windows Forms) application
+## 1.14. Exercise 10: Configure and run the legacy desktop (Windows Forms) application
 
 Duration: 15 minutes
 
@@ -1377,7 +1378,7 @@ Contoso Insurance has created a web and mobile version of their desktop applicat
 
 If you would like to run the desktop application in its original configuration, you will need to set up a local self-signed certificate, as detailed in [Appendix A](#appendix-a-create-a-self-signed-certificate). Also, make sure that you run both WCF services when debugging the desktop application by right-clicking on the Solution, then selecting Select StartUp Projects... From here, select the Multiple startup projects radio button, then select the Start action for the following projects, moving them from top to bottom in this order: PolicyConnectDataService, PolicyConnectManagementService, and PolicyConnectDesktop. Also, make sure that the UseWebApi app setting is set to false in App.config.
 
-### Task 1: Configure application settings in App.config 
+### 1.14.1. Task 1: Configure application settings in App.config 
 
 In this task, you will update the application settings in the App.config file, allowing the desktop application's updated code to take advantage of the new Azure services.
 
@@ -1407,7 +1408,7 @@ In this task, you will update the application settings in the App.config file, a
 
     ![The appSettings section of the App.config file is displayed, with the values specified above entered.](media/image167.png "App.config AppSettings")
 
-### Task 2: Run the desktop application 
+### 1.14.2. Task 2: Run the desktop application 
 
 1.  In the Solution Explorer in Visual Studio, right-click the **PolicyConnectDesktop** project located in the **Desktop** folder.
 
@@ -1415,13 +1416,19 @@ In this task, you will update the application settings in the App.config file, a
 
     ![Start new instance is selected from the Debug menu for the PolicyConnectDesktop project in Visual Studio.](media/image168.png "PolicyConnect Desktop app")
 
+    You will have to take an additional step if you did not unblock the zip file before extracting. If the project does not build due to the following error: "Couldn't process file *.resx due to its being in the internet or Restricted zone or having the mark of the web on the file. Remove the mark of the web if you want to process these files," Run the following Powershell command using the file path you unzipped the source code to, e.g. C:\ContosoInsurance.
+
+    ```
+        dir c:\contosoinsurance -Recurse | Unblock-File
+    ``` 
+
 3.  Select **Log in**, and enter the credentials for the Contoso User ([contosouser@\<YOUR-TENANT\>.onmicirosoft.com](mailto:contosouser@%3cYOUR-TENANT%3e.onmicirosoft.com)) into the Azure AD login window. The password will be whatever you set it to when you changed it after logging into the Web App.
 
 4.  After authentication is complete, you should see a list of policyholders, and you should see a label on the upper-right saying you are logged in as your Contoso User account. Feel free to explore the different capabilities of the application. Some functionality is intentionally left out. To open a policyholder record, simply double-click on any of the rows.
 
     ![Screenshot of the PolicyConnect Desktop app.](media/image169.png "PolicyConnect Desktop app")
 
-## Exercise 11: Configure and run the mobile application
+## 1.15. Exercise 11: Configure and run the mobile application
 
 Duration: 15 minutes
 
@@ -1429,7 +1436,7 @@ The mobile application was built using Xamarin Forms, capitalizing on the .NET e
 
 In this exercise, you will update the application settings in the ApplicationSettings.cs file, and then run the mobile application within the Android emulator.
 
-### Task 1: Configure application settings in ApplicationSettings.cs
+### 1.15.1. Task 1: Configure application settings in ApplicationSettings.cs
 
 1.  On your Lab VM, expand the **CIMobile** project located in the **Mobile** folder in the Visual Studio Solution Explorer, and open **ApplicationSettings.cs**. 
 
@@ -1459,7 +1466,7 @@ In this exercise, you will update the application settings in the ApplicationSet
 
     k.  **AzureSearchQueryApiKey**: Insert the query key value from your Azure Search service, which can be found by selecting your search service in Azure, selecting Keys, then selecting Manage query keys, and coping the displayed key (or create one if none exist) (e.g., 1A80181B30F975CFE252E4FDDAA657DC)
 
-### Task 2: Run the mobile application
+### 1.15.2. Task 2: Run the mobile application
 
 1.  Select the **CIMobile.Droid** project in the **Mobile** folder using the **Solution Explorer** of Visual Studio.
 
@@ -1495,13 +1502,13 @@ In this exercise, you will update the application settings in the ApplicationSet
 
     ![Policy document in the Android emulator.](media/image177.png "Android emulator")
 
-## Exercise 12: Create a Flow app to send push notifications
+## 1.16. Exercise 12: Create a Flow app to send push notifications
 
 Duration: 10 minutes
 
 Contoso wants to receive push notifications when important emails arrive, since any newly scanned policies that are emailed to the data entry employees are marked as important. Since they use Office 365 for their email services, you can easily meet this requirement with Flow.
 
-### Task 1: Sign up for a Flow account
+### 1.16.1. Task 1: Sign up for a Flow account
 
 1.  Go to <https://flow.microsoft.com> and sign up for a new account, using the same account you have been using in Azure.
 
@@ -1509,7 +1516,7 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
 3.  Download the Microsoft Flow mobile app to your phone or mobile device.
 
-### Task 2: Create new flow
+### 1.16.2. Task 2: Create new flow
 
 1.  With your Flow account created and logged into the Flow website, select the **My flows** link on top of the page.
 
@@ -1555,7 +1562,7 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
 14. Enter a name, such as "When a new email arrives -\> Send mobile notification," in the top left corner (where it says Untitled), then select **Save**.
 
-### Task 3: Test your flow
+### 1.16.3. Task 3: Test your flow
 
 1.  Send an email to your O365 account marked as **High Importance**, with a test Policy PDF file attached. You can find some test files that are not stored in Blob storage (for additional testing later) within the **C:\\ContosoInsurance\\Hackathon\\New Policies** folder.
 
@@ -1573,7 +1580,7 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
     ![The flow status shows that the result for when a new email arrives is for a mobile notification to be sent.](media/image188.png "Flow status")
 
-## Exercise 13: Create an app in PowerApps
+## 1.17. Exercise 13: Create an app in PowerApps
 
 Duration: 15 minutes
 
@@ -1581,7 +1588,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 Get them up and running with a new app created in PowerApps, which connects to the ContosoInsurance database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
 
-### Task 1: Sign up for a PowerApps account
+### 1.17.1. Task 1: Sign up for a PowerApps account
 
 1.  Go to <https://web.powerapps.com> and sign up for a new account, using the same account you have been using in Azure.
 
@@ -1589,7 +1596,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 3.  Download and install PowerApps Studio from the Microsoft store: <https://www.microsoft.com/en-us/store/p/powerapps/9nblggh5z8f3>.
 
-### Task 2: Create new SQL connection
+### 1.17.2. Task 2: Create new SQL connection
 
 1.  With your PowerApps account created and logged into the PowerApps website, select the **Connections** link on left menu of the page.
 
@@ -1605,7 +1612,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
     ![The SQL Server dialog box fields are completed.](media/image190.png "SQL Server dialog  box")
 
-### Task 3: Create a new app
+### 1.17.3. Task 3: Create a new app
 
 1.  Open PowerApps Studio and sign in with the same account.
 
@@ -1625,7 +1632,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 6.  Select **Connect**.
 
-### Task 4: Design app
+### 1.17.4. Task 4: Design app
 
 1.  The new app will automatically be created and displayed within the designer. Select the title for the first page (currently named \[dbo\].\[Policies\]) and edit the text in the formula field to read **Policies**.
 
@@ -1649,7 +1656,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 7.  Repeat steps 4 -- 6 on the edit screen.
 
-### Task 5: Edit the app settings and run the app
+### 1.17.5. Task 5: Edit the app settings and run the app
 
 1.  Select **File** on the top menu. Select **App settings**, then **App name + icon** and type in a new **App name**, such as PolicyConnect Plus.
 
@@ -1666,13 +1673,13 @@ Get them up and running with a new app created in PowerApps, which connects to t
     ![Screenshot of the Run button.](media/image200.png "Run button")
 
 
-## Exercise 14: Add Azure Function to Azure API Management
+## 1.18. Exercise 14: Add Azure Function to Azure API Management
 
 Duration: 15 minutes
 
 Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Managemenent portal and import the Function app you created earlier.
 
-### Task 1: Provision Azure API Management
+### 1.18.1. Task 1: Provision Azure API Management
 
 In this task, you will create a new API Management Resource.
 
@@ -1699,7 +1706,7 @@ In this task, you will create a new API Management Resource.
 
     > **Note**: It will take several minutes to provision the APIM resource. You can safely move on to the next task.
 
-### Task 2: Add API Definition to Function App
+### 1.18.2. Task 2: Add API Definition to Function App
 
 In this task, you will generate a swagger api definition for the policy documents Function App. This is required for API Management to discover the API.
 
@@ -1719,7 +1726,7 @@ In this task, you will generate a swagger api definition for the policy document
 
 5. Select **Save**
 
-### Task 3: Import the Funtion App to API Management(APIM)
+### 1.18.3. Task 3: Import the Funtion App to API Management(APIM)
 
 In this task, you will add your function app to the APIM's api collection.
 
@@ -1745,7 +1752,7 @@ In this task, you will add your function app to the APIM's api collection.
 
     ![Import Function App pop up is displayed](media/image218.png "Import Function App Pop")
 
-### Task 4: Test the APIM Developer Portal
+### 1.18.4. Task 4: Test the APIM Developer Portal
 
 In this task, you will test an API from the APIM Developer Portal.
 
@@ -1765,19 +1772,19 @@ In this task, you will test an API from the APIM Developer Portal.
 
 4.  The response should be a 200 Okay with binary data representing a pdf file.
 
-## After the hands-on lab 
+## 1.19. After the hands-on lab 
 
 Duration: 10 minutes
 
 In this exercise, you will deprovision any Azure resources that were created in support of the lab.
 
-### Task 1: Delete the Resource group in which you placed your Azure resources.
+### 1.19.1. Task 1: Delete the Resource group in which you placed your Azure resources.
 
 1.  From the Portal, navigate to the blade of your Resource Group and select Delete in the command bar at the top.
 
 2.  Confirm the deletion by re-typing the resource group name and selecting Delete.
 
-### Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile
+### 1.19.2. Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile
 
 1.  Open the manifest for each app registration and change the following setting to false:
 
@@ -1785,17 +1792,17 @@ In this exercise, you will deprovision any Azure resources that were created in 
 
 2.  Save the manifest, then delete the app registrations.
 
-### Task 3: Delete Flow
+### 1.19.3. Task 3: Delete Flow
 
 1.  In your Microsoft Flow account, delete the Flow you created to send a push notification when email messages marked as important with an attachment are received in your inbox.
 
 You should follow all steps provided *after* attending the hands-on lab.
 
-## Appendix A: Create a self-signed certificate
+## 1.20. Appendix A: Create a self-signed certificate
 
 For users who wish to run the PolicyConnect desktop application within its legacy configuration, you must create and configure a self-signed certification. SSL is used to encrypt communication between the desktop application and the WCF services, including SQL-based authentication. **This is not required to complete the lab successfully.**
 
-### Task 1: Create self-signed certificate
+### 1.20.1. Task 1: Create self-signed certificate
 
 1.  On the new VM, run the **Developer Command Prompt** for the appropriate version of Visual Studio as an [administrator]{.underline} from the Start menu.
 
@@ -1848,7 +1855,7 @@ For users who wish to run the PolicyConnect desktop application within its legac
 
 20. Leave the MMC window open, as it will be required below.
 
-### Task 2: Create and install your temporary service certificate
+### 1.20.2. Task 2: Create and install your temporary service certificate
 
 1.  On the new VM, run the **Developer Command Prompt** for the appropriate version of Visual Studio as an [administrator]{.underline} from the Start menu, or switch over to the command prompt if you had left it open from the previous steps.
 
@@ -1888,7 +1895,7 @@ makecert -sk ContosoInsurance -iv RootCATest.pvk -n "CN=<<YOUR MACHINE NAME>>" -
 
 13. Execute the netsh command. If you receive an error stating that the "SSL Certificate add failed," you may ignore it. The certificate is now associated with https communications over port 44321.
 
-### Task 3: Configure the IIS Express self-signed certificate
+### 1.20.3. Task 3: Configure the IIS Express self-signed certificate
 
 1.  On the new VM, verify that the IIS Express developer certificate bound to localhost is present.
 
