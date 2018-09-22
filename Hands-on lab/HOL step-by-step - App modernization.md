@@ -126,9 +126,9 @@ The solution begins with mobile apps (built for Android and iOS using **Xamarin*
 
 ## Requirements
 
--   Microsoft Azure subscription (non-Microsoft subscription)
+-   Microsoft Azure subscription (non-Microsoft subscription).
 
--   **Global Administrator role** for Azure AD within your subscription
+-   **Global Administrator role** for Azure AD within your subscription.
 
 -   Local machine or a virtual machine configured with (**complete the day before the lab!**):
 
@@ -166,15 +166,15 @@ In this task, you will create a SQL Server (logical server). You will not create
 
 4.  On the **SQL Server (logical server on...)** blade, specify the following configuration:
 
-    a.  **Server name**: Enter a unique value, such as contoso-insurance-SUFFIX (ensure the green checkmark appears)
+    a.  **Server name**: Enter a unique value, such as contoso-insurance-SUFFIX (ensure the green checkmark appears).
 
     b.  **Server admin login**: demouser
 
     c.  **Password**: Password.1!!
 
-    d.  **Resource group**: Select Use existing, and specify the hands-on-lab-SUFFIX resource group
+    d.  **Resource group**: Select Use existing, and specify the hands-on-lab-SUFFIX resource group.
 
-    e.  **Location**: Select the same location you used for the hands-on-lab-SUFFIX resource group
+    e.  **Location**: Select the same location you used for the hands-on-lab-SUFFIX resource group.
     
     ![SQL Server (logical server) blade with values specified above entered into the appropriate fields.](media/image41.png "SQL Server (logical server) blade")
 
@@ -270,27 +270,27 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
 3.  On the **Web App Create** blade, specify the following configuration:
 
-    a.  **App name**: Enter a unique and valid URL, such as contosoinsuranceSUFFIX (until the green check mark appears) in the App Name field
+    a.  **App name**: Enter a unique and valid URL, such as contosoinsuranceSUFFIX (until the green check mark appears) in the App Name field.
 
-    b.  **Subscription**: Select the subscription you are using for this hands-on lab
+    b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Select Use existing, and select the **hands-on-lab-SUFFIX** resource group
+    c.  **Resource group**: Select Use existing, and select the **hands-on-lab-SUFFIX** resource group.
 
     d.  Select **App Service plan/Location**
 
-    e. On the App Service plan blade, select Create new
+    e. On the App Service plan blade, select Create new.
 
     f. On the New App Service Plan blade, enter the following:
 
-    -  **App Service plan**: Enter a unique name, such as contosoinsuranceSUFFIX
+    -  **App Service plan**: Enter a unique name, such as contosoinsuranceSUFFIX.
 
-    -  **Location**: Select the location you are using for this hands-on lab
+    -  **Location**: Select the location you are using for this hands-on lab.
 
-    -  **Pricing tier**: Select S1 Standard 
+    -  **Pricing tier**: Select S1 Standard .
     
     ![+Create new selected on the App Service Plan blade.](media/image51.png "App Service Plan blade")
 
-    -  Select **OK**
+    -  Select **OK**.
 
 4.  Select **Create** to provision the new Web App. 
 
@@ -306,13 +306,13 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
 3.  On the API App Create blade, enter the following:
 
-    a.  **App name**: Enter a unique name, such as contosoinsuranceapiSUFFIX
+    a.  **App name**: Enter a unique name, such as contosoinsuranceapiSUFFIX.
 
-    b.  **Subscription**: Select the subscription you are using for this hands-on lab
+    b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Choose Use existing, and select the **hands-on-lab-SUFFIX** resource group
+    c.  **Resource group**: Choose Use existing, and select the **hands-on-lab-SUFFIX** resource group.
 
-    d.  **App Service plan/Location**: Select the contosoinsuranceSUFFIX plan you created for the Web App 
+    d.  **App Service plan/Location**: Select the contosoinsuranceSUFFIX plan you created for the Web App .
     
     ![API App Create blade with the values specified above entered into the appropriate fields.](media/image54.png "API App Create blade")
 
@@ -324,13 +324,13 @@ Duration: 45 minutes
 
 Azure Active Directory (Azure AD) will be used to allow users to authenticate to the web app, PolicyConnect desktop app, mobile apps, and PowerApps solutions. Azure AD will also be used to manage application access to Key Vault secrets. You have been asked to create a new Azure AD Tenant and secure the application so only users from the tenant can log on.
 
-**Note**: Tasks 1 and 2 require global admin permissions on the Azure AD Tenant and cannot be completed if you use Microsoft's Azure AD tenant. Task 3 requires the permission to create an app in the Azure AD tenant.
+>**Note**: Tasks 1 and 2 require global admin permissions on the Azure AD Tenant and cannot be completed if you use Microsoft's Azure AD tenant. Task 3 requires the permission to create an app in the Azure AD tenant.
 
 ### Task 1: Create a new Contoso user
 
 In this task, you will create an Azure AD user account that will be used for authenticating against the web and mobile apps.
 
-**Note**: This task is valid only if you are a global administrator on the Azure AD tenant associated with your subscription.
+>**Note**: This task is valid only if you are a global administrator on the Azure AD tenant associated with your subscription.
 
 1.  In the [Azure Portal](https://portal.azure.com), select **Azure Active Directory** from the left-hand menu. 
 
@@ -348,7 +348,7 @@ In this task, you will create an Azure AD user account that will be used for aut
 
     a.  **Name**: Contoso User
 
-    b.  **User name**: [contosouser@\[YOUR-TENANT\].onmicrosoft.com](mailto:contosouser@[YOUR-TENANT].onmicrosoft.com) (Note this full user name for later use)
+    b.  **User name**: [contosouser@\[YOUR-TENANT\].onmicrosoft.com](mailto:contosouser@[YOUR-TENANT].onmicrosoft.com) (Note this full user name for later use.)
 
     c.  **Profile**: On the profile blade, enter:
 
@@ -358,11 +358,11 @@ In this task, you will create an Azure AD user account that will be used for aut
 
         iii. Select **OK**
 
-    d.  Check the **Show Password** box and select the Click to copy button to copy the password
+    d.  Check the **Show Password** box and select the Click to copy button to copy the password.
 
-    e.  Paste the password into a text editor, such as Notepad.exe, for later use
+    e.  Paste the password into a text editor, such as Notepad.exe, for later use.
 
-    f.  Select **Create**
+    f.  Select **Create**.
     
     ![On the Azure AD new user blade, the values specified above are entered into the appropriate fields.](media/image58.png "Azure AD new user blade")
 
@@ -374,15 +374,15 @@ In this task, you will create an Azure AD user account that will be used for aut
 
 2.  In the Create blade, enter the following:
 
-    a.  **Name**: Contoso Insurance Web API
+    a.  **Name**: Contoso Insurance Web API.
 
-    b.  **Application type**: Select Web app / API
+    b.  **Application type**: Select Web app / API.
 
-    c.  **Sign-on URL**: [https://\[YOUR-WEB-API-NAME\].azurewebsites.net](https://[YOUR-WEB-API-NAME].azurewebsites.net) (You can retrieve this value from your API App's blade) 
+    c.  **Sign-on URL**: [https://\[YOUR-WEB-API-NAME\].azurewebsites.net](https://[YOUR-WEB-API-NAME].azurewebsites.net) (You can retrieve this value from your API App's blade.) 
     
     ![Create App registration blade with the values above entered into the appropriate fields.](media/image60.png "Create App registration")
 
-    d.  Select **Create**
+    d.  Select **Create**.
 
 3.  On the Contoso Insurance Web API Registered app blade, select **Settings**, then select Keys on the Settings blade. 
 
@@ -390,11 +390,11 @@ In this task, you will create an Azure AD user account that will be used for aut
 
 4.  On the Keys blade, create a new key by enter the following:
 
-    e.  **Key description**: Enter apikey
+    e.  **Key description**: Enter apikey.
 
-    f.  **Duration**: Select In 1 year
+    f.  **Duration**: Select In 1 year.
 
-    g.  Select **Save**
+    g.  Select **Save**.
     
     ![Keys blade, with a new key named apikey and expires set to In 1 year. The Save button is highlighted.](media/image62.png "Registered app Keys")
 
@@ -436,7 +436,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ![The edit manifest blade is displayed, with \"oauth2AllowImplicitFlow\": true selected.](media/image69.png "Edit manifest")
 
-4.  Next, locate the **oauth2Permissions** setting. This setting may be populated with a value
+4.  Next, locate the **oauth2Permissions** setting. This setting may be populated with a value,
 
     ![The oauth2Permissions node is displayed from the manifest JSON document.](media/image70.png "Edit manifest"), 
     
@@ -460,7 +460,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ```
 
-6.  Make sure that you enter a new, generated Guid into the **id** property (in bold above). You can generate a new Guid by opening PowerShell and running the following command:\.
+6.  Make sure that you enter a new, generated Guid into the **id** property (in bold above). You can generate a new Guid by opening PowerShell and running the following command:
     
     ```
     [guid]::NewGuid()
@@ -491,7 +491,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image74.png "Create new app registration")
 
-    d.  Select **Create**
+    d.  Select **Create**.
 
 3.  On the Contoso Insurance Desktop Registered app blade, select Settings, then select Redirect URIs, and copy the redirect URI into a text editor for later use. 
 
@@ -535,13 +535,13 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     a.  **Name**: Contoso Insurance Mobile
 
-    b.  **Application type**: Select Native
+    b.  **Application type**: Select Native.
 
     c.  **Sign-on URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app) 
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image80.png "Create new app registration")
 
-    d.  Select **Create**
+    d.  Select **Create**.
 
 3.  On the Contoso Insurance Mobile Registered app blade, select **Settings**, then select Redirect URIs, and copy the redirect URI into a text editor for later reference. 
 
@@ -583,15 +583,15 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
 3.  On the Authentication / Authorization blade:
 
-    a.  **App Service Authentication**: Select On
+    a.  **App Service Authentication**: Select On.
 
-    b.  **Action to take when request is not authorized**: Select Log in with Azure Active Directory
+    b.  **Action to take when request is not authorized**: Select Log in with Azure Active Directory.
 
-    c.  **Authentication Providers**: Select Azure Active Directory, then on the Azure Active Directory Settings blade set the **Management mode** to **Express**, and select **OK**
+    c.  **Authentication Providers**: Select Azure Active Directory, then on the Azure Active Directory Settings blade set the **Management mode** to **Express**, and select **OK**.
     
     ![App Service Authentication/Authorization blade with App Service Authentication turned On, and Log in with Azure Active Directory selected. Azure Active Directory is Configured in Express Mode.](media/image84.png "App Service Authentication/Authorization")
 
-    d.  Select **Save**
+    d.  Select **Save**.
 
 ### Task 7: Grant the ContosoInsurance Web app permissions to the Web API app 
 
@@ -613,15 +613,15 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
 6.  On the Reply URLs blade, two new reply URLs need to be added for our application to work correctly:
 
-    a.  Enter [https://\[YOUR-WEB-APP-NAME\].azurewebsites.net/](https://[YOUR-WEB-APP-NAME].azurewebsites.net/)
+    a.  Enter: [https://\[YOUR-WEB-APP-NAME\].azurewebsites.net/](https://[YOUR-WEB-APP-NAME].azurewebsites.net/)
 
-    b.  Enter [https://\[YOUR-WEB-APP-NAME\].azurewebsites.net/static](https://[YOUR-WEB-APP-NAME].azurewebsites.net/static)
+    b.  Enter: [https://\[YOUR-WEB-APP-NAME\].azurewebsites.net/static](https://[YOUR-WEB-APP-NAME].azurewebsites.net/static)
 
     c.  OPTIONAL: If you intend to debug the web app locally from within Visual Studio, you will need to add the **localhost** path (http://localhost:10421/static) to the list of Reply URLs as well. Otherwise, your AAD auth to the Web API will fail. 
     
     ![Reply URLs blade with the Reply URLs specified above entered and highlighted.](media/image89.png "Reply URLs")
 
-    d.  Select **Save**
+    d.  Select **Save**.
 
 7.  Close the Reply URLs blade.
 
@@ -665,26 +665,25 @@ Contoso Insurance is currently storing all of their scanned PDF documents on a l
 
 3.  On the Create storage account blade, enter the following:
 
-    a.  **Name**: Enter a unique value, such as contosoinsuranceSUFFIX (ensure the green check\
-        mark appears)
+    a.  **Name**: Enter a unique value, such as contosoinsuranceSUFFIX (ensure the green check mark appears).
 
-    b.  **Deployment model**: Select Resource manager
+    b.  **Deployment model**: Select Resource manager.
 
-    c.  **Account kind**: Select Storage (general purpose v1)
+    c.  **Account kind**: Select Storage (general purpose v1).
 
-    d.  **Location**: Select the same region as the resource group
+    d.  **Location**: Select the same region as the resource group.
 
-    e.  **Replication**: Select Locally-redundant storage (LRS)
+    e.  **Replication**: Select Locally-redundant storage (LRS).
 
-    f.  **Performance**: Select Standard
+    f.  **Performance**: Select Standard.
 
-    g.  **Secure transfer required**: Select Disabled
+    g.  **Secure transfer required**: Select Disabled.
 
-    h.  **Subscription**: Select the subscription you are using for this hands-on lab
+    h.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    i.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group
+    i.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group.
 
-    j.  **Virtual networks**: Leave set to Disabled 
+    j.  **Virtual networks**: Leave set to Disabled.
     
     ![The Create storage account blade is displayed with the values above entered into the appropriate fields.](media/image95.png "Create storage account")
 
@@ -734,18 +733,18 @@ In this task, you will download and install [AzCopy](https://docs.microsoft.com/
 
 4.  Browse to the AzCopy directory. By default, it is installed to %ProgramFiles(x86)%\\Microsoft SDKs\\Azure\\AzCopy (If you are on a 32-bit machine, change ProgramFiles(x86) to ProgramFiles ).
 
-5.  Type the following command at the command prompt, replacing the tokenized values with your own.
+5.  Type the following command at the command prompt, replacing the tokenized values with your own:
 
     ```
     AzCopy /Source:[FILE-SOURCE] /Dest:[STORAGE-ACCOUNT-URL] /DestKey:[STORAGE-ACCOUNT-KEY] /S
     ```
 6.  The values in the above command should be replaced as follows:
 
-    a.  FILE-SOURCE: This is the path to the Files folder in your sample project directory, such as C:\\ContosoInsurance\\Hackathon\\Files
+    a.  **FILE-SOURCE:** This is the path to the Files folder in your sample project directory, such as C:\\ContosoInsurance\\Hackathon\\Files.
 
-    b.  STORAGE-ACCOUNT-URL: This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., <https://contosoinsurancekb.blob.core.windows.net/policies>)
+    b.  **STORAGE-ACCOUNT-URL:** This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., <https://contosoinsurancekb.blob.core.windows.net/policies>)
 
-    c.  STORAGE-ACCOUNT-KEY: This is the blob storage account key you copied in after provisioning the storage account in Task 1 of this exercise. (e.g., 1z5Jd0+JbffwmEBEWuEUPjStI0iT3EzlKaoj2DZVhL/w9F60ezcos6gZYtXqUmJRPLhpvDLP8TuDNMGVW1/4YQ==)
+    c.  **STORAGE-ACCOUNT-KEY:** This is the blob storage account key you copied in after provisioning the storage account in Task 1 of this exercise. (e.g., 1z5Jd0+JbffwmEBEWuEUPjStI0iT3EzlKaoj2DZVhL/w9F60ezcos6gZYtXqUmJRPLhpvDLP8TuDNMGVW1/4YQ==)
 
 7.  The final command should resemble the following:
 
@@ -771,21 +770,21 @@ Contoso Insurance has made some updates to prepare their applications, but there
 
 2.  On the Function App Create blade, enter the following:
 
-    a.  **App name**: Enter a unique name, such as contosoinsurancedocsSUFFIX
+    a.  **App name**: Enter a unique name, such as contosoinsurancedocsSUFFIX.
 
-    b.  **Subscription**: Select the subscription you are using for this hands-on lab
+    b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group
+    c.  **Resource group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group.
 
-    d.  **OS**: Select Windows
+    d.  **OS**: Select Windows.
 
-    e.  **Hosting Plan**: Select Consumption Plan
+    e.  **Hosting Plan**: Select Consumption Plan.
 
-    f.  **Location**: Select the location you are using for resources in this hands-on lab
+    f.  **Location**: Select the location you are using for resources in this hands-on lab.
 
-    g.  **Storage**: Choose Use existing and select the storage account (contosoinsuranceSUFFIX) you created for this hands-on lab
+    g.  **Storage**: Choose Use existing and select the storage account (contosoinsuranceSUFFIX) you created for this hands-on lab.
 
-    h.  **Application Insights**: Select Off
+    h.  **Application Insights**: Select Off.
     
     ![The Create Function App blade is displayed with the values specified above entered into the appropriate fields.](media/image104.png "Create Function App")
 
@@ -819,9 +818,9 @@ In this task, you will create an Azure Function Proxy, which is a simple way to 
 
     b.  **Route template**: Enter "/"
 
-    c.  **Allowed HTTP methods**: Select Selected Methods and check GET
+    c.  **Allowed HTTP methods**: Select Selected Methods and check GET.
 
-    d.  **Backend URL**: Paste the policy document URL you copied in the previous task
+    d.  **Backend URL**: Paste the policy document URL you copied in the previous task.
     
     ![The + (Add) button is highlighted next to Proxies on the Function Apps blade. On the New proxy blade, the name is set to \"PolicyDocs,\" the route template is set to \"/\", the allowed HTTP methods is set to GET, and the backend URL is set to the URL copied from the blob in the storage account.](media/image107.png "Function App Proxies")
 
@@ -841,11 +840,11 @@ In the previous task, you created an Azure Functions Proxy to download a specifi
 
 2.  Update the Route template and Backend URL fields with the following values:
 
-    a.  **Route template**: Change to "/{policyHolder}/{policyNumber}"
+    a.  **Route template**: Change to "/{policyHolder}/{policyNumber}".
 
-    b.  **Backend URL**: Change to "https://\<YOUR-STORAGE-ACCOUNT-NAME\>.blob.core.windows.net/policies/{policyHolder}-{policyNumber}.pdf
+    b.  **Backend URL**: Change to "https://\<YOUR-STORAGE-ACCOUNT-NAME\>.blob.core.windows.net/policies/{policyHolder}-{policyNumber}.pdf.
 
-    c.  Select **Save**
+    c.  Select **Save**.
     
     ![The Save button is highlighted. On the Proxy blade, the route template is set to \"/{polichyHolder}/{policyNumber}\", the allowed HTTP methods is set to GET, and the backend URL is set to the URL copied from the blob in the storage account, plus \"/{policyHolder}-{policyNumber}.pdf\".](media/image109.png "PolicyDocs Proxy properties")
 
@@ -875,15 +874,15 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 2.  On the New Search Service blade, enter the following:
 
-    a.  **URL**: Enter a unique value, such as contosoinsurancesearchSUFFIX
+    a.  **URL**: Enter a unique value, such as contosoinsurancesearchSUFFIX.
 
-    b.  **Subscription**: Select the subscription you are using for this hands-on lab
+    b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group
+    c.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group.
 
-    d.  **Location**: Select the location you are using for resources in this hands-on lab
+    d.  **Location**: Select the location you are using for resources in this hands-on la.b
 
-    e.  **Pricing tier**: Select Standard 
+    e.  **Pricing tier**: Select Standard. 
     
     ![On the New Search Service blade the values specified above are entered into the appropriate fields.](media/image111.png "New Search Service")
 
@@ -923,17 +922,17 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
     a.  **Name**: policy-indexer
 
-    b.  **Schedule**: Select Custom
+    b.  **Schedule**: Select Custom.
 
     - **Interval (minutes)**: 5
 
     - **Start time (UTC)**
 
-        - Set the date to today's date
+        - Set the date to today's date.
 
-        - Set the start time to 12:00:00 AM
+        - Set the start time to 12:00:00 AM.
 
-    c.  Select **OK**
+    c.  Select **OK**.
     
     ![On the Import data -\> Indexer blade has a name of policy-indexer entered, with the schedule set to customer and a start date of today and time of 12:00:00 AM.](media/image117.png "Import data")
 
@@ -953,15 +952,15 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 15. Back on the Search service blade, verify that your policies index has a Document Count of 650. If it is still 0, you may need to manually start the indexer.
 
-    a.  You can manually trigger the indexer by selecting Indexers on the Search service blade 
+    a.  You can manually trigger the indexer by selecting Indexers on the Search service blade .
     
     ![On the Search service blade, the Indexers tile is highlighthed.](media/image121.png "Indexers")
 
-    b.  Next, select the policy-indexer on the Indexers blade, then select Run on the policy-indexer blade
+    b.  Next, select the policy-indexer on the Indexers blade, then select Run on the policy-indexer blade.
     
     ![The policy-indexer is highlighted, and the Run button is selected.](media/image122.png "Indexers")
 
-    c.  It will take a few minutes for the indexer to run against the documents
+    c.  It will take a few minutes for the indexer to run against the documents.
 
 16. On the Search service blade, select **Search explorer** on the top menu.
 
@@ -997,21 +996,20 @@ Key Vault will be used to protect sensitive information, such as database connec
 
 2.  On the Create key vault blade, enter the following:
 
-    a.  **Name**: Enter a unique name, such as ContosoInsKeyVaultSUFFIX
+    a.  **Name**: Enter a unique name, such as ContosoInsKeyVaultSUFFIX.
 
-    b.  **Subscription**: Select the subscription you are using for this hands-on lab
+    b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group
+    c.  **Resource group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group.
 
-    d.  **Location**: Select the location you are using for resources in this hands-on lab
+    d.  **Location**: Select the location you are using for resources in this hands-on lab.
 
-    e.  **Pricing tier**: Select Standard
+    e.  **Pricing tier**: Select Standard.
 
-    f.  **Access policies**: Leave set to the default value (1 principal selected)
+    f.  **Access policies**: Leave set to the default value (1 principal selected).
     
     ![On the Create key vault blade, the values specified above are entered into the appropriate fields.](media/create-key-vault-resource-settings.png "Create key vault")
     
-
 3.  Select **Create**.
 
 ### Task 2: Create a new secret to store the SQL connection string 
@@ -1050,11 +1048,11 @@ Key Vault will be used to protect sensitive information, such as database connec
 
 10. On the Create a secret blade, enter the following:
 
-    c.  **Upload options**: Select Manual
+    c.  **Upload options**: Select Manual.
 
     d.  **Name**: SqlConnectionString
 
-    e.  **Value**: Paste your SQL connection string 
+    e.  **Value**: Paste your SQL connection string .
     
     ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/image133.png "Create a secret")
 
@@ -1140,15 +1138,15 @@ In this task, you will add the application settings to the API App for the Web A
 
 10. Follow the steps below to add the settings:
 
-    a.  Select **+Add new setting**
+    a.  Select **+Add new setting**.
 
-    b.  In the Key field, enter **ClientId**
+    b.  In the Key field, enter **ClientId**.
 
-    c.  In the Value field, enter the Azure AD **Application ID** for the Contoso Insurance Web API
+    c.  In the Value field, enter the Azure AD **Application ID** for the Contoso Insurance Web API.
 
-    - The ClientId value is the Application ID you copied into the text editor from the Web API's property blade
+    - The ClientId value is the Application ID you copied into the text editor from the Web API's property blade.
 
-    - If in doubt, you can find in by going into the Azure portal, selecting Azure AD, browsing to the App registrations tab, choosing Contoso Insurance Web API, selecting Settings, then opening Properties
+    - If in doubt, you can find in by going into the Azure portal, selecting Azure AD, browsing to the App registrations tab, choosing Contoso Insurance Web API, selecting Settings, then opening Properties.
 
 11. Repeat the previous step, setting the key and value for each of the settings below:
 
@@ -1158,7 +1156,7 @@ In this task, you will add the application settings to the API App for the Web A
 
     - **Value**: \<Azure AD Web API Key\>
 
-    - The ClientSecret value is the Key you created and copied in [Exercise 3, Step 2](#task-2-register-the-web-api-application)
+    - The ClientSecret value is the Key you created and copied in [Exercise 3, Step 2](#task-2-register-the-web-api-application).
 
     b.  SecretUri
 
@@ -1166,9 +1164,9 @@ In this task, you will add the application settings to the API App for the Web A
 
     - **Value**: \<Key Vault Secret Identifier for the SqlConnectionString secret\>
 
-    - The SecretUri value is the Secret Identifier value you copied for the SqlConnectionString secret in Key Vault
+    - The SecretUri value is the Secret Identifier value you copied for the SqlConnectionString secret in Key Vault.
 
-    - You can omit the version number in this value
+    - You can omit the version number in this value.
 
     c.  ida:Tenant
 
@@ -1184,7 +1182,7 @@ In this task, you will add the application settings to the API App for the Web A
 
     - **Value**: \<App ID URI within Azure AD application settings\>
 
-    - The ida:Audience value is the App ID URI from the Azure portal within the AAD application settings for this Web API
+    - The ida:Audience value is the App ID URI from the Azure portal within the AAD application settings for this Web API.
 
 12. Your Application settings should look like the following: 
 
@@ -1254,15 +1252,15 @@ In this exercise, you will apply application settings using the Microsoft Azure 
 
 6.  Follow the steps below to add the settings:
 
-    a.  Select **+Add new setting**
+    a.  Select **+Add new setting**.
 
-    b.  In the Key field, enter **RootWebApiPath**
+    b.  In the Key field, enter **RootWebApiPath**.
 
-    c.  In the Value field, enter the URL to the published Contoso Insurance Web API
+    c.  In the Value field, enter the URL to the published Contoso Insurance Web API.
 
-    - The RootWebApiPath value is the URL of your published Web API
+    - The RootWebApiPath value is the URL of your published Web API.
 
-    - **Note**: It is important to make sure this link starts with **https** to ensure proper communication between the web app and the API. Otherwise, the requests to the API may be blocked.
+    >**Note**: It is important to make sure this link starts with **https** to ensure proper communication between the web app and the API. Otherwise, the requests to the API may be blocked.
 
 7.  Repeat the previous step, setting the key and value for each of the settings below:
 
@@ -1388,21 +1386,21 @@ In this task, you will update the application settings in the App.config file, a
 
 2.  Modify the values for the following keys under **appSettings**:
 
-    a.  **PdfRootPath**: This is the root folder of the PDF files. This path should point to the folder: C:\\ContosoInsurance\\Hackathon\\Files\\
+    a.  **PdfRootPath**: This is the root folder of the PDF files. This path should point to the folder: C:\\ContosoInsurance\\Hackathon\\Files\\.
 
-    b.  **RootWebApiPath**: Insert the value of the URL to your published Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>)
+    b.  **RootWebApiPath**: Insert the value of the URL to your published Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>).
 
-    c.  **UseWebApi**: Set to **true**. This allows the desktop app to communicate with the new Web API, and authenticate through Azure AD
+    c.  **UseWebApi**: Set to **true**. This allows the desktop app to communicate with the new Web API, and authenticate through Azure AD.
 
-    d.  **DesktopClientId**: Insert the value of the Application ID for the Contoso Insurance Desktop Azure AD application (e.g., e5040790-6d06-458d-b4da-8e83fa1c56b1)
+    d.  **DesktopClientId**: Insert the value of the Application ID for the Contoso Insurance Desktop Azure AD application (e.g., e5040790-6d06-458d-b4da-8e83fa1c56b1).
 
-    e.  **DesktopRedirectUri**: Insert the Redirect URI value from Azure AD for the Contoso Insurance Desktop app (e.g., <http://contosoinsurance.desktop.client>)
+    e.  **DesktopRedirectUri**: Insert the Redirect URI value from Azure AD for the Contoso Insurance Desktop app (e.g., <http://contosoinsurance.desktop.client>).
 
-    f.  **WebApiAppId**: Insert the App URI ID for the Contoso Insurance Web API from Azure AD (e.g., https://\<YOUR-TENANT\>.onmicrosoft.com/e701e991-0aeb-4f91-9a12-5168bb310f72 ). This can be found on the properties blade for the Web API app in Azure AD
+    f.  **WebApiAppId**: Insert the App URI ID for the Contoso Insurance Web API from Azure AD (e.g., https://\<YOUR-TENANT\>.onmicrosoft.com/e701e991-0aeb-4f91-9a12-5168bb310f72 ). This can be found on the properties blade for the Web API app in Azure AD.
 
-    g.  **AzureAdLoginUrl**: This is the URL of your Azure AD tenant, which should be: [https://login.windows.net/\<tenantID](https://login.windows.net/%3ctenantID)\>. You can find your Tenant ID by opening Azure AD and selecting Properties. Your Tenant ID is the Directory ID value
+    g.  **AzureAdLoginUrl**: This is the URL of your Azure AD tenant, which should be: [https://login.windows.net/\<tenantID](https://login.windows.net/%3ctenantID)\>. You can find your Tenant ID by opening Azure AD and selecting Properties. Your Tenant ID is the Directory ID value.
 
-    h.  **AzureADTenantId**: This is the Guid value of your tenant, which you retrieved from Azure AD for the previous key
+    h.  **AzureADTenantId**: This is the Guid value of your tenant, which you retrieved from Azure AD for the previous key.
 
 3.  **Save** App.config. The updated App.config file should look like: 
 
@@ -1444,27 +1442,27 @@ In this exercise, you will update the application settings in the ApplicationSet
 
 2.  Modify the values for the following properties:
 
-    a.  **RootWebApiPath**: Insert the value of the URL to your published Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>)
+    a.  **RootWebApiPath**: Insert the value of the URL to your published Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>).
 
-    b.  **BlobContainerUrl**: Enter the URL property of your blob storage account **policies** container where the policy PDF files are kept (e.g., <https://contosoinsurancekb.blob.core.windows.net/policies>). You can find this by navigating to your Storage account in Azure, selecting Blobs on the Overview blade, then selecting the policies container, and selecting Properties
+    b.  **BlobContainerUrl**: Enter the URL property of your blob storage account **policies** container where the policy PDF files are kept (e.g., <https://contosoinsurancekb.blob.core.windows.net/policies>). You can find this by navigating to your Storage account in Azure, selecting Blobs on the Overview blade, then selecting the policies container, and selecting Properties.
 
-    c.  **MobileClientId**: Insert the Application ID, in Guid format, from the Azure AD application settings for your mobile application (e.g., 06e8576a-566d-4582-884f-ce2f99a729bb)
+    c.  **MobileClientId**: Insert the Application ID, in Guid format, from the Azure AD application settings for your mobile application (e.g., 06e8576a-566d-4582-884f-ce2f99a729bb).
 
-    d.  **MobileRedirectUri**: Insert the Redirect URI value from the Azure AD for the Contoso Insurance Mobile app (e.g., <http://contosoinsurance.mobile.client>)
+    d.  **MobileRedirectUri**: Insert the Redirect URI value from the Azure AD for the Contoso Insurance Mobile app (e.g., <http://contosoinsurance.mobile.client>).
 
-    e.  **WebApiAppId**: Insert the App URI ID for the Contoso Insurance Web API from Azure AD (e.g., https://\<YOUR-TENANT\>.onmicrosoft.com/e701e991-0aeb-4f91-9a12-5168bb310f72). This can be found on the properties blade for the Web API app in Azure AD
+    e.  **WebApiAppId**: Insert the App URI ID for the Contoso Insurance Web API from Azure AD (e.g., https://\<YOUR-TENANT\>.onmicrosoft.com/e701e991-0aeb-4f91-9a12-5168bb310f72). This can be found on the properties blade for the Web API app in Azure AD.
 
-    f.  **WebApiReplyUrl**: Insert the Reply URL value from Azure AD for the Contoso Insurance Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>)
+    f.  **WebApiReplyUrl**: Insert the Reply URL value from Azure AD for the Contoso Insurance Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>).
 
-    g.  **AzureADLoginUrl**: This is the URL of your Azure AD tenant, which should be: [https://login.windows.net/\<tenantID](https://login.windows.net/%3ctenantID)\>. You can find your Tenant ID by opening Azure AD and selecting Properties. Your Tenant ID is the Directory ID value
+    g.  **AzureADLoginUrl**: This is the URL of your Azure AD tenant, which should be: [https://login.windows.net/\<tenantID](https://login.windows.net/%3ctenantID)\>. You can find your Tenant ID by opening Azure AD and selecting Properties. Your Tenant ID is the Directory ID value.
 
-    h.  **GraphResourceUri**: Set to <https://graph.windows.net>
+    h.  **GraphResourceUri**: Set to <https://graph.windows.net>.
 
-    i.  **AzureADTenantId**: This is the Guid value of your tenant, which you retrieved from Azure AD for the previous key
+    i.  **AzureADTenantId**: This is the Guid value of your tenant, which you retrieved from Azure AD for the previous key.
 
     j.  **AzureSearchServiceUrl**: To get this value, go into the Azure portal, select your search service, then the \"policies\" index, and then \"Search explorer." Copy the full URL within the URL field. Make sure to include the entire path, even the \"&search=\*\" at the end (e.g., <https://contosoinsurance.search.windows.net/indexes/policies/docs?api-version=2015-02-28&search=*>)
 
-    k.  **AzureSearchQueryApiKey**: Insert the query key value from your Azure Search service, which can be found by selecting your search service in Azure, selecting Keys, then selecting Manage query keys, and coping the displayed key (or create one if none exist) (e.g., 1A80181B30F975CFE252E4FDDAA657DC)
+    k.  **AzureSearchQueryApiKey**: Insert the query key value from your Azure Search service, which can be found by selecting your search service in Azure, selecting Keys, then selecting Manage query keys, and coping the displayed key (or create one if none exist) (e.g., 1A80181B30F975CFE252E4FDDAA657DC).
 
 ### Task 2: Run the mobile application
 
@@ -1474,7 +1472,7 @@ In this exercise, you will update the application settings in the ApplicationSet
 
     ![The Andriod emulator run button is highlighted in the Visual Studio toolbar.](media/image171.png "Visual Studio Toolbar")
 
-    a.  Alternately, you can right-click on the CIMobile.Droid project, select Debug, then select **Start new instance**
+    a.  Alternately, you can right-click on the CIMobile.Droid project, select Debug, then select **Start new instance**.
 
 3.  The Android emulator should appear, and then launch the PolicyConnect app within.
 
@@ -1572,11 +1570,11 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
     ![On the My flows tab, the option to send a mobile notification when a new email arrives is set to On.](media/image186.png "My Flows tab")
 
-4.  You will see each time the flow was run, along with its status, under **Run History**
+4.  You will see each time the flow was run, along with its status, under **Run History**.
 
     ![Under Run history, Succeeded displays.](media/image187.png "Run history")
 
-5.  Select the line item to view more details
+5.  Select the line item to view more details.
 
     ![The flow status shows that the result for when a new email arrives is for a mobile notification to be sent.](media/image188.png "Flow status")
 
@@ -1620,7 +1618,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
     ![In the PowerApps Studio, the New button on the left is selected. The right arrow to the right of Create an app from your data is also selected.](media/image191.png "PowerApps Studio")
 
-3.  Select the **SQL Server connection** you created in the previous task
+3.  Select the **SQL Server connection** you created in the previous task.
 
     ![In PowerApps Studio, under Connections, the SQL Server connection is selected.](media/image192.png "PowerApps Studio")
 
@@ -1654,7 +1652,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 6.  Select **EditScreen** on the left-hand menu.
 
-7.  Repeat steps 4 -- 6 on the edit screen.
+7.  Repeat steps 4-6 on the edit screen.
 
 ### Task 5: Edit the app settings and run the app
 
@@ -1672,7 +1670,6 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
     ![Screenshot of the Run button.](media/image200.png "Run button")
 
-
 ## Exercise 14: Add Azure Function to Azure API Management
 
 Duration: 15 minutes
@@ -1683,13 +1680,13 @@ Contoso is interested in providing an API Store experience to the development te
 
 In this task, you will create a new API Management Resource.
 
-1.  Connect to the Azure portal at: <https://portal.azure.com>, select +Create a resource, **Integration** and then select **API management**
+1.  Connect to the Azure portal at: <https://portal.azure.com>, select +Create a resource, **Integration** and then select **API management**.
 
     ![Create a resource is selected. Integration is selected, and the API management button is clicked.](media/image209.png "Azure Portal New blade")
 
 2.  On the **API management** blade, specify the following configuration and select **Create**:
 
-    a.  **Name**: Enter a unique value, such as contosoinsuranceSUFFIX (ensure the green checkmark appears)
+    a.  **Name**: Enter a unique value, such as contosoinsuranceSUFFIX (ensure the green checkmark appears).
 
     b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
@@ -1724,7 +1721,7 @@ In this task, you will generate a swagger api definition for the policy document
 
   ![Api definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Defintion Template Generated")
 
-5. Select **Save**
+5. Select **Save**.
 
 ### Task 3: Import the Funtion App to API Management(APIM)
 
@@ -1758,15 +1755,15 @@ In this task, you will test an API from the APIM Developer Portal.
 
 1.  Navigate to the Developers portal URL - found in the APIM Overview Blade. You should already be signed in as the APIM Administrator.
 
-2. Select **Try It**
+2. Select **Try It**.
 
   ![Policy Doc function definition is displayed and Try It is selected](media/image219.png "Policy Doc Function Try It")
 
 3. Enter the values for **policyHolder** and **policyNumber** in the text fields and select **Send**.
 
-    a. (for example)
-      - policyHolder: Albert
-      - policyNumber: ALB417974T1SV1
+    a. For example:
+      - **policyHolder**: Albert
+      - **policyNumber**: ALB417974T1SV1
 
   ![Policy Doc function Try It form is displayed, the above information is entered into the appropriate fields, and Send is selected](media/image220.png "Policy Doc Function Try It Parameters Entered")
 
@@ -1788,7 +1785,7 @@ In this exercise, you will deprovision any Azure resources that were created in 
 
 1.  Open the manifest for each app registration and change the following setting to false:
 
-    a.  "availableToOtherTenants": false
+    a.  **"availableToOtherTenants"**: false
 
 2.  Save the manifest, then delete the app registrations.
 
@@ -1814,8 +1811,7 @@ For users who wish to run the PolicyConnect desktop application within its legac
     makecert -n "CN=RootCATest" -r -sv RootCATest.pvk RootCATest.cer
     ```
 
-    > By default, no **makecert** tool is installed on Windows 10 PC. To install, you need to download Windows 10 SDK from here: <https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk>
-
+    >**Note**: By default, no **makecert** tool is installed on Windows 10 PC. To install, you need to download Windows 10 SDK from here: <https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk>.
 
 4.  In the **Create Private Key Password** dialog box, select **None** without entering the password. Normally this is not recommended for security reasons but is acceptable for test purposes only.
 
@@ -1877,7 +1873,8 @@ makecert -sk ContosoInsurance -iv RootCATest.pvk -n "CN=<<YOUR MACHINE NAME>>" -
 
 7.  **Launch PowerShell** from the start menu. You will run a command to remove the spaces from the Thumbprint value you copied on the previous step. You will also execute a command to generate a new Guid value.
 
-8.  From the PowerShell command prompt, **paste your certificate's thumbprint between double quotes**, executing the following command (replacing the thumbprint value with your own):\
+8.  From the PowerShell command prompt, **paste your certificate's thumbprint between double quotes**, executing the following command (replacing the thumbprint value with your own):
+
     \"a1 b6 9e 7a be 27 fe 21 fa c7 21 f5 40 72 9f c1 f5 8c dc 4e\" -replace \" \"
 
 9.  **Copy the output value**, which is your thumbprint with the spaces removed.
