@@ -12,7 +12,6 @@ Hands-on lab unguided
 August 2018
 </div>
 
-
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
 Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
@@ -1073,7 +1072,7 @@ In this task, you will generate a swagger api definition for the policy document
 
 #### Exit criteria
 
--   The function app has a swagger definition. 
+- The function app has a swagger definition.
 
 ### Task 3: Import the Funtion App to API Management(APIM)
 
@@ -1085,17 +1084,15 @@ In this task, you will add your function app to the APIM's api collection.
 
     > **Note**: A pop up indicating that you should replace the Named Values with the function secrets will appear. In this lab, this step will not be required. Select Ok to disregard.
 
-    ![Import Function App pop up is displayed](images/Hands-onlabstep-by-step-Appmodernizationimages/media/image218.png "Import Function App Pop")
+    ![Import Function App pop up is displayed](media/image218.png "Import Function App Pop")
 
 #### Exit criteria
 
 -  The function app api is available within the APIM service.
 
-
 ### Task 4: Test the APIM Developer Portal
 
 In this task, you will test an API from the APIM Developer Portal.
-
 
 #### Tasks to complete
 
@@ -1109,8 +1106,7 @@ In this task, you will test an API from the APIM Developer Portal.
 
 -  You receive a 200 okay response with a payload of binary data representing a pdf file.
 
-
-## After the hands-on lab 
+## After the hands-on lab
 
 Duration: 10 minutes
 
@@ -1221,13 +1217,14 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 
 10. Go back to the Visual Studio command prompt you left open on step 4. Type in the following command, but **do not execute yet**:
 
-> netsh http add sslcert ipport=0.0.0.0:44321 appid={c19c7312-ffe4-48da-85e3-f302ad80a625} certhash=a1b69e7abe27fe21fac721f540729fc1f58cdc4e
+    > netsh http add sslcert ipport=0.0.0.0:44321 appid={c19c7312-ffe4-48da-85e3-f302ad80a625} certhash=a1b69e7abe27fe21fac721f540729fc1f58cdc4e
 
 11. Replace the **certhash** value with the thumbprint you copied in the previous step. Replace the **appid** value with a newly generated Guid. To generate a Guid, switch pack to PowerShell and execute the following command:
 
-```
+    ```powershell
     [guid]::NewGuid()
-```
+    ```
+
 12. Paste the output Guid value in between the curly braces next to **appid** in the Visual Studio command prompt.
 
 13. Execute the netsh command. If you receive an error stating that the "SSL Certificate add failed," you may ignore it. The certificate is now associated with https communications over port 44321.
@@ -1263,7 +1260,7 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
     a.  Select **Start**, then type in **Programs and Features**. Select the **Programs and Features** application link.
 
     b.  Find and right-click on the IIS Express application listing, then select **Repair**.
-    
+
        ![The right-click menu for IIS 10.0 Express displays with Repair selected.](media/unguided-image56.png "Repair menu option")
 
     c.  Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder.
@@ -1293,4 +1290,3 @@ By default, no **makecert** tool is installed on Windows 10 PC. To install, you 
 21. Type the password you entered while exporting the certificate in step 15, then select **Next**.
 
 22. Make sure that the **Trusted Root Certification Authorities** certificate store is selected, then select **Next**, then **Finish**. You will receive a prompt stating that the import was successful. Select **OK** to close the dialog.
-

@@ -1859,9 +1859,9 @@ For users who wish to run the PolicyConnect desktop application within its legac
 
 3.  Type in the following command, replacing the \<\<YOUR MACHINE NAME\>\> with your machine name, and execute:
 
-```
-makecert -sk ContosoInsurance -iv RootCATest.pvk -n "CN=<<YOUR MACHINE NAME>>" -ic RootCATest.cer -sr localmachine -ss my -sky exchange -pe
-```
+    ```powershell
+    makecert -sk ContosoInsurance -iv RootCATest.pvk -n "CN=<<YOUR MACHINE NAME>>" -ic RootCATest.cer -sr localmachine -ss my -sky exchange -pe
+    ```
 
 4.  Keep the command prompt open.
 
@@ -1881,13 +1881,13 @@ makecert -sk ContosoInsurance -iv RootCATest.pvk -n "CN=<<YOUR MACHINE NAME>>" -
 
 10. Go back to the Visual Studio command prompt you left open on step 4. Type in the following command, but **do not execute yet**:
 
-> netsh http add sslcert ipport=0.0.0.0:44321 appid={c19c7312-ffe4-48da-85e3-f302ad80a625} certhash=a1b69e7abe27fe21fac721f540729fc1f58cdc4e
+    > netsh http add sslcert ipport=0.0.0.0:44321 appid={c19c7312-ffe4-48da-85e3-f302ad80a625} certhash=a1b69e7abe27fe21fac721f540729fc1f58cdc4e
 
 11. Replace the **certhash** value with the thumbprint you copied in the previous step. Replace the **appid** value with a newly generated Guid. To generate a Guid, switch pack to PowerShell and execute the following command:
 
-```
+    ```powershell
     [guid]::NewGuid()
-```
+    ```
 12. Paste the output Guid value in between the curly braces next to **appid** in the Visual Studio command prompt.
 
 13. Execute the netsh command. If you receive an error stating that the "SSL Certificate add failed," you may ignore it. The certificate is now associated with https communications over port 44321.
@@ -1953,4 +1953,3 @@ makecert -sk ContosoInsurance -iv RootCATest.pvk -n "CN=<<YOUR MACHINE NAME>>" -
 21. Type the password you entered while exporting the certificate in step 15, then select **Next**.
 
 22. Make sure that the **Trusted Root Certification Authorities** certificate store is selected, then select Next, then Finish. You will receive a prompt stating that the import was successful. select **OK** to close the dialog.
-
