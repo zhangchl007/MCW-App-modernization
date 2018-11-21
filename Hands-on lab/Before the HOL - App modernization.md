@@ -9,7 +9,7 @@ Before the hands-on lab
 </div>
 
 <div class="MCWHeader3">
-August 2018
+November 2018
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -24,22 +24,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 **Contents**
 
-<!-- TOC -->
-
-- [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)
-    - [Requirements](#requirements)
-    - [Before the hands-on lab](#before-the-hands-on-lab)
-        - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)
-        - [Task 2: Create a development virtual machine](#task-2-create-a-development-virtual-machine)
-        - [Task 3: Connect to your Lab VM](#task-3-connect-to-your-lab-vm)
-        - [Task 4: Update Visual Studio and Install Xamarin and Android SDK](#task-4-update-visual-studio-and-install-xamarin-and-android-sdk)
-        - [Task 5: Update Android SDKs](#task-5-update-android-sdks)
-        - [Task 6: Install SQL Server 2017 Express edition](#task-6-install-sql-server-2017-express-edition)
-        - [Task 7: Install SQL Server Management Studio](#task-7-install-sql-server-management-studio)
-        - [Task 8: Download the ContosoInsurance sample application](#task-8-download-the-contosoinsurance-sample-application)
-        - [Task 9: Attach the ContosoInsurance Database](#task-9-attach-the-contosoinsurance-database)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)auto    - [Requirements](#requirements)auto    - [Before the hands-on lab](#before-the-hands-on-lab)auto        - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)auto        - [Task 2: Create a development virtual machine](#task-2-create-a-development-virtual-machine)auto        - [Task 3: Connect to your Lab VM](#task-3-connect-to-your-lab-vm)auto        - [Task 4: Update Visual Studio and Install Xamarin and Android SDK](#task-4-update-visual-studio-and-install-xamarin-and-android-sdk)auto        - [Task 5: Update Android SDKs](#task-5-update-android-sdks)auto        - [Task 6: Install SQL Server 2017 Express edition](#task-6-install-sql-server-2017-express-edition)auto        - [Task 7: Install SQL Server Management Studio](#task-7-install-sql-server-management-studio)auto        - [Task 8: Download the ContosoInsurance sample application](#task-8-download-the-contosoinsurance-sample-application)auto        - [Task 9: Attach the ContosoInsurance Database](#task-9-attach-the-contosoinsurance-database)autoauto<!-- /TOC -->
 
 # App modernization before the hands-on lab setup guide
 
@@ -106,33 +91,32 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
 3.  Set the following configuration on the Basics tab:
 
-    a.  **Name**: Enter LabVM
+    a.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    b.  **VM disk type**: Select Premium SSD
-
-    c.  **User name**: Enter demouser
-
-    d.  **Password**: Enter Password.1!!
-
-    e.  **Subscription**: Select the subscription you are using for this hands-on lab.
-
-    f.  **Resource Group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group.
-
-    g.  **Location**: Select the location you are using for this hands-on-lab.
+    b.  **Resource Group**: Select the hands-on-lab-SUFFIX resource group.
     
+    c.  **Name**: Enter LabVM
+
+    d.  **Image**: Ensure **Visual Studio Community 2017 (latest release) on Windows Server 2016 (x64)** is selected.
+
+    e.  **Username**: demouser
+
+    f.  **Password**: Enter Password.1!!
+
+4. Select **Change Size** and choose D2s_v3.
+
+  !["D2s_v3 is highlighted in the list of available sizes"](media/b4-image7.png "Select VM Size")
+
+5.  On the Settings blade, locate the **Select public inbound ports** drop down, and select **RDP (3389)**     
     ![Create virtual machine basics blade with values specified above enter into the fields](media/create-labvm-resource.png "Create virtual machine basics blade")
     
-4.  Select **OK** to move to the next step.
+6.  Select **Next : Disks >** to move to the next step.
 
-5.  On the Choose a size blade, select **DS2\_V3 Standard**. ![The Choose a size blade has the D2S\_V3 Standard option circled. The circled fields are Supported disk type, which is set to SSD, and the View all button.](media/b4-image7.png "Choose a size blade")
+7.  Select **Premium SSD** as the OS Disk type.
 
-6.  Select **Select** to move on to the Settings blade.
+8.  Select **Review + create** to move on to the Validation step.
 
-7.  On the Settings blade, locate the **Select public inbound ports** drop down, and select **RDP (3389)** and **MS SQL (1433).** ![Settings blade with RDP and MS SQL inbound ports selected.](media/b4-image8.png "Create virtual machine settings blade")
-
-8.  Select **OK**.
-
-9.  Select **Create** on the Create blade to provision the virtual machine.
+9.  After Validation is complete, select **Create** on the Create blade to provision the virtual machine.
 
 10. It may take 10+ minutes for the virtual machine to complete provisioning.
 
@@ -198,7 +182,7 @@ In this task, you will add the Mobile Development with .NET workload to the Visu
 
     ![Visual Studio Installer workloads screen, with Mobile development for .NET workload highlighted.](media/b4-image19.png "Visual Studio Installer workloads")
 
-4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Android SDK Setup, Xamarin Workbooks, Java SE Development Kit, Google Android Emulator, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected.
+4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Android SDK Setup, Xamarin Workbooks, Google Android Emulator, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected.
     
     ![Summary view of the Visual Studio Installer;s Mobile development with .NET components.](media/installation-details=panel.png "Workload installation details summary")
 
