@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-August 2018
+November 2018
 </div>
 
 
@@ -26,83 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 **Contents**
 
-<!-- TOC -->
-
-- [App modernization hands-on lab step-by-step](#app-modernization-hands-on-lab-step-by-step)
-    - [Abstract and learning objectives](#abstract-and-learning-objectives)
-    - [Overview](#overview)
-    - [Solution architecture](#solution-architecture)
-    - [Requirements](#requirements)
-    - [Exercise 1: Migrate the database to Azure SQL Database](#exercise-1-migrate-the-database-to-azure-sql-database)
-        - [Task 1: Provision a SQL Server](#task-1-provision-a-sql-server)
-        - [Task 2: Configure SQL Server firewall](#task-2-configure-sql-server-firewall)
-        - [Task 3: Migrate the on-premises SQL database to Azure](#task-3-migrate-the-on-premises-sql-database-to-azure)
-    - [Exercise 2: Provision App Services](#exercise-2-provision-app-services)
-        - [Task 1: Create a Web App](#task-1-create-a-web-app)
-        - [Task 2: Provision an API App](#task-2-provision-an-api-app)
-    - [Exercise 3: Identity and security](#exercise-3-identity-and-security)
-        - [Task 1: Create a new Contoso user](#task-1-create-a-new-contoso-user)
-        - [Task 2: Register the Web API application](#task-2-register-the-web-api-application)
-        - [Task 3: Expose Web API to other applications](#task-3-expose-web-api-to-other-applications)
-        - [Task 4: Register the Desktop (WinForms) application](#task-4-register-the-desktop-winforms-application)
-        - [Task 5: Register the mobile application](#task-5-register-the-mobile-application)
-        - [Task 6: Configure access control for the PolicyConnect web application](#task-6-configure-access-control-for-the-policyconnect-web-application)
-        - [Task 7: Grant the ContosoInsurance Web app permissions to the Web API app](#task-7-grant-the-contosoinsurance-web-app-permissions-to-the-web-api-app)
-    - [Exercise 4: Upload PDFs to blob storage](#exercise-4-upload-pdfs-to-blob-storage)
-        - [Task 1: Provision a storage account](#task-1-provision-a-storage-account)
-        - [Task 2: Create container for storing PDFs in Azure storage](#task-2-create-container-for-storing-pdfs-in-azure-storage)
-        - [Task 3: Bulk upload PDFs to blob storage using AzCopy](#task-3-bulk-upload-pdfs-to-blob-storage-using-azcopy)
-    - [Exercise 5: Create serverless API for accessing PDFs](#exercise-5-create-serverless-api-for-accessing-pdfs)
-        - [Task 1: Provision a Function App](#task-1-provision-a-function-app)
-        - [Task 2: Retrieve URL for policy documents in Azure storage](#task-2-retrieve-url-for-policy-documents-in-azure-storage)
-        - [Task 3: Create an Azure Functions Proxy](#task-3-create-an-azure-functions-proxy)
-        - [Task 4: Parameterize Azure Functions Proxy](#task-4-parameterize-azure-functions-proxy)
-    - [Exercise 6: Create an Azure Search service](#exercise-6-create-an-azure-search-service)
-        - [Task 1: Create an Azure search service](#task-1-create-an-azure-search-service)
-        - [Task 2: Configure full-text search indexing](#task-2-configure-full-text-search-indexing)
-    - [Exercise 7: Configure Key Vault](#exercise-7-configure-key-vault)
-        - [Task 1: Create a new Key Vault](#task-1-create-a-new-key-vault)
-        - [Task 2: Create a new secret to store the SQL connection string](#task-2-create-a-new-secret-to-store-the-sql-connection-string)
-        - [Task 3: Grant access to the secret to the Web API application](#task-3-grant-access-to-the-secret-to-the-web-api-application)
-    - [Exercise 8: Configure and deploy the Contoso Insurance Web API](#exercise-8-configure-and-deploy-the-contoso-insurance-web-api)
-        - [Task 1: Add Application Settings to the API App](#task-1-add-application-settings-to-the-api-app)
-        - [Task 2: Deploy the Web API app from Visual Studio](#task-2-deploy-the-web-api-app-from-visual-studio)
-        - [Task 3: Verify the Web API deployment](#task-3-verify-the-web-api-deployment)
-    - [Exercise 9: Configure and deploy the Contoso Insurance web app](#exercise-9-configure-and-deploy-the-contoso-insurance-web-app)
-        - [Task 1: Configure application settings in Azure](#task-1-configure-application-settings-in-azure)
-        - [Task 2: Deploy the Contoso Insurance Web App from Visual Studio](#task-2-deploy-the-contoso-insurance-web-app-from-visual-studio)
-        - [Task 3: Login and verify the Web App deployment](#task-3-login-and-verify-the-web-app-deployment)
-    - [Exercise 10: Configure and run the legacy desktop (Windows Forms) application](#exercise-10-configure-and-run-the-legacy-desktop-windows-forms-application)
-        - [Task 1: Configure application settings in App.config](#task-1-configure-application-settings-in-appconfig)
-        - [Task 2: Run the desktop application](#task-2-run-the-desktop-application)
-    - [Exercise 11: Configure and run the mobile application](#exercise-11-configure-and-run-the-mobile-application)
-        - [Task 1: Configure application settings in ApplicationSettings.cs](#task-1-configure-application-settings-in-applicationsettingscs)
-        - [Task 2: Run the mobile application](#task-2-run-the-mobile-application)
-    - [Exercise 12: Create a Flow app to send push notifications](#exercise-12-create-a-flow-app-to-send-push-notifications)
-        - [Task 1: Sign up for a Flow account](#task-1-sign-up-for-a-flow-account)
-        - [Task 2: Create new flow](#task-2-create-new-flow)
-        - [Task 3: Test your flow](#task-3-test-your-flow)
-    - [Exercise 13: Create an app in PowerApps](#exercise-13-create-an-app-in-powerapps)
-        - [Task 1: Sign up for a PowerApps account](#task-1-sign-up-for-a-powerapps-account)
-        - [Task 2: Create new SQL connection](#task-2-create-new-sql-connection)
-        - [Task 3: Create a new app](#task-3-create-a-new-app)
-        - [Task 4: Design app](#task-4-design-app)
-        - [Task 5: Edit the app settings and run the app](#task-5-edit-the-app-settings-and-run-the-app)
-    - [Exercise 14: Add Azure Function to Azure API Management](#exercise-14-add-azure-function-to-azure-api-management)
-        - [Task 1: Provision Azure API Management](#task-1-provision-azure-api-management)
-        - [Task 2: Add API Definition to Function App](#task-2-add-api-definition-to-function-app)
-        - [Task 3: Import the Funtion App to API Management(APIM)](#task-3-import-the-funtion-app-to-api-managementapim)
-        - [Task 4: Test the APIM Developer Portal](#task-4-test-the-apim-developer-portal)
-    - [After the hands-on lab](#after-the-hands-on-lab)
-        - [Task 1: Delete the Resource group in which you placed your Azure resources.](#task-1-delete-the-resource-group-in-which-you-placed-your-azure-resources)
-        - [Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile](#task-2-delete-the-azure-active-directory-app-registrations-for-desktop-and-mobile)
-        - [Task 3: Delete Flow](#task-3-delete-flow)
-    - [Appendix A: Create a self-signed certificate](#appendix-a-create-a-self-signed-certificate)
-        - [Task 1: Create self-signed certificate](#task-1-create-self-signed-certificate)
-        - [Task 2: Create and install your temporary service certificate](#task-2-create-and-install-your-temporary-service-certificate)
-        - [Task 3: Configure the IIS Express self-signed certificate](#task-3-configure-the-iis-express-self-signed-certificate)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [App modernization hands-on lab step-by-step](#app-modernization-hands-on-lab-step-by-step)auto    - [Abstract and learning objectives](#abstract-and-learning-objectives)auto    - [Overview](#overview)auto    - [Solution architecture](#solution-architecture)auto    - [Requirements](#requirements)auto    - [Exercise 1: Migrate the database to Azure SQL Database](#exercise-1-migrate-the-database-to-azure-sql-database)auto        - [Task 1: Provision a SQL Server](#task-1-provision-a-sql-server)auto        - [Task 2: Configure SQL Server firewall](#task-2-configure-sql-server-firewall)auto        - [Task 3: Migrate the on-premises SQL database to Azure](#task-3-migrate-the-on-premises-sql-database-to-azure)auto    - [Exercise 2: Provision App Services](#exercise-2-provision-app-services)auto        - [Task 1: Create a Web App](#task-1-create-a-web-app)auto        - [Task 2: Provision an API App](#task-2-provision-an-api-app)auto    - [Exercise 3: Identity and security](#exercise-3-identity-and-security)auto        - [Task 1: Create a new Contoso user](#task-1-create-a-new-contoso-user)auto        - [Task 2: Register the Web API application](#task-2-register-the-web-api-application)auto        - [Task 3: Expose Web API to other applications](#task-3-expose-web-api-to-other-applications)auto        - [Task 4: Register the Desktop (WinForms) application](#task-4-register-the-desktop-winforms-application)auto        - [Task 5: Register the mobile application](#task-5-register-the-mobile-application)auto        - [Task 6: Configure access control for the PolicyConnect web application](#task-6-configure-access-control-for-the-policyconnect-web-application)auto        - [Task 7: Grant the ContosoInsurance Web app permissions to the Web API app](#task-7-grant-the-contosoinsurance-web-app-permissions-to-the-web-api-app)auto    - [Exercise 4: Upload PDFs to blob storage](#exercise-4-upload-pdfs-to-blob-storage)auto        - [Task 1: Provision a storage account](#task-1-provision-a-storage-account)auto        - [Task 2: Create container for storing PDFs in Azure storage](#task-2-create-container-for-storing-pdfs-in-azure-storage)auto        - [Task 3: Bulk upload PDFs to blob storage using AzCopy](#task-3-bulk-upload-pdfs-to-blob-storage-using-azcopy)auto    - [Exercise 5: Create serverless API for accessing PDFs](#exercise-5-create-serverless-api-for-accessing-pdfs)auto        - [Task 1: Provision a Function App](#task-1-provision-a-function-app)auto        - [Task 2: Retrieve URL for policy documents in Azure storage](#task-2-retrieve-url-for-policy-documents-in-azure-storage)auto        - [Task 3: Create an Azure Functions Proxy](#task-3-create-an-azure-functions-proxy)auto        - [Task 4: Parameterize Azure Functions Proxy](#task-4-parameterize-azure-functions-proxy)auto    - [Exercise 6: Create an Azure Search service](#exercise-6-create-an-azure-search-service)auto        - [Task 1: Create an Azure search service](#task-1-create-an-azure-search-service)auto        - [Task 2: Configure full-text search indexing](#task-2-configure-full-text-search-indexing)auto    - [Exercise 7: Configure Key Vault](#exercise-7-configure-key-vault)auto        - [Task 1: Create a new Key Vault](#task-1-create-a-new-key-vault)auto        - [Task 2: Create a new secret to store the SQL connection string](#task-2-create-a-new-secret-to-store-the-sql-connection-string)auto        - [Task 3: Grant access to the secret to the Web API application](#task-3-grant-access-to-the-secret-to-the-web-api-application)auto    - [Exercise 8: Configure and deploy the Contoso Insurance Web API](#exercise-8-configure-and-deploy-the-contoso-insurance-web-api)auto        - [Task 1: Add Application Settings to the API App](#task-1-add-application-settings-to-the-api-app)auto        - [Task 2: Deploy the Web API app from Visual Studio](#task-2-deploy-the-web-api-app-from-visual-studio)auto        - [Task 3: Verify the Web API deployment](#task-3-verify-the-web-api-deployment)auto    - [Exercise 9: Configure and deploy the Contoso Insurance web app](#exercise-9-configure-and-deploy-the-contoso-insurance-web-app)auto        - [Task 1: Configure application settings in Azure](#task-1-configure-application-settings-in-azure)auto        - [Task 2: Deploy the Contoso Insurance Web App from Visual Studio](#task-2-deploy-the-contoso-insurance-web-app-from-visual-studio)auto        - [Task 3: Login and verify the Web App deployment](#task-3-login-and-verify-the-web-app-deployment)auto    - [Exercise 10: Configure and run the legacy desktop (Windows Forms) application](#exercise-10-configure-and-run-the-legacy-desktop-windows-forms-application)auto        - [Task 1: Configure application settings in App.config](#task-1-configure-application-settings-in-appconfig)auto        - [Task 2: Run the desktop application](#task-2-run-the-desktop-application)auto    - [Exercise 11: Configure and run the mobile application](#exercise-11-configure-and-run-the-mobile-application)auto        - [Task 1: Configure application settings in ApplicationSettings.cs](#task-1-configure-application-settings-in-applicationsettingscs)auto        - [Task 2: Run the mobile application](#task-2-run-the-mobile-application)auto    - [Exercise 12: Create a Flow app to send push notifications](#exercise-12-create-a-flow-app-to-send-push-notifications)auto        - [Task 1: Sign up for a Flow account](#task-1-sign-up-for-a-flow-account)auto        - [Task 2: Create new flow](#task-2-create-new-flow)auto        - [Task 3: Test your flow](#task-3-test-your-flow)auto    - [Exercise 13: Create an app in PowerApps](#exercise-13-create-an-app-in-powerapps)auto        - [Task 1: Sign up for a PowerApps account](#task-1-sign-up-for-a-powerapps-account)auto        - [Task 2: Create new SQL connection](#task-2-create-new-sql-connection)auto        - [Task 3: Create a new app](#task-3-create-a-new-app)auto        - [Task 4: Design app](#task-4-design-app)auto        - [Task 5: Edit the app settings and run the app](#task-5-edit-the-app-settings-and-run-the-app)auto    - [Exercise 14: Add Azure Function to Azure API Management](#exercise-14-add-azure-function-to-azure-api-management)auto        - [Task 1: Provision Azure API Management](#task-1-provision-azure-api-management)auto        - [Task 2: Add API Definition to Function App](#task-2-add-api-definition-to-function-app)auto        - [Task 3: Import the Funtion App to API Management(APIM)](#task-3-import-the-funtion-app-to-api-managementapim)auto        - [Task 4: Test the APIM Developer Portal](#task-4-test-the-apim-developer-portal)auto    - [After the hands-on lab](#after-the-hands-on-lab)auto        - [Task 1: Delete the Resource group in which you placed your Azure resources.](#task-1-delete-the-resource-group-in-which-you-placed-your-azure-resources)auto        - [Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile](#task-2-delete-the-azure-active-directory-app-registrations-for-desktop-and-mobile)auto        - [Task 3: Delete Flow](#task-3-delete-flow)auto    - [Appendix A: Create a self-signed certificate](#appendix-a-create-a-self-signed-certificate)auto        - [Task 1: Create self-signed certificate](#task-1-create-self-signed-certificate)auto        - [Task 2: Create and install your temporary service certificate](#task-2-create-and-install-your-temporary-service-certificate)auto        - [Task 3: Configure the IIS Express self-signed certificate](#task-3-configure-the-iis-express-self-signed-certificate)autoauto<!-- /TOC -->
 
 # App modernization hands-on lab step-by-step
 
@@ -172,11 +96,12 @@ In this task, you will create a SQL Server (logical server). You will not create
 
     c.  **Password**: Password.1!!
 
-    d.  **Resource group**: Select Use existing, and specify the hands-on-lab-SUFFIX resource group.
+    d.  **Resource group**: Select the hands-on-lab-SUFFIX resource group.
 
     e.  **Location**: Select the same location you used for the hands-on-lab-SUFFIX resource group.
     
-    ![SQL Server (logical server) blade with values specified above entered into the appropriate fields.](media/image41.png "SQL Server (logical server) blade")
+ 
+    ![SQL Server (logical server) blade with values specified above entered into the appropriate fields.](media/sql-server-create-settings.png "SQL Server (logical server) blade")
 
 5.  Select **Create**.
 

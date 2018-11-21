@@ -24,7 +24,24 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 **Contents**
 
-<!-- TOC -->autoauto- [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)auto    - [Requirements](#requirements)auto    - [Before the hands-on lab](#before-the-hands-on-lab)auto        - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)auto        - [Task 2: Create a development virtual machine](#task-2-create-a-development-virtual-machine)auto        - [Task 3: Connect to your Lab VM](#task-3-connect-to-your-lab-vm)auto        - [Task 4: Update Visual Studio and Install Xamarin and Android SDK](#task-4-update-visual-studio-and-install-xamarin-and-android-sdk)auto        - [Task 5: Update Android SDKs](#task-5-update-android-sdks)auto        - [Task 6: Install SQL Server 2017 Express edition](#task-6-install-sql-server-2017-express-edition)auto        - [Task 7: Install SQL Server Management Studio](#task-7-install-sql-server-management-studio)auto        - [Task 8: Download the ContosoInsurance sample application](#task-8-download-the-contosoinsurance-sample-application)auto        - [Task 9: Attach the ContosoInsurance Database](#task-9-attach-the-contosoinsurance-database)autoauto<!-- /TOC -->
+<!-- TOC -->
+
+- [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)
+    - [Requirements](#requirements)
+    - [Before the hands-on lab](#before-the-hands-on-lab)
+        - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)
+        - [Task 2: Create a development virtual machine](#task-2-create-a-development-virtual-machine)
+        - [Task 3: Connect to your Lab VM](#task-3-connect-to-your-lab-vm)
+        - [Task 4: Update Visual Studio and Install Xamarin and Android SDK](#task-4-update-visual-studio-and-install-xamarin-and-android-sdk)
+        - [Task 5: Update Android SDKs](#task-5-update-android-sdks)
+        - [Task 6: Install SQL Server 2017 Express edition](#task-6-install-sql-server-2017-express-edition)
+        - [Task 7: Install SQL Server Management Studio](#task-7-install-sql-server-management-studio)
+        - [Task 8: Download the ContosoInsurance sample application](#task-8-download-the-contosoinsurance-sample-application)
+        - [Task 9: Attach the ContosoInsurance Database](#task-9-attach-the-contosoinsurance-database)
+
+<!-- /TOC -->
+
+
 
 # App modernization before the hands-on lab setup guide
 
@@ -122,51 +139,76 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
 ### Task 3: Connect to your Lab VM
 
-In this task, you will open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
+In this task, you will add an inbound port rule to you Lab VM to allow SQL Server to migrate to an Azure SQL Database later in the lab. You will then open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
 
-1.  Connect to the Lab VM. (If you are already connected to your Lab VM, skip to Step 9.)
-
-2.  From the left-hand menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list.
-
+1.  From the left-hand menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list.
     ![In the Azure Portal, Resource groups pane, hands-on is typed in the search field, and under Name, hands-on-labs is circled.](media/b4-image9.png "Azure Portal, Resource groups pane")
 
-3.  Next, select your lab virtual machine, LabVM, from the list. 
+2.  Next, select your lab virtual machine, LabVM, from the list. 
 
     ![In the Name list, the LabVM Virtual Machine is circled.](media/b4-image10.png "Name list")
 
-4.  On you Lab VM blade, select Connect from the top menu. 
+3.  Within the Settings section, select Networking, then select **Add inbound port rule**
+
+    ![The Networking blade is open and the Add inbound port rule button is highlighted.](media/networking-tab-add-port-rule.png "Adding port rule")
+
+4.  Enter the following values:
+
+    - **Source**: Any
+
+    - **Source port range**: *
+
+    - **Destination**: Any
+
+    - **Destination port ranges**: 1433
+
+    - **Protocol**: Select TCP
+
+    - **Action**: Allow
+
+    - **Priority**: Accept the default value
+
+    - **Name**: SQL-Server
+
+    > **Note**: Exposing MS SQL port 1433 as shown here is done for simplicity's sake for this hands-on lab and is **not recommended** in other cases.
+
+    ![The values listed above are entered in the inbound port rule blade.](media/inbound-port-rule.png "SQL-Server port rule")
+
+5. Select Save to finish creating the inbound port rule.
+
+6.  On you Lab VM blade, select Connect from the top menu. 
 
     ![The Connect button is circled on the lab VM blade top menu.](media/b4-image11.png "Lab VM blade top menu")
 
-5.  Select Download RDP file, then open the downloaded RDP file.![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
+7.  Select Download RDP file, then open the downloaded RDP file.![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
 
-6.  Select Connect on the Remote Desktop Connection dialog. ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
+8.  Select Connect on the Remote Desktop Connection dialog. ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
 
-7.  Enter the following credentials when prompted:
+9.  Enter the following credentials when prompted:
 
     a.  **User name**: demouser
 
     b.  **Password**: Password.1!!
 
-8.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. 
+10.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. 
 
     ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/b4-image14.png "Remote Desktop Connection dialog box")
 
-9.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. 
+11.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. 
 
     ![The Server Manager tile is circled in the Start Menu.](media/b4-image15.png "Start Menu")
 
-10. Select Local Server, then select **On** next to IE Enhanced Security Configuration. 
+12. Select Local Server, then select **On** next to IE Enhanced Security Configuration. 
 
     ![In Server manager, in the left pane, Local Server is selected. In the right, Properties pane, IE Enhanced Security Configuration is circled, and a callout arrow points to On.](media/b4-image16.png "Server manager")
 
-11. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and Users. 
+13. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and Users. 
 
     ![Internet Explorer Enhanced Security Configuration dialog with Off selected under both Administrators and Users.](media/b4-image17.png "IE Enhanced Security Configuration")
 
-12. Select **OK**.
+14. Select **OK**.
 
-13. Close the Server Manager.
+15. Close the Server Manager.
 
 ### Task 4: Update Visual Studio and Install Xamarin and Android SDK
 
