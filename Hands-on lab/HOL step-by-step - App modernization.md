@@ -361,21 +361,18 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ![The edit manifest blade is displayed, with \"oauth2AllowImplicitFlow\": true selected.](media/image69.png "Edit manifest")
 
-4.  Next, locate the **oauth2Permissions** setting. This setting may be populated with a value,
+4.  Next, locate the **oauth2Permissions** setting. This setting will be populated with a value.
 
     ![The oauth2Permissions node is displayed from the manifest JSON document.](media/image70.png "Edit manifest"), 
     
-    or it may be empty: 
-    
-    ![An empty oauth2Permissions node is displayed from the manifest JSON document.](media/image71.png "Edit manifest")
+    Copy the id property as you will need it at the end of this step. 
 
-5.  You are going to add a new permission to this array. (Copy the text below and replace the id value):
-
+5.  You are going modify the permission in this array. (Copy the text below and paste it over the top of the existing permission):
     ```
     {
         "adminConsentDescription": "Allow read-write access to the Contoso Insurance Web API on behalf of the signed-in user",
         "adminConsentDisplayName": "Read-Write access to Contoso Insurance Web API",
-        "id": "494581dd-4bf5-451d-9bf8-487f4a43a09c",
+        "id": "<REPLACE-WITH-THE-ID-YOU-COPIED>",
         "isEnabled": true,
         "type": "User",
         "userConsentDescription": "Allow read-write access to the Contoso Insurance Web API on your behalf",
@@ -385,18 +382,14 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ```
 
-6.  Make sure that you enter a new, generated Guid into the **id** property (in bold above). You can generate a new Guid by opening PowerShell and running the following command:
-    
-    ```
-    [guid]::NewGuid()
-    ```
+6.  Paste the id value you set aside into the id property.
+
+
 7.  The result should look like this: 
 
-    ![The oauth2AllowImplicitFlow node and a new node under oauth2Permissions node are highlighted in the manifest JSON document.](media/image72.png "Edit manifest")
+    ![The oauth2AllowImplicitFlow node and a new node under oauth2Permissions node are highlighted in the manifest JSON document.](media/web-api-manifest.png "Edit manifest")
 
-8.  Make sure to include a comma (,) after the first permission, if one exists.
-
-9.  Select **Save** to commit the changes. 
+8.  Select **Save** to commit the changes. 
 
     ![The Save button for the manifest is selected.](media/image73.png "Edit manifest")
 
@@ -412,7 +405,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     b.  **Application type**: Select Native
 
-    c.  **Sign-on URL**: <http://contosoinsurance.desktop.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app). 
+    c.  **Redirect URI**: <http://contosoinsurance.desktop.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app). 
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image74.png "Create new app registration")
 
@@ -462,7 +455,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     b.  **Application type**: Select Native.
 
-    c.  **Sign-on URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app) 
+    c.  **Redirect URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app) 
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image80.png "Create new app registration")
 
@@ -1599,7 +1592,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 Duration: 15 minutes
 
-Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Managemenent portal and import the Function app you created earlier.
+Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Management portal and import the Function app you created earlier.
 
 ### Task 1: Provision Azure API Management
 
@@ -1621,7 +1614,7 @@ In this task, you will create a new API Management Resource.
 
     e.  **Administrator Email**: Enter the email address associated with the Azure account you are using for this hands-on lab.
 
-    f.  **Pricing Tier**: Develper (No SLA)
+    f.  **Pricing Tier**: Developer (No SLA)
 
     
        ![API management Create blade with the values specified above entered into the appropriate fields.](media/image210.png "API Management Configured")
@@ -1634,7 +1627,7 @@ In this task, you will generate a swagger api definition for the policy document
 
 1.  Navigate to the Function App you created earlier (contosoinsurancedocsSUFFIX) and select the **Platform features** blade.
 
-2.  Select **Api definition**
+2.  Select **API definition**
 
   ![App function blade with Platform features open and Api definition selected.](media/image211.png "Function App Platform Features Selected")
 
@@ -1654,7 +1647,7 @@ In this task, you will add your function app to the APIM's api collection.
 
 1.  Return to the **API Management** service and  select the **APIs** blade.
 
-2.  Select **Function app** to begin importing your Policy Docs api into APIM.
+2.  Select **Function app** to begin importing your Policy Docs API into APIM.
 
   ![APIs blade open and Function App selected](media/image215.png "Import Function APP into API Management")
 
