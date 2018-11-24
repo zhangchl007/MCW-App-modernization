@@ -600,26 +600,26 @@ Contoso Insurance is currently storing all of their scanned PDF documents on a l
     h.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
     i.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group.
-
-    j.  **Virtual networks**: Leave set to Disabled.
     
-    ![The Create storage account blade is displayed with the values above entered into the appropriate fields.](media/image95.png "Create storage account")
+    ![The Basic tab within the create storage account blade is displayed with the values above entered into the appropriate fields.](media/storage-account-basic-settings.png "Create storage account basic")
 
-4.  Select **Create**.
+4.  Select **Review + create**.
 
-5.  After the storage account has completed provisioning, open the storage account by opening your hands-on-lab-SUFFIX resource group, and then selecting the storage account name. 
+5. After validation is successful, select **Create**.
+
+6.  After the storage account has completed provisioning, open the storage account by opening your hands-on-lab-SUFFIX resource group, and then selecting the storage account name. 
     
     ![Resource groups is selected in the Azure navigation menu, and the contosoinsurancestorage account resource is selected.](media/image96.png "Resource group resources")
 
-6.  On the Storage account blade, select **Access Keys**, under Settings in the left-hand menu.
+7.  On the Storage account blade, select **Access Keys**, under Settings in the left-hand menu.
 
     ![Access keys is highlighted under Settings](media/image97.png "Settings")
 
-7.  On the **Access keys** blade, copy the key1 Key value by selecting the Click to copy button for **key1 (NOT the connection string)**. 
+8.  On the **Access keys** blade, copy the key1 Key value by selecting the Click to copy button for **key1 (NOT the connection string)**. 
 
     ![The key1 Key is highlighted.](media/image98.png "Storage account keys")
 
-8.  Paste the value into a text editor, such as Notepad, for later reference.
+9.  Paste the value into a text editor, such as Notepad, for later reference.
 
 ### Task 2: Create container for storing PDFs in Azure storage
 
