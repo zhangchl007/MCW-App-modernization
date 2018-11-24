@@ -788,7 +788,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 ### Task 1: Create an Azure search service 
 
-1.  In the [Azure portal](http://portal.azure.com), select **+Create a resource**, enter "azure search" into the search box**,** select **Azure Search** from the results and select **Create**. 
+1.  In the [Azure portal](http://portal.azure.com), select **+Create a resource**, enter "azure search" into the search box, select **Azure Search** from the results and select **Create**. 
 
     ![Azure portal +Create a resource is selected, with azure search entered into the filter box, and Azure Search selected from the search results.](media/image110.png "Azure Create a resource")
 
@@ -798,13 +798,13 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
     b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group.
+    c.  **Resource group**: Select the hands-on-lab-SUFFIX resource group.
 
     d.  **Location**: Select the location you are using for resources in this hands-on la.b
 
     e.  **Pricing tier**: Select Standard. 
     
-    ![On the New Search Service blade the values specified above are entered into the appropriate fields.](media/image111.png "New Search Service")
+    ![On the New Search Service blade the values specified above are entered into the appropriate fields.](media/new-search-service.png "New Search Service")
 
 3.  Select **Create**.
 
@@ -828,7 +828,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 5.  Select **OK** on the New data source blade.
 
-6.  Now, select Index -- Customize target index on the Import data blade.
+6.  Now, select **Index Customize target index** on the Import data blade.
 
 7.  On the Index blade, you will be presented with a result of the sampling process, which shows many of our metadata fields, and the suggested indexes. The blob indexer can crack open your documents and extract all text into the content field as well.
 
