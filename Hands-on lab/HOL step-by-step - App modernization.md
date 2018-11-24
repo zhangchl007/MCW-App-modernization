@@ -700,11 +700,13 @@ Contoso Insurance has made some updates to prepare their applications, but there
 
     f.  **Location**: Select the location you are using for resources in this hands-on lab.
 
-    g.  **Storage**: Choose Use existing and select the storage account (contosoinsuranceSUFFIX) you created for this hands-on lab.
+    g.  **Runtime Stack**: Leave this set to .NET.
 
-    h.  **Application Insights**: Select Off.
+    h.  **Storage**: Choose Use existing and select the storage account (contosoinsuranceSUFFIX) you created for this hands-on lab.
+
+    i.  **Application Insights**: Select Off.
     
-    ![The Create Function App blade is displayed with the values specified above entered into the appropriate fields.](media/image104.png "Create Function App")
+    ![The Create Function App blade is displayed with the values specified above entered into the appropriate fields.](media/create-function-app.png "Create Function App")
 
 3.  Select **Create**.
 
