@@ -192,11 +192,11 @@ In this task, you will add an inbound port rule to you Lab VM to allow SQL Serve
 
 10.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. 
 
-    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/b4-image14.png "Remote Desktop Connection dialog box")
+   ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/b4-image14.png "Remote Desktop Connection dialog box")
 
 11.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. 
 
-    ![The Server Manager tile is circled in the Start Menu.](media/b4-image15.png "Start Menu")
+![The Server Manager tile is circled in the Start Menu.](media/b4-image15.png "Start Menu")
 
 12. Select Local Server, then select **On** next to IE Enhanced Security Configuration. 
 
