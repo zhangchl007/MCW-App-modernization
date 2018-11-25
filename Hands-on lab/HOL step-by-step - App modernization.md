@@ -89,7 +89,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Exercise 14: Add Azure Function to Azure API Management](#exercise-14-add-azure-function-to-azure-api-management)
         - [Task 1: Provision Azure API Management](#task-1-provision-azure-api-management)
         - [Task 2: Add API Definition to Function App](#task-2-add-api-definition-to-function-app)
-        - [Task 3: Import the Funtion App to API Management(APIM)](#task-3-import-the-funtion-app-to-api-managementapim)
+        - [Task 3: Import the Function App to API Management(APIM)](#task-3-import-the-function-app-to-api-managementapim)
     - [After the hands-on lab](#after-the-hands-on-lab)
         - [Task 1: Delete the Resource group in which you placed your Azure resources.](#task-1-delete-the-resource-group-in-which-you-placed-your-azure-resources)
         - [Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile](#task-2-delete-the-azure-active-directory-app-registrations-for-desktop-and-mobile)
@@ -1533,7 +1533,7 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
     ![In the When a new email arrives trigger configuration box, fields are set to the previously defined settings.](media/image182.png "When a new email arrives trigger configuration box. ")
 
-8.  Select **+New step**, then **Add an action** to continue.
+8.  Select **+New step** to continue.
 
     ![Under the New step button, Add an action is selected.](media/image183.png "New step button ")
 
@@ -1704,25 +1704,25 @@ In this task, you will generate a swagger api definition for the policy document
 
   ![The Configured features link is highlighted.](media/function-app-settings.png "Function App Settings")
 
-2.  Change the **Runtime version** setting to **-1**.
+2.  Change the **Runtime version** setting to **~1**.
 
-  ![The Runtime version setting of -1 is highlighted.](media/change-runtime-version.png "Change runtime to V1")
+  ![The Runtime version setting of ~1 is highlighted.](media/change-runtime-version.png "Change runtime to V1")
 
 3.  Select the **Overview** tab and select **Restart**. Select Ok, if prompted.
 
 4.  Select the **Platform features** blade then select **API definition**
 
-5.  In the **API definition source** setting, select **Function preview**.
+5.  In the **API definition source** setting, select **Function (preview)**.
 
-  ![Function preview is highlighted in the API definition section.](media/api-definition-setting.png "Function preview")
+  ![Function (preview) is highlighted in the API definition section.](media/api-definition-setting.png "Function preview")
 
 6.  Delete the placeholder text if it exists in the text area.
 
-  ![Api definition blade with blank text area and Generate api definition template selected](media/image212.png "Api Defintion Open")
+  ![Api definition blade with blank text area and Generate api definition template selected](media/image212.png "Api Definition Open")
 
-7.  Select **Generate api defintiion template**. The error window should disappear and the swagger json will appear.
+7.  Select **Generate api definition template**. The error window should disappear and the swagger json will appear.
 
-  ![Api definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Defintion Template Generated")
+  ![Api definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Definition Template Generated")
 
 8.  Copy the API definition URL and save it in a text file fot the next task.
 
@@ -1730,17 +1730,17 @@ In this task, you will generate a swagger api definition for the policy document
 
 9. Select **Save**.
 
-### Task 3: Import the Funtion App to API Management(APIM)
+### Task 3: Import the Function App to API Management(APIM)
 
-In this task, you will add your function app to the APIM's api collection.
+In this task, you will add your function app to the APIM's API collection.
 
 1.  Return to the **API Management** service and  select the **APIs** blade.
 
-2.  Select **OpenAPIU specification** to begin importing your Policy Docs API into APIM.
+2.  Select **OpenAPI specification** to begin importing your Policy Docs API into APIM.
 
   ![APIs blade open and OpenAPI specification is selected](media/import-open-api-spec.png "Import OpenAPI Specification")
 
-3.  Paste the API definition URL you copied in the last task into the **OpenAPI specificaion** text box. You can accept the name values and select **Create**.
+3.  Paste the API definition URL you copied in the last task into the **OpenAPI specification** text box. You can accept the name values and select **Create**.
 
   ![The OpenAPI location URL is pasted into the OpenAPI specification field and the Create button is highlighted.](media/open-api-spec-value.png "Create from OpenAPI Spec")
 
@@ -1758,7 +1758,7 @@ In this task, you will add your function app to the APIM's api collection.
 
   ![The values listed above are entered in the indicated text fields](media/test-api.png "Enter Parameters")
    
-7. Select **Send** to test the api with the supplied parameters. Within a few seconds a 200 response with binary data representing the pdf will be returned.
+7. Select **Send** to test the API with the supplied parameters. Within a few seconds a 200 response with binary data representing the pdf will be returned.
 
   ![The HTTP response displayed indicates 200 OK and binary data represeting the pdf file is included.](media/binary-data-returned.png "HTTP Response with PDF")
 
