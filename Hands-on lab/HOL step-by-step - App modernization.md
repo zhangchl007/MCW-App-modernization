@@ -24,6 +24,8 @@ The names of manufacturers, products, or URLs are provided for informational pur
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
+**Contents**
+
 <!-- TOC -->
 
 - [App modernization hands-on lab step-by-step](#app-modernization-hands-on-lab-step-by-step)
@@ -119,7 +121,7 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
 ![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications. Azure API Management is used to provide an API Store experience for developers.](media/image2.png "Solution architecture")
 
-The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a light-weight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create a API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
+The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a light-weight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
 
 ## Requirements
 
@@ -274,7 +276,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     c.  **Resource group**: Select Use existing, and select the **hands-on-lab-SUFFIX** resource group.
 
-    d.  Select **App Service plan/Location**
+    d.  Select **App Service plan/Location**.
 
     e. On the App Service plan blade, select Create new.
 
@@ -284,7 +286,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     -  **Location**: Select the location you are using for this hands-on lab.
 
-    -  **Pricing tier**: Select S1 Standard .
+    -  **Pricing tier**: Select S1 Standard.
     
     ![+Create new selected on the App Service Plan blade.](media/image51.png "App Service Plan blade")
 
@@ -310,7 +312,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     c.  **Resource group**: Choose Use existing, and select the **hands-on-lab-SUFFIX** resource group.
 
-    d.  **App Service plan/Location**: Select the contosoinsuranceSUFFIX plan you created for the Web App .
+    d.  **App Service plan/Location**: Select the contosoinsuranceSUFFIX plan you created for the Web App.
     
     ![API App Create blade with the values specified above entered into the appropriate fields.](media/image54.png "API App Create blade")
 
@@ -528,7 +530,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     b.  **Application type**: Select Native.
 
-    c.  **Redirect URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app) 
+    c.  **Redirect URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app.) 
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image80.png "Create new app registration")
 
@@ -873,7 +875,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
     c.  **Resource group**: Select the hands-on-lab-SUFFIX resource group.
 
-    d.  **Location**: Select the location you are using for resources in this hands-on la.b
+    d.  **Location**: Select the location you are using for resources in this hands-on lab.
 
     e.  **Pricing tier**: Select Standard. 
     
@@ -945,7 +947,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 15. Back on the Search service blade, verify that your policies index has a Document Count of 650. If it is still 0, you may need to manually start the indexer.
 
-    a.  You can manually trigger the indexer by selecting Indexers on the Search service blade .
+    a.  You can manually trigger the indexer by selecting Indexers on the Search service blade.
     
     ![On the Search service blade, the Indexers tile is highlighthed.](media/image121.png "Indexers")
 
@@ -1045,7 +1047,7 @@ Key Vault will be used to protect sensitive information, such as database connec
 
     d.  **Name**: SqlConnectionString
 
-    e.  **Value**: Paste your SQL connection string .
+    e.  **Value**: Paste your SQL connection string.
     
     ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/image133.png "Create a secret")
 
@@ -1718,13 +1720,13 @@ In this task, you will generate a swagger api definition for the policy document
 
 6.  Delete the placeholder text if it exists in the text area.
 
-  ![Api definition blade with blank text area and Generate api definition template selected](media/image212.png "Api Definition Open")
+  ![API definition blade with blank text area and Generate api definition template selected](media/image212.png "API Definition Open")
 
-7.  Select **Generate api definition template**. The error window should disappear and the swagger json will appear.
+7.  Select **Generate API definition template**. The error window should disappear and the swagger json will appear.
 
-  ![Api definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Definition Template Generated")
+  ![API definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Definition Template Generated")
 
-8.  Copy the API definition URL and save it in a text file fot the next task.
+8.  Copy the API definition URL and save it in a text file for the next task.
 
   ![The Copy button next to the API definition url is highlighted.](media/api-definition-url.png "API Definition URL")
 
@@ -1913,13 +1915,13 @@ For users who wish to run the PolicyConnect desktop application within its legac
 
 12. If this certificate is not present, you will need to run a repair command for the IIS Express application. If it is present, continue to step 12.
 
-    a.  select **Start**, then type in **Programs and Features**. select **Programs and Features** application link
+    a.  Select **Start**, then type in **Programs and Features**. select **Programs and Features** application link.
 
-    b.  Find and right-click on the IIS Express application listing, then select **Repair**
+    b.  Find and right-click on the IIS Express application listing, then select **Repair**.
 
     ![The right-click menu for IIS 10.0 Express displays with Repair selected.](media/image205.png "Repair menu option")
 
-    c.  Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder
+    c.  Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder.
 
 13. From the Certificates MMC snap-in, right-click on the localhost certificate within the Personal certificates container, then choose **All Tasks Export**.
 
