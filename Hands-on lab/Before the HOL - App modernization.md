@@ -51,7 +51,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 -   **Global Administrator role** for Azure AD within your subscription.
 
--   Local machine or a virtual machine configured with (**complete the day before the lab!**):
+-   Local machine or a virtual machine configured with (**Complete the day before the lab!**):
 
     -   Visual Studio Community 2017 or greater
 
@@ -180,9 +180,13 @@ In this task, you will add an inbound port rule to you Lab VM to allow SQL Serve
 
     ![The Connect button is circled on the lab VM blade top menu.](media/b4-image11.png "Lab VM blade top menu")
 
-7.  Select Download RDP file, then open the downloaded RDP file.![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
+7.  Select Download RDP file, then open the downloaded RDP file.
 
-8.  Select Connect on the Remote Desktop Connection dialog. ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
+    ![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
+
+8.  Select Connect on the Remote Desktop Connection dialog. 
+
+    ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
 
 9.  Enter the following credentials when prompted:
 
@@ -268,7 +272,7 @@ To complete these exercises, you will need to make sure you have all the correct
 
 1.  On the Lab VM, download and install SQL Server 2017 Express edition from <https://www.microsoft.com/en-us/sql-server/sql-server-editions-express>.
 
->**Note: If you are using a machine that already has SQL Server installed**, make sure Mixed Mode authentication is enabled:    <https://technet.microsoft.com/en-us/library/ms188670(v=sql.110).aspx>
+>**Note: If you are using a machine that already has SQL Server installed**, make sure Mixed Mode authentication is enabled:    <https://technet.microsoft.com/en-us/library/ms188670(v=sql.110).aspx>.
 
 2.  Select **Download now** on the SQL Server 2017 Express edition page. 
 
@@ -352,11 +356,11 @@ In this task, you will download and install SQL Server Management Studio (SSMS) 
 
 1.  On your Lab VM, open a web browser and download the sample application from <https://bit.ly/2Nvn9aO>. 
 
->**Note**: bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.)
+>**Note**: Bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.
 
 2. When the download completes, unblock the zip file. Right click the file and select **Properties**. Check the Unblock check box. This will prevent the files within from being blocked leading to compile problems later in the lab.
 
-  !["The file properties dialog is depicted and the Unblock check box is checked."](media/unblock-zip-file.png "Zip file properties")
+  ![The file properties dialog is depicted and the Unblock check box is checked.](media/unblock-zip-file.png "Zip file properties")
 
 3.   Extract the ZIP file to C:\\ContosoInsurance. 
 
