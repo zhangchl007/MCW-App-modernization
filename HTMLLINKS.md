@@ -7,5 +7,3 @@
 
 [HOL step-by-step - App modernization.html](https://cloudworkshop.blob.core.windows.net/app-modernization/Hands-on%20lab/HOL%20step-by-step%20-%20App%20modernization.html)
 
-[HOL unguided - App modernization.html](https://cloudworkshop.blob.core.windows.net/app-modernization/Hands-on%20lab/HOL%20unguided%20-%20App%20modernization.html)
-
