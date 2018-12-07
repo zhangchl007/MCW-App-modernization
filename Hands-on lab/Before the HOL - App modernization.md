@@ -9,7 +9,7 @@ Before the hands-on lab
 </div>
 
 <div class="MCWHeader3">
-August 2018
+November 2018
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -41,6 +41,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
+
+
 # App modernization before the hands-on lab setup guide
 
 ## Requirements
@@ -49,7 +51,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 -   **Global Administrator role** for Azure AD within your subscription.
 
--   Local machine or a virtual machine configured with (**complete the day before the lab!**):
+-   Local machine or a virtual machine configured with (**Complete the day before the lab!**):
 
     -   Visual Studio Community 2017 or greater
 
@@ -106,83 +108,111 @@ It is recommended you use a DS2 or D2 instance size for this VM. If you decide t
 
 3.  Set the following configuration on the Basics tab:
 
-    a.  **Name**: Enter LabVM
+    a.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    b.  **VM disk type**: Select Premium SSD
-
-    c.  **User name**: Enter demouser
-
-    d.  **Password**: Enter Password.1!!
-
-    e.  **Subscription**: Select the subscription you are using for this hands-on lab.
-
-    f.  **Resource Group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group.
-
-    g.  **Location**: Select the location you are using for this hands-on-lab.
+    b.  **Resource Group**: Select the hands-on-lab-SUFFIX resource group.
     
+    c.  **Name**: Enter LabVM
+
+    d.  **Image**: Ensure **Visual Studio Community 2017 (latest release) on Windows Server 2016 (x64)** is selected.
+
+    e.  **Username**: demouser
+
+    f.  **Password**: Enter Password.1!!
+
+4. Select **Change Size** and choose D2s_v3.
+
+  !["D2s_v3 is highlighted in the list of available sizes"](media/b4-image7.png "Select VM Size")
+
+5.  On the Settings blade, locate the **Select public inbound ports** drop down, and select **RDP (3389)**     
     ![Create virtual machine basics blade with values specified above enter into the fields](media/create-labvm-resource.png "Create virtual machine basics blade")
     
-4.  Select **OK** to move to the next step.
+6.  Select **Next : Disks >** to move to the next step.
 
-5.  On the Choose a size blade, select **DS2\_V3 Standard**. ![The Choose a size blade has the D2S\_V3 Standard option circled. The circled fields are Supported disk type, which is set to SSD, and the View all button.](media/b4-image7.png "Choose a size blade")
+7.  Select **Premium SSD** as the OS Disk type.
 
-6.  Select **Select** to move on to the Settings blade.
+8.  Select **Review + create** to move on to the Validation step.
 
-7.  On the Settings blade, locate the **Select public inbound ports** drop down, and select **RDP (3389)** and **MS SQL (1433).** ![Settings blade with RDP and MS SQL inbound ports selected.](media/b4-image8.png "Create virtual machine settings blade")
-
-8.  Select **OK**.
-
-9.  Select **Create** on the Create blade to provision the virtual machine.
+9.  After Validation is complete, select **Create** on the Create blade to provision the virtual machine.
 
 10. It may take 10+ minutes for the virtual machine to complete provisioning.
 
 ### Task 3: Connect to your Lab VM
 
-In this task, you will open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
+In this task, you will add an inbound port rule to you Lab VM to allow SQL Server to migrate to an Azure SQL Database later in the lab. You will then open an RDP connection to your Lab VM and disable Internet Explorer Enhanced Security Configuration.
 
-1.  Connect to the Lab VM. (If you are already connected to your Lab VM, skip to Step 9.)
-
-2.  From the left-hand menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list.
-
+1.  From the left-hand menu in the Azure portal, select Resource groups, then enter your resource group name into the filter box, and select it from the list.
     ![In the Azure Portal, Resource groups pane, hands-on is typed in the search field, and under Name, hands-on-labs is circled.](media/b4-image9.png "Azure Portal, Resource groups pane")
 
-3.  Next, select your lab virtual machine, LabVM, from the list. 
+2.  Next, select your lab virtual machine, LabVM, from the list. 
 
     ![In the Name list, the LabVM Virtual Machine is circled.](media/b4-image10.png "Name list")
 
-4.  On you Lab VM blade, select Connect from the top menu. 
+3.  Within the Settings section, select Networking, then select **Add inbound port rule**
+
+    ![The Networking blade is open and the Add inbound port rule button is highlighted.](media/networking-tab-add-port-rule.png "Adding port rule")
+
+4.  Enter the following values:
+
+    - **Source**: Any
+
+    - **Source port range**: *
+
+    - **Destination**: Any
+
+    - **Destination port ranges**: 1433
+
+    - **Protocol**: Select TCP
+
+    - **Action**: Allow
+
+    - **Priority**: Accept the default value
+
+    - **Name**: SQL-Server
+
+    > **Note**: Exposing MS SQL port 1433 as shown here is done for simplicity's sake for this hands-on lab and is **not recommended** in other cases.
+
+    ![The values listed above are entered in the inbound port rule blade.](media/inbound-port-rule.png "SQL-Server port rule")
+
+5. Select Save to finish creating the inbound port rule.
+
+6.  On you Lab VM blade, select Connect from the top menu. 
 
     ![The Connect button is circled on the lab VM blade top menu.](media/b4-image11.png "Lab VM blade top menu")
 
-5.  Select Download RDP file, then open the downloaded RDP file.![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
+7.  Select Download RDP file, then open the downloaded RDP file.
 
-6.  Select Connect on the Remote Desktop Connection dialog. ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
+    ![Connect to virtual machine dialog with Download RDP file button highlighted](media/b4-image12.png "Connect to virtual machine dialog")
 
-7.  Enter the following credentials when prompted:
+8.  Select Connect on the Remote Desktop Connection dialog. 
+
+    ![In the Remote Desktop Connection Dialog Box, the Connect button is circled.](media/b4-image13.png "Remote Desktop Connection Dialog Box")
+
+9.  Enter the following credentials when prompted:
 
     a.  **User name**: demouser
 
     b.  **Password**: Password.1!!
 
-8.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. 
+10.  Select Yes to connect, if prompted that the identity of the remote computer cannot be verified. 
 
-    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/b4-image14.png "Remote Desktop Connection dialog box")
+   ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/b4-image14.png "Remote Desktop Connection dialog box")
 
-9.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. 
+11.  Once logged in, launch the Server Manager. This should start automatically, but you can access it via the Start menu if it does not start. 
 
-    ![The Server Manager tile is circled in the Start Menu.](media/b4-image15.png "Start Menu")
+![The Server Manager tile is circled in the Start Menu.](media/b4-image15.png "Start Menu")
 
-10. Select Local Server, then select **On** next to IE Enhanced Security Configuration. 
+12. Select Local Server, then select **On** next to IE Enhanced Security Configuration. 
 
     ![In Server manager, in the left pane, Local Server is selected. In the right, Properties pane, IE Enhanced Security Configuration is circled, and a callout arrow points to On.](media/b4-image16.png "Server manager")
 
-11. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and Users. 
+13. In the Internet Explorer Enhanced Security Configuration dialog, select Off under Administrators and Users. 
 
     ![Internet Explorer Enhanced Security Configuration dialog with Off selected under both Administrators and Users.](media/b4-image17.png "IE Enhanced Security Configuration")
 
-12. Select **OK**.
+14. Select **OK**.
 
-13. Close the Server Manager.
+15. Close the Server Manager.
 
 ### Task 4: Update Visual Studio and Install Xamarin and Android SDK
 
@@ -198,7 +228,7 @@ In this task, you will add the Mobile Development with .NET workload to the Visu
 
     ![Visual Studio Installer workloads screen, with Mobile development for .NET workload highlighted.](media/b4-image19.png "Visual Studio Installer workloads")
 
-4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Android SDK Setup, Xamarin Workbooks, Java SE Development Kit, Google Android Emulator, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected.
+4.  While **Mobile development with .NET** is selected, look at the **Summary** panel to the right. Ensure that Android SDK Setup, Xamarin Workbooks, Google Android Emulator, Intel Hardware Accelerated Execution Manager, and Universal Windows Platform tools for Xamarin are selected.
     
     ![Summary view of the Visual Studio Installer;s Mobile development with .NET components.](media/installation-details=panel.png "Workload installation details summary")
 
@@ -242,7 +272,7 @@ To complete these exercises, you will need to make sure you have all the correct
 
 1.  On the Lab VM, download and install SQL Server 2017 Express edition from <https://www.microsoft.com/en-us/sql-server/sql-server-editions-express>.
 
->**Note: If you are using a machine that already has SQL Server installed**, make sure Mixed Mode authentication is enabled:    <https://technet.microsoft.com/en-us/library/ms188670(v=sql.110).aspx>
+>**Note: If you are using a machine that already has SQL Server installed**, make sure Mixed Mode authentication is enabled:    <https://technet.microsoft.com/en-us/library/ms188670(v=sql.110).aspx>.
 
 2.  Select **Download now** on the SQL Server 2017 Express edition page. 
 
@@ -326,11 +356,11 @@ In this task, you will download and install SQL Server Management Studio (SSMS) 
 
 1.  On your Lab VM, open a web browser and download the sample application from <https://bit.ly/2Nvn9aO>. 
 
->**Note**: bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.)
+>**Note**: Bit.ly links are case sensitive. MS Word converts hyperlinks to all lowercase, so you should copy and paste the bit.ly link into your browser.
 
 2. When the download completes, unblock the zip file. Right click the file and select **Properties**. Check the Unblock check box. This will prevent the files within from being blocked leading to compile problems later in the lab.
 
-  !["The file properties dialog is depicted and the Unblock check box is checked."](media/unblock-zip-file.png "Zip file properties")
+  ![The file properties dialog is depicted and the Unblock check box is checked.](media/unblock-zip-file.png "Zip file properties")
 
 3.   Extract the ZIP file to C:\\ContosoInsurance. 
 

@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-August 2018
+November 2018
 </div>
 
 
@@ -91,8 +91,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Exercise 14: Add Azure Function to Azure API Management](#exercise-14-add-azure-function-to-azure-api-management)
         - [Task 1: Provision Azure API Management](#task-1-provision-azure-api-management)
         - [Task 2: Add API Definition to Function App](#task-2-add-api-definition-to-function-app)
-        - [Task 3: Import the Funtion App to API Management(APIM)](#task-3-import-the-funtion-app-to-api-managementapim)
-        - [Task 4: Test the APIM Developer Portal](#task-4-test-the-apim-developer-portal)
+        - [Task 3: Import the Function App to API Management(APIM)](#task-3-import-the-function-app-to-api-managementapim)
     - [After the hands-on lab](#after-the-hands-on-lab)
         - [Task 1: Delete the Resource group in which you placed your Azure resources.](#task-1-delete-the-resource-group-in-which-you-placed-your-azure-resources)
         - [Task 2: Delete the Azure Active Directory app registrations for Desktop and Mobile](#task-2-delete-the-azure-active-directory-app-registrations-for-desktop-and-mobile)
@@ -122,7 +121,7 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
 ![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications. Azure API Management is used to provide an API Store experience for developers.](media/image2.png "Solution architecture")
 
-The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a light-weight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create a API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
+The solution begins with mobile apps (built for Android and iOS using **Xamarin**) and a website, both of which provide access to PolicyConnect. The website, hosted in a **Web App**, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both mobile app and website rely on web services hosted in an **API App**. In addition to the API App, a light-weight, serverless API is provided by **Azure Functions Proxies** to provide access to policy documents stored in **Blob Storage**. **Azure API Management** is used as a proof of concept for the future goal to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in **Key Vault** and accessed from the API App or Web App on demand so that these settings never live in their file system. Full-text search of policy documents is enabled by the Indexer for **Blob Storage** (which indexes text in the Word and PDF documents) and stores the results in an **Azure Search** index. **PowerApps** enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with **SQL Database** and Azure Storage, while **Microsoft Flow** enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in **Azure AD**.
 
 ## Requirements
 
@@ -172,11 +171,12 @@ In this task, you will create a SQL Server (logical server). You will not create
 
     c.  **Password**: Password.1!!
 
-    d.  **Resource group**: Select Use existing, and specify the hands-on-lab-SUFFIX resource group.
+    d.  **Resource group**: Select the hands-on-lab-SUFFIX resource group.
 
     e.  **Location**: Select the same location you used for the hands-on-lab-SUFFIX resource group.
     
-    ![SQL Server (logical server) blade with values specified above entered into the appropriate fields.](media/image41.png "SQL Server (logical server) blade")
+ 
+    ![SQL Server (logical server) blade with values specified above entered into the appropriate fields.](media/sql-server-create-settings.png "SQL Server (logical server) blade")
 
 5.  Select **Create**.
 
@@ -276,7 +276,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     c.  **Resource group**: Select Use existing, and select the **hands-on-lab-SUFFIX** resource group.
 
-    d.  Select **App Service plan/Location**
+    d.  Select **App Service plan/Location**.
 
     e. On the App Service plan blade, select Create new.
 
@@ -286,7 +286,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     -  **Location**: Select the location you are using for this hands-on lab.
 
-    -  **Pricing tier**: Select S1 Standard .
+    -  **Pricing tier**: Select S1 Standard.
     
     ![+Create new selected on the App Service Plan blade.](media/image51.png "App Service Plan blade")
 
@@ -312,7 +312,7 @@ In this task, you will provision a Web App and API App for hosting the Contoso I
 
     c.  **Resource group**: Choose Use existing, and select the **hands-on-lab-SUFFIX** resource group.
 
-    d.  **App Service plan/Location**: Select the contosoinsuranceSUFFIX plan you created for the Web App .
+    d.  **App Service plan/Location**: Select the contosoinsuranceSUFFIX plan you created for the Web App.
     
     ![API App Create blade with the values specified above entered into the appropriate fields.](media/image54.png "API App Create blade")
 
@@ -436,21 +436,18 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ![The edit manifest blade is displayed, with \"oauth2AllowImplicitFlow\": true selected.](media/image69.png "Edit manifest")
 
-4.  Next, locate the **oauth2Permissions** setting. This setting may be populated with a value,
+4.  Next, locate the **oauth2Permissions** setting. This setting will be populated with a value.
 
     ![The oauth2Permissions node is displayed from the manifest JSON document.](media/image70.png "Edit manifest"), 
     
-    or it may be empty: 
-    
-    ![An empty oauth2Permissions node is displayed from the manifest JSON document.](media/image71.png "Edit manifest")
+    Copy the id property as you will need it at the end of this step. 
 
-5.  You are going to add a new permission to this array. (Copy the text below and replace the id value):
-
+5.  You are going modify the permission in this array. (Copy the text below and paste it over the top of the existing permission):
     ```
     {
         "adminConsentDescription": "Allow read-write access to the Contoso Insurance Web API on behalf of the signed-in user",
         "adminConsentDisplayName": "Read-Write access to Contoso Insurance Web API",
-        "id": "494581dd-4bf5-451d-9bf8-487f4a43a09c",
+        "id": "<REPLACE-WITH-THE-ID-YOU-COPIED>",
         "isEnabled": true,
         "type": "User",
         "userConsentDescription": "Allow read-write access to the Contoso Insurance Web API on your behalf",
@@ -460,18 +457,14 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     ```
 
-6.  Make sure that you enter a new, generated Guid into the **id** property (in bold above). You can generate a new Guid by opening PowerShell and running the following command:
-    
-    ```
-    [guid]::NewGuid()
-    ```
+6.  Paste the id value you set aside into the id property.
+
+
 7.  The result should look like this: 
 
-    ![The oauth2AllowImplicitFlow node and a new node under oauth2Permissions node are highlighted in the manifest JSON document.](media/image72.png "Edit manifest")
+    ![The oauth2AllowImplicitFlow node and a new node under oauth2Permissions node are highlighted in the manifest JSON document.](media/web-api-manifest.png "Edit manifest")
 
-8.  Make sure to include a comma (,) after the first permission, if one exists.
-
-9.  Select **Save** to commit the changes. 
+8.  Select **Save** to commit the changes. 
 
     ![The Save button for the manifest is selected.](media/image73.png "Edit manifest")
 
@@ -487,7 +480,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     b.  **Application type**: Select Native
 
-    c.  **Sign-on URL**: <http://contosoinsurance.desktop.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app). 
+    c.  **Redirect URI**: <http://contosoinsurance.desktop.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app). 
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image74.png "Create new app registration")
 
@@ -537,7 +530,7 @@ To make the Web API accessible to other applications added to Azure AD, you must
 
     b.  **Application type**: Select Native.
 
-    c.  **Sign-on URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app) 
+    c.  **Redirect URL**: <http://contosoinsurance.mobile.client> (It does not matter if this path is exact. What is important is that the URI for each application is valid and unique for every application in your directory. The Redirect URI is used to identify your app.) 
     
     ![Create app registration blade with the values above entered into the appropriate fields.](media/image80.png "Create new app registration")
 
@@ -682,26 +675,26 @@ Contoso Insurance is currently storing all of their scanned PDF documents on a l
     h.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
     i.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group.
-
-    j.  **Virtual networks**: Leave set to Disabled.
     
-    ![The Create storage account blade is displayed with the values above entered into the appropriate fields.](media/image95.png "Create storage account")
+    ![The Basic tab within the create storage account blade is displayed with the values above entered into the appropriate fields.](media/storage-account-basic-settings.png "Create storage account basic")
 
-4.  Select **Create**.
+4.  Select **Review + create**.
 
-5.  After the storage account has completed provisioning, open the storage account by opening your hands-on-lab-SUFFIX resource group, and then selecting the storage account name. 
+5. After validation is successful, select **Create**.
+
+6.  After the storage account has completed provisioning, open the storage account by opening your hands-on-lab-SUFFIX resource group, and then selecting the storage account name. 
     
     ![Resource groups is selected in the Azure navigation menu, and the contosoinsurancestorage account resource is selected.](media/image96.png "Resource group resources")
 
-6.  On the Storage account blade, select **Access Keys**, under Settings in the left-hand menu.
+7.  On the Storage account blade, select **Access Keys**, under Settings in the left-hand menu.
 
     ![Access keys is highlighted under Settings](media/image97.png "Settings")
 
-7.  On the **Access keys** blade, copy the key1 Key value by selecting the Click to copy button for **key1 (NOT the connection string)**. 
+8.  On the **Access keys** blade, copy the key1 Key value by selecting the Click to copy button for **key1 (NOT the connection string)**. 
 
     ![The key1 Key is highlighted.](media/image98.png "Storage account keys")
 
-8.  Paste the value into a text editor, such as Notepad, for later reference.
+9.  Paste the value into a text editor, such as Notepad, for later reference.
 
 ### Task 2: Create container for storing PDFs in Azure storage
 
@@ -782,11 +775,13 @@ Contoso Insurance has made some updates to prepare their applications, but there
 
     f.  **Location**: Select the location you are using for resources in this hands-on lab.
 
-    g.  **Storage**: Choose Use existing and select the storage account (contosoinsuranceSUFFIX) you created for this hands-on lab.
+    g.  **Runtime Stack**: Leave this set to .NET.
 
-    h.  **Application Insights**: Select Off.
+    h.  **Storage**: Choose Use existing and select the storage account (contosoinsuranceSUFFIX) you created for this hands-on lab.
+
+    i.  **Application Insights**: Select Off.
     
-    ![The Create Function App blade is displayed with the values specified above entered into the appropriate fields.](media/image104.png "Create Function App")
+    ![The Create Function App blade is displayed with the values specified above entered into the appropriate fields.](media/create-function-app.png "Create Function App")
 
 3.  Select **Create**.
 
@@ -868,7 +863,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 ### Task 1: Create an Azure search service 
 
-1.  In the [Azure portal](http://portal.azure.com), select **+Create a resource**, enter "azure search" into the search box**,** select **Azure Search** from the results and select **Create**. 
+1.  In the [Azure portal](http://portal.azure.com), select **+Create a resource**, enter "azure search" into the search box, select **Azure Search** from the results and select **Create**. 
 
     ![Azure portal +Create a resource is selected, with azure search entered into the filter box, and Azure Search selected from the search results.](media/image110.png "Azure Create a resource")
 
@@ -878,13 +873,13 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
     b.  **Subscription**: Select the subscription you are using for this hands-on lab.
 
-    c.  **Resource group**: Choose Use existing, and select the hands-on-lab-SUFFIX resource group.
+    c.  **Resource group**: Select the hands-on-lab-SUFFIX resource group.
 
-    d.  **Location**: Select the location you are using for resources in this hands-on la.b
+    d.  **Location**: Select the location you are using for resources in this hands-on lab.
 
     e.  **Pricing tier**: Select Standard. 
     
-    ![On the New Search Service blade the values specified above are entered into the appropriate fields.](media/image111.png "New Search Service")
+    ![On the New Search Service blade the values specified above are entered into the appropriate fields.](media/new-search-service.png "New Search Service")
 
 3.  Select **Create**.
 
@@ -908,7 +903,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 5.  Select **OK** on the New data source blade.
 
-6.  Now, select Index -- Customize target index on the Import data blade.
+6.  Now, select **Index Customize target index** on the Import data blade.
 
 7.  On the Index blade, you will be presented with a result of the sampling process, which shows many of our metadata fields, and the suggested indexes. The blob indexer can crack open your documents and extract all text into the content field as well.
 
@@ -952,7 +947,7 @@ Contoso Insurance has asked for full-text searching on the documents. In this ex
 
 15. Back on the Search service blade, verify that your policies index has a Document Count of 650. If it is still 0, you may need to manually start the indexer.
 
-    a.  You can manually trigger the indexer by selecting Indexers on the Search service blade .
+    a.  You can manually trigger the indexer by selecting Indexers on the Search service blade.
     
     ![On the Search service blade, the Indexers tile is highlighthed.](media/image121.png "Indexers")
 
@@ -1052,7 +1047,7 @@ Key Vault will be used to protect sensitive information, such as database connec
 
     d.  **Name**: SqlConnectionString
 
-    e.  **Value**: Paste your SQL connection string .
+    e.  **Value**: Paste your SQL connection string.
     
     ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/image133.png "Create a secret")
 
@@ -1540,7 +1535,7 @@ Contoso wants to receive push notifications when important emails arrive, since 
 
     ![In the When a new email arrives trigger configuration box, fields are set to the previously defined settings.](media/image182.png "When a new email arrives trigger configuration box. ")
 
-8.  Select **+New step**, then **Add an action** to continue.
+8.  Select **+New step** to continue.
 
     ![Under the New step button, Add an action is selected.](media/image183.png "New step button ")
 
@@ -1674,7 +1669,7 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 Duration: 15 minutes
 
-Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Managemenent portal and import the Function app you created earlier.
+Contoso is interested in providing an API Store experience to the development teams. In this exercise you will create an API Management portal and import the Function app you created earlier.
 
 ### Task 1: Provision Azure API Management
 
@@ -1696,7 +1691,7 @@ In this task, you will create a new API Management Resource.
 
     e.  **Administrator Email**: Enter the email address associated with the Azure account you are using for this hands-on lab.
 
-    f.  **Pricing Tier**: Develper (No SLA)
+    f.  **Pricing Tier**: Developer (No SLA)
 
     
        ![API management Create blade with the values specified above entered into the appropriate fields.](media/image210.png "API Management Configured")
@@ -1705,69 +1700,69 @@ In this task, you will create a new API Management Resource.
 
 ### Task 2: Add API Definition to Function App
 
-In this task, you will generate a swagger api definition for the policy documents Function App. This is required for API Management to discover the API.
+In this task, you will generate a swagger api definition for the policy documents Function App. This is required for API Management to discover the API. At this time, the Function API definition (Swagger) feature is not supported for V2 runtime so we will set the function back to V1 for the purposes of this POC.
 
-1.  Navigate to the Function App you created earlier (contosoinsurancedocsSUFFIX) and select the **Platform features** blade.
+1.  Navigate to the Function App you created earlier (contosoinsurancedocsSUFFIX) and Select **Function app settings** in the **Configured features** section.
 
-2.  Select **Api definition**
+  ![The Configured features link is highlighted.](media/function-app-settings.png "Function App Settings")
 
-  ![App function blade with Platform features open and Api definition selected.](media/image211.png "Function App Platform Features Selected")
+2.  Change the **Runtime version** setting to **~1**.
 
-3.  Delete the placeholder text if it exists in the text area.
+  ![The Runtime version setting of ~1 is highlighted.](media/change-runtime-version.png "Change runtime to V1")
 
-  ![Api definition blade with blank text area and Generate api definition template selected](media/image212.png "Api Defintion Open")
+3.  Select the **Overview** tab and select **Restart**. Select Ok, if prompted.
 
-4.  Select **Generate api defintiion template**. The error window should disappear and the swagger json will appear.
+4.  Select the **Platform features** blade then select **API definition**
 
-  ![Api definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Defintion Template Generated")
+5.  In the **API definition source** setting, select **Function (preview)**.
 
-5. Select **Save**.
+  ![Function (preview) is highlighted in the API definition section.](media/api-definition-setting.png "Function preview")
 
-### Task 3: Import the Funtion App to API Management(APIM)
+6.  Delete the placeholder text if it exists in the text area.
 
-In this task, you will add your function app to the APIM's api collection.
+  ![API definition blade with blank text area and Generate api definition template selected](media/image212.png "API Definition Open")
+
+7.  Select **Generate API definition template**. The error window should disappear and the swagger json will appear.
+
+  ![API definition blade after Generate api definition template selected and swagger json template appearing](media/image213.png "API Definition Template Generated")
+
+8.  Copy the API definition URL and save it in a text file for the next task.
+
+  ![The Copy button next to the API definition url is highlighted.](media/api-definition-url.png "API Definition URL")
+
+9. Select **Save**.
+
+### Task 3: Import the Function App to API Management(APIM)
+
+In this task, you will add your function app to the APIM's API collection.
 
 1.  Return to the **API Management** service and  select the **APIs** blade.
 
-2.  Select **Function app** to begin importing your Policy Docs api into APIM.
+2.  Select **OpenAPI specification** to begin importing your Policy Docs API into APIM.
 
-  ![APIs blade open and Function App selected](media/image215.png "Import Function APP into API Management")
+  ![APIs blade open and OpenAPI specification is selected](media/import-open-api-spec.png "Import OpenAPI Specification")
 
-3.  Select **Function App (Please select Function App)** and choose your contosoinsurancedocsSUFFIX app.
+3.  Paste the API definition URL you copied in the last task into the **OpenAPI specification** text box. You can accept the name values and select **Create**.
 
-  ![Function App blade open and contoso insurance docs app selected](media/image216.png "Contoso Inurance Docs App Selected")
+  ![The OpenAPI location URL is pasted into the OpenAPI specification field and the Create button is highlighted.](media/open-api-spec-value.png "Create from OpenAPI Spec")
 
-4.  On the **Function App** blade, specify the following configuration and select **Create**:
+4.  Select the **Settings** tab and choose **Unlimited** for the Products setting. Select **Save**.
 
-    a.  **Display Name**: Policy Doc Function
+  ![The Settings tab is open and Unlimited has been entered in the Products field. Save is highlighted.](media/api-settings-tab.png "Adding Unlimited Product")
 
-    b.  **Products**: Unlimited
+5.  Select the **Test** tab, then select the GET function in the left menu. 
 
-    ![Function App blade open with the values specified above entered into the appropriate fields](media/image217.png "Imported Function App Configured")
-
-    > **Note**: A pop up indicating that you should replace the Named Values with the function secrets will appear. In this lab, this step will not be required. Select Ok to disregard.
-
-    ![Import Function App pop up is displayed](media/image218.png "Import Function App Pop")
-
-### Task 4: Test the APIM Developer Portal
-
-In this task, you will test an API from the APIM Developer Portal.
-
-1.  Navigate to the Developers portal URL - found in the APIM Overview Blade. You should already be signed in as the APIM Administrator.
-
-2. Select **Try It**.
-
-  ![Policy Doc function definition is displayed and Try It is selected](media/image219.png "Policy Doc Function Try It")
-
-3. Enter the values for **policyHolder** and **policyNumber** in the text fields and select **Send**.
+6. Enter the values for **policyHolder** and **policyNumber** in the template parameters text fields.
 
     a. For example:
       - **policyHolder**: Albert
       - **policyNumber**: ALB417974T1SV1
 
-  ![Policy Doc function Try It form is displayed, the above information is entered into the appropriate fields, and Send is selected](media/image220.png "Policy Doc Function Try It Parameters Entered")
+  ![The values listed above are entered in the indicated text fields](media/test-api.png "Enter Parameters")
+   
+7. Select **Send** to test the API with the supplied parameters. Within a few seconds a 200 response with binary data representing the pdf will be returned.
 
-4.  The response should be a 200 Okay with binary data representing a pdf file.
+  ![The HTTP response displayed indicates 200 OK and binary data represeting the pdf file is included.](media/binary-data-returned.png "HTTP Response with PDF")
 
 ## After the hands-on lab 
 
@@ -1920,13 +1915,13 @@ For users who wish to run the PolicyConnect desktop application within its legac
 
 12. If this certificate is not present, you will need to run a repair command for the IIS Express application. If it is present, continue to step 12.
 
-    a.  select **Start**, then type in **Programs and Features**. select **Programs and Features** application link
+    a.  Select **Start**, then type in **Programs and Features**. select **Programs and Features** application link.
 
-    b.  Find and right-click on the IIS Express application listing, then select **Repair**
+    b.  Find and right-click on the IIS Express application listing, then select **Repair**.
 
     ![The right-click menu for IIS 10.0 Express displays with Repair selected.](media/image205.png "Repair menu option")
 
-    c.  Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder
+    c.  Once the repair has completed, go back to the Certificates MMC snap-in and verify that the localhost certificate is now present under the Personal folder.
 
 13. From the Certificates MMC snap-in, right-click on the localhost certificate within the Personal certificates container, then choose **All Tasks Export**.
 
