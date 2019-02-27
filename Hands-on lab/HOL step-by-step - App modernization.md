@@ -192,7 +192,7 @@ In this task, you will create a firewall rule to allow access to your SQL Server
 
     ![List of resources in the hands-on-lab resource group, with the contoso-insurance SQL Server resource highlighted.](media/image42.png "Resource group resource list")
 
-3.  On the **SQL Server** blade, select **Firewalls and virtual networks** under Settings.
+3.  On the **SQL Server** blade, select **Firewalls and virtual networks** under Security.
 
 4.  On the **Firewalls and virtual networks** blade, specify a new rule named **ALL**, with START IP **0.0.0.0**, and END IP **255.255.255.255**, then select **Save**. 
 
