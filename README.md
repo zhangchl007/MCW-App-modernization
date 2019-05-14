@@ -43,11 +43,8 @@ At the end of this hands-on lab, you will be better able to build solutions for 
 - Azure Active Directory
 - API Management
 
-## Azure solutions
-
-App Modernization
-
 ## Related references
+- [MCW](https://microsoftcloudworkshop.com)
 - [Reference architecture for Managed Web Applications](https://docs.microsoft.com/en-gb/azure/architecture/reference-architectures/app-service-web-app/basic-web-app) 
 - [Azure application architecture guide](https://docs.microsoft.com/en-us/azure/architecture/guide/) 
-- [MCW](https://github.com/Microsoft/MCW)
+
