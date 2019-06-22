@@ -1,0 +1,47 @@
+﻿    <h2>Policy</h2>
+    <form name="theForm">
+        <div class="form-horizontal">
+            <ul id="validationSummary"></ul>
+            <div class="form-group">
+                <label for="Name" class = "col-md-2 font-weight-bold"> Name </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.name" id="Name"  class="form-control"/>
+                    <div id="validation_for_Name"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="Description" class = "col-md-2 font-weight-bold"> Description </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.description" id="Description"  class="form-control"/>
+                    <div id="validation_for_Description"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="DefaultDeductible" class = "col-md-2 font-weight-bold"> Default Deductible </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.defaultDeductible" id="DefaultDeductible"  class="form-control"/>
+                    <div id="validation_for_DefaultDeductible"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="DefaultOutOfPocketMax" class = "col-md-4 font-weight-bold"> Default Out Of Pocket Max </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.defaultOutOfPocketMax" id="DefaultOutOfPocketMax"  class="form-control"/>
+                    <div id="validation_for_DefaultOutOfPocketMax"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Save" class="btn btn-primary" ng-click="save()" />
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <div>
+        <a href="#/Policy">Back to List</a>
+    </div>
