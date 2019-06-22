@@ -158,9 +158,7 @@ Before you begin the assessment, you need to restore a copy of the `ContosoInsur
 
    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-sqlserver2008.png "Remote Desktop Connection dialog")
 
-7. Once logged into the SqlServer2008 VM, download a [backup of the ContosoInsurance database](https://raw.githubusercontent.com/kylebunting/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip), and extract the zipped files into `C:\ContosoInsurance` on the VM.
-
-   > TODO: Update above link to MS repo.
+7. Once logged into the SqlServer2008 VM, download a [backup of the ContosoInsurance database](https://raw.githubusercontent.com/microsoft/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip), and extract the zipped files into `C:\ContosoInsurance` on the VM.
 
 8. Next, open **Microsoft SQL Server Management Studio 17** by entering "sql server" into the search bar in the Windows Start menu.
 
@@ -772,12 +770,6 @@ In this task, you will add a secret to Key Vault containing the connection strin
 
 ### Task 3: Create service principal for the web app using Azure CLI and grant access to Key Vault
 
-> TODO: Reword the below, and possibly change the task title. Not sure what exactly this is supposed to be doing, but instructions need to be made much more clear.
-
-In this task you will provide the managed identity of your API App in order to use this identity to authenticate any service that can use Azure AD without having any credentials on the code.
-
-> TODO: Come back to this once the apps are set up, and I can figure out what the hell they were trying to do here. In order for the below `az` commands to work, you would first need to enable managed identities on the API app by selecting **Identity** on the left-hand menu, and then switching the Status to On. Question is whether it would be easier to just create a Service Principal that could be shared by the various apps.
-
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
 
     ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
@@ -866,90 +858,89 @@ In this task you will deploy the web and API apps into App Services in Azure.
 
     ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
-> TODO: Add steps to address .NET Core 2.2 not being installed
+13. If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see any errors, you can skip to step...
 
-If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see any errors, you can skip to step...
+    ![Error pane in Visual Studio](media/vs-net-core-errors.png "Visual Studio errors")
 
-![](media/vs-net-core-errors.png)
+14. In the Visual Studio Solution Explorer, expand the Web folder and right-click on the `Contoso.Apps.Insurance.WebAPI` project, and select **Properties** from the context menu.
 
-In the Visual Studio Solution Explorer, expand the Web folder and right-click on the `Contoso.Apps.Insurance.WebAPI` project, and select **Properties** from the context menu.
+    ![Visual Studio project properties menu.](media/vs-project-properties.png "Project properties")
 
-![](media/vs-project-properties.png)
+15. In the project properties window, select the **Target framework** drop down, and select **Install other frameworks...**
 
-In the project properties window, select the **Target frawemwork** drop down, and select **Install other frameworks...**
+    ![The target framework options are displayed.](media/vs-project-target-framework.png "Project properties")
 
-![](media/vs-project-target-framework.png)
+16. On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
 
-On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
+    ![The download .NET Core 2.2 web page is displayed.](media/download-net-core-2-2.png "Download .NET Core 2.2")
 
-![](media/download-net-core-2-2.png)
+17. Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
 
-Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
+    ![The .NET Core 2.2 installer is displayed, and Install is highlighted.](media/installed-net-core-2-2.png "Install .NET Core 2.2.")
 
-![](media/installed-net-core-2-2.png)
+18. Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso.Apps.Insurance.Data` solution.
 
-Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso.Apps.Insurance.Data` solution.
-
-1.  In Visual Studio, locate the **Contoso.Apps.Insurance.WebAPI** project in the Web folder in the Solution Explorer.
+19. In Visual Studio, locate the **Contoso.Apps.Insurance.WebAPI** project in the Web folder in the Solution Explorer.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected.](media/e4-01.png "Solution Explorer")
 
-2.  Right click on the **Contoso.Apps.Insurance.WebAPI** project and select *Publish*.
+20. Right click on the **Contoso.Apps.Insurance.WebAPI** project and select *Publish*.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected. Publish option is highlighted.](media/e4-02.png "Publish Web API")
 
-3.  click **Start** button.
+21. click **Start** button.
 
     ![Visual Studio Publish window. Publish option is selected and Start button is highlighted.](media/e4-03.png "Start Publish Process")
 
-4.  On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the *Pick a publish target* dialog is not present, select **New Profile** in the Publish Screen.
+22. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the *Pick a publish target* dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Pick a publish target screen with App Service options selected. Select Existing radiobutton is selected.](media/e4-05.png "Pick a publish target")
 
-5.  Log on with your credentials and ensure the subscription you published earlier is selected.
+23. Log on with your credentials and ensure the subscription you published earlier is selected.
 
-6.  Select the **Contoso Insurance Web API** app.
+24. Select the **Contoso Insurance Web API** app.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsuranceapi App Service is highlighted.](media/e4-06.png "Select App Service")
 
-7.  In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site. 
-   
-   ![Web Publish Activity view with the publish process status and API site url](media/e4-07.png "Web Publish Activity")
-   > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
+25. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
 
-16. Open the URL of the published Web API in a browser window. Validate the Web API by adding "/swagger" at the end of the URL in your browser (e.g., http://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/). You should see a list of the available REST APIs.
+    ![Web Publish Activity view with the publish process status and API site url](media/e4-07.png "Web Publish Activity")
+
+    > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
+
+26. Open the URL of the published Web API in a browser window. Validate the Web API by adding "/swagger" at the end of the URL in your browser (e.g., <http://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/>). You should see a list of the available REST APIs.
 
     ![Swagger screen displayed for Contoso.Apps.Insurance.WebAPI solution.](media/e4-08.png "Validate published Web API")
 
-17. In Visual Studio, locate the **Contoso.Apps.Insurance.Web** project in the Web folder in the Solution Explorer.
+27. In Visual Studio, locate the **Contoso.Apps.Insurance.Web** project in the Web folder in the Solution Explorer.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.Web solution is selected.](media/e4-09.png "Solution Explorer")
 
-18. Right click on the **Contoso.Apps.Insurance.Web** project and select *Publish*.
+28. Right click on the **Contoso.Apps.Insurance.Web** project and select *Publish*.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected. Publish option is highlighted.](media/e4-10.png "Publish Web project")
 
-19. click **Start** button.
+29. click **Start** button.
 
     ![Visual Studio Publish window. Publish option is selected and Start button is highlighted.](media/e4-03.png "Start Publish Process")
 
-20. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the **Pick a publish target** dialog is not present, select **New Profile** in the Publish Screen.
+30. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the **Pick a publish target** dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Pick a publish target screen with App Service options selected. Select Existing radiobutton is selected.](media/e4-05.png "Pick a publish target")
 
-21. Log on with your credentials and ensure the subscription you published earlier is selected.
+31. Log on with your credentials and ensure the subscription you published earlier is selected.
 
-22. Select the **Contoso Insurance Web** app.
+32. Select the **Contoso Insurance Web** app.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsuranceapi App Service is highlighted.](media/e4-11.png "Select App Service")
 
-23. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web App was published successfully, along with the URL to the site. 
-   
+33. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web App was published successfully, along with the URL to the site.
+
     ![Web Publish Activity view with the publish process status and web site url.](media/e4-12.png "Web Publish Activity")
-   
+
     > If you don't see the *Web Publish Activity* view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
 
-24. Open the URL of the published Web App in a browser window to validate the Web App. PolicyConnect web site should appear.
+34. Open the URL of the published Web App in a browser window to validate the Web App. PolicyConnect web site should appear.
 
     ![Contoso Insurance application is opened after publish.](media/e4-13.png "Validate published Web App")
 
@@ -962,7 +953,7 @@ In this task you will check the options that you have to scale resources of your
     ![Azure Portal with App Service Plans window selected. App Service plan is highlighted to select.](media/e4-14.png "Azure Portal - App Service Plans")
 
 2. On the App Service plan screen, select **Scale up (App Service plan)** option under **Settings** menu.
-   
+
     ![App Service plan menu with Scale up option under Settings menu highlighted to select.](media/e4-15.png "App Service plan - Scale up")
 
 3. In the **Scale up (App Service plan)** window you can select the size of your app plan. In the upper part you can choose between different recommended workloads like **Dev/Test** and **Production**. You can also see some recommended pricing tiers, with their characteristics and estimated price.
@@ -976,7 +967,7 @@ In this task you will check the options that you have to scale resources of your
     ![App Service plan menu with Scale out option under Settings menu highlighted to select. Enable autoscale option is highlighted.](media/e4-17.png)
 
 6. Provide a name for the scale setting, and then click **Add a rule**. 
-   
+
    ![App Service plan scale out screen. Autoscale setting name text box is highlighted with a provided name. Add rule link is highlighted](media/e4-18.png "Autoscale rule definition")
 
 7. Notice the scale rule options that open as a context pane on the right side. By default, this sets the option to scale your instance count by 1 if the CPU percentage of the resource exceeds 70 percent. Leave it at its default values and click **Add**. 
