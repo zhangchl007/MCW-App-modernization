@@ -62,21 +62,14 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 2: Review search results](#Task-2-Review-search-results)
   - [Exercise 8: Import and publish APIs into APIM](#Exercise-8-Import-and-publish-APIs-into-APIM)
     - [Task 1: Import Web Api](#Task-1-Import-Web-Api)
-  - [Exercise 9: Create and configure SignalR service](#Exercise-9-Create-and-configure-SignalR-service)
-  - [Exercise 10: Update web app](#Exercise-10-Update-web-app)
+  - [Exercise 9: Update web app](#Exercise-9-Update-web-app)
     - [Task 1: Update to use Key Vault](#Task-1-Update-to-use-Key-Vault)
     - [Task 2: Update to use APIs](#Task-2-Update-to-use-APIs)
     - [Task 3: Add Application Insights](#Task-3-Add-Application-Insights)
-    - [Task 4: Create a deployment slot.](#Task-4-Create-a-deployment-slot)
+    - [Task 4: Create a deployment slot](#Task-4-Create-a-deployment-slot)
     - [Task 5: Deploy updated web app to new deployment slot via VS](#Task-5-Deploy-updated-web-app-to-new-deployment-slot-via-VS)
     - [Task 6: View Live Metrics in App Insights in the Azure portal](#Task-6-View-Live-Metrics-in-App-Insights-in-the-Azure-portal)
-  - [Exercise 11: Configure and run the Xamarin mobile app](#Exercise-11-Configure-and-run-the-Xamarin-mobile-app)
-    - [Task 1: Run the Xamarin Mobile App](#Task-1-Run-the-Xamarin-Mobile-App)
-    - [Task 2: Update Xamarin mobile app to use new APIs through APIM](#Task-2-Update-Xamarin-mobile-app-to-use-new-APIs-through-APIM)
-  - [Exercise 12: Configure and run the legacy desktop (Windows Forms) application](#Exercise-12-Configure-and-run-the-legacy-desktop-Windows-Forms-application)
-    - [Task 1: Configure application settings in App.config](#Task-1-Configure-application-settings-in-Appconfig)
-    - [Task 2: Run the desktop application](#Task-2-Run-the-desktop-application)
-  - [Exercise 13: Create an app in PowerApps](#Exercise-13-Create-an-app-in-PowerApps)
+  - [Exercise 10: Create an app in PowerApps](#Exercise-10-Create-an-app-in-PowerApps)
     - [Task 1: Sign up for a PowerApps account](#Task-1-Sign-up-for-a-PowerApps-account)
     - [Task 2: Create new SQL connection](#Task-2-Create-new-SQL-connection)
     - [Task 3: Create a new app](#Task-3-Create-a-new-app)
@@ -1437,50 +1430,13 @@ Duration: 30 minutes
 
 ![Azure API Management Web Service Url](media/e8-api-management-web-service-url.png)
 
-## Exercise 9: Create and configure SignalR service
-
-Duration: 15 minutes
-
-1. In the [Azure Portal](https://portal.azure.com/), select **+Create a resource**, enter "SignalR Service" into the search box, select **SignalR Service** in the results.
-
-    ![Azure portal +Create a resource is selected, with SignalR Service entered into the filter box, and SignalR Service selected from the search results.](media/e9-01.png "Azure Create a resource")
-
-2. Click **Create**.
-
-    ![Azure SignalR Service creation dialog. Create button is highlighted to select.](media/e9-02.png "Azure Create SignalR Service")
-
-3. On the SignalR Service Create blade, enter the following data and select **Review + Create**:
-
-    - **Subscription**: Select the subscription you are using for this hands-on lab.
-    - **Resource group**: Choose Use existing and select the hands-on-lab-SUFFIX resource group.
-    - **Resource Name**: contosoinsuranceSUFFIX
-    - **Region**: Select the region you are using for this hands-on lab.
-    - **Pricing tier**: Free.
-    - **Service mode**: Default.
-
-    ![The Create SignalR Service blade is displayed with the values specified above entered into the appropriate fields. Review + Create button is highlighted to select.](media/e9-03.png "Create SignalR Service")
-
-4. Click **Create** to start deploying the SignalR Service instance.
-
-    ![The Review + Create Signal R Service blade is displayed. Create button is highlighted to select.](media/e9-04.png "Create SignalR Service")
-
-5. After the deployment is complete, go to the Signal R Service screen. 
-   
-6. Select **Keys** under **Settings**. Copy your connection string for the primary key. You will use it later to configure your app to use the Azure SignalR Service resource.
-
-    ![Signal R Service screen with Keys settings option selected in the left-hand menu. Connection string for primary key is highlighted to select.](media/e9-05.png "SignalR Service keys")
-
-    The connection string has the following form:
-
-    `Endpoint=<service_endpoint>;AccessKey=<access_key>;`
-
-## Exercise 10: Update web app
+## Exercise 9: Update web app
 
 Duration: 30 minutes
 
 ### Task 1: Update to use Key Vault
 
-1. Open the **Contoso.Apps.Insurance.Data.sln** solution. 
+1. Open the **Contoso.Apps.Insurance.Data.sln** solution.
 
 2. Install the following NuGet Packages to the **WebApi** project.
 
@@ -1535,7 +1491,7 @@ Duration: 30 minutes
 
 7. Make sure you have installed Application Insights version 2.2.0 (or later) so we can use Live Metrics Stream later on in the lab. To do so, right click the **Web** project, then click on **Manage NuGet Packages...**. Search for **Microsoft.ApplicationInsights.AspNetCore** and update it if necessary.
 
-### Task 4: Create a deployment slot.
+### Task 4: Create a deployment slot
 
 1. Navigate to the Azure Portal, and locate the app service that has been used for the deployment of the WebApp.
 
@@ -1543,7 +1499,7 @@ Duration: 30 minutes
 
 3. Click on **Add Slot**.
 
-![Deployment Slots option from left-hand side menu, as well as Add Slot button highlighted.](media/webapp_add_slot.png)
+    ![Deployment Slots option from left-hand side menu, as well as Add Slot button highlighted.](media/webapp_add_slot.png)
 
 4. Provide a name for the brand-new deployment slot.
 
@@ -1551,7 +1507,7 @@ Duration: 30 minutes
 
 6. Click on **Add**.
 
-![Deployment Slots data provided.](media/webapp_add_slot_options.png)
+    ![Deployment Slots data provided.](media/webapp_add_slot_options.png)
 
 ### Task 5: Deploy updated web app to new deployment slot via VS
 
@@ -1569,7 +1525,7 @@ Duration: 30 minutes
 
 7. Click **Ok**.
 
-![Subscription and Deployment Slot highlighted.](media/webapp_select_existing_slot.png)
+    ![Subscription and Deployment Slot highlighted.](media/webapp_select_existing_slot.png)
 
 ### Task 6: View Live Metrics in App Insights in the Azure portal
 
@@ -1583,145 +1539,11 @@ In order to enable Live Metrics stream for your web app, it is required to insta
 
 3. Head back to Azure Portal and open the Application Insights resource for your app, and then open **Live Metrics Stream**.
 
-![Live Metrics Stream highlighted.](media/webapp_live_metric.png)
-
+    ![Live Metrics Stream highlighted.](media/webapp_live_metric.png)
 
 4. You will see real-time data fetched from your app using **Application Insights**.
 
-## Exercise 11: Configure and run the Xamarin mobile app
-
-Duration: 15 minutes
-
-The mobile application was built using Xamarin Forms, capitalizing on the .NET expertise of the Contoso, Ltd. development team. As a bonus, they can easily add additional platforms, such as iOS and UWP (Universal Windows Platform), as well as target multi-platform desktop environments. For now, their focus has been on deploying to Android, since they can run the Android emulator right from their development machines, which are Windows-based. You will need to have completed the Xamarin installation steps outlined at the beginning of this hands-on lab guide.
-
-In this exercise, you will update the application settings in the ApplicationSettings.cs file, and then run the mobile application within the Android emulator.
-
-### Task 1: Run the Xamarin Mobile App
-
-1. On your Lab VM, expand the **CIMobile** project located in the **Mobile** folder in the Visual Studio Solution Explorer, and open ApplicationSettings.cs.
-
-    ![CiMobile and ApplicationSettings.cs are highlighted in the Visual Studio Solution Explorer.](media/e11-1.png)
-
-2.  Modify the values for the following properties:
-
-    a.  **RootWebApiPath**: Insert the value of the URL to your published Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>).
-
-    b.  **BlobContainerUrl**: Enter the URL property of your blob storage account **policies** container where the policy PDF files are kept (e.g., <https://contosoinsurancekb.blob.core.windows.net/policies>). You can find this by navigating to your Storage account in Azure, selecting Blobs on the Overview blade, then selecting the policies container, and selecting Properties.
-
-    c.  **MobileClientId**: Insert the Application ID, in Guid format, from the Azure AD application settings for your mobile application (e.g., 06e8576a-566d-4582-884f-ce2f99a729bb).
-
-    d.  **AzureSearchServiceUrl**: To get this value, go into the Azure portal, select your search service, then the \"policies\" index, and then \"Search explorer." Copy the full URL within the URL field. Make sure to include the entire path, even the \"&search=\*\" at the end (e.g., <https://contosoinsurance.search.windows.net/indexes/policies/docs?api-version=2015-02-28&search=*>)
-
-    e.  **AzureSearchQueryApiKey**: Insert the query key value from your Azure Search service, which can be found by selecting your search service in Azure, selecting Keys, then selecting Manage query keys, and copying the displayed key (or create one if none exist) (e.g., 1A80181B30F975CFE252E4FDDAA657DC).
-
-3.  Select the **CIMobile.Droid** project in the **Mobile** folder using the **Solution Explorer** of Visual Studio. Next, right-click and select **Set as StartUp Project**
-
-> Note: Open the references folder on the **CIMobile.Droid** project, and if you see a yellow icon near each reference, go to menu *Tools > Nuget Package Manager -> Package Manager Console*, on the Package Manager Console choose Mobile\CIMobile.Droid from the Default Project select box, pn the console type the following command and press Enter:
-
-```
-update-package -reinstall
-```
-
-
-![Package Manager Console](media/e11-2.png)
-
-4.  On the top tool bar of Visual Studio, select **Debug** from the first dropdown, **Any CPU** in the second, and **CIMobile.Droid** as the application to be debugged. Select the green play button next to the Android emulator name to launch the application.
-
-    ![The Andriod emulator run button is highlighted in the Visual Studio toolbar.](media/e11-3.png "Visual Studio Toolbar")
-
-    a.  Alternately, you can right-click on the CIMobile.Droid project, select Debug, then select **Start new instance**.
-
-5.  The Android emulator should appear, and then launch the PolicyConnect app within.
-
-    ![Screenshot of the Android emulator.](media/e11-4.png "Android emulator")
-
-6.  Select the menu and select **Search Policy \#**. 
-
-    ![Search Policy \# is highlighted in the Android emulation.](media/e11-8.png "Android emulator")
-
-7.  You can either enter a full policy \# or perform a partial search of all content and metadata fields within the search field. Type in at least three characters to activate the search button. Try searching with the letters **MON**. The most relevant search results will appear first. Now try searching by an exact policy number, such as **DOW586IJCG493F**. You should see a single result matching that policy number. 
-
-    ![Search results are displayed in the Android emulator.](media/e11-5.png "Android Emulator")
-
-8.  Select a search result to view the content that was extracted by the Azure Search indexer. There is a link to download the actual PDF at the bottom of the result page. This will display the file that is stored in blob storage.
-
-
-![Search resullt details in the Android emulator.](media/e11-6.png "Android emulator")
-
-
-![Policy document in the Android emulator.](media/e11-7.png "Android emulator")
-
-### Task 2: Update Xamarin mobile app to use new APIs through APIM
-
-In this task, we are going to add a new secret value on the Azure Key Vault services on Azur and consume this from the mobile application.
-
-1. In the Azure portal, go to the Azure API Management service and open the Developer Portal:
-
-![Azure Api Management](media/e8-t1-developer-portal.png)
-
-2. In the developer portal, on the right side, under *Administration* option, choose the *Profile* option:
-
-![Azure Api Management Developer Portal](media/e11-9.png)
-
-3. On the profile page, under *your subscriptions* panel, copy the primary key for the Unlimited subscription starter. If you can not see this, click on *Show*:
-
-![Api Management Profile Page](media/e11-10.png)    
-
-4. On the mobile application, search for the **ApplicationSettings.cs** class and put the primary key value on the **AzureApiManagementKey** field:
-
-![Azure Api Management Key](media/e11-11.png)
-
-5. Also, copy the URl of the API management service and replace it on the field **RootWebApiPath** on the same **ApplicationSettings.cs**:
-
-![Azure API Management Service URL](media/e11-12.png)
-
-6. To consume the API Management service, the HTTP request needs to include a header with the primary key. To do that, search the **WebApiCalls.cs** class on the **CIMobile.Droid** project, folder *Services* and uncomment all the ocurrence of the following line:
-
-```csharp
-client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", AzureApiManagementKey);
-```
-
-7. Run the application and validate that the application runs without issues.
-
-## Exercise 12: Configure and run the legacy desktop (Windows Forms) application
-
-Duration: 15 minutes
-
-Contoso, Ltd. has created a web and mobile version of their desktop application, but they have opted to update it to communicate with the new Web API service for business and data functionality.
-
-### Task 1: Configure application settings in App.config 
-
-In this task, you will update the application settings in the App.config file, allowing the desktop application's updated code to take advantage of the new Azure services.
-
-1.  On your Lab VM, expand to the **PolicyConnectDesktop** project located in the **Desktop** folder using the **Solution Explorer** of Visual Studio and open the **App.config** file.
-
-    ![PolicyConnectDesktop and App.config are highlighted in the Visual Studio Solution Explorer.](media/e12-01.png "Solution Explorer")
-
-2.  Modify the values for the following keys under **appSettings**:
-
-    - **PdfRootPath**: This is the root folder of the PDF files. This path should point to the folder: C:\\ContosoInsurance\\Hackathon\\Files\\.
-
-    -  **RootWebApiPath**: Insert the value of the URL to your published Web API (e.g., <https://contosoinsuranceapi.azurewebsites.net>).
-
-    -  **UseWebApi**: Set to **true**. This allows the desktop app to communicate with the new Web API.
-
-3.  **Save** App.config. The updated App.config file should look like: 
-
-    ![The appSettings section of the App.config file is displayed, with the values specified above entered.](media/e12-02.png "App.config AppSettings")
-
-### Task 2: Run the desktop application 
-
-1.  In the Solution Explorer in Visual Studio, right-click the **PolicyConnectDesktop** project located in the **Desktop** folder.
-
-2.  Select **Debug**, and then select **Start new instance**.
-
-    ![Start new instance is selected from the Debug menu for the PolicyConnectDesktop project in Visual Studio.](media/e12-03.png "PolicyConnect Desktop app")
-
-3.  When the application is opened you should see a list of policyholders. Some functionality is intentionally left out. To open a policyholder record, simply double-click on any of the rows.
-
-    ![Screenshot of the PolicyConnect Desktop app.](media/e12-04.png "PolicyConnect Desktop app")
-
-## Exercise 13: Create an app in PowerApps
+## Exercise 10: Create an app in PowerApps
 
 Duration: 15 minutes
 
@@ -1732,12 +1554,11 @@ Task 1: Sign up for a PowerApps account
 
 ### Task 1: Sign up for a PowerApps account
 
-1. Go to https://web.powerapps.com and sign up for a new account, using the same account you have been using in Azure.
+1. Go to <https://web.powerapps.com> and sign up for a new account, using the same account you have been using in Azure.
 
 2. You may receive an email asking you to verify your account request, with a link to continue the process.
 
-3. Download and install PowerApps Studio from the Microsoft store: https://www.microsoft.com/en-us/store/p/powerapps/9nblggh5z8f3.
-
+3. Download and install **PowerApps Studio** from the Microsoft store: <https://www.microsoft.com/en-us/store/p/powerapps/9nblggh5z8f3>.
 
 ### Task 2: Create new SQL connection
 
@@ -1745,35 +1566,40 @@ Task 1: Sign up for a PowerApps account
 
 2. Click on the **Create a connection** button.
 
-![PowerApps with Connections highlighted.](media/powerapps_connections.png "PowerApps")
+    ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps_connections.png "PowerApps Connections")
 
 3. Type **SQL** into the search box, and then select the SQL Server item in the list below.
 
-![PowerApps portal with "SQL" entered in Search Box and SQL Server highlighted from the search results.](media/powerapps_create_connection.png "PowerApps")
+    ![In the New connection section, the search field is set to SQL. In the item list below, SQL Server is selected.](media/powerapps_create_connection.png "PowerApps New Connection")
 
 4. Within the SQL Server connection dialog, select the **Connect directly (cloud services)** radio button.
 
-5. Consult your saved SQL Server connection string (or locate it in Azure) to fill in the **SQL server name**, **Username**, and **Password** values. The **SQL Database name** should be **ContosoInsurance**.
+5. On the SQL Server dialog, enter the following:
 
-![PowerApps - Creating SQL Server Connection](media/powerapp_connection_sqlserver.png "PowerApps")
+   - **SQL Server name**: Enter the server name of your Azure SQL database.
+   - **SQL Database name** Enter **ContosoInsurance**
+   - **Username**: Enter **demouser**
+   - **Password**: Enter **Password.1!!**
+
+    ![The SQL Server dialog box fields are completed.](media/powerapp_connection_sqlserver.png "SQL Server dialog box")
 
 ### Task 3: Create a new app
 
-1. Open PowerApps Studio and sign in with the same account.
+1. Open PowerApps Studio and sign in with your PowerApps account.
 
 2. Select **New** on the left-hand side, and then **select the right arrow** next to the list.
 
-![PowerApps - Creating SQL Server Connection](media/powerapps_new.png "PowerApps")
+    ![In the PowerApps Studio, the New button on the left is selected. The right arrow to the right of Create an app from your data is also selected.](media/powerapps_new.png "PowerApps Studio")
 
 3. Select the **SQL Server connection** you created in the previous task.
 
-![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps")
+    ![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps Studio")
 
 4. If not selected already, select **default** under the **Choose a dataset** title.
 
-5. Select the **Policies** table from the list.
+5. Select the **Policies** table from the Choose a table list.
 
-![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapp_select_table.png "PowerApps")
+    ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapp_select_table.png "PowerApps Studio")
 
 6. Click **Connect**.
 
@@ -1781,21 +1607,21 @@ Task 1: Sign up for a PowerApps account
 
 1. The new app will automatically be created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the formula field to read **Policies**.
 
-![PowerApps - App name's title updated. ](media/powerapp_update_app_name.png "PowerApps")
+    ![All of the Policy options display.](media/powerapp_update_app_name.png "Policies section")
 
 2. Select the **DetailScreen** screen on the left-hand side.
 
-![PowerApps - DetailScreen from the left-hand side highlighted. ](media/powerapp_select_detailsscreen.png "PowerApps")
+    ![On the Home tab, under Screens, DetailScreen1 is selected.](media/powerapp_select_detailsscreen.png "DetailScreen")
 
 3. Reorder the fields on the form by selecting them, then dragging them by the **Card: <field_name>** tag to the desired location. The new order should be **Name**, **Description**, **DefaultDeductible**, then **DefaultOutOfPocketMax**.
 
-![PowerApps - Field tag highlighted. ](media/powerapp_reorder_fields.png "PowerApps")
+    ![In the dbo.policies window, the new order of the fields displays.](media/powerapp_reorder_fields.png "dbo.policies window")
 
 4. On the form, edit the **DefaultDeductible** and **DefaultOutOfPocketMax** labels to be **Default Deductible** and **Default Out of Pocket Max**, respectively. To do so, select the field and type the new title in quotes within the formula field.
 
 5. Rename the screen title to Policy by typing "Policy" in quotation marks within the formula field.
 
-![PowerApps - Field names, as well as page title, updated using the Formula field. ](media/powerapp_update_fields_names.png "PowerApps")
+    ![The formula field is set to \"Policy\".](media/powerapp_update_fields_names.png "Formula field")
 
 6. Select EditScreen on the left-hand menu.
 
@@ -1805,17 +1631,17 @@ Task 1: Sign up for a PowerApps account
 
 1. Select **File** on the top menu. Select **App settings**, then **App name + icon** and type in a new **App name**, such as PolicyConnect Plus.
 
-![PowerApps - App settings from the left-hand side highlighted, as well as the App name + icon option under App settings heading, and App name. ](media/powerapp_appsettings.png "PowerApps")
+    ![In PowerShell App Studio, under App settings, App name plus icon is selected, and the App name is set to PolicyConnectPlus.](media/powerapp_appsettings.png "PowerShell App Studio")
 
 2. Select **Save** on the left-hand menu to save the app to the cloud, then select the **Save** button below.
 
 3. After saving, select the left arrow on top of the left-hand menu.
 
-![PowerApps - Left arrow on top of the left-hand menu highlighted. ](media/powerapp_save_app.png "PowerApps")
+    ![The left arrow on top of the left-hand menu highlighted. ](media/powerapp_save_app.png "PowerShell App Studio")
 
 4. Select the **Run** button on the top menu to preview the app. You should be able to view the current policies, edit their values, and create new policies.
 
-![PowerApps - Run button highlighted. ](media/powerapp_run_app.png "PowerApps")
+    ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
 
 ## After the hands-on lab
 
