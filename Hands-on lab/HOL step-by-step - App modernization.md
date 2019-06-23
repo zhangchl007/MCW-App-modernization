@@ -42,11 +42,15 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 2: Review Advanced Data Security Vulnerability Assessment](#Task-2-Review-Advanced-Data-Security-Vulnerability-Assessment)
     - [Task 3: Enable Dynamic Data Masking](#Task-3-Enable-Dynamic-Data-Masking)
   - [Exercise 3: Configure Key Vault](#Exercise-3-Configure-Key-Vault)
-    - [Task 1: Set Key Vault access policies](#Task-1-Set-Key-Vault-access-policies)
+    - [Task 1: Add Key Vault access policy](#Task-1-Add-Key-Vault-access-policy)
     - [Task 2: Create a new secret to store the SQL connection string](#Task-2-Create-a-new-secret-to-store-the-SQL-connection-string)
-    - [Task 3: Create service principal for the web app using Azure CLI and grant access to Key Vault](#Task-3-Create-service-principal-for-the-web-app-using-Azure-CLI-and-grant-access-to-Key-Vault)
+    - [Task 3: Create a service principal](#Task-3-Create-a-service-principal)
+    - [Task 4: Assign the service principal access to Key Vault](#Task-4-Assign-the-service-principal-access-to-Key-Vault)
   - [Exercise 4: Migrate web and API apps into App Services](#Exercise-4-Migrate-web-and-API-apps-into-App-Services)
-    - [Task 1: Deploy to Azure with Visual Studio](#Task-1-Deploy-to-Azure-with-Visual-Studio)
+    - [Task 1: Connect to the LabVM](#Task-1-Connect-to-the-LabVM)
+    - [Task 2: Open starter solution with Visual Studio](#Task-2-Open-starter-solution-with-Visual-Studio)
+    - [Task 3: Deploy the API to Azure](#Task-3-Deploy-the-API-to-Azure)
+    - [Task 4: Deploy web application to Azure](#Task-4-Deploy-web-application-to-Azure)
     - [Task 2: Define server size and rules for auto-scaling](#Task-2-Define-server-size-and-rules-for-auto-scaling)
     - [Task 3: Visual Studio IDE integration](#Task-3-Visual-Studio-IDE-integration)
     - [Task 4: Configure backups](#Task-4-Configure-backups)
@@ -486,11 +490,11 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 ## Exercise 2: Post upgrade database enhancements
 
-Duration: 20 minutes
+Duration: 30 minutes
 
 In this exercise you will explore some of the security features of Azure SQL Database, and review some of the security benefits that come with running your database in Azure. [SQL Database Advance Data Security](https://docs.microsoft.com/azure/sql-database/sql-database-advanced-data-security) (ADS) provides advanced SQL security capabilities, including functionality for discovering and classifying sensitive data, surfacing and mitigating potential database vulnerabilities, and detecting anomalous activities that could indicate a threat to your database.
 
-> **NOTE**: Advanced Data Security was enabled on the database with the ARM template.
+> **NOTE**: Advanced Data Security was enabled on the database with the ARM template, so you won't need to do that here.
 
 ### Task 1: Configure SQL Data Discovery and Classification
 
@@ -667,7 +671,7 @@ Duration: 10 minutes
 
 As part of their efforts to put tighter security controls in place, Contoso, Ltd. has asked for the application secrets to be stored in a secure manner, so they aren't visible in plain text in application configuration files. In this exercise, you will configure Azure Key Vault, which will be used to store application secrets for the Contoso web and API applications, once migrated to Azure.
 
-### Task 1: Set Key Vault access policies
+### Task 1: Add Key Vault access policy
 
 In this task, you will add an access policy to Key Vault to allow secrets to be created with your account.
 
@@ -741,29 +745,13 @@ In this task, you will add a secret to Key Vault containing the connection strin
 
 10. Select **Create**.
 
-11. When the secret has been created successfully, select it from the list of secrets on the Secrets blade.
+### Task 3: Create a service principal
 
-    ![The SqlConnectionString is highlighted on the Key Vault Secrets blade.](media/e3-05.png "Key Vault Secrets")
+In this task, you will use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) that will provide your web and API apps access to Azure Key Vault. You will then assign the service principal to a reader role on your resource group and an add access policy to be allow it to view secrets in Key Vault.
 
-12. On the SqlConnectionString secret blade, select the Current Version, copy the Secret Identifier from the Secret Version blade, and paste it into a text editor for later reference.
+> **IMPORTANT**: You must have rights within your Azure AD tenant to create applications and assign roles to complete this task.
 
-    ![On the Secret version blade for the SqlConnectionString secret, the Secret identifier is highlighted.](media/e3-06.png "SqlConnectionString secret version")
-
-13. The Secret Identifier will look like:
-
-    ```http
-    https://contosokvjt7yc3zphxfda.vault.azure.net/secrets/SqlConnectionString/55b88481a2ba4b03bb1c9f0f09b3f55be
-    ```
-
-14. This is the version specific identifier. You can omit the version number to always obtain the latest version of the secret. For example:
-
-    ```http
-    https://contosoinsurancekeyvault.vault.azure.net/secrets/SqlConnectionString/
-    ```
-
-### Task 3: Create service principal for the web app using Azure CLI and grant access to Key Vault
-
-1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
     ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
@@ -775,26 +763,57 @@ In this task, you will add a secret to Key Vault containing the connection strin
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-4. At the prompt, run the following command to create the identity for your Web Api Application. Replace your Web Api Name and Resource Group. **IMPORTANT**: Replace 
+4. At the prompt, retrieve your subscription ID by running the following command at the Cloud Shell prompt:
 
-   ```powershell
-   az webapp identity assign --name "<your-api-resource-name>" --resource-group "hands-on-lab-SUFFIX"
-   ```
+    ```powershell
+    az account list --output table
+    ```
 
-4. Copy the `PrincipalId` that you will get as output from the CLI, you will need it in the next step.
+5. In the output table, locate the subscription you are using for this hands-on lab, and copy the SubscriptionId value into a text editor, such as Notepad, for use below.
 
-    ![In the Image the output of the identity creation list a value for the PrincipalId.](media/e3-t2-cli-identity-output.png "Azure CLI")
+6. Next, enter the following `az ad sp create-for-rbac` command at the Cloud Shell prompt, replacing `{SubscriptionID}` with the value you copied above and `{ResourceGroupName}` with the name of your **hands-on-lab-SUFFIX** resource group, and then press `Enter` to run the command.
 
-4. Run the following command to assign permissions to your application to read Secrets from the Key Vault. Replace your Key Vault Service name and principalId from the last step.
+    ```powershell
+    az ad sp create-for-rbac -n "contoso-apps" --role reader --scopes subscriptions/{SubscriptionID}/resourceGroups/{ResourceGroupName}
+    ```
 
-```Azure CLI
-az keyvault set-policy --name "ContosoInsuranceKeyVaultSUFFIX" --object-id "PrincipalId" --secret-permissions get list
-```
-> Replace <PrincipalId> with the identifier you copied in the previous step.
+    ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
 
-5. You can check the permissions you assigned to the Key Vault by selecting the **Access policies** option under the **Settings** section.
+7. Copy the output from the command above into a text editor, as you will need the `appId` and `password` in the next task. The output should be similar to:
 
-    ![On the Secret version blade for the SqlConnectionString secret, the Secret identifier is highlighted.](media/e3-07.png "SqlConnectionString secret version")
+    ```json
+    {
+        "appId": "94ee2739-794b-4038-a378-573a5f52918c",
+        "displayName": "contoso-apps",
+        "name": "http://contoso-apps",
+        "password": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4",
+        "tenant": "d280491c-b27a-XXXX-XXXX-XXXXXXXXXXXX"
+    }
+    ```
+
+    > **IMPORTANT**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session will eventually time out, and you will no longer have access to the output. The `appId` will be used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` will be used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
+
+### Task 4: Assign the service principal access to Key Vault
+
+1. Next, run the following command to get the name of your Key Vault, replacing `<hands-on-lab-SUFFIX>` with the name of your resource group.
+
+    ```powershell
+    az keyvault list -g <hands-on-lab-SUFFIX> --output table
+    ```
+
+2. In the output from the previous command, copy the value from the `name` field into a text editor. You will use it in the next step and also for configuration of your web and API apps.
+
+    ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
+
+3. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor.
+
+    ```powershell
+    az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+    ```
+
+4. In the output, you will see your service principal appId listed with "get" and "list" permissions for secrets.
+
+    ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 
 ## Exercise 4: Migrate web and API apps into App Services
 
@@ -802,9 +821,9 @@ Duration: 30 minutes
 
 The developers at Contoso, Ltd. have been working toward migrating their apps to the cloud. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services, such as Web API. Since the required services have already been provisioned in, what remains is applying application-level configuration settings, and then deploying any hosted apps and services from the Visual Studio starter project solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web API from the Visual Studio.
 
-### Task 1: Deploy to Azure with Visual Studio
+### Task 1: Connect to the LabVM
 
-In this task you will deploy the web and API apps into App Services in Azure.
+In this task, you will open an RDP connection to the LabVM, and downloading a copy of the starter solution provided by Contoso. You will be using Visual Studio 2019, installed on the LabVM, to deploy the Contoso applications into Azure.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **LabVM** virtual machine by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **LabVM** virtual machine from the list of resources.
 
@@ -835,105 +854,121 @@ In this task you will deploy the web and API apps into App Services in Azure.
 
    ![The Extract Compressed Folders dialog is displayed, with `C:\MCW` entered into the extraction location.](media/mcw-download-extract.png "Extract Compressed ZIP")
 
-9. Open the extracted folders, and navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and double-click the `Contoso.Apps.Insurance.Data.sln` file to open the solution in Visual Studio.
+### Task 2: Open starter solution with Visual Studio
 
-   ![The Contoso.Apps.Insurance.Data.sln file is highlighted in the folder specified above.](media/file-explorer-vs-solution.png "File explorer")
+> TODO: Update the screen shots for the solution path and Solution explorer below.
 
-10. If prompted about how to open the file, select **Visual Studio 2019** and then select **OK**.
+In this task, you will open the `Contoso` starter solution in Visual Studio.
+
+1. Open the extracted folders, and navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and double-click the `Contoso.sln` file to open the solution in Visual Studio.
+
+   ![The Contoso.sln file is highlighted in the folder specified above.](media/file-explorer-vs-solution.png "File explorer")
+
+2. If prompted about how to open the file, select **Visual Studio 2019** and then select **OK**.
 
     ![Visual Studio 2019 is highlighted in the How do you want to open this file? dialog.](media/solution-file-open-with.png "Visual Studio 2019")
 
-11. Sign in to Visual Studio using your Azure account credentials.
+3. Sign in to Visual Studio using your Azure account credentials.
 
     ![The Sign in button is highlighted on the Visual Studio Welcome screen.](media/visual-studio-sign-in.png "Visual Studio 2019")
 
-12. When prompted with a security warning, uncheck **Ask me for every project in this solution**, and then select **OK**.
+4. When prompted with a security warning, uncheck **Ask me for every project in this solution**, and then select **OK**.
 
     ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
-13. If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see any errors, you can skip to step...
+5. If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see any errors, you can skip to step...
 
     ![Error pane in Visual Studio](media/vs-net-core-errors.png "Visual Studio errors")
 
-14. In the Visual Studio Solution Explorer, expand the Web folder and right-click on the `Contoso.Apps.Insurance.WebAPI` project, and select **Properties** from the context menu.
+6.  In the Visual Studio Solution Explorer, expand the Web folder and right-click on the `Contoso.Apps.Insurance.WebAPI` project, and select **Properties** from the context menu.
 
     ![Visual Studio project properties menu.](media/vs-project-properties.png "Project properties")
 
-15. In the project properties window, select the **Target framework** drop down, and select **Install other frameworks...**
+7.  In the project properties window, select the **Target framework** drop down, and select **Install other frameworks...**
 
     ![The target framework options are displayed.](media/vs-project-target-framework.png "Project properties")
 
-16. On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
+8.  On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
 
     ![The download .NET Core 2.2 web page is displayed.](media/download-net-core-2-2.png "Download .NET Core 2.2")
 
-17. Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
+9.  Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
 
     ![The .NET Core 2.2 installer is displayed, and Install is highlighted.](media/installed-net-core-2-2.png "Install .NET Core 2.2.")
 
-18. Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso.Apps.Insurance.Data` solution.
+10. Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso.Apps.Insurance.Data` solution.
 
-19. In Visual Studio, locate the **Contoso.Apps.Insurance.WebAPI** project in the Web folder in the Solution Explorer.
+11. In Visual Studio, locate the **Contoso.Apps.Insurance.WebAPI** project in the Web folder in the Solution Explorer.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected.](media/e4-01.png "Solution Explorer")
 
-20. Right click on the **Contoso.Apps.Insurance.WebAPI** project and select *Publish*.
+> TODO: Add steps to run this locally? Would need to add config into API app to talk to SQL Database.
+
+### Task 3: Deploy the API to Azure
+
+In this task, you will use Visual Studio to deploy the API project into an API App in Azure.
+
+12. Right click on the **Contoso.Apps.Insurance.WebAPI** project and select *Publish*.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected. Publish option is highlighted.](media/e4-02.png "Publish Web API")
 
-21. click **Start** button.
+13. click **Start** button.
 
     ![Visual Studio Publish window. Publish option is selected and Start button is highlighted.](media/e4-03.png "Start Publish Process")
 
-22. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the *Pick a publish target* dialog is not present, select **New Profile** in the Publish Screen.
+14. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the *Pick a publish target* dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Pick a publish target screen with App Service options selected. Select Existing radiobutton is selected.](media/e4-05.png "Pick a publish target")
 
-23. Log on with your credentials and ensure the subscription you published earlier is selected.
+15. Log on with your credentials and ensure the subscription you published earlier is selected.
 
-24. Select the **Contoso Insurance Web API** app.
+16. Select the **Contoso Insurance Web API** app.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsuranceapi App Service is highlighted.](media/e4-06.png "Select App Service")
 
-25. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
+17. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
 
     ![Web Publish Activity view with the publish process status and API site url](media/e4-07.png "Web Publish Activity")
 
     > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
 
-26. Open the URL of the published Web API in a browser window. Validate the Web API by adding "/swagger" at the end of the URL in your browser (e.g., <http://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/>). You should see a list of the available REST APIs.
+18. Open the URL of the published Web API in a browser window. Validate the Web API by adding "/swagger" at the end of the URL in your browser (e.g., <http://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/>). You should see a list of the available REST APIs.
 
     ![Swagger screen displayed for Contoso.Apps.Insurance.WebAPI solution.](media/e4-08.png "Validate published Web API")
 
-27. In Visual Studio, locate the **Contoso.Apps.Insurance.Web** project in the Web folder in the Solution Explorer.
+### Task 4: Deploy web application to Azure
+
+In this task, you will publish the `Contoso.Web` application into an Azure Web App.
+
+19. In Visual Studio, locate the **Contoso.Apps.Insurance.Web** project in the Web folder in the Solution Explorer.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.Web solution is selected.](media/e4-09.png "Solution Explorer")
 
-28. Right click on the **Contoso.Apps.Insurance.Web** project and select *Publish*.
+20. Right click on the **Contoso.Apps.Insurance.Web** project and select *Publish*.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected. Publish option is highlighted.](media/e4-10.png "Publish Web project")
 
-29. click **Start** button.
+21. click **Start** button.
 
     ![Visual Studio Publish window. Publish option is selected and Start button is highlighted.](media/e4-03.png "Start Publish Process")
 
-30. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the **Pick a publish target** dialog is not present, select **New Profile** in the Publish Screen.
+22. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the **Pick a publish target** dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Pick a publish target screen with App Service options selected. Select Existing radiobutton is selected.](media/e4-05.png "Pick a publish target")
 
-31. Log on with your credentials and ensure the subscription you published earlier is selected.
+23. Log on with your credentials and ensure the subscription you published earlier is selected.
 
-32. Select the **Contoso Insurance Web** app.
+24. Select the **Contoso Insurance Web** app.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsuranceapi App Service is highlighted.](media/e4-11.png "Select App Service")
 
-33. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web App was published successfully, along with the URL to the site.
+25. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web App was published successfully, along with the URL to the site.
 
     ![Web Publish Activity view with the publish process status and web site url.](media/e4-12.png "Web Publish Activity")
 
     > If you don't see the *Web Publish Activity* view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
 
-34. Open the URL of the published Web App in a browser window to validate the Web App. PolicyConnect web site should appear.
+26. Open the URL of the published Web App in a browser window to validate the Web App. PolicyConnect web site should appear.
 
     ![Contoso Insurance application is opened after publish.](media/e4-13.png "Validate published Web App")
 
