@@ -41,26 +41,32 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Configure SQL Data Discovery and Classification](#Task-1-Configure-SQL-Data-Discovery-and-Classification)
     - [Task 2: Review Advanced Data Security Vulnerability Assessment](#Task-2-Review-Advanced-Data-Security-Vulnerability-Assessment)
     - [Task 3: Enable Dynamic Data Masking](#Task-3-Enable-Dynamic-Data-Masking)
+    - [Task 4: Enable Row-Level Security](#Task-4-Enable-Row-Level-Security)
   - [Exercise 3: Configure Key Vault](#Exercise-3-Configure-Key-Vault)
     - [Task 1: Add Key Vault access policy](#Task-1-Add-Key-Vault-access-policy)
     - [Task 2: Create a new secret to store the SQL connection string](#Task-2-Create-a-new-secret-to-store-the-SQL-connection-string)
     - [Task 3: Create a service principal](#Task-3-Create-a-service-principal)
     - [Task 4: Assign the service principal access to Key Vault](#Task-4-Assign-the-service-principal-access-to-Key-Vault)
-  - [Exercise 4: Migrate web and API apps into App Services](#Exercise-4-Migrate-web-and-API-apps-into-App-Services)
+  - [Exercise 4: Deploy Web API into Azure App Services](#Exercise-4-Deploy-Web-API-into-Azure-App-Services)
     - [Task 1: Connect to the LabVM](#Task-1-Connect-to-the-LabVM)
     - [Task 2: Open starter solution with Visual Studio](#Task-2-Open-starter-solution-with-Visual-Studio)
-    - [Task 3: Deploy the API to Azure](#Task-3-Deploy-the-API-to-Azure)
-    - [Task 4: Deploy web application to Azure](#Task-4-Deploy-web-application-to-Azure)
+    - [Task 3: Update Web API to use Key Vault](#Task-3-Update-Web-API-to-use-Key-Vault)
+    - [Task 4: Copy KeyVault configuration section to API App in Azure](#Task-4-Copy-KeyVault-configuration-section-to-API-App-in-Azure)
+    - [Task 5: Deploy the API to Azure](#Task-5-Deploy-the-API-to-Azure)
+  - [Exercise 5: Deploy web app into Azure App Services](#Exercise-5-Deploy-web-app-into-Azure-App-Services)
+    - [Task 1: Add API App URL to appsettings](#Task-1-Add-API-App-URL-to-appsettings)
+    - [Task 2: Deploy web application to Azure](#Task-2-Deploy-web-application-to-Azure)
     - [Task 2: Define server size and rules for auto-scaling](#Task-2-Define-server-size-and-rules-for-auto-scaling)
     - [Task 3: Visual Studio IDE integration](#Task-3-Visual-Studio-IDE-integration)
     - [Task 4: Configure backups](#Task-4-Configure-backups)
   - [Exercise 5: Upload policy documents into blob storage](#Exercise-5-Upload-policy-documents-into-blob-storage)
     - [Task 1: Create container for storing PDFs in Azure storage](#Task-1-Create-container-for-storing-PDFs-in-Azure-storage)
-    - [Task 2: Bulk upload PDFs to blob storage using AzCopy](#Task-2-Bulk-upload-PDFs-to-blob-storage-using-AzCopy)
+    - [Task 2: Create a SAS token](#Task-2-Create-a-SAS-token)
+    - [Task 3: Bulk upload PDFs to blob storage using AzCopy](#Task-3-Bulk-upload-PDFs-to-blob-storage-using-AzCopy)
   - [Exercise 6: Create serverless API for accessing PDFs](#Exercise-6-Create-serverless-API-for-accessing-PDFs)
-    - [Task 1: Retrieve URL for a policy document in Azure storage](#Task-1-Retrieve-URL-for-a-policy-document-in-Azure-storage)
-    - [Task 2: Create an Azure Functions Proxy](#Task-2-Create-an-Azure-Functions-Proxy)
-    - [Task 3: Parameterize Azure Functions Proxy](#Task-3-Parameterize-Azure-Functions-Proxy)
+    - [Task 1: Add application settings to your Function App](#Task-1-Add-application-settings-to-your-Function-App)
+    - [Task 2: Create an Azure Function in Visual Studio](#Task-2-Create-an-Azure-Function-in-Visual-Studio)
+    - [Task 3: Parameterize the Function](#Task-3-Parameterize-the-Function)
   - [Exercise 7: Add Cognitive Search for policy documents](#Exercise-7-Add-Cognitive-Search-for-policy-documents)
     - [Task 1: Add Azure Search to Blob Storage account](#Task-1-Add-Azure-Search-to-Blob-Storage-account)
     - [Task 2: Review search results](#Task-2-Review-search-results)
@@ -120,7 +126,7 @@ The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azur
 
 ## Exercise 1: Migrate the on-premises database to Azure SQL Database
 
-Duration: 40 minutes
+Duration: 45 minutes
 
 In this exercise, you will use the Microsoft Data Migration Assistant (DMA) to perform an assessment on the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and the Azure SQL DB.
 
@@ -665,9 +671,13 @@ In this task, you will enable [Dynamic Data Masking](https://docs.microsoft.com/
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
 
+### Task 4: Enable Row-Level Security
+
+> TODO: If there is time, add this in too.
+
 ## Exercise 3: Configure Key Vault
 
-Duration: 10 minutes
+Duration: 15 minutes
 
 As part of their efforts to put tighter security controls in place, Contoso, Ltd. has asked for the application secrets to be stored in a secure manner, so they aren't visible in plain text in application configuration files. In this exercise, you will configure Azure Key Vault, which will be used to store application secrets for the Contoso web and API applications, once migrated to Azure.
 
@@ -747,7 +757,7 @@ In this task, you will add a secret to Key Vault containing the connection strin
 
 ### Task 3: Create a service principal
 
-In this task, you will use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) that will provide your web and API apps access to Azure Key Vault. You will then assign the service principal to a reader role on your resource group and an add access policy to be allow it to view secrets in Key Vault.
+In this task, you will use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) that will be used to provide your web and API apps access to secrets stored in Azure Key Vault.
 
 > **IMPORTANT**: You must have rights within your Azure AD tenant to create applications and assign roles to complete this task.
 
@@ -795,6 +805,8 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
 
 ### Task 4: Assign the service principal access to Key Vault
 
+In this task, you will assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
+
 1. Next, run the following command to get the name of your Key Vault, replacing `<hands-on-lab-SUFFIX>` with the name of your resource group.
 
     ```powershell
@@ -815,11 +827,11 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
 
     ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 
-## Exercise 4: Migrate web and API apps into App Services
+## Exercise 4: Deploy Web API into Azure App Services
 
-Duration: 30 minutes
+Duration: 45 minutes
 
-The developers at Contoso, Ltd. have been working toward migrating their apps to the cloud. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services, such as Web API. Since the required services have already been provisioned in, what remains is applying application-level configuration settings, and then deploying any hosted apps and services from the Visual Studio starter project solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web API from the Visual Studio.
+The developers at Contoso, Ltd. have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web App and API App into Azure from Visual Studio.
 
 ### Task 1: Connect to the LabVM
 
@@ -858,9 +870,15 @@ In this task, you will open an RDP connection to the LabVM, and downloading a co
 
 > TODO: Update the screen shots for the solution path and Solution explorer below.
 
-In this task, you will open the `Contoso` starter solution in Visual Studio.
+In this task, you will open the `Contoso` starter solution in Visual Studio. The Visual Studio solution contains the following projects:
 
-1. Open the extracted folders, and navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and double-click the `Contoso.sln` file to open the solution in Visual Studio.
+- **Contoso.Azure**: Common library containing helper classes used by other projects within the solution to communicate with Azure services.
+- **Contoso.Data**: Library containing data access objects.
+- **Contoso.FunctionApp**: Contains an Azure Function that is used to retrieve policy documents from Blob storage.
+- **Contoso.Web**: ASP.NET Core 2.2 PolicyConnect web application.
+- **Contoso.WebApi**: ASP.NET Core 2.2 Web API used by the web application to communicate with the database.
+
+1. Open the extracted folder you downloaded in the previous task, navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and double-click the `Contoso.sln` file to open the solution in Visual Studio.
 
    ![The Contoso.sln file is highlighted in the folder specified above.](media/file-explorer-vs-solution.png "File explorer")
 
@@ -876,99 +894,276 @@ In this task, you will open the `Contoso` starter solution in Visual Studio.
 
     ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
-5. If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see any errors, you can skip to step...
+5. If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see these errors, you can skip to the next task.
 
     ![Error pane in Visual Studio](media/vs-net-core-errors.png "Visual Studio errors")
 
-6.  In the Visual Studio Solution Explorer, expand the Web folder and right-click on the `Contoso.Apps.Insurance.WebAPI` project, and select **Properties** from the context menu.
+6. In the Visual Studio Solution Explorer, right-click on the `Contoso.Web` project, and select **Properties** from the context menu.
 
     ![Visual Studio project properties menu.](media/vs-project-properties.png "Project properties")
 
-7.  In the project properties window, select the **Target framework** drop down, and select **Install other frameworks...**
+7. In the project properties window, select the **Target framework** drop down, and select **Install other frameworks...**
 
     ![The target framework options are displayed.](media/vs-project-target-framework.png "Project properties")
 
-8.  On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
+8. On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
 
     ![The download .NET Core 2.2 web page is displayed.](media/download-net-core-2-2.png "Download .NET Core 2.2")
 
-9.  Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
+9. Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
 
     ![The .NET Core 2.2 installer is displayed, and Install is highlighted.](media/installed-net-core-2-2.png "Install .NET Core 2.2.")
 
-10. Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso.Apps.Insurance.Data` solution.
+10. Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso` solution.
 
-11. In Visual Studio, locate the **Contoso.Apps.Insurance.WebAPI** project in the Web folder in the Solution Explorer.
+### Task 3: Update Web API to use Key Vault
 
-    ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected.](media/e4-01.png "Solution Explorer")
+In this task, you will update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You will start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
 
-> TODO: Add steps to run this locally? Would need to add config into API app to talk to SQL Database.
+> The required Nuget package to enable interaction with Key Vault have already been added to the project to save time. The package added to facilitate this is `Microsoft.Extensions.Configuration.AzureKeyVault`.
 
-### Task 3: Deploy the API to Azure
+1. In Visual Studio, expand the `Contoso.WebApi` project in the Solution Explorer, and open the `appsettings.json` file by double-clicking on it.
+
+    ![The appsettings.json file is highlighted in the Visual Studio Solution Explorer.](media/vs-api-appsettings-json.png "Solution Explorer")
+
+2. In the open `appsettings.json` file, locate the `KeyVault` configuration settings (starting on line 8). It should look like the following:
+
+    ```json
+    "KeyVaultName": "<your-key-vault-name>",
+    "KeyVaultClientId": "<your-service-principal-application-id>",
+    "KeyVaultClientSecret": "<your-service-principal-password>"
+    ```
+
+3. Locate the three `KeyVault` settings, which you will need to update as follows:
+
+    - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
+    - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal.
+    - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal.
+
+    Your completed configuration should look similar to the following:
+
+    ```json
+    "KeyVaultName": "contosokvjt7yc3zphxfda",
+    "KeyVaultClientId": "94ee2739-794b-4038-a378-573a5f52918c",
+    "KeyVaultClientSecret": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
+    ```
+
+4. Save `appsettings.json` by select the **Save** icon on the Visual Studio toolbar.
+
+5. Next, in the Visual Studio Solution Explorer, locate and open the `Program.cs` file in the `Contoso.WebApi` project by double-clicking on it.
+
+    ![In the Visual Studio Solution Explorer, the Program.cs file is highlighted under the Contoso.WebApi project.](media/vs-api-program-cs.png "Solution Explorer")
+
+6. In the `Program.cs` file, locate the `TODO #1` block (line 23) within the `CreateWebHostBuilder` method.
+
+    ![The TODO #1 block is highlighted within the Program.cs code.](media/vs-program-cs-todo-1.png "Program.cs")
+
+7. Complete the code within the block, using the following code, to add Key Vault to the configuration, and provide Key Vault with the appropriate connection information.
+
+    ```csharp
+    config.AddAzureKeyVault(
+        KeyVaultConfig.GetKeyVaultEndpoint(buildConfig["KeyVaultName"]),
+        buildConfig["KeyVaultClientId"],
+        buildConfig["KeyVaultClientSecret"]
+    );
+    ```
+
+8. Save `Program.cs`. The updated `CreateWebHostBuilder` method should now look like the following:
+
+    ![Screenshot of the updated Program.cs file.](media/vs-program-cs-updated.png "Program.cs")
+
+9. The last file you will update in the `Contoso.WebApi` project is `Startup.cs`. Locate the file in the Solution Explorer and double-click it.
+
+10. In the previous exercise, you added the connection string for your Azure SQL Database to Key Vault, and assigned the secret a name of `SqlConnectionString`. Using the code below, update the `TODO #2` block (line 38), within the `Startup.cs` file's `Configuration` property. This will allow your application to retrieve the connection string from Key Vault using the secret name.
+
+    ![The TODO #2 block is highlighted within the Startup.cs code.](media/vs-startup-cs-todo-2.png "Startup.cs")
+
+    ```csharp
+    services.AddDbContext<ContosoDbContext>(options =>
+        options.UseSqlServer(Configuration["SqlConnectionString"]));
+    ```
+
+11. Save `Startup.cs`. The updated `Configuration` property will now look like the following:
+
+    ![Screenshot of the updated Startup.cs file.](media/vs-startup-cs-updated.png "Startup.cs")
+
+12. Your Web API is now fully configured to retrieve secrets from Azure Key Vault.
+
+### Task 4: Copy KeyVault configuration section to API App in Azure
+
+Before deploying the Web API to Azure, you need to add the configurations you added to the `appsettings.json` file into the configuration for the Azure API App. The `appsettings.js` file is set to not copy as part of the build output, so the configuration settings need to be added in the API App. In this task, you will copy the settings from `appsettings.json` and use the advanced configuration editor in your API App to add in the `KeyVault` configuration section, and all its child values.
+
+1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsapiUNIQUE-IDENTIFIER** App service from the list of resources.
+
+   ![The API App resource is highlighted in the list of resources.](media/azure-resources-api-app.png "API App")
+
+2. On the API App blade, select **Configuration** on the left-hand menu.
+
+    ![The Configuration item is highlighted in the API App left-hand menu.](media/api-app-configuration-menu.png "API App")
+
+3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen will allow you to paste JSON directly into the configuration.
+
+    ![Advanced edit is highlighted on the Application settings tab.](media/api-app-configuration-advanced-edit.png "API App")
+
+4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you will need to update as follows:
+
+    - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
+    - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal.
+    - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal.
+
+    ```json
+    [
+        {
+            "name": "KeyVaultName",
+            "value": "<your-key-vault-name>"
+        },
+        {
+            "name": "KeyVaultClientId",
+            "value": "<your-service-principal-application-id>"
+        },
+        {
+            "name": "KeyVaultClientSecret",
+            "value": "<your-service-principal-password>"
+        }
+    ]
+    ```
+
+    > **NOTE**: You can retrieve all of these values from the `appsettings.json` file, or from the text editor where you originally saved them.
+
+5. The final contents of the editor should look similar to the following:
+
+    ```json
+    [
+        {
+            "name": "KeyVaultName",
+            "value": "contosokvjt7yc3zphxfda"
+        },
+        {
+            "name": "KeyVaultClientId",
+            "value": "94ee2739-794b-4038-a378-573a5f52918c"
+        },
+        {
+            "name": "KeyVaultClientSecret",
+            "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
+        }
+    ]
+    ```
+
+6. Select **OK**.
+
+    ![The OK button is highlighted on the Advanced edit dialog.](media/api-app-configuration-advanced-editor.png "Advanced edit")
+
+7. Select **Save** on the Configuration blade.
+
+    ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
+
+### Task 5: Deploy the API to Azure
 
 In this task, you will use Visual Studio to deploy the API project into an API App in Azure.
 
-12. Right click on the **Contoso.Apps.Insurance.WebAPI** project and select *Publish*.
+1. In Visual Studio, right-click on the **Contoso.WebApi** project in the Solution Explorer and select **Publish** from the context menu.
 
-    ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected. Publish option is highlighted.](media/e4-02.png "Publish Web API")
+    ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
 
-13. click **Start** button.
+2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Publish**.
 
-    ![Visual Studio Publish window. Publish option is selected and Start button is highlighted.](media/e4-03.png "Start Publish Process")
+    ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Publish button is highlighted..](media/e4-05.png "Pick a publish target")
 
-14. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the *Pick a publish target* dialog is not present, select **New Profile** in the Publish Screen.
-
-    ![Pick a publish target screen with App Service options selected. Select Existing radiobutton is selected.](media/e4-05.png "Pick a publish target")
-
-15. Log on with your credentials and ensure the subscription you published earlier is selected.
-
-16. Select the **Contoso Insurance Web API** app.
+3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App under your hands-on-lab-SUFFIX resource group.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsuranceapi App Service is highlighted.](media/e4-06.png "Select App Service")
 
-17. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
+4. Select **OK**, which will start the processing of publishing your Web API to your Azure API App.
+
+5. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
 
     ![Web Publish Activity view with the publish process status and API site url](media/e4-07.png "Web Publish Activity")
 
     > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
 
-18. Open the URL of the published Web API in a browser window. Validate the Web API by adding "/swagger" at the end of the URL in your browser (e.g., <http://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/>). You should see a list of the available REST APIs.
+6. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you will see a message that the page cannot be found.
 
-    ![Swagger screen displayed for Contoso.Apps.Insurance.WebAPI solution.](media/e4-08.png "Validate published Web API")
+    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-### Task 4: Deploy web application to Azure
+7. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <http://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/>). This will bring up the Swagger profile of your API, where you will a list of the available API endpoints.
+
+    ![Swagger screen displayed for the API App.](media/e4-08.png "Validate published Web API")
+
+8. You can test the functionality of the API by selecting one of the endpoints, and selecting **Try it out**.
+
+    ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
+
+9. Select **Execute**.
+
+    ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
+
+10. In the Response, you will see a Response Code of 200, and JSON objects in the Response body.
+
+    ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
+
+## Exercise 5: Deploy web app into Azure App Services
+
+Duration: 10 minutes
+
+In this exercise, you will update your web app to connect to your newly deployed API App and deploy it into Azure App Services.
+
+### Task 1: Add API App URL to appsettings
+
+In this task, you will update the settings for the `Contoso.Web` project to provide the URL for your published API App. As you did for the API project, you will add the URL information into the `appsettings.json`.
+
+1. In Visual Studio, expand the `Contoso.Web` project in the Solution Explorer, and open the `appsettings.json` file by double-clicking on it.
+
+    ![The appsettings.json file is highlighted in the Visual Studio Solution Explorer.](media/vs-web-appsettings-json.png "Solution Explorer")
+
+2. In the open `appsettings.json` file, locate the `ApiUrl` setting (line 8). It should look like the following:
+
+    ```json
+    "ApiUrl": "<your-api-app-name>"
+    ```
+
+3. Update the setting with the URL of your published API App. Your updated setting should look similar to the following:
+
+    ```json
+    "ApiUrl": "https://contosoinsapijt7yc3zphxfda.azurewebsites.net"
+    ```
+
+    > **NOTE**: Leave the `PolicyDocumentsPath` setting unconfigured for now. You will set that after setting up and deploying your Azure Function.
+
+4. Save `appsettings.json` by select the **Save** icon on the Visual Studio toolbar.
+
+### Task 2: Deploy web application to Azure
 
 In this task, you will publish the `Contoso.Web` application into an Azure Web App.
 
-19. In Visual Studio, locate the **Contoso.Apps.Insurance.Web** project in the Web folder in the Solution Explorer.
+1.  In Visual Studio, locate the **Contoso.Apps.Insurance.Web** project in the Web folder in the Solution Explorer.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.Web solution is selected.](media/e4-09.png "Solution Explorer")
 
-20. Right click on the **Contoso.Apps.Insurance.Web** project and select *Publish*.
+2.  Right click on the **Contoso.Apps.Insurance.Web** project and select *Publish*.
 
     ![Contoso.Apps.Insurance.Data solution is displayed in Solution Explorer and Contoso.Apps.Insurance.WebAPI solution is selected. Publish option is highlighted.](media/e4-10.png "Publish Web project")
 
-21. click **Start** button.
+3.  click **Start** button.
 
     ![Visual Studio Publish window. Publish option is selected and Start button is highlighted.](media/e4-03.png "Start Publish Process")
 
-22. On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the **Pick a publish target** dialog is not present, select **New Profile** in the Publish Screen.
+4.  On the **Pick a publish target** dialog, select **App Service** as the publish target, and select **Select Existing**, then click **Publish**. If the **Pick a publish target** dialog is not present, select **New Profile** in the Publish Screen.
 
     ![Pick a publish target screen with App Service options selected. Select Existing radiobutton is selected.](media/e4-05.png "Pick a publish target")
 
-23. Log on with your credentials and ensure the subscription you published earlier is selected.
+5.  Log on with your credentials and ensure the subscription you published earlier is selected.
 
-24. Select the **Contoso Insurance Web** app.
+6.  Select the **Contoso Insurance Web** app.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsuranceapi App Service is highlighted.](media/e4-11.png "Select App Service")
 
-25. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web App was published successfully, along with the URL to the site.
+7.  In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web App was published successfully, along with the URL to the site.
 
     ![Web Publish Activity view with the publish process status and web site url.](media/e4-12.png "Web Publish Activity")
 
     > If you don't see the *Web Publish Activity* view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log
 
-26. Open the URL of the published Web App in a browser window to validate the Web App. PolicyConnect web site should appear.
+8.  Open the URL of the published Web App in a browser window to validate the Web App. PolicyConnect web site should appear.
 
     ![Contoso Insurance application is opened after publish.](media/e4-13.png "Validate published Web App")
 
@@ -1134,19 +1329,33 @@ In this task, you will create a new container in your storage account for the sc
 
     ![Blobs is selected on the Overview blade of the Storage account.](media/e5-02.png "Storage account")
 
-3. On the Blob service blade, select **+ Container** to create a new container.
-
-4. In the New container dialog, enter "policies" as the container name, set the Public access level to **Container**, and then select **OK**.
+3. On the Blob service blade, select **+ Container** to create a new container, and in the New container dialog, enter "policies" as the container name. Leave the Public access level set to **Private (no anonymous access)**, and then select **OK**.
 
     ![The New container dialog is displayed with a name of \"policies\" entered, and the Public access level set to Container (anonymous read access for containers and blobs).](media/e5-03.png "Blob service")
 
-    > **IMPORTANT** Setting the Public access level to Container is for demo purposes. Otherwise, you should set this to Private.
-
-5. After the container has been created, select its name on the Blob service blade, select Properties, and copy the URL from the policies -- Properties blade. Paste it into a text editor for later reference.
+4. After the container has been created, select its on the Blob service blade, then select **Properties** from the left-hand menu, and copy the URL from the policies - Properties blade. Paste the copied URL into a text editor for later reference.
 
     ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/e5-04.png "Blob server properties")
 
-### Task 2: Bulk upload PDFs to blob storage using AzCopy
+5. Next you will retrieve the access key for your storage account, which you will need to provide to AzCopy below to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu, and copy the **key1 Key** value to a text editor for use below.
+
+    ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](media/e5-05.png "Access Keys")
+
+### Task 2: Create a SAS token
+
+In this task, you will generate a shared access signature (SAS) token for your storage account. This will be used later in the lab to allow your Azure Function to retrieve files from the `policies` storage account container.
+
+1. On your Storage account blade in the Azure portal, and select **Shared access signature** from the left-hand menu.
+
+    ![The Shared access signature menu item is highlighted.](media/storage-shared-access-signature.png "Storage account")
+
+2. On the Shared access signature blade, select **Generate SAS and connection string**, and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
+
+    ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](media/storage-shared-access-signature-generate.png "Shared access signature")
+
+3. Paste the SAS token into a text editor for later use.
+
+### Task 3: Bulk upload PDFs to blob storage using AzCopy
 
 In this task, you will download and install [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy). You will then use AzCopy to copy the PDF files from the "on-premises" location into the policies container in Azure storage.
 
@@ -1154,41 +1363,35 @@ In this task, you will download and install [AzCopy](https://docs.microsoft.com/
 
 2. Run the downloaded installer, accepting the license agreement and all the defaults, to complete the AzCopy install.
 
-3. Next you will retrieve the access key for your storage account, which you will need to provide to AzCopy to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu,and copy the **key1 Key** value to a text editor for use below.
+3. Launch a Command Prompt window (Select search on the task bar, type **cmd**, and select Enter) on your LabVM.
 
-    ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](media/e5-05.png "Access Keys")
-
-4. Back on the LabVM, launch a Command Prompt window (Select search on the task bar, type **cmd**, and select Enter).
-
-5. At the Command prompt, change the directory to the AzCopy directory. By default, it is installed to `C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy` (On a 32-bit machine, change `Program Files (x86)` to `Program Files` ). You can do this by running the command:
+4. At the Command prompt, change the directory to the AzCopy directory. By default, it is installed to `C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy` (On a 32-bit machine, change `Program Files (x86)` to `Program Files` ). You can do this by running the command:
 
    ```bash
    cd C:\Program Files (x86)\Microsoft SDKs\Azure\AzCopy
    ```
 
-6. Type the following command in the command prompt, replacing the tokenized values with your own:
-
-   ```bash
-   AzCopy /Source:"[FILE-SOURCE]" /Dest:"[STORAGE-CONTAINER-URL]" /DestKey:"[STORAGE-ACCOUNT-KEY]" /S
-   ```
-
-7. The values in the above command should be replaced as follows:
+5. Enter the following command at the command prompt. The tokenized values should be replaced as follows:
 
    - `[FILE-SOURCE]`: This is the path to the `policy-documents` folder your downloaded copy of the GitHub repo. If you used the extraction path of `C:\MCW`, the path will be `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\policy-documents`.
    - `[STORAGE-CONTAINER-URL]`: This is the URL to your storage account's policies container, which you copied in the last step of the previous task. (e.g., <https://contosojt7yc3zphxfda.blob.core.windows.net/policies>)
    - `[STORAGE-ACCOUNT-KEY]`: This is the blob storage account key you copied previously in this task. (e.g., `eqgxGSnCiConfgshXQ1rFwBO+TtCH6sduekk6s8PxPBxHWOmFumycTeOlL3myb8eg4Ba2dn7rtdHnk/1pi6P/w==`)
 
-8. The final command should resemble the following:
+   ```bash
+   AzCopy /Source:"[FILE-SOURCE]" /Dest:"[STORAGE-CONTAINER-URL]" /DestKey:"[STORAGE-ACCOUNT-KEY]" /S
+   ```
+
+6. The final command should resemble the following:
 
     ```bash
     AzCopy /Source:"C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\policy-documents" /Dest:"https://contosojt7yc3zphxfda.blob.core.windows.net/policies" /DestKey:"XJT3us2KT1WQHAQBbeotrRCWQLZayFDNmhLHt3vl2miKOHeXasB7IUlw2+y4afH6R/03wbTiRK9SRqGXt9JVqQ==" /S
     ```
 
-9. In the output of the command, you should see that 650 files were transferred successfully.
+7. In the output of the command, you should see that 650 files were transferred successfully.
 
     ![The output of the AzCopy command is displayed.](media/e5-06.png "AzCopy output")
 
-10. You can verify the upload by navigating to the policies container in your Azure Storage account.
+8. You can verify the upload by navigating to the policies container in your Azure Storage account.
 
     ![The policies Container with the Overview blade selected shows the list of uploaded files.](media/e5-07.png "Policies Container")
 
@@ -1198,33 +1401,48 @@ Duration: 15 minutes
 
 Contoso, Ltd. has made some updates to prepare their applications, but there are some features that they have not been able to build into the API yet. They have requested that you assist them in setting up a proof-of-concept (POC) API solution to enable users of their application to retrieve their policy documents directly from their Azure Storage account. In this exercise, you will create an Azure Functions Proxy within your Function App to enable this functionality using serverless technologies.
 
-### Task 1: Retrieve URL for a policy document in Azure storage
+### Task 1: Add application settings to your Function App
 
-In this task, you will retrieve the URL associated with one of the PDF policy documents you uploaded into Azure storage in the previous exercise.
+In this task, you will prepare your Azure Function App to work with your new Function by adding your storage account policies container URL and SAS token values to the Application Settings of your Function App, using the Azure Cloud Shell and Azure CLI.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUNIQUE-IDENTIFIER** Storage account resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-   ![The Storage Account resource is highlighted in the list of resources.](media/e5-01.png "Storage account")
+    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
-2. From the Storage account Overview blade, select **Blobs** under services.
+2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-   ![Blobs is selected on the Overview blade of the Storage account.](media/e5-02.png "Storage account")
+    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. On the Blobs blade, select the **policies** container.
+3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
-   ![Azure Storage container blobs screen with policies container highlighted to select](media/e6-05.png "Azure storage container selection")
+    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-4. On the Overview page of the policies blade, select the first document in the list.
+4. At the prompt, retrieve your Function App name by running the following command at the Cloud Shell prompt, replacing `<hands-on-lab-SUFFIX>` with your resource group name:
 
-   ![The policies storage container Overview blade is displayed, with the first blob selected from the list.](media/e6-06.png "Policies storage container")
+    ```powershell
+    az functionapp list -g hands-on-lab-kb --output table
+    ```
 
-5. On the selected blob, select the **Click to copy** button next to the **URL** to copy the URL for the blob, and paste it into a text editor for use below.
+5. In the output, copy the **Name** value for use in the next step.
 
-   ![The URL of the selected blob is highlighted on its properties page.](media/e6-07.png "Blob properties")
+    ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list.png "Azure Cloud Shell")
 
-### Task 2: Create an Azure Functions Proxy
+6. For the next command, you will need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
-In this task, you will create an Azure Function Proxy, which is a simple way to provide a clean API endpoint. To learn more, check out [Working with Azure Functions Proxies](https://docs.microsoft.com/en-us/azure/azure-functions/functions-proxies).
+    - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
+    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
+    - `<your-policies-container-url>`: Replace with the `policies` container URL you copied into a text editor previously.
+    - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
+
+    ```powershell
+    $storageUrl = "<your-policies-container-url>"
+    $storageSas = "<your-storage-account-sas-token>"
+    az functionapp config appsettings set -n <your-function-app-name> -g <hands-on-lab-SUFFIX> --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
+    ```
+
+### Task 2: Create an Azure Function in Visual Studio
+
+In this task, you will use Visual Studio to create an Azure Function. This Function will serve as a serverless API for retrieving policy documents from Blob storage.
 
 1. Navigate to your Function App in the [Azure portal](https://portal.azure.com) by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoinsfuncUNIQUE-IDENTIFIER** App Service resource from the list of resources.
 
@@ -1251,7 +1469,7 @@ In this task, you will create an Azure Function Proxy, which is a simple way to 
 
 6. This will result in the policy document being downloaded. You can open the downloaded file and inspect the policy document.
 
-### Task 3: Parameterize Azure Functions Proxy
+### Task 3: Parameterize the Function
 
 In the previous task, you created an Azure Functions Proxy to download a specific policy document from Azure storage. In this task, you will update the Proxy to parameterize the URL, so you can retrieve any policy document using the policy holder's last name and their policy number.
 
