@@ -408,7 +408,7 @@ In this task, you will use the Azure Cloud shell to retrieve the IP address of t
 5. At the prompt, you will retrieve the public IP address of the SqlServer2008 VM, which you will use to connect to the database on that server. Enter the following PowerShell command, **replacing hands-on-lab-SUFFIX** with your resource group name:
 
     ```powershell
-    az vm list-ip-addresses -g <hands-on-lab-SUFFIX> -n SqlServer2008
+    az vm list-ip-addresses -g <your-resource-group-name> -n SqlServer2008
     ```
 
     > **NOTE**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -812,10 +812,10 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
 
 In this task, you will assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
 
-1. Next, run the following command to get the name of your Key Vault, replacing `<hands-on-lab-SUFFIX>` with the name of your resource group.
+1. Next, run the following command to get the name of your Key Vault, replacing `<your-resource-group-name>` with the name of your resource group.
 
     ```powershell
-    az keyvault list -g <hands-on-lab-SUFFIX> --output table
+    az keyvault list -g <your-resource-group-name> --output table
     ```
 
 2. In the output from the previous command, copy the value from the `name` field into a text editor. You will use it in the next step and also for configuration of your web and API apps.
@@ -1096,10 +1096,10 @@ In this task, you will prepare your Web App to work with the API App by adding t
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-4. At the Cloud Shell prompt, run the following command to retrieve both your API App URL and your Web App, making sure to replace `<hands-on-lab-SUFFIX>` with your resource group name:
+4. At the Cloud Shell prompt, run the following command to retrieve both your API App URL and your Web App, making sure to replace `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az webapp list -g <hands-on-lab-SUFFIX> --output table
+    az webapp list -g <your-resource-group-name> --output table
     ```
 
     > **NOTE**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -1111,13 +1111,13 @@ In this task, you will prepare your Web App to work with the API App by adding t
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-web-app-name>`: Replace with your Function App name, which you copied in the previous step.
-    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
+    - `<your-resource-group-name>`: Replace with your resource group name.
     - `<your-storage-account-sas-token>`: Replace with the `policies` container URL you copied into a text editor previously.
 
     ```powershell
     $webAppName = "<your-web-app-name>"
     $defaultHostName = "<your-api-default-host-name>"
-    $resourceGroup = "<hands-on-lab-SUFFIX>"
+    $resourceGroup = "<your-resource-group-name>"
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "ApiUrl=https://$defaultHostName"
     ```
 
@@ -1276,10 +1276,10 @@ In this task, you will prepare your Azure Function App to work with your new Fun
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-4. At the prompt, retrieve your Function App name by running the following command at the Cloud Shell prompt, replacing `<hands-on-lab-SUFFIX>` with your resource group name:
+4. At the prompt, retrieve your Function App name by running the following command at the Cloud Shell prompt, replacing `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az functionapp list -g <hands-on-lab-SUFFIX> --output table
+    az functionapp list -g <your-resource-group-name> --output table
     ```
 
     > **NOTE**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -1291,14 +1291,14 @@ In this task, you will prepare your Azure Function App to work with your new Fun
 6. For the next command, you will need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
-    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
+    - `<your-resource-group-name>`: Replace with your resource group name.
     - `<your-policies-container-url>`: Replace with the `policies` container URL you copied into a text editor previously.
     - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
 
     ```powershell
     $storageUrl = "<your-policies-container-url>"
     $storageSas = "<your-storage-account-sas-token>"
-    az functionapp config appsettings set -n <your-function-app-name> -g <hands-on-lab-SUFFIX> --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
+    az functionapp config appsettings set -n <your-function-app-name> -g <your-resource-group-name> --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
     ```
 
 ### Task 2: Add environment variables
@@ -1481,10 +1481,10 @@ In this task, you will add the URL of your Azure Function App to the Application
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-4. At the prompt, retrieve your Function App URL by running the following command at the Cloud Shell prompt, replacing `<hands-on-lab-SUFFIX>` with your resource group name:
+4. At the prompt, retrieve your Function App URL by running the following command at the Cloud Shell prompt, replacing `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az functionapp list -g <hands-on-lab-SUFFIX> --output table
+    az functionapp list -g <your-resource-group-name> --output table
    ```
 
     > **NOTE**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -1493,10 +1493,10 @@ In this task, you will add the URL of your Azure Function App to the Application
 
     ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
 
-6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name, making sure to replace `<hands-on-lab-SUFFIX>` with your resource group name:
+6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name, making sure to replace `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az webapp list -g <hands-on-lab-SUFFIX> --output table
+    az webapp list -g <your-resource-group-name> --output table
     ```
 
 7. In the output, you will copy the name of Web App (the resource name will start with contosoins**web**) into a text editor for use below.
@@ -1516,13 +1516,13 @@ In this task, you will add the URL of your Azure Function App to the Application
     - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
     - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
     - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
-    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
+    - `<your-resource-group-name>`: Replace with your resource group name.
 
     ```powershell
     $webAppName = "<your-web-app-name>"
     $defaultHostName = "<your-function-app-default-host-name>"
     $defaultHostKey = "<your-function-app-default-host-key>"
-    $resourceGroup = "<hands-on-lab-SUFFIX>"
+    $resourceGroup = "<your-resource-group-name>"
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
     ```
 
@@ -1859,10 +1859,10 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-4. At the Cloud Shell prompt, run the following command to retrieve your Web App name, making sure to replace `<hands-on-lab-SUFFIX>` with your resource group name:
+4. At the Cloud Shell prompt, run the following command to retrieve your Web App name, making sure to replace `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az webapp list -g <hands-on-lab-SUFFIX> --output table
+    az webapp list -g <your-resource-group-name> --output table
     ```
 
 5. In the output, you will copy the name of Web App (the resource name will start with contosoins**web**) into a text editor for use below.
@@ -1875,14 +1875,14 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
     - `<your-apim-url>`: Replace with the URL of your API Management instance.
     - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
     - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Managment, that is to be used for the `PolicyDocumentsPath` setting.
-    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
+    - `<your-resource-group-name>`: Replace with your resource group name.
 
     ```powershell
     $webAppName = "<your-web-app-name>"
     $apimUrl = "<your-apim-url>"
     $apimKey = "<your-apim-subscription-key>"
     $policyDocsPath = "<your-apim-function-app-path>"
-    $resourceGroup = "<hands-on-lab-SUFFIX>"
+    $resourceGroup = "<your-resource-group-name>"
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
     ```
 
