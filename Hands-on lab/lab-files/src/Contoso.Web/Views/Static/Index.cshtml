@@ -24,7 +24,6 @@
     <script type="text/javascript">
         if (!contoso) var contoso = {};
         if (!contoso.policyconnect) contoso.policyconnect = {};
-        alert('@Model.ApiUrl');
         contoso.policyconnect.vars = {
             rootPath: '@Model.ApiUrl',
             azureFunctionsProxyUrl: '@Model.PolicyDocumentsPath' + '/policies/{policyHolder}/{policyNumber}'

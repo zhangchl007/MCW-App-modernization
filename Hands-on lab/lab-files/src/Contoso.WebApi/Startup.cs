@@ -36,9 +36,8 @@ namespace Contoso.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // ******************************************
-            // TODO #2: Uncomment the code in this block to set the database connection from a Key Vault secret
-            services.AddDbContext<ContosoDbContext>(options =>
-              options.UseSqlServer(Configuration["SqlConnectionString"]));
+            // TODO #2: Update the code in this block to set the database connection from a Key Vault secret
+            services.AddDbContext<ContosoDbContext>(// Add the options to retrieve the database connection string from key vault)
             // ******************************************
 
             // Register the Swagger generator
@@ -47,13 +46,6 @@ namespace Contoso.WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PolicyConnect API", Version = "v1" });
             });
         }
-
-        /*
-            // ******************************************
-            // TODO #3: Uncomment the code in this block to set the database connection from a Key Vault secret
-            services.AddDbContext<ContosoDbContext>(// Add the options to retrieve the database connection string from key vault)
-            // ******************************************
-         */
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
