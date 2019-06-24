@@ -488,7 +488,7 @@
             "type": "Microsoft.CognitiveServices/accounts",
             "kind": "CognitiveServices",
             "sku": {
-                "name": "SO"
+                "name": "S0"
             },
             "properties": {
                 "apiProperties": {
