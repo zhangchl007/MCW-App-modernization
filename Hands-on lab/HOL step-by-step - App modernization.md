@@ -66,22 +66,18 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Create an Azure Function in Visual Studio](#Task-3-Create-an-Azure-Function-in-Visual-Studio)
     - [Task 4: Test the function locally](#Task-4-Test-the-function-locally)
     - [Task 5: Deploy the function to your Azure Function App](#Task-5-Deploy-the-function-to-your-Azure-Function-App)
-    - [Task 6: Test document retrieval from web app](#Task-6-Test-document-retrieval-from-web-app)
-    - [Task 2: Define server size and rules for auto-scaling](#Task-2-Define-server-size-and-rules-for-auto-scaling)
-    - [Task 3: Visual Studio IDE integration](#Task-3-Visual-Studio-IDE-integration)
-    - [Task 4: Configure backups](#Task-4-Configure-backups)
-  - [Exercise 7: Add Cognitive Search for policy documents](#Exercise-7-Add-Cognitive-Search-for-policy-documents)
+    - [Task 6: Enable Application Insights on the Function App](#Task-6-Enable-Application-Insights-on-the-Function-App)
+    - [Task 7: Add Function App URL to your Web App Application settings](#Task-7-Add-Function-App-URL-to-your-Web-App-Application-settings)
+    - [Task 8: Test document retrieval from web app](#Task-8-Test-document-retrieval-from-web-app)
+    - [Task 9: View Live Metrics Stream](#Task-9-View-Live-Metrics-Stream)
+  - [Exercise 8: Add Cognitive Search for policy documents](#Exercise-8-Add-Cognitive-Search-for-policy-documents)
     - [Task 1: Add Azure Search to Blob Storage account](#Task-1-Add-Azure-Search-to-Blob-Storage-account)
     - [Task 2: Review search results](#Task-2-Review-search-results)
-  - [Exercise 8: Import and publish APIs into APIM](#Exercise-8-Import-and-publish-APIs-into-APIM)
-    - [Task 1: Import Web Api](#Task-1-Import-Web-Api)
-  - [Exercise 9: Update web app](#Exercise-9-Update-web-app)
-    - [Task 1: Update to use Key Vault](#Task-1-Update-to-use-Key-Vault)
-    - [Task 2: Update to use APIs](#Task-2-Update-to-use-APIs)
-    - [Task 3: Add Application Insights](#Task-3-Add-Application-Insights)
-    - [Task 4: Create a deployment slot](#Task-4-Create-a-deployment-slot)
-    - [Task 5: Deploy updated web app to new deployment slot via VS](#Task-5-Deploy-updated-web-app-to-new-deployment-slot-via-VS)
-    - [Task 6: View Live Metrics in App Insights in the Azure portal](#Task-6-View-Live-Metrics-in-App-Insights-in-the-Azure-portal)
+  - [Exercise 9: Import and publish APIs into APIM](#Exercise-9-Import-and-publish-APIs-into-APIM)
+    - [Task 1: Import API App](#Task-1-Import-API-App)
+    - [Task 2: Import Function App](#Task-2-Import-Function-App)
+    - [Task 3: Open Developer Portal and retrieve you API key](#Task-3-Open-Developer-Portal-and-retrieve-you-API-key)
+    - [Task 4: Update Web App to use API Management Endpoints](#Task-4-Update-Web-App-to-use-API-Management-Endpoints)
   - [Exercise 10: Create an app in PowerApps](#Exercise-10-Create-an-app-in-PowerApps)
     - [Task 1: Sign up for a PowerApps account](#Task-1-Sign-up-for-a-PowerApps-account)
     - [Task 2: Create new SQL connection](#Task-2-Create-new-SQL-connection)
@@ -90,7 +86,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 5: Edit the app settings and run the app](#Task-5-Edit-the-app-settings-and-run-the-app)
   - [After the hands-on lab](#After-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#Task-1-Delete-Azure-resource-groups)
-    - [Task 2: Delete the contoso-insurance service principal](#Task-2-Delete-the-contoso-insurance-service-principal)
+    - [Task 2: Delete the contoso-apps service principal](#Task-2-Delete-the-contoso-apps-service-principal)
 
 <!-- /TOC -->
 
@@ -1394,7 +1390,7 @@ In this task, you will run your Function locally through the Visual Studio debug
 
     ![The Function console window is displayed with the `PolicyDocs` local URL highlighted.](media/vs-function-app-debug-console.png "Debug")
 
-4. Copy the URL that appears after `PolicyDocs`, and paste it into a text editor. The copied value should look like: 
+4. Copy the URL that appears after `PolicyDocs`, and paste it into a text editor. The copied value should look like:
 
     ```http
     http://localhost:7071/api/policies/{policyHolder}/{policyNumber}
@@ -1441,154 +1437,141 @@ In this task, you will deploy your function into an Azure Function App, where it
 
 6. The Azure Function App is now ready for use within the PolicyConnect web application.
 
-### Task 6: Test document retrieval from web app
+### Task 6: Enable Application Insights on the Function App
 
-### Task 2: Define server size and rules for auto-scaling
+In this task, you will add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
 
-In this task you will check the options that you have to scale resources of your web apps.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsfuncUNIQUE-IDENTIFIER** App service from the list of resources.
 
-1. In the Azure Portal, select **App Service Plans** in the left-hand menu. You will see a list of your App Service plans. Click to select the App Services Plan.
+   ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-    ![Azure Portal with App Service Plans window selected. App Service plan is highlighted to select.](media/e4-14.png "Azure Portal - App Service Plans")
+2. On the Function App blade, select **Configure Application Insights to capture function logs.** at the top of the blade.
 
-2. On the App Service plan screen, select **Scale up (App Service plan)** option under **Settings** menu.
+    ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
 
-    ![App Service plan menu with Scale up option under Settings menu highlighted to select.](media/e4-15.png "App Service plan - Scale up")
+3. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-ai-SUFFIX, and then select **OK**
 
-3. In the **Scale up (App Service plan)** window you can select the size of your app plan. In the upper part you can choose between different recommended workloads like **Dev/Test** and **Production**. You can also see some recommended pricing tiers, with their characteristics and estimated price.
+    ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
 
-    ![App service scale up window, with default workloads section and recommended pricing tiers sections highlighted](media/e4-16.png "App Service plan - Scale up")
+4. Once the Application Insights resource is created, return to the Overview blade of your Funtion App, and select **Application Insights** under Configured Features.
 
-4. You can select a different workload and resources for your applications according to what you need.
+    ![Application Insights is highlighted under Configured features.](media/function-app-app-insights-link.png "Function App")
 
-5. In order to define rules for autoscale, select the **Scale out (App Service plan)** option under the **Settings** menu in the App Service plan screen. If the autoscale is not enabled then select **Enable autoscale**.
+5. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
 
-    ![App Service plan menu with Scale out option under Settings menu highlighted to select. Enable autoscale option is highlighted.](media/e4-17.png)
+    ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
-6. Provide a name for the scale setting, and then click **Add a rule**. 
+    > **NOTE**: You may see a message that your app is offline. We will address this below.
 
-   ![App Service plan scale out screen. Autoscale setting name text box is highlighted with a provided name. Add rule link is highlighted](media/e4-18.png "Autoscale rule definition")
+6. Leave the Live Metrics Stream window open for reference in the next task.
 
-7. Notice the scale rule options that open as a context pane on the right side. By default, this sets the option to scale your instance count by 1 if the CPU percentage of the resource exceeds 70 percent. Leave it at its default values and click **Add**. 
+### Task 7: Add Function App URL to your Web App Application settings
 
-    ![App Service scale rule dialog with default settings. Add button is highlighted to select.](media/e4-19.png "Scale rule dialog")
+In this task, you will add the URL of your Azure Function App to the Application settings configuration of your Web App.
 
-8. Note the recommendation in the Azure Portal that says: "It is recommended to have at least one scale in rule." To do so, select **Add a rule** and set the following information:
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-    - **Operator**: Select Less than.
-    - **Threshold**: 20.
-    - **Operation** Select Decrease count by.
+    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
-    ![App service scale rule with scale in rule definition. Operator is set to Less than, Threshold is set to 20 and Operation is set to Decrease count by. Add button is highlighted to select.](media/e4-20.png "Scale rule dialog")
+2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-9. Click **Add**.
+    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-10. Now you can verify that there is a scale setting that scales out/scales in based on CPU usage.
+3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
-    ![App Service plan scale out screen with scale setting that scales out/scales in based on CPU usage highlighted.](media/e4-21.png)
+    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
-11. Click **Save**.
+4. At the prompt, retrieve your Function App URL by running the following command at the Cloud Shell prompt, replacing `<hands-on-lab-SUFFIX>` with your resource group name:
 
-### Task 3: Visual Studio IDE integration
+    ```powershell
+    az functionapp list -g <hands-on-lab-SUFFIX> --output table
+   ```
 
-In this task you will learn how Cloud Explorer lets you view your Azure resources, check their properties and perform actions from within Visual Studio.
+    > **NOTE**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
-1. To view the resources associated with your Azure account, you must add them to the Cloud Explorer. You can find this under the menu *View* -> *Cloud Explorer*.
+5. In the output, copy the **DefaultHostName** value into a text editor for use below.
 
-2. In **Cloud Explorer**, choose the **Account Management** button.
+    ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
 
-    ![Cloud Explorer window with Account Management button highlighted.](media/e4-22.png "Cloud Explorer Account Management")
+6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name, making sure to replace `<hands-on-lab-SUFFIX>` with your resource group name:
 
-3. Select **Manage accounts**.
+    ```powershell
+    az webapp list -g <hands-on-lab-SUFFIX> --output table
+    ```
 
-    !["Cloud Explorer window with Manage Accounts button highlighted.](media/e4-23.png "Cloud Explorer Manage accounts")
+7. In the output, you will copy the name of Web App (the resource name will start with contosoins**web**) into a text editor for use below.
 
-4. Log in to the Azure account whose resources you want to browse.
-   
-5. Once logged in to an Azure account, the subscriptions associated with that account are displayed. Select the check boxes for the account subscriptions you want to browse and then click **Apply**.
+    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
-    ![Cloud Explorer. Select Azure subscriptions to display. Apply button is highlighted to select.](media/e4-24.png "Cloud Explorer - Azure subscriptions")
+8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and on the overview blade, select **Function app settings**.
 
-6. After selecting the subscriptions whose resources you want to browse, those subscriptions and resources will be displayed in the **Cloud Explorer**.
+    ![Function app settings is highlighted under Configured Features](media/function-app-configured-features-app-settings.png "Function App")
 
-    ![Cloud Explorer with Azure account resources listed.](media/e4-25.png "Cloud Explorer with Azure account resources listed")
+9. On the Function app settings tab, locate the **Host Keys** section, and copy the **default** key by selecting the **Copy** Action link to the right of the key. Paste the value into a text editor for reference below.
 
-7. In the **Cloud Explorer**, you can choose how you want to view your Azure Resources.
+    ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
 
-   - **Resource Types view**: The common view used on the Azure portal. It shows your Azure resources categorized by their type, such as web apps, storage accounts, and virtual machines.
-   - **Resource Groups view**: Categorizes Azure resources by the Azure resource group with which they're associated.
+10. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
-    ![Cloud Explorer with resource view dropdown highlighted to select. Resource types and Resource groups options are displayed.](media/e4-26.png "Cloud Explorer Resource views")
+    - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
+    - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
+    - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
+    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
 
-8. To navigate to an Azure resource and view its information in **Cloud Explorer**, expand the item's type or associated resource group and then select the resource. When you select a resource, information appears in two tabs (**Actions** and **Properties**) at the bottom of **Cloud Explorer**.
+    ```powershell
+    $webAppName = "<your-web-app-name>"
+    $defaultHostName = "<your-function-app-default-host-name>"
+    $defaultHostKey = "<your-function-app-default-host-key>"
+    $resourceGroup = "<hands-on-lab-SUFFIX>"
+    az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
+    ```
 
-    In the next image you can see some of the options exist for a web app selected in the **Cloud Explorer**.
+11. In the output, you will see the newly added `PolicyDocumentsPath` setting in your Web App's application settings.
 
-    ![Cloud Explorer with Azure web app selected. Actions and properties tab and its options are listed.](media/e4-27.png "Cloud Explorer - Resource actions and properties")
+    ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
 
-9. You can also find resources using the **Search box** in the **Cloud Explorer**.
+### Task 8: Test document retrieval from web app
 
-    ![Cloud Explorer with search box highlighted.](media/e4-28.png "Cloud Explorer - Search for resources")
+In this task, you will open the PolicyConnect web app and download a policy document. Recall from above that this resulted in a page not found error when you tried it previously.
 
-### Task 4: Configure backups
+1. Open a web browser and navigate to the URL for your published Web App.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to the *contosoinsuranceweb* app you deployed on Task 1.
+    > **NOTE**: You can retrieve the URL from the Overview blade of your Web App resource in the Azure portal if you aren't sure what it is.
 
-2. Select **Backups** under **Settings** menu.
+    ![The URL field in highlighted on the Web App overview blade.](media/web-app-url.png "Web App")
 
-    ![ContosoInsuranceWeb app on Azure Portal. Backups option are highlighted to select.](media/e4-29.png "Azure Portal - contosoinsuranceweb overview")
+2. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
-3. Click on the **Backup** section to start configuring the backup for the web app.
+    - **Username**: demouser
+    - **Password**: Password.1!!
 
-    ![Backups screen for contosoinsuranceweb app. Configure backup message is highlighted to select.](media/e4-30.png "Azure web app backups screen")
+    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
-4. You need to configure a storage where the backups will be stored. To do so, select **Storage Settings** on the **Backup Storage** section.
+3. Once logged in, select **Managed Policy Holders** from the top menu.
 
-    ![Backup Storage configuration. Storage Settings section are highlighted to select.](media/e4-31.png "Backup configuration - Backup Storage")
+    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
-5. Select a Storage account and the **Containers** screen will be displayed.
+4. On the Policy Holders page, you will see a list of policy holders, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
-6. Select the **+ Container** option to add a Container.
+    ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-    ![Backup storage configuration with storage account selected. + Container option is highlighted to select](media/e4-32.png "Backup container selection")
+5. On the Policy Holder Details page, hover your mouse cursor over the document link under **File Path**, and notice that the path that is displayed at the bottom now points to your Function App, and that the policy holder's last name and policy number are inserted into the path.
 
-7. Enter the following data for the container.
+    ![The PDF document link is highlighted and the underlying URL is highlighted at the bottom of the browser window.](media/web-app-policy-holder-details-file-path.png "PolicyConnect")
 
-    - **Name**: backups.
-    - **Public access level**: Select Private (no anonymous access).
+6. Now, select the link under **File Path**, and the policy document will be downloaded.
 
-    ![Container creation dialog with appropriate values into fields. OK button is highlighted to select.](media/e4-33.png "Backup storage container creation")
+    ![The download policy document is displayed.](media/policy-document-download.png "PolicyConnect")
 
-8. Click **Ok**.
+### Task 9: View Live Metrics Stream
 
-9. Select the created container and click on **Select**.
+1. Return to the Application Insights Live Metrics Stream in the Azure portal.
 
-    ![Backup storage account selection with created container selected. Select button is highlighted.](media/e4-34.png "Backup storage container selection")
+2. The page should now display a dashboard featuring telemetry for requests hitting your Function App. Look under the Sample Telemetry section on the right, and you will see the document request you just made listed. Select the Trace whose message begins with "PolicyDocs function received a request...", and observe the details in the panel below it.
 
-10. Now you can see the **Backup Storage** configured.
+    ![Sample telemetry data is displayed on the Live Metrics Stream page.](media/application-insights-sample-telemetry.png "Application Insights")
 
-    ![Backup Storage section with Storage Account selected to store backups](media/e4-35.png "Backup Configuration - Backup Storage")
-
-11. At this point you can enable the scheduled backups option to start making backups of the web app. To do so, select **On** into **Scheduled backup** under **Backup Schedule** section.
-
-    ![Backup schedule enable option is highlighted. Scheduled backup settings are displayed with default values.](media/e4-36.png "Backup schedule configuration")
-
-12. You can check the Backup Schedule settings. The backup is configured by default to be done once a day and be retained for 30 days.
-
-13. In the Backup Configuration page, you can also configure **Backup Database**, then select the databases you want to include in the backups.
-
-    ![Backup database section on Backup configuration page.](media/e4-37.png "Backup Configuration - Backup Database")
-
-14. Click **Save** to finish the backup configuration.
-
-    ![Backup configuration screen with Save button highlighted to select.](media/e4-38.png "Backup Configuration Save")
-
-15. Now you can see that the backup is configured. You can also see a list with the recent backups, a button **Backup** to start the process manually as well as the **Restore** button if you want to restore one of the existing backups.
-
-    ![App Services Backup screen with message indicating that Backup is configured. Also shows a list of recent backups that can be restored.](media/e4-39.png "App Service Backup Configuration")
-
-
-## Exercise 7: Add Cognitive Search for policy documents
+## Exercise 8: Add Cognitive Search for policy documents
 
 Duration: 15 minutes
 
@@ -1733,160 +1716,179 @@ In this task, you will run a search query against your search index to see how t
 
 8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and will help to make documents and their contents more usable by Contoso, Ltd..
 
-## Exercise 8: Import and publish APIs into APIM
+## Exercise 9: Import and publish APIs into APIM
 
 Duration: 30 minutes
 
-### Task 1: Import Web Api
+In this exercise, you will publish your API App and Function App API endpoints through API Management.
 
-1. On the hands-on-lab resource group overview blade, filter the resources by API Management Services and select the Contoso Insurance Management Service.
+### Task 1: Import API App
 
-    ![hands-on-lab resource group overview blade. The Contoso Insurance API management service is highlighted.](media/e8-t1-management-service.png "API Management Service")
+In this task, you will import your API App into APIM, using the OpenAPI specification, which leverages the Swagger definition associated with your API app.
 
-2. On the API Management service select the **APIs** blade then click on **+ Add API** and select **API App**.
+1. In the Azure portal, navigate to your **API Management Service** by selecting it from the list of resources under your hands-on-lab-SUFFIX resource group.
 
-    ![API Management Service with APIs blade selected. A button to add a new API App is highlighted](media/e8-t1-add-api.png "API Management Service Add API App")
+    ![The API Management service is highlighted in the resources list.](media/azure-resources-api-management.png "API Management service")
 
-3. A dialog to Create from API App will appear.
+2. On the API Management service select the **APIs** blade, and then select **+ Add API** and select **OpenAPI**.
 
-    ![Create from API App dialog, the Browse API APP dialog is highlighted.](media/e8-t1-create-api-dialog.png "Create from API App")
+    ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/e8-t1-add-api.png "API Management Service Add OpenAPI")
 
-4. On the API App field, place the url for the API specification that you can find on the swagger of the API by clicking the swagger.json link.
+3. A dialog to Create from OpenAPI specification will be displayed. Select **Full** to expand the options that will be entered.
 
-    ![On the swagger of the API the link for the swagger.jason is highlighted](media/e8-t1-api-definition-url.png "API definition URL")
+    ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
 
-5. In the Products field add the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
+4. You will retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This will be the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contosoinsapijt7yc3zphxfda.azurewebsites.net/swagger>).
 
-6. The dialog should finally look as follows, then click the **Create** button.
+5. On the Swagger page for your API App, right-click on the `swagger/v1/swagger.json` file link just below the PolicyConnect API title, and select **Copy link address**.
 
-    ![Create from OpenAPI specification dialog is filled and the create button is highlighted.](media/e8-t1-create-from-openapi.png "Create API")
+    ![A context menu is displayed next to the swagger/v1/swagger.json link, and Copy link address is highlighted.](media/swagger-copy-json-link-address.png "Swagger")
 
-7. You can see the API on the developer portal by clicking the button on the API Managment Service Overview blade.
+6. Return to the API Management Create from OpenAPI specification dialog, and enter the following:
+
+    - **OpenAPI specification**: Paste the copied link address from your Swagger page.
+    - **Display name**: This will automatically populate from the Swagger definition.
+    - **Name**: This will automatically populate from the Swagger definition.
+    - **URL scheme**: Choose **HTTPS**.
+    - **Products**: Select the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
+
+    ![Create from OpenAPI specification dialog is filled and the create button is highlighted.](media/open-api-dialog-complete.png "Create OpenAPI specification")
+
+7. After creating the API, select the **PolicyConnect API** from the list of APIs on the left, and on the Design tab, with All operations selected, select the **Policies** icon in the Inbound process tile.
+
+    ![On the All operations section, the Inbound processing policies icon is highlighted.](media/apim-inbound-processing.png "API Management")
+
+8. On the Policies screen, insert the code below between the `<inbound></inbound>` tags, and below the `<base />` tag. You will need to **replace** `<your-web-app-url>` between the `<origin></origin>` tags with the URL for your Web App.
+
+    ```xml
+    <cors allow-credentials="true">
+        <allowed-origins>
+            <origin><your-web-app-url></origin>
+        </allowed-origins>
+        <allowed-methods>
+            <method>*</method>
+        </allowed-methods>
+        <allowed-headers>
+            <header>*</header>
+        </allowed-headers>
+        <expose-headers>
+            <header>*</header>
+        </expose-headers>
+    </cors>
+    ```
+
+    You're updated policies value should look similar to the following:
+
+    ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
+
+    > The policy you added is for handling CORS.
+
+9. Select **Save**.
+
+10. Next, select the **Settings** tab. On the Settings tab, you will need to enter the URL of your API App, starting with `https://`. **NOTE**: You can copy this value from the text edit you have been using to store values throughout this lab.
+
+    ![The settings tab for the PolicyConnect API is displayed, with the API App url entered into the Web Service URL field.](media/apim-policyconnect-api-settings.png "API Settings")
+
+11. Select **Save** on the Settings tab.
+
+### Task 2: Import Function App
+
+In this task, you will import your Function App into APIM.
+
+1. Select **+ Add API** again, and this time choose **Function App** as the source of the API.
+
+    ![Add API is highlighted in the left-hand menu, and the Function App tile is highlighted.](media/api-management-add-function-app.png "API Management")
+
+2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
+
+3. In the Import Azure Functions blade, select **Function App** and then select the your Function App from the list, and click **Select**.
+
+    ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
+
+    > You can filter using your resource group name, if needed.
+
+4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and click **Select**.
+
+    ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
+
+5. Back on the Create from Function App dialog in APIM, all of the properties for the API will be set from your Azure Function. Set the Products to Unlimited, as you did previously, and select **Create**.
+
+    ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
+
+### Task 3: Open Developer Portal and retrieve you API key
+
+In this task, you will quickly look at the APIs in the Developer Portal, and retrieve your key
+
+1. Open the APIM Developer Portal by selecting **Developer portal**
 
     ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/e8-t1-developer-portal.png "Developer Portal")
 
-8. In the portal you can check the list of APIs and endpoints as well as useful information to use them. 
+2. In the portal you can check the list of APIs and endpoints as well as useful information to use them.
 
     ![API developer portal with Contoso Insurance Web API displayed.](media/e8-t1-api-developer-portal.png "API Developer Portal")
 
-9. In the Azure API Management portal, select **APIs**, choose the Contoso API.
+3. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
 
-10. Select the **Settings** option, look for the field *Web Service Url* and enter the URL of the Web API Service:
+    ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
 
-![Azure API Management Web Service Url](media/e8-api-management-web-service-url.png)
+4. The API page allows you to view and test your API endpoints directly in the Developer portal. You will also find a link to your **Profile** that allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you will need to retrieve so the PolicyConnect web application can access the APIs through APIM.
 
-## Exercise 9: Update web app
+    ![The Profile link is highlighted on the API page for the Function App API.](media/apim-profile.png "API Management")
 
-Duration: 30 minutes
+5. Copy the highlighted request URL. This will be the new value you use for the `PolicyDocumentsPath` setting in the next task.
 
-### Task 1: Update to use Key Vault
+    > **NOTE**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that will change for that is the base URL, which will be for APIM and not your API App.
 
-1. Open the **Contoso.Apps.Insurance.Data.sln** solution.
+6. Now,  select the **Profile** link on the API page to navigate to your subscription page.
 
-2. Install the following NuGet Packages to the **WebApi** project.
+7. On the Your subscriptions page, select **Show** next to the Primary Key for the **Unlimited** Product, and then copy the key value, and paste it into a text editor for use below.
 
-    - [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication)
-    - [Microsoft.Azure.KeyVault](https://www.nuget.org/packages/Microsoft.Azure.KeyVault)
+### Task 4: Update Web App to use API Management Endpoints
 
-3. Edit the class **EncryptionHelper.cs** located at **Web** > **Contoso.Apps.Insurance.WebApi**. Add the following snippet of code to the **SetConnectionString** method so it will fetch secrets from **Azure Key Vault**.
+In this task, you will use the Azure Cloud Shell and Azure CLI to update the `ApiUrl` and `PolicyDocumentsPath` settings for the PolicyConnect Web App. You will also add a new setting to or the APIM access key.
 
-    ```var azureServiceTokenProvider = new AzureServiceTokenProvider();
-    var keyVaultClient = new KeyVaultClient(new KeyVaultClient.AuthenticationCallback(azureServiceTokenProvider.KeyVaultTokenCallback));
-    var secret = await keyVaultClient
-        .GetSecretAsync(azureKeyVaultConnectionString)
-        .ConfigureAwait(false);
+1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
+
+    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+
+2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
+
+    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+
+3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
+
+    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+
+4. At the Cloud Shell prompt, run the following command to retrieve your Web App name, making sure to replace `<hands-on-lab-SUFFIX>` with your resource group name:
+
+    ```powershell
+    az webapp list -g <hands-on-lab-SUFFIX> --output table
     ```
 
-4. Edit the **appsettings.json** file by adding the following property:
-```
-"AzureKeyVaultConnectionString": "https://<YOUR_KEY_VAULT>.vault.azure.net/secrets/<SECRET_NAME>"
-```
+5. In the output, you will copy the name of Web App (the resource name will start with contosoins**web**) into a text editor for use below.
 
-### Task 2: Update to use APIs
+    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
-1. Open the **app.js** file, located within the **Contoso.Apps.Insurance.Web** project in the **wwwroot** > **js** > **app** folder.
+6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
-![app.js file highlighted.](media/webapi-update-webapp.png)
+    - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
+    - `<your-apim-url>`: Replace with the URL of your API Management instance.
+    - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
+    - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Managment, that is to be used for the `PolicyDocumentsPath` setting.
+    - `<hands-on-lab-SUFFIX>`: Replace with your resource group name.
 
-2. Scroll down to the bottom of the file where you see the line (126) that begins with var **endpoints = {...}**. Change the URL in quotes to the same URL you entered for the RootWebApiPath application variable, which is the root location of your Web API, (e.g. https://<WEBAPI_URL>.azurewebsites.net).
+    ```powershell
+    $webAppName = "<your-web-app-name>"
+    $apimUrl = "<your-apim-url>"
+    $apimKey = "<your-apim-subscription-key>"
+    $policyDocsPath = "<your-apim-function-app-path>"
+    $resourceGroup = "<hands-on-lab-SUFFIX>"
+    az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
+    ```
 
-![API URL highlighted.](media/webapi-change-apiurl.png)
+7. In the output, you will see the newly added and updated settings in your Web App's application settings. The settings will be updated, and your web app will be restarted.
 
-3. Save **app.js**.
-
-### Task 3: Add Application Insights
-
-1. Right click the web **Contoso.Apps.Insurance.Web** project, then click on **Add** > **Application Insights Telemetry**.
-
-![Application Insights Telemetry highlighted.](media/webapp_add_insights.png)
-
-2. Once prompted with the Application Insights tab inside Visual Studio, click on **Get Started**.
-
-![Get Started button highlighted.](media/webapp_insights_getstarted.png)
-
-3. Select or add the Azure account you have been using.
-
-4. Select the subscription you have been using.
-
-5. Select the existing **application insights** resource.
-
-6. Click on **Register**. Visual Studio will kick off the process of provisioning the web app project with all the resources needed for Application Insights. Once it finishes, it will display a "Configured 100%" success message.
-
-![Insight configuration highlighted.](media/webapp_insights_config.png)
-
-7. Make sure you have installed Application Insights version 2.2.0 (or later) so we can use Live Metrics Stream later on in the lab. To do so, right click the **Web** project, then click on **Manage NuGet Packages...**. Search for **Microsoft.ApplicationInsights.AspNetCore** and update it if necessary.
-
-### Task 4: Create a deployment slot
-
-1. Navigate to the Azure Portal, and locate the app service that has been used for the deployment of the WebApp.
-
-2. Click on the **Deployment Slots** option from the left-hand side menu.
-
-3. Click on **Add Slot**.
-
-    ![Deployment Slots option from left-hand side menu, as well as Add Slot button highlighted.](media/webapp_add_slot.png)
-
-4. Provide a name for the brand-new deployment slot.
-
-5. Clone settings from existing Deployment Slot.
-
-6. Click on **Add**.
-
-    ![Deployment Slots data provided.](media/webapp_add_slot_options.png)
-
-### Task 5: Deploy updated web app to new deployment slot via VS
-
-1. Head back to Visual Studio and right click on the web **Contoso.Apps.Insurance.Web** project, then click on **Publish...**
-
-2. Select the **Select Existing** radio button in the "App Service" option.
-
-3. Click on **Publish**.
-
-4. In the **App Service** screen prompted, make sure the account that has been used is the one selected. Select the subscription you have been using.
-
-5. In **View** select the **Resource Group** option.
-
-6. Select the Deployment Slot created in the previous steps.
-
-7. Click **Ok**.
-
-    ![Subscription and Deployment Slot highlighted.](media/webapp_select_existing_slot.png)
-
-### Task 6: View Live Metrics in App Insights in the Azure portal
-
-In order to enable Live Metrics stream for your web app, it is required to install an additional NuGet Package.
-
-1. Install the following NuGet Package to the **Web App** project.
-
-    - [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/)
-
-2. Redeploy your app.
-
-3. Head back to Azure Portal and open the Application Insights resource for your app, and then open **Live Metrics Stream**.
-
-    ![Live Metrics Stream highlighted.](media/webapp_live_metric.png)
-
-4. You will see real-time data fetched from your app using **Application Insights**.
+8. In a web browser, navigate to the Web app URL, and verify you still see data when you select one of the tabs.
 
 ## Exercise 10: Create an app in PowerApps
 
@@ -1998,9 +2000,9 @@ In this exercise, you will de-provision all Azure resources that were created in
 
 1. In the Azure portal, select **Resource groups** from the left-hand menu, and locate and delete the **hands-on-lab-SUFFIX** following resource group.
 
-### Task 2: Delete the contoso-insurance service principal
+### Task 2: Delete the contoso-apps service principal
 
 1. In the Azure portal, select **Azure Active Directory** and then select **App registrations**.
-2. Select the **contoso-insurance** application, and select **Delete** on the application blade.
+2. Select the **contoso-apps** application, and select **Delete** on the application blade.
 
 You should follow all steps provided *after* attending the Hands-on lab.

@@ -19,7 +19,8 @@ namespace Contoso.Web.Controllers
             var config = new WebAppConfiguration
             {
                 ApiUrl = _configuration["ApiUrl"],
-                PolicyDocumentsPath = _configuration["PolicyDocumentsPath"]
+                PolicyDocumentsPath = _configuration["PolicyDocumentsPath"],
+                ApimSubscriptionKey = _configuration["ApimSubscriptionKey"]
             };
             return View(config);
         }

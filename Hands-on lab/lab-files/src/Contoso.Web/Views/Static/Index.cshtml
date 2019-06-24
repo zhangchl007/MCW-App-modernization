@@ -26,8 +26,9 @@
         if (!contoso.policyconnect) contoso.policyconnect = {};
         contoso.policyconnect.vars = {
             rootPath: '@Model.ApiUrl',
-            azureFunctionsProxyUrl: '@Model.PolicyDocumentsPath' + '/policies/{policyHolder}/{policyNumber}'
-        }
+            azureFunctionsProxyUrl: '@Model.PolicyDocumentsPath',
+            apimKey: '@Model.ApimSubscriptionKey'
+        };
     </script>
 </head>
 <body>
