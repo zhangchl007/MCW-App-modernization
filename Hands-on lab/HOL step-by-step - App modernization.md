@@ -41,7 +41,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Configure SQL Data Discovery and Classification](#Task-1-Configure-SQL-Data-Discovery-and-Classification)
     - [Task 2: Review Advanced Data Security Vulnerability Assessment](#Task-2-Review-Advanced-Data-Security-Vulnerability-Assessment)
     - [Task 3: Enable Dynamic Data Masking](#Task-3-Enable-Dynamic-Data-Masking)
-    - [Task 4: Enable Row-Level Security](#Task-4-Enable-Row-Level-Security)
   - [Exercise 3: Configure Key Vault](#Exercise-3-Configure-Key-Vault)
     - [Task 1: Add Key Vault access policy](#Task-1-Add-Key-Vault-access-policy)
     - [Task 2: Create a new secret to store the SQL connection string](#Task-2-Create-a-new-secret-to-store-the-SQL-connection-string)
@@ -671,10 +670,6 @@ In this task, you will enable [Dynamic Data Masking](https://docs.microsoft.com/
     ```
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
-
-### Task 4: Enable Row-Level Security
-
-> TODO: If there is time, add this in too.
 
 ## Exercise 3: Configure Key Vault
 
