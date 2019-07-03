@@ -66,7 +66,7 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 ### Customer situation
 
-Contoso, Ltd. is a new company in a very old business. Founded in Auckland, New Zealand, in 2005 by senior life insurance executives, the ambitious new company provides a full range of long-term insurance services to help people who are under-insured.
+Contoso, Ltd. is a new company in a very old business. Founded in Auckland, New Zealand, in 2005 by senior life insurance executives, the ambitious new company provides a full range of long-term insurance services to help people who are underinsured.
 
 Almost from the start, the company grew far faster than anticipated. An avalanche of business meant that the original processes created to manage policy documentation became overloaded. Employees struggled to cope, even as the headcount rose from five to 110 during the first year.
 
