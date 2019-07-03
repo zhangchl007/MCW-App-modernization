@@ -92,7 +92,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
     ![Screenshot of the Basics tab, with fields set to the previously mentioned settings.](media/lab-virtual-machine-basics-tab.png "Create a virtual machine Basics tab")
 
-    > **NOTE**: The remaining tabs can be skipped, and default values will be used.
+    > **Note**: The remaining tabs can be skipped, and default values will be used.
 
 4. Select **Review + create** to validate the configuration.
 
@@ -106,7 +106,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
 In this task, you will provision another virtual machine (VM) in Azure which will host your "on-premises" instance of SQL Server 2008 R2. The VM will use the SQL Server 2008 R2 SP3 Standard on Windows Server 2008 R2 image.
 
-> **NOTE**: An older version of Windows Server is being used because SQL Server 2008 R2 is not supported on Windows Server 2016.
+> **Note**: An older version of Windows Server is being used because SQL Server 2008 R2 is not supported on Windows Server 2016.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, and enter "SQL Server 2008R2SP3 on Windows Server 2008R2" into the Search the Marketplace box.
 
@@ -141,7 +141,7 @@ In this task, you will provision another virtual machine (VM) in Azure which wil
 
     ![Screenshot of the Basics tab, with fields set to the previously mentioned settings.](media/sql-server-2008-r2-vm-basics-tab.png "Create a virtual machine Basics tab")
 
-    > **NOTE**: The remaining tabs can be skipped, and default values will be used.
+    > **Note**: The remaining tabs can be skipped, and default values will be used.
 
 4. Select **Review + create** to validate the configuration.
 
@@ -208,7 +208,7 @@ In this task, you will provision an instance of the Azure Database Migration Ser
 
     ![The Create Migration Service blade is displayed, with the values specified above entered into the appropriate fields.](media/create-migration-service.png "Create Migration Service")
 
-    > **NOTE**: If you see the message `Your subscription doesn't have proper access to Microsoft.DataMigration`, refresh the browser window before proceeding. If the message persists, verify you successfully registered the resource provider, and then you can safely ignore this message.
+    > **Note**: If you see the message `Your subscription doesn't have proper access to Microsoft.DataMigration`, refresh the browser window before proceeding. If the message persists, verify you successfully registered the resource provider, and then you can safely ignore this message.
 
 3. Select **Create**.
 
@@ -437,7 +437,7 @@ In this task, you will install SQL Server Management Studio (SSMS) on the LabVM.
 
     ![The Download SQL Server Management Studio 18.x link is highlighted on the page specified above.](media/download-ssms.png "Download SSMS")
 
-    > **NOTE**: Versions change frequently, so if the version number you see does not match the screenshot, just download and install the most recent version.
+    > **Note**: Versions change frequently, so if the version number you see does not match the screenshot, just download and install the most recent version.
 
 2. Run the downloaded installer.
 
