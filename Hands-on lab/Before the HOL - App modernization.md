@@ -87,7 +87,7 @@ In this task, you will register the `Microsoft.DataMigration` and `Microsoft.Sea
 
 >**Note**: You may need to select Refresh to see the updated status.
 
-    ![The Register button is highlighted, search is entered into the filter box, and the Microsoft.Search resource provider is selected.](media/resource-providers-search.png "Microsoft Search Resource Provider")
+   ![The Register button is highlighted, search is entered into the filter box, and the Microsoft.Search resource provider is selected.](media/resource-providers-search.png "Microsoft Search Resource Provider")
 
 ### Task 3: Run ARM template to provision lab resources
 
@@ -122,6 +122,7 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
     - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
     - **SQL Server Name**: Accept the default value, **contosoinsurance**. 
+    
     >**Note**: The actual name must be globally unique, so a unique string will be generated from your Resource Group and appended to the name during provisioning.
     - **Admin Username**: Accept the default value, **demouser**.
     - **Admin Password**: Accept the default value, **Password.1!!**.
