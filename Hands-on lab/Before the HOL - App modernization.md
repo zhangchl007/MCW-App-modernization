@@ -83,7 +83,9 @@ In this task, you will register the `Microsoft.DataMigration` and `Microsoft.Sea
 
     ![Registered is highlighted next to the Microsoft.DataMigration resource provider.](media/resource-providers-datamigration-registered.png "Microsoft DataMigration Resource Provider")
 
-4. Next, enter "search" into the filter box to locate the `Microsoft.Search` resource provider. If the status is not **Registered**, select **Register**, and wait for the resource status to be registered. **NOTE**: You may need to select Refresh to see the updated status.
+4. Next, enter "search" into the filter box to locate the `Microsoft.Search` resource provider. If the status is not **Registered**, select **Register**, and wait for the resource status to be registered. 
+
+>**Note**: You may need to select Refresh to see the updated status.
 
     ![The Register button is highlighted, search is entered into the filter box, and the Microsoft.Search resource provider is selected.](media/resource-providers-search.png "Microsoft Search Resource Provider")
 
@@ -119,7 +121,8 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
-    - **SQL Server Name**: Accept the default value, **contosoinsurance**. **NOTE**: The actual name must be globally unique, so a unique string will be generated from your Resource Group and appended to the name during provisioning.
+    - **SQL Server Name**: Accept the default value, **contosoinsurance**. 
+    >**Note**: The actual name must be globally unique, so a unique string will be generated from your Resource Group and appended to the name during provisioning.
     - **Admin Username**: Accept the default value, **demouser**.
     - **Admin Password**: Accept the default value, **Password.1!!**.
     - **API Management Email**: Enter an email to use for admin notifications from API Management.
@@ -129,7 +132,7 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
 
 3. Select **Purchase** to start provisioning the lab resources.
 
-    > **NOTE**: The deployment of the custom ARM template takes about 30 minutes to complete.
+    > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete.
 
 4. You can monitor the progress of the deployment by navigating to the hands-on-lab-SUFFIX resource group in the Azure portal, and then selecting **Deployments** from the left-hand menu. The deployment will be named **Microsoft.Template**. Select that to view the progress of each item in the template.
 
