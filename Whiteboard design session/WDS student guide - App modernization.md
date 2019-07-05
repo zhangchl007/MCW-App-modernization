@@ -1,4 +1,4 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 App modernization
@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-November 2018
+June 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2018 Microsoft Corporation. All rights reserved.
+© 2019 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -26,17 +26,17 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [App modernization whiteboard design session student guide](#app-modernization-whiteboard-design-session-student-guide)
-    - [Abstract and learning objectives](#abstract-and-learning-objectives)
-    - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
-        - [Customer situation](#customer-situation)
-        - [Customer needs](#customer-needs)
-        - [Customer objections](#customer-objections)
-        - [Infographic for common scenarios](#infographic-for-common-scenarios)
-    - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
-    - [Step 3: Present the solution](#step-3-present-the-solution)
-    - [Wrap-up](#wrap-up)
-    - [Additional references](#additional-references)
+- [App modernization whiteboard design session student guide](#App-modernization-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#Step-1-Review-the-customer-case-study)
+    - [Customer situation](#Customer-situation)
+    - [Customer needs](#Customer-needs)
+    - [Customer objections](#Customer-objections)
+    - [Infographic for common scenarios](#Infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#Step-2-Design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#Step-3-Present-the-solution)
+  - [Wrap-up](#Wrap-up)
+  - [Additional references](#Additional-references)
 
 <!-- /TOC -->
 
@@ -48,7 +48,7 @@ In this whiteboard design session, you will work with a group to design a soluti
 
 At the end of this whiteboard design session, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
 
-## Step 1: Review the customer case study 
+## Step 1: Review the customer case study
 
 **Outcome**
 
@@ -58,11 +58,11 @@ Timeframe: 15 minutes
 
 Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
 
-1.  Meet your table participants and trainer.
+1. Meet your table participants and trainer.
 
-2.  Read all of the directions for steps 1-3 in the student guide.
+2. Read all of the directions for steps 1-3 in the student guide.
 
-3.  As a table team, review the following customer case study.
+3. As a table team, review the following customer case study.
 
 ### Customer situation
 
@@ -74,25 +74,25 @@ Almost from the start, the company grew far faster than anticipated. An avalanch
 
 With a combined 150 years of industry experience, the founders of Contoso, Ltd. knew exactly what capabilities they wanted: automated document forwarding from brokers, secure access for brokers to Contoso, Ltd., access to policy information, and ready policy retrieval for a dispersed workforce.
 
-To overcome its challenges, executives set about to digitize and file all existing policy documents and find a way to automatically file new policies as soon as brokers submitted them. To accomplish this, Contoso, Ltd. implemented PolicyConnect, a custom Windows Forms application used by its staff to input key metadata that includes policyholder information such as insured amount, beneficiary, policy type, and any deductible and out-of-pocket requirements.
-
-Contoso employees access this application, which ultimately stores its data in a SQL Server 2008 and a file server on their local area network.
+To overcome its challenges, executives set about to digitize and file all existing policy documents and find a way to automatically file new policies as soon as brokers submitted them. To accomplish this, Contoso, Ltd. implemented PolicyConnect, a custom Windows Forms application used by its staff to input key metadata that includes policyholder information such as insured amount, beneficiary, policy type, and any deductible and out-of-pocket requirements. Contoso employees access this application, which ultimately stores its data in a SQL Server 2008 and a file server on their local area network.
 
 Contoso, Ltd. provided the following diagram about its current topology:
 
 ![The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
-Contoso's Windows Forms application is a traditional n-tier platform containing a data access layer, which houses the SQL Server data access methods; a business logic layer that handles things like user login (username and password) and policy rules; and a presentation layer comprised of the screens a user views while creating a new policy holder. The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. Scanned PDFs of policy documents are stored on a file server accessible via a network share and referenced in the solution by a canonical path (customer last name and policy number). The key metadata for each policy document is currently entered manually by Contoso staff members into the application and ultimately stored in a SQL Server.
+Contoso's Windows Forms application is a traditional n-tier platform containing a data access layer, which houses the SQL Server data access methods; a business logic layer that handles things like user login (username and password) and policy rules; and a presentation layer comprised of the screens a user views while creating a new policy holder. The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. Scanned PDFs of policy documents are stored on a file server accessible via an SMB network share and referenced in the solution by a canonical path (customer last name and policy number). The key metadata for each policy document is currently entered manually by Contoso staff members into the application and ultimately stored in a SQL Server.
 
 The application currently supports access via VPN for users outside the Contoso local area network. As such, Contoso brokers are unable to view data or documents unless granted VPN access, which has proven time-consuming and difficult for the brokers.
 
 Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customer's policies have been scanned and indexed. They are using Office 365.
 
-The company executives have frequent challenges in gauging productivity and throughput given the manual workflow---they feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
+The company executives have frequent challenges in gauging productivity and throughput given the manual workflow -- they feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
 
-Contoso Insurance wants to make its policyholder system available to its employees and brokers via web and mobile applications without requiring VPN. They also want to store policies in cloud storage for retrieval via the web and mobile applications. Their new web application will permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. The mobile application will permit the same functionality. An Application Programming Interface (API) will drive both the web and mobile applications. The web application, database, and API will all be deployed to the cloud. In addition, they are interested in learning about light weight, serverless architectures that may help them implement some API functionality more rapidly, such as providing access to policy documents in storage. Contoso brokers will be provided a link to the mobile application via the website, which targets iOS and Android devices.
+Contoso Insurance has started a project to modernize their policyholder system and make it available to its employees and brokers via web and mobile applications without requiring VPN, and is looking for guidance on how they can best modernize and take advantage of cloud technologies. They also want to store policies in cloud storage for retrieval via these web and mobile applications. The new web application will permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. The mobile application will permit the same functionality. An Application Programming Interface (API) will provide access to data and policy documents and will be shared by the web and mobile applications. The web application, database, and API will all be deployed to the cloud. In addition, they are interested in learning about light weight, serverless architectures that may help them implement some API functionality more rapidly, such as providing access to policy documents in storage. Contoso brokers will be provided a link to the mobile application via the website, which targets iOS and Android devices.
 
-Contoso would like to migrate its SQL Server-based database to SQL Database. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk.
+As part of the application modernization process, Contoso would also like to learn more about how Azure Search might be able to improve their ability to find policy documents. In their current configuration, all policy documents are stored as opaque PDF files on a network file share, and key metadata is entered into the PolicyConnect application manually. Searching is limited to file names and the limited metadata entered manually. They are unable to conduct searches for information contained within the policy documents, and the metadata they enter manually has not provided the best results for being able to easily search for and retrieve documents.
+
+Contoso stated that one of their highest priorities is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure, and take advantage of some of the key benefits that are enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. As part of the database migration, they would also like to better understand the performance and security features they might be able to leverage once their database is running in Azure.
 
 Given all these new clients, their databases will become overloaded, so they want to ensure they employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in a 24-hour period, as well approximates the number of operations that user performed with the system in perpetuity. Both metrics are interesting to management to be able to get a cursory understanding of who the heaviest users are and how much they really use the system.
 
@@ -102,39 +102,41 @@ According to Mirand Lark, "Mobile applications represent a way to empower our br
 
 With this new system, Contoso would like to improve its security practices. In the previous version, each application tier maintained its configuration settings locally. For example, the data access layer would store the connection strings for SQL Server locally on disk. It would like to take an approach of externalizing secrets such as these from the web apps and APIs, and storing them in an encrypted location accessible only to authorized services.
 
-Cost containment will be achieved through use of cloud-based services. The aging Contoso datacenter can be retired and the hardware therein repurposed or disposed. Additional mail processing costs of approximately \$250,000 will be eliminated through the new cloud-based platform.
+Cost containment will be achieved through use of cloud-based services. The aging Contoso datacenter can be retired and the hardware therein repurposed or disposed. Additional mail processing costs of approximately $250,000 will be eliminated through the new cloud-based platform.
 
 "Our directors wanted a document system they could quickly adapt, that would keep costs low, but help them expand very quickly indeed," says Lark. "They did not want to invest in on-site infrastructure if the resources and IT support involved ultimately slowed our growth. The directors had a clear ICT strategy: 'All systems to the cloud.'"
 
-### Customer needs 
+### Customer needs
 
-1.  Contoso wants to modernize the architecture of its solution, while keeping it .NET-based.
+1. Contoso wants to modernize the architecture of its solution, while keeping it .NET-based.
 
-2.  They would like a .NET developer-friendly way to implement its PolicyConnect mobile app for Android and iOS.
+2. They would like a .NET developer-friendly way to implement its PolicyConnect mobile app for Android and iOS.
 
-3.  They are looking for ways to empower its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps.
+3. They are looking for ways to empower its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps.
 
-4.  They would like to improve the management of application secrets.
+4. They would like to improve the management of application secrets.
 
-5.  They would like to make all of its policy documents full-text searchable, with the minimal amount of implementation effort.
+5. They would like to make all of its policy documents full-text searchable, with the minimal amount of implementation effort.
 
-6.  They are interested in leveraging serverless technologies to speed up API development and are interested in a POC that can be used to retrieve policy documents from storage.
+6. They are interested in leveraging serverless technologies to speed up API development and are interested in a POC that can be used to retrieve policy documents from storage.
 
-7.  They would like to migrate to SQL Database.
+7. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure, and take advantage of some of the key benefits that are enabled by using a PaaS database service.
 
-8.  Contoso wants to understand how to better deploy caching in its solution, both for the purposes of lessening load on the database and for providing scalable scoreboards.
+8. Contoso wants to understand how to better deploy caching in its solution, both for the purposes of lessening load on the database and for providing scalable scoreboards.
 
-### Customer objections 
+### Customer objections
 
-1.  We have seen services like IFTTT that let business users automate processes. Does Microsoft Azure offer something similar?
+1. We have seen services like IFTTT (If This, Then That) that let business users automate processes. Does Microsoft Azure offer something similar?
 
-2.  Our developers have heard of Logic Apps. Will these be replaced by Microsoft Flow?
+2. Our developers have heard of Logic Apps. Will these be replaced by Microsoft Flow?
 
-3.  Is there really a way to securely store application secrets in the cloud?
+3. Is there really a way to securely store application secrets in the cloud?
 
-4.  We noticed that Azure SQL Database does not support all the features we are accustomed to in SQL Server, not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?
+4. We noticed that Azure SQL Database does not support all the features we are accustomed to in SQL Server, not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?
 
-5.  Moving everything to APIs sounds great but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to easily develop a proof of concept now? 
+5. Moving everything to APIs sounds great but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to easily develop a proof of concept now?
+
+6. We have been using .NET Framework for years, and now in Visual Studio web have options for .NET Framework, .NET Standard, and .NET Core. As we look at creating our new web and API applications, how do we choose the correct framework?
 
 ### Infographic for common scenarios
 
@@ -152,55 +154,61 @@ Timeframe: 60 minutes
 
 Directions:  With all participants at your table, answer the following questions and list the answers on a flip chart:
 
-1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
-2.  What customer business needs do you need to address with your solution?
+2. What customer business needs do you need to address with your solution?
 
 **Design**
 
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
- *High-level architecture*
+*High-level architecture*
 
-1.  Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, and extensibility.
+1. Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, search, and extensibility.
 
 *Mobile and web applications*
 
-1.  How should Contoso implement the PolicyConnect mobile app?
+1. How should Contoso implement the PolicyConnect mobile app?
 
-2.  What Azure service would host the website?
+2. What Azure service would host the website?
 
-3.  What Azure service would host the services supporting the mobile app backend? Would you suggest a Mobile App or an API App? Why?
+3. What Azure service would host the services supporting the mobile app backend? Would you suggest a Mobile App or an API App? Why?
 
-4.  What Azure service would provide a lightweight, serverless API solution for retrieving policy documents from Azure blob storage?
+4. What Azure service would provide a lightweight, serverless API solution for retrieving policy documents from Azure blob storage?
 
-5.  How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
+5. How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-6.  What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
+6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
 
 *Data management*
 
-1.  What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
+1. What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
 
-2.  What patterns and services would you use to reduce load on the database? Implement the scoreboards? Be specific on the Azure services used and how the application would take advantage of them.
+2. What patterns and services would you use to reduce load on the database? Implement the scoreboards? Be specific on the Azure services used and how the application would take advantage of them.
 
-3.  Given their requirements, how would you enable full-text search on the stored policy documents?
+*Search*
+
+1. Given their requirements, how would you enable full-text search on the stored policy documents?
+
+2. How can Azure Search be used to extract more information from Contoso's policy documents?
+
+3. Can Contoso's developers extend the capabilities of Azure Search to include in-house developed cognitive skills to enrich their search index?
 
 *Extensibility*
 
-1.  How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
+1. How would you enable Contoso business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
 
-2.  Given your answer to the previous question, how would a Contoso business user implement the scenario where a high-priority email is sent to his Office 365 email and in response an application notification appears on his device?
+2. Given your answer to the previous question, how would a Contoso business user implement the scenario where a high-priority email is sent to his Office 365 email and in response an application notification appears on his device?
 
 **Prepare**
 
 Directions: With all participants at your table:
 
-1.  Identify any customer needs that are not addressed with the proposed solution.
+1. Identify any customer needs that are not addressed with the proposed solution.
 
-2.  Identify the benefits of your solution.
+2. Identify the benefits of your solution.
 
-3.  Determine how you will respond to the customer's objections.
+3. Determine how you will respond to the customer's objections.
 
 Prepare a 15-minute chalk-talk style presentation to the customer.
 
@@ -216,40 +224,41 @@ Timeframe: 30 minutes
 
 Directions:
 
-1.  Pair with another table.
+1. Pair with another table.
 
-2.  One table is the Microsoft team and the other table is the customer.
+2. One table is the Microsoft team and the other table is the customer.
 
-3.  The Microsoft team presents their proposed solution to the customer.
+3. The Microsoft team presents their proposed solution to the customer.
 
-4.  The customer makes one of the objections from the list of objections.
+4. The customer makes one of the objections from the list of objections.
 
-5.  The Microsoft team responds to the objection.
+5. The Microsoft team responds to the objection.
 
-6.  The customer team gives feedback to the Microsoft team.
+6. The customer team gives feedback to the Microsoft team.
 
-7.  Tables switch roles and repeat Steps 2-6.
+7. Tables switch roles and repeat Steps 2-6.
 
-##  Wrap-up 
+## Wrap-up
 
 Timeframe: 15 minutes
 
 Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
 
-##  Additional references
+## Additional references
 
-|    |            |
-|----------|:-------------:|
-| **Description**                             |  **Links**                                                                                               |
-| Hi-resolution version of blueprint           | > <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo>                                                   |
-| Getting started with Xamarin and Mobile Apps | > <https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
-| Key Vault Developer's Guide                  | > <https://azure.microsoft.com/en-us/documentation/articles/key-vault-developers-guide/>                   |
-| About Keys and Secrets                       | <https://msdn.microsoft.com/en-us/library/dn903623.aspx>                                                   |
-| Register an Application with AAD             | <https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/#register>                 |
-| How to Use Azure Redis Cache                 | <https://azure.microsoft.com/en-us/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/>      |
-| Intro to Redis data types & abstractions     | <http://redis.io/topics/data-types-intro>                                                                  |
-| Intro to PowerApps                           | <https://docs.microsoft.com/en-us/powerapps/getting-started>                                               |
-| Get Started with Flow                        | <https://flow.microsoft.com/en-us/documentation/getting-started/>                                          |
-| Indexing Documents in Blob Storage           | <https://azure.microsoft.com/en-us/documentation/articles/search-howto-indexing-azure-blob-storage/>       |
-| Working with Azure Functions Proxies         | <https://docs.microsoft.com/azure/azure-functions/functions-proxies>                                       |
-| Azure API Management Overview         | <https://docs.microsoft.com/en-us/azure/api-management/api-management-key-concepts>                                       |
+|                 |           |
+|-----------------|-----------|
+| **Description** | **Links** |
+| Hi-resolution version of blueprint | <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo> |
+| Getting started with Xamarin and Mobile Apps | <https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
+| Key Vault Developer's Guide | <https://azure.microsoft.com/en-us/documentation/articles/key-vault-developers-guide/> |
+| About Keys and Secrets | <https://msdn.microsoft.com/en-us/library/dn903623.aspx> |
+| Register an Application with AAD | <https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/#register> |
+| How to Use Azure Redis Cache | <https://azure.microsoft.com/en-us/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/> |
+| Intro to Redis data types & abstractions | <http://redis.io/topics/data-types-intro> |
+| Intro to PowerApps | <https://docs.microsoft.com/en-us/powerapps/getting-started> |
+| Get Started with Flow | <https://flow.microsoft.com/en-us/documentation/getting-started/> |
+| Indexing Documents in Blob Storage | <https://azure.microsoft.com/en-us/documentation/articles/search-howto-indexing-azure-blob-storage/> |
+| Working with Azure Functions Proxies | <https://docs.microsoft.com/azure/azure-functions/functions-proxies> |
+| Azure API Management Overview | <https://docs.microsoft.com/en-us/azure/api-management/api-management-key-concepts> |
+| What is "cognitive search" in Azure Search? | <https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro> |
