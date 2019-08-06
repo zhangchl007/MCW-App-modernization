@@ -685,22 +685,20 @@ In this task, you will add an access policy to Key Vault to allow secrets to be 
 
    ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
 
-2. On the Key Vault blade, select **Access policies** under Settings in the left-hand menu, and then select **+ Add new**.
-
-   ![On the Key Vault blade, Access policies is selected and highlighted in the left-hand menu, and + Add new is highlighted.](media/key-vault-access-policies.png "Key Vault")
+2. On the Key Vault blade, select **Access policies** under Settings in the left-hand menu, and then select **+ Add Access Policy**.
 
 3. In the Add access policy dialog, enter the following:
 
    - **Configure from template (optional)**: Leave blank.
-   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then click **Select**.
    - **Key permissions**: Leave set to 0 selected.
    - **Secret permissions**: Select this, and then select **Select All**, to give yourself full rights to manage secrets.
    - **Certificate permissions**: Leave set to 0 selected.
+   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then click **Select**.
    - **Authorized application**: Leave set to None selected.
 
    ![The values specified above are entered into the Add access policy dialog.](media/key-vault-add-access-policy.png "Key Vault")
 
-4. Select **OK**.
+4. Select **Add**.
 
 5. Select **Save** on the Access policies toolbar.
 
@@ -904,7 +902,7 @@ In this task, you will open the `Contoso` starter solution in Visual Studio. The
 
     ![The target framework options are displayed.](media/vs-project-target-framework.png "Project properties")
 
-8. On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under Visual Studio 2019 SDK.
+8. On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under **Visual Studio 2019 SDK**.
 
     ![The download .NET Core 2.2 web page is displayed.](media/download-net-core-2-2.png "Download .NET Core 2.2")
 
@@ -1296,41 +1294,31 @@ In this task, you will prepare your Azure Function App to work with your new Fun
     az functionapp config appsettings set -n <your-function-app-name> -g <your-resource-group-name> --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
     ```
 
-### Task 2: Add environment variables
+### Task 2: Add project environment variables
 
-Functions use environment variables to retrieve configuration settings. To test your functions locally, you must add these settings as user environment variables on your development machine. In this task, you will create some environment variables on your LabVM, which will allow for debugging your Function App locally on the LabVM.
+Functions use environment variables to retrieve configuration settings. To test your functions locally, you must add these settings as user environment variables on your development machine or to the project settings. 
 
-1. Select the **Search** icon on the start bar of your LabVM, enter "environment" into the search box, and then select **Edit the system environment variables**.
+In this task, you will create some environment variables on your LabVM, which will allow for debugging your Function App locally on the LabVM.
 
-    ![The search icon is highlighted on the start bar, "environment" is entered into the search box, and the Edit the system environment variables item is highlighted in the search results.](media/windows-search-environment.png "Search")
+1. In Solution Explorer, right-click the **Contoso-FunctionApp** project, then select **Properties**
 
-2. In the Environment Variables dialog, select **New** under User variables for demouser.
+2. Select the **Debug** tab.
 
-    ![The Add button is highlighted under User variables for demouser](media/environment-variables.png "Environment variables")
+3. In the **Environment Variables** section, click **Add**, then enter the following:
 
-3. In the New User Variable dialog, enter the following:
-
-    - **Variable name**: Enter **PolicyStorageSas**
-    - **Variable name**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
-
-    ![The values specified above are entered into the New User Variable dialog.](media/environment-variables-new-policy-storage-sas.png "Environment variables")
+    - **Name**: Enter **PolicyStorageSas**
+    - **Value**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
 
 4. Select **OK**.
 
 5. Select **Add** again, and in the New User Variable dialog, enter the following:
 
-    - **Variable name**: Enter **PolicyStorageUrl**
-    - **Variable name**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
+    - **Name**: Enter **PolicyStorageUrl**
+    - **Value**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
 
-    ![The values specified above are entered into the New User Variable dialog.](media/environment-variables-new-policy-storage-url.png "Environment variables")
+    ![Adding envrionment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
 
-6. Select **OK**.
-
-7. You will see the two new environment variables listed in the dialog. Select **OK** to close the Environment Variables dialog.
-
-    ![In the Environment variables dialog, the two new variable are highlighted in the User variables list, and the OK button is highlighted.](media/environment-variables-updated.png "Environment variables")
-
-8. You will need to log off of the LabVM, and then log back in for the user environment variables to become available.
+6. Save the project.
 
 ### Task 3: Create an Azure Function in Visual Studio
 
