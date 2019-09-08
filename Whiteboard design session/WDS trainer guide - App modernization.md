@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-June 2019
+September 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,31 +26,31 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Trainer information](#Trainer-information)
-  - [Role of the trainer](#Role-of-the-trainer)
-  - [Whiteboard design session flow](#Whiteboard-design-session-flow)
-  - [Before the whiteboard design session: How to prepare](#Before-the-whiteboard-design-session-How-to-prepare)
-  - [During the whiteboard design session: Tips for an effective whiteboard design session](#During-the-whiteboard-design-session-Tips-for-an-effective-whiteboard-design-session)
-- [App modernization whiteboard design session student guide](#App-modernization-whiteboard-design-session-student-guide)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Step 1: Review the customer case study](#Step-1-Review-the-customer-case-study)
-    - [Customer situation](#Customer-situation)
-    - [Customer needs](#Customer-needs)
-    - [Customer objections](#Customer-objections)
-    - [Infographic for common scenarios](#Infographic-for-common-scenarios)
-  - [Step 2: Design a proof of concept solution](#Step-2-Design-a-proof-of-concept-solution)
-  - [Step 3: Present the solution](#Step-3-Present-the-solution)
-  - [Wrap-up](#Wrap-up)
-  - [Additional references](#Additional-references)
-- [App modernization whiteboard design session trainer guide](#App-modernization-whiteboard-design-session-trainer-guide)
-  - [Step 1: Review the customer case study](#Step-1-Review-the-customer-case-study-1)
-  - [Step 2: Design a proof of concept solution](#Step-2-Design-a-proof-of-concept-solution-1)
-  - [Step 3: Present the solution](#Step-3-Present-the-solution-1)
-  - [Wrap-up](#Wrap-up-1)
-  - [Preferred target audience](#Preferred-target-audience)
-  - [Preferred solution](#Preferred-solution)
-  - [Checklist of preferred objection handling](#Checklist-of-preferred-objection-handling)
-  - [Customer quote (to be read back to the attendees at the end)](#Customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [App modernization whiteboard design session student guide](#app-modernization-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [App modernization whiteboard design session trainer guide](#app-modernization-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
 
 <!-- /TOC -->
 
@@ -473,13 +473,13 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
 5. How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-    Rather than storing sensitive application secrets like credentials and database connection strings in the appsettings.json of the Web and API Apps, Contoso should use Key Vault to store these secrets. After provisioning its Web and API Apps, Contoso would need to register each in Azure Active Directory. This would yield it a Client ID and Key for each registered application (for example, the Web gets a pair, and the API app gets a different pair). This pair of credentials could then be provided to the Apps via the portal using the Settings \> Configuration blade off of the main Web/API App and adding new entries to the Application settings tables.
+    Rather than storing sensitive application secrets like credentials and database connection strings in the `appsettings.json` of the Web and API Apps, Contoso should use Key Vault to store these secrets. After provisioning its Web and API Apps, Contoso would need to register each in Azure Active Directory. This would yield it a Client ID and Key for each registered application (for example, the Web gets a pair, and the API app gets a different pair). This pair of credentials could then be provided to the Apps via the portal using the Settings \> Configuration blade off of the main Web/API App and adding new entries to the Application settings tables.
 
     By doing so, Contoso is storing the credentials to access Key Vault in a manner that reduces the risk of storing sensitive settings in a config file -- which can be accidentally shared or checked into source control. Contoso would need to use the PowerShell cmdlets to create a new Key Vault (`New-AzureKeyVault`) and to set ACLs on the Key Vault (`Set-AzureKeyVaultAccessPolicy`) that grant access to the applications. Contoso could use PowerShell to add the secrets required by the apps into Key Vault. Contoso would then need to use the Key Vault SDK for .NET, which requires the Key Vault Uniform Resource Identifier (URI) of their provisioned Key Vault instance, the Client ID and Key for the Web/API App together to acquire an access token from AAD, and then with a KeyVaultClient instance in hand get the secret from Key Vault. This logic would run when the application needs to access the secret information (for example to open a connection to SQL Database).
 
 6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
 
-    Contoso should use Azure API Management. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. APIM has features to help Contoso quickly build and scale an API ecosystem and grow into the future. APIs can be organized into Product groups to provide organization and AAD integration comes out of the box. It will be relatively easy to develop new customer channels for affiliated partners and provide controlled discoverability and lifecycle management to development teams. Azure API Management does not have a strong opinion on change management but instead provides flexible options to handle API versioning and revisions. 
+    Contoso should use Azure API Management. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. APIM has features to help Contoso quickly build and scale an API ecosystem and grow into the future. APIs can be organized into Product groups to provide organization and AAD integration comes out of the box. It will be relatively easy to develop new customer channels for affiliated partners and provide controlled discoverability and lifecycle management to development teams. Azure API Management does not have a strong opinion on change management but instead provides flexible options to handle API versioning and revisions.
 
 *Data management*
 
