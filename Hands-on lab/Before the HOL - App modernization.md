@@ -42,9 +42,9 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will *not* work.
 - **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
-  - Create an Azure Active Directory application and service principal.
-  - Assign roles on your subscription to complete this hands-on lab.
-  - Register resource providers.
+  - Create an Azure Active Directory application and service principal
+  - Assign roles on your subscription
+  - Register resource providers
 
 ## Before the hands-on lab
 
@@ -111,7 +111,7 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
 - Azure Search
 - Virtual Network
 
-> You can review the steps to manually provision the lab resources in [Appendix A](./Appendix-A.md).
+> You can review the steps to manually provision the lab resources in [Appendix A](./Manual-resource-setup.md).
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which will open a custom deployment screen in the Azure portal.
 

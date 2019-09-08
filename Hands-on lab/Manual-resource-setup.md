@@ -1,10 +1,10 @@
-# Appendix A: Lab environment setup
+# Appendix A: Manual lab environment setup
 
 This appendix provides the steps to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
 
 **Contents**:
 
-- [Appendix A: Lab environment setup](#appendix-a-lab-environment-setup)
+- [Appendix A: Manual lab environment setup](#appendix-a-manual-lab-environment-setup)
   - [Task 1: Create an Azure Storage account](#task-1-create-an-azure-storage-account)
   - [Task 2: Create the LabVM](#task-2-create-the-labvm)
   - [Task 3: Create SQL Server 2008 R2 virtual machine](#task-3-create-sql-server-2008-r2-virtual-machine)
@@ -397,7 +397,7 @@ In this task, you will provision an Azure Key Vault, which will be used for secu
 
     - Instance Details:
 
-      - **Key vault name**: Enter contosoinskv.
+      - **Key vault name**: Enter contosoinskvSUFFIX.
       - **Region**: Select the region you are using for resources in this hands-on lab.
       - **Pricing tier**: Select Standard.
 
