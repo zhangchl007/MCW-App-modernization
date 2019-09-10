@@ -82,7 +82,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
     - Administrator Account:
 
-        - **Username**: Enter **demouser**
+        - **Username**: Enter **demouser**.
         - **Password**: Enter **Password.1!!**
 
     - Inbound Port Rules:
@@ -131,7 +131,7 @@ In this task, you will provision another virtual machine (VM) in Azure which wil
 
    - Administrator Account:
 
-     - **Username**: Enter **demouser**
+     - **Username**: Enter **demouser**.
      - **Password**: Enter **Password.1!!**
 
    - Inbound Port Rules:
@@ -155,7 +155,7 @@ In this task, you will provision another virtual machine (VM) in Azure which wil
    - SQL Authentication:
 
      - **SQL Authentication**: Select Enable.
-     - **Login name**: Enter demouser
+     - **Login name**: Enter demouser.
      - **Password**: Enter **Password.1!!**
 
      ![The previously specified values are entered into the SQL Server Settings blade.](media/sql-server-create-vm-sql-settings.png "SQL Server Settings")
@@ -204,7 +204,7 @@ In this task, you will provision an Azure SQL Database (Azure SQL DB).
 
     ![On the Additional settings tab, Enable Advanced Data Security is highlighted and Start free trial is selected.](media/create-sql-database-additional-settings-tab.png "Create SQL Database")
 
-5. Select **Review + create**
+5. Select **Review + create**.
 
 6. On the **Review + create** tab, select **Create** to provision the SQL Database.
 
@@ -278,7 +278,7 @@ In this task, you will provision an App Service (Web app), which will be used fo
 
 7. On the **Review and create** tab, select **Create**.
 
-8. It will take a few minutes for the Wep App creation to complete. You can move on to the next task while you wait.
+8. It will take a few minutes for the Web App creation to complete. You can move on to the next task while you wait.
 
 ## Task 7: Provision an API App
 
@@ -517,7 +517,7 @@ In this task, you will install the Microsoft Data Migration Assistant (DMA) on t
 
     ![The Download button is highlighted on the Data Migration Assistant download page.](media/dma-download.png "Download Data Migration Assistant")
 
-    > **NOTE**: Versions change frequently, so if the version number you see does not match the screenshot, download and install the most recent version.
+    > **Note**: Versions change frequently, so if the version number you see does not match the screenshot, download and install the most recent version.
 
 2. Run the downloaded installer.
 
