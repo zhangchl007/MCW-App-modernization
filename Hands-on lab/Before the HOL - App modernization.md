@@ -111,7 +111,7 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
 - Azure Search
 - Virtual Network
 
-> You can review the steps to manually provision the lab resources in [Appendix A](./Manual-resource-setup.md).
+>**Note**: You can review the steps to manually provision the lab resources in [Appendix A](./Manual-resource-setup.md).
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which will open a custom deployment screen in the Azure portal.
 
@@ -125,8 +125,9 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
     - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
     - **SQL Server Name**: Accept the default value, **contosoinsurance**.
-
+    
     >**Note**: The actual name must be globally unique, so a unique string will be generated from your Resource Group and appended to the name during provisioning.
+    
     - **Admin Username**: Accept the default value, **demouser**.
     - **Admin Password**: Accept the default value, **Password.1!!**.
     - **API Management Email**: Enter an email to use for admin notifications from API Management.
