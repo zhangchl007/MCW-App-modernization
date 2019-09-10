@@ -137,7 +137,7 @@ In this exercise, you will use the Microsoft Data Migration Assistant (DMA) to p
 
 Before you begin the assessment, you need to restore a copy of the `ContosoInsurance` database in your SQL Server 2008 R2 instance. In this task, you will create an RDP connection to the SqlServer2008 VM and then restore the `ContosoInsurance` database onto the SQL Server 2008 R2 instance using a backup provided by Contoso, Ltd.
 
-> **NOTE**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2 which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
+> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2 which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008** VM from the list of resources.
 
@@ -707,7 +707,7 @@ In this task, you will add an access policy to Key Vault to allow secrets to be 
    - **Key permissions**: Leave set to 0 selected.
    - **Secret permissions**: Select this, and then select **Select All**, to give yourself full rights to manage secrets.
    - **Certificate permissions**: Leave set to 0 selected.
-   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then click **Select**.
+   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then choose **Select**.
    - **Authorized application**: Leave set to None selected.
 
    ![The values specified above are entered into the Add access policy dialog.](media/key-vault-add-access-policy.png "Key Vault")
@@ -1318,7 +1318,7 @@ In this task, you will create some environment variables on your LabVM, which wi
 
 2. Select the **Debug** tab.
 
-3. In the **Environment Variables** section, click **Add**, then enter the following:
+3. In the **Environment Variables** section, choose **Add**, then enter the following:
 
     - **Name**: Enter **PolicyStorageSas**
     - **Value**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
@@ -1778,7 +1778,7 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
     </cors>
     ```
 
-    You're updated policies value should look similar to the following:
+    Your updated policies value should look similar to the following:
 
     ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
 
@@ -1802,13 +1802,13 @@ In this task, you will import your Function App into APIM.
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
-3. In the Import Azure Functions blade, select **Function App** and then select the your Function App from the list, and click **Select**.
+3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
 
     ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
-    > You can filter using your resource group name, if needed.
+    >**Note**: You can filter using your resource group name, if needed.
 
-4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and click **Select**.
+4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and chooe **Select**.
 
     ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
 
@@ -1907,9 +1907,9 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 ### Task 2: Create new SQL connection
 
-1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then click on the **Connections** option.
+1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then choose the **Connections** option.
 
-2. Click on the **Create a connection** button.
+2. Select the **Create a connection** button.
 
     ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps_connections.png "PowerApps Connections")
 
