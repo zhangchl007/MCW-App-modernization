@@ -204,7 +204,7 @@ To overcome its challenges, executives set about to digitize and file all existi
 
 Contoso, Ltd. provided the following diagram about its current topology:
 
-![The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
+![The Contoso topology diagram has a local area network comprised of the on-premises user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
 Contoso's Windows Forms application is a traditional n-tier platform containing a data access layer, which houses the SQL Server data access methods; a business logic layer that handles things like user login (username and password) and policy rules; and a presentation layer comprised of the screens a user views while creating a new policy holder. The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. Scanned PDFs of policy documents are stored on a file server accessible via an SMB network share and referenced in the solution by a canonical path (customer last name and policy number). The key metadata for each policy document is currently entered manually by Contoso staff members into the application and ultimately stored in a SQL Server.
 
@@ -632,6 +632,6 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
 ## Customer quote (to be read back to the attendees at the end)
 
-"_Microsoft has done a very smart job with the technology they have put into the cloud, so that applications are modifiable, interoperable, and secure... We could not be happier running PolicyConnect on Azure._"
+"Microsoft has done a very smart job with the technology they have put into the cloud, so that applications are modifiable, interoperable, and secure... We could not be happier running PolicyConnect on Azure."
 
 ---Mirand Lark, General Manager, Contoso, Ltd.
