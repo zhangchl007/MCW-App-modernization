@@ -417,11 +417,11 @@ In this task, you will create an RDP connection to your Lab virtual machine (VM)
 
 2. In the list of resources for your resource group, select LabVM.
 
-    ![The list of resources in the hands-on-lab-SUFFIX resource group are displayed, and LabVM is highlighted.](./media/resource-group-resources-LabVM.png "LabVM in resource group list")
+    ![The list of resources in the hands-on-lab-SUFFIX resource group are displayed, and LabVM is highlighted.](./media/resource-group-resources-labvm.png "LabVM in resource group list")
 
 3. On your LabVM blade, select **Connect** from the top menu.
 
-    ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-LabVM.png "Connect to Lab VM")
+    ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-labvm.png "Connect to Lab VM")
 
 4. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
 
@@ -440,7 +440,7 @@ In this task, you will create an RDP connection to your Lab virtual machine (VM)
 
 7. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
 
-    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-LabVM.png "Remote Desktop Connection dialog")
+    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-labvm.png "Remote Desktop Connection dialog")
 
 8. Once logged in, launch the **Server Manager**. This should start automatically, but you can access it via the Start menu if it does not.
 
