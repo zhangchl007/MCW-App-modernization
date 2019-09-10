@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-June 2019
+September 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,12 +26,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [App modernization before the hands-on lab setup guide](#App-modernization-before-the-hands-on-lab-setup-guide)
-  - [Requirements](#Requirements)
-  - [Before the hands-on lab](#Before-the-hands-on-lab)
-    - [Task 1: Provision a resource group](#Task-1-Provision-a-resource-group)
-    - [Task 2: Register required resource providers](#Task-2-Register-required-resource-providers)
-    - [Task 3: Run ARM template to provision lab resources](#Task-3-Run-ARM-template-to-provision-lab-resources)
+- [App modernization before the hands-on lab setup guide](#app-modernization-before-the-hands-on-lab-setup-guide)
+  - [Requirements](#requirements)
+  - [Before the hands-on lab](#before-the-hands-on-lab)
+    - [Task 1: Provision a resource group](#task-1-provision-a-resource-group)
+    - [Task 2: Register required resource providers](#task-2-register-required-resource-providers)
+    - [Task 3: Run ARM template to provision lab resources](#task-3-run-arm-template-to-provision-lab-resources)
 
 <!-- /TOC -->
 
@@ -39,15 +39,18 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 ## Requirements
 
-1. Microsoft Azure subscription must be pay-as-you-go or MSDN.
-   - Trial subscriptions will *not* work.
-   - You must have permissions to register resource providers within your Azure subscription to complete the steps below.
+- Microsoft Azure subscription must be pay-as-you-go or MSDN.
+  - Trial subscriptions will *not* work.
+- **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
+  - Create an Azure Active Directory application and service principal
+  - Assign roles on your subscription
+  - Register resource providers
 
 ## Before the hands-on lab
 
 Duration: 45 minutes
 
-In this exercise, you will set up your environment for use in the rest of the hands-on lab. You should follow all steps provided *before* attending the Hands-on lab.
+In this exercise, you will set up an environment for use in the rest of the hands-on lab. You should follow all steps provided *before* attending the Hands-on lab.
 
 > **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
@@ -69,7 +72,7 @@ In this task, you will create an Azure resource group which will serve as a cont
 
 ### Task 2: Register required resource providers
 
-In this task, you will register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers with your subscription in Azure. These resource provider allow Azure Search and the Azure Database Migration Service to be provisioned within your Azure subscription.
+In this task, you will register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers within your Azure subscription. These resource providers allow Azure Search and the Azure Database Migration Service to be provisioned within your subscription.
 
 1. In the [Azure portal](https://portal.azure.com), select **All services** from the Azure navigation pane, and then select **Subscriptions**.
 
@@ -79,15 +82,15 @@ In this task, you will register the `Microsoft.DataMigration` and `Microsoft.Sea
 
     ![The Subscription blade is displayed, with Resource providers selected and highlighted under Settings. On the Resource providers blade, migration is entered into the filter box, and Register is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration.png "Resource provider registration")
 
-3. It can take a couple of minutes for the registration to complete. Make sure you see a status of **Registered** before moving on.
+3. It can take a couple of minutes for the registration to complete. Make sure you see a status of **Registered** before moving on. You may need to select **Refresh** to see the updated status.
 
     ![Registered is highlighted next to the Microsoft.DataMigration resource provider.](media/resource-providers-datamigration-registered.png "Microsoft DataMigration Resource Provider")
 
-4. Next, enter "search" into the filter box to locate the `Microsoft.Search` resource provider. If the status is not **Registered**, select **Register**, and wait for the resource status to be registered. 
-
->**Note**: You may need to select Refresh to see the updated status.
+4. Next, enter "search" into the filter box to locate the `Microsoft.Search` resource provider. If the status is not **Registered**, select **Register**, and wait for the resource status to be registered.
 
    ![The Register button is highlighted, search is entered into the filter box, and the Microsoft.Search resource provider is selected.](media/resource-providers-search.png "Microsoft Search Resource Provider")
+
+   >**Note**: You may need to select Refresh to see the updated status.
 
 ### Task 3: Run ARM template to provision lab resources
 
@@ -108,7 +111,7 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
 - Azure Search
 - Virtual Network
 
-> You can review the steps to manually provision the lab resources in [Appendix A](./Appendix-A.md).
+>**Note**: You can review the steps to manually provision the lab resources in [Appendix A](./Manual-resource-setup.md).
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which will open a custom deployment screen in the Azure portal.
 
@@ -121,9 +124,10 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
-    - **SQL Server Name**: Accept the default value, **contosoinsurance**. 
+    - **SQL Server Name**: Accept the default value, **contosoinsurance**.
     
     >**Note**: The actual name must be globally unique, so a unique string will be generated from your Resource Group and appended to the name during provisioning.
+    
     - **Admin Username**: Accept the default value, **demouser**.
     - **Admin Password**: Accept the default value, **Password.1!!**.
     - **API Management Email**: Enter an email to use for admin notifications from API Management.

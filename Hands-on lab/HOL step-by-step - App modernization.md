@@ -9,7 +9,7 @@ Hands-on lab step-by-step guide
 </div>
 
 <div class="MCWHeader3">
-June 2019
+September 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,66 +26,66 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [App modernization hands-on lab step-by-step](#App-modernization-hands-on-lab-step-by-step)
-  - [Abstract and learning objectives](#Abstract-and-learning-objectives)
-  - [Overview](#Overview)
-  - [Solution architecture](#Solution-architecture)
-  - [Requirements](#Requirements)
-  - [Exercise 1: Migrate the on-premises database to Azure SQL Database](#Exercise-1-Migrate-the-on-premises-database-to-Azure-SQL-Database)
-    - [Task 1: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#Task-1-Restore-and-configure-the-ContosoInsurance-database-on-the-SqlServer2008-VM)
-    - [Task 2: Perform assessment for migration to Azure SQL Database](#Task-2-Perform-assessment-for-migration-to-Azure-SQL-Database)
-    - [Task 3: Migrate the database schema using the Data Migration Assistant](#Task-3-Migrate-the-database-schema-using-the-Data-Migration-Assistant)
-    - [Task 4: Retrieve SQL Server 2008 VM IP address](#Task-4-Retrieve-SQL-Server-2008-VM-IP-address)
-    - [Task 5: Migrate the data using the Azure Database Migration Service](#Task-5-Migrate-the-data-using-the-Azure-Database-Migration-Service)
-  - [Exercise 2: Post upgrade database enhancements](#Exercise-2-Post-upgrade-database-enhancements)
-    - [Task 1: Configure SQL Data Discovery and Classification](#Task-1-Configure-SQL-Data-Discovery-and-Classification)
-    - [Task 2: Review Advanced Data Security Vulnerability Assessment](#Task-2-Review-Advanced-Data-Security-Vulnerability-Assessment)
-    - [Task 3: Enable Dynamic Data Masking](#Task-3-Enable-Dynamic-Data-Masking)
-  - [Exercise 3: Configure Key Vault](#Exercise-3-Configure-Key-Vault)
-    - [Task 1: Add Key Vault access policy](#Task-1-Add-Key-Vault-access-policy)
-    - [Task 2: Create a new secret to store the SQL connection string](#Task-2-Create-a-new-secret-to-store-the-SQL-connection-string)
-    - [Task 3: Create a service principal](#Task-3-Create-a-service-principal)
-    - [Task 4: Assign the service principal access to Key Vault](#Task-4-Assign-the-service-principal-access-to-Key-Vault)
-  - [Exercise 4: Deploy Web API into Azure App Services](#Exercise-4-Deploy-Web-API-into-Azure-App-Services)
-    - [Task 1: Connect to the LabVM](#Task-1-Connect-to-the-LabVM)
-    - [Task 2: Open starter solution with Visual Studio](#Task-2-Open-starter-solution-with-Visual-Studio)
-    - [Task 3: Update Web API to use Key Vault](#Task-3-Update-Web-API-to-use-Key-Vault)
-    - [Task 4: Copy KeyVault configuration section to API App in Azure](#Task-4-Copy-KeyVault-configuration-section-to-API-App-in-Azure)
-    - [Task 5: Deploy the API to Azure](#Task-5-Deploy-the-API-to-Azure)
-  - [Exercise 5: Deploy web application into Azure App Services](#Exercise-5-Deploy-web-application-into-Azure-App-Services)
-    - [Task 1: Add API App URL to Web App Application settings](#Task-1-Add-API-App-URL-to-Web-App-Application-settings)
-    - [Task 2: Deploy web application to Azure](#Task-2-Deploy-web-application-to-Azure)
-  - [Exercise 6: Upload policy documents into blob storage](#Exercise-6-Upload-policy-documents-into-blob-storage)
-    - [Task 1: Create container for storing PDFs in Azure storage](#Task-1-Create-container-for-storing-PDFs-in-Azure-storage)
-    - [Task 2: Create a SAS token](#Task-2-Create-a-SAS-token)
-    - [Task 3: Bulk upload PDFs to blob storage using AzCopy](#Task-3-Bulk-upload-PDFs-to-blob-storage-using-AzCopy)
-  - [Exercise 7: Create serverless API for accessing PDFs](#Exercise-7-Create-serverless-API-for-accessing-PDFs)
-    - [Task 1: Add application settings to your Function App](#Task-1-Add-application-settings-to-your-Function-App)
-    - [Task 2: Add environment variables](#Task-2-Add-environment-variables)
-    - [Task 3: Create an Azure Function in Visual Studio](#Task-3-Create-an-Azure-Function-in-Visual-Studio)
-    - [Task 4: Test the function locally](#Task-4-Test-the-function-locally)
-    - [Task 5: Deploy the function to your Azure Function App](#Task-5-Deploy-the-function-to-your-Azure-Function-App)
-    - [Task 6: Enable Application Insights on the Function App](#Task-6-Enable-Application-Insights-on-the-Function-App)
-    - [Task 7: Add Function App URL to your Web App Application settings](#Task-7-Add-Function-App-URL-to-your-Web-App-Application-settings)
-    - [Task 8: Test document retrieval from web app](#Task-8-Test-document-retrieval-from-web-app)
-    - [Task 9: View Live Metrics Stream](#Task-9-View-Live-Metrics-Stream)
-  - [Exercise 8: Add Cognitive Search for policy documents](#Exercise-8-Add-Cognitive-Search-for-policy-documents)
-    - [Task 1: Add Azure Search to Blob Storage account](#Task-1-Add-Azure-Search-to-Blob-Storage-account)
-    - [Task 2: Review search results](#Task-2-Review-search-results)
-  - [Exercise 9: Import and publish APIs into APIM](#Exercise-9-Import-and-publish-APIs-into-APIM)
-    - [Task 1: Import API App](#Task-1-Import-API-App)
-    - [Task 2: Import Function App](#Task-2-Import-Function-App)
-    - [Task 3: Open Developer Portal and retrieve you API key](#Task-3-Open-Developer-Portal-and-retrieve-you-API-key)
-    - [Task 4: Update Web App to use API Management Endpoints](#Task-4-Update-Web-App-to-use-API-Management-Endpoints)
-  - [Exercise 10: Create an app in PowerApps](#Exercise-10-Create-an-app-in-PowerApps)
-    - [Task 1: Sign up for a PowerApps account](#Task-1-Sign-up-for-a-PowerApps-account)
-    - [Task 2: Create new SQL connection](#Task-2-Create-new-SQL-connection)
-    - [Task 3: Create a new app](#Task-3-Create-a-new-app)
-    - [Task 4: Design app](#Task-4-Design-app)
-    - [Task 5: Edit the app settings and run the app](#Task-5-Edit-the-app-settings-and-run-the-app)
-  - [After the hands-on lab](#After-the-hands-on-lab)
-    - [Task 1: Delete Azure resource groups](#Task-1-Delete-Azure-resource-groups)
-    - [Task 2: Delete the contoso-apps service principal](#Task-2-Delete-the-contoso-apps-service-principal)
+- [App modernization hands-on lab step-by-step](#app-modernization-hands-on-lab-step-by-step)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Overview](#overview)
+  - [Solution architecture](#solution-architecture)
+  - [Requirements](#requirements)
+  - [Exercise 1: Migrate the on-premises database to Azure SQL Database](#exercise-1-migrate-the-on-premises-database-to-azure-sql-database)
+    - [Task 1: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-1-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
+    - [Task 2: Perform assessment for migration to Azure SQL Database](#task-2-perform-assessment-for-migration-to-azure-sql-database)
+    - [Task 3: Migrate the database schema using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
+    - [Task 4: Retrieve SQL Server 2008 VM IP address](#task-4-retrieve-sql-server-2008-vm-ip-address)
+    - [Task 5: Migrate the database using the Azure Database Migration Service](#task-5-migrate-the-database-using-the-azure-database-migration-service)
+  - [Exercise 2: Post upgrade database enhancements](#exercise-2-post-upgrade-database-enhancements)
+    - [Task 1: Configure SQL Data Discovery and Classification](#task-1-configure-sql-data-discovery-and-classification)
+    - [Task 2: Review Advanced Data Security Vulnerability Assessment](#task-2-review-advanced-data-security-vulnerability-assessment)
+    - [Task 3: Enable Dynamic Data Masking](#task-3-enable-dynamic-data-masking)
+  - [Exercise 3: Configure Key Vault](#exercise-3-configure-key-vault)
+    - [Task 1: Add Key Vault access policy](#task-1-add-key-vault-access-policy)
+    - [Task 2: Create a new secret to store the SQL connection string](#task-2-create-a-new-secret-to-store-the-sql-connection-string)
+    - [Task 3: Create a service principal](#task-3-create-a-service-principal)
+    - [Task 4: Assign the service principal access to Key Vault](#task-4-assign-the-service-principal-access-to-key-vault)
+  - [Exercise 4: Deploy Web API into Azure App Services](#exercise-4-deploy-web-api-into-azure-app-services)
+    - [Task 1: Connect to the LabVM](#task-1-connect-to-the-labvm)
+    - [Task 2: Open starter solution with Visual Studio](#task-2-open-starter-solution-with-visual-studio)
+    - [Task 3: Update Web API to use Key Vault](#task-3-update-web-api-to-use-key-vault)
+    - [Task 4: Copy KeyVault configuration section to API App in Azure](#task-4-copy-keyvault-configuration-section-to-api-app-in-azure)
+    - [Task 5: Deploy the API to Azure](#task-5-deploy-the-api-to-azure)
+  - [Exercise 5: Deploy web application into Azure App Services](#exercise-5-deploy-web-application-into-azure-app-services)
+    - [Task 1: Add API App URL to Web App Application settings](#task-1-add-api-app-url-to-web-app-application-settings)
+    - [Task 2: Deploy web application to Azure](#task-2-deploy-web-application-to-azure)
+  - [Exercise 6: Upload policy documents into blob storage](#exercise-6-upload-policy-documents-into-blob-storage)
+    - [Task 1: Create container for storing PDFs in Azure storage](#task-1-create-container-for-storing-pdfs-in-azure-storage)
+    - [Task 2: Create a SAS token](#task-2-create-a-sas-token)
+    - [Task 3: Bulk upload PDFs to blob storage using AzCopy](#task-3-bulk-upload-pdfs-to-blob-storage-using-azcopy)
+  - [Exercise 7: Create serverless API for accessing PDFs](#exercise-7-create-serverless-api-for-accessing-pdfs)
+    - [Task 1: Add application settings to your Function App](#task-1-add-application-settings-to-your-function-app)
+    - [Task 2: Add project environment variables](#task-2-add-project-environment-variables)
+    - [Task 3: Create an Azure Function in Visual Studio](#task-3-create-an-azure-function-in-visual-studio)
+    - [Task 4: Test the function locally](#task-4-test-the-function-locally)
+    - [Task 5: Deploy the function to your Azure Function App](#task-5-deploy-the-function-to-your-azure-function-app)
+    - [Task 6: Enable Application Insights on the Function App](#task-6-enable-application-insights-on-the-function-app)
+    - [Task 7: Add Function App URL to your Web App Application settings](#task-7-add-function-app-url-to-your-web-app-application-settings)
+    - [Task 8: Test document retrieval from web app](#task-8-test-document-retrieval-from-web-app)
+    - [Task 9: View Live Metrics Stream](#task-9-view-live-metrics-stream)
+  - [Exercise 8: Add Cognitive Search for policy documents](#exercise-8-add-cognitive-search-for-policy-documents)
+    - [Task 1: Add Azure Search to Blob Storage account](#task-1-add-azure-search-to-blob-storage-account)
+    - [Task 2: Review search results](#task-2-review-search-results)
+  - [Exercise 9: Import and publish APIs into APIM](#exercise-9-import-and-publish-apis-into-apim)
+    - [Task 1: Import API App](#task-1-import-api-app)
+    - [Task 2: Import Function App](#task-2-import-function-app)
+    - [Task 3: Open Developer Portal and retrieve you API key](#task-3-open-developer-portal-and-retrieve-you-api-key)
+    - [Task 4: Update Web App to use API Management Endpoints](#task-4-update-web-app-to-use-api-management-endpoints)
+  - [Exercise 10: Create an app in PowerApps](#exercise-10-create-an-app-in-powerapps)
+    - [Task 1: Sign up for a PowerApps account](#task-1-sign-up-for-a-powerapps-account)
+    - [Task 2: Create new SQL connection](#task-2-create-new-sql-connection)
+    - [Task 3: Create a new app](#task-3-create-a-new-app)
+    - [Task 4: Design app](#task-4-design-app)
+    - [Task 5: Edit the app settings and run the app](#task-5-edit-the-app-settings-and-run-the-app)
+  - [After the hands-on lab](#after-the-hands-on-lab)
+    - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
+    - [Task 2: Delete the contoso-apps service principal](#task-2-delete-the-contoso-apps-service-principal)
 
 <!-- /TOC -->
 
@@ -111,7 +111,7 @@ To prepare for hosting their applications in the cloud, they would like to migra
 
 Below is a diagram of the solution architecture you will build in this lab. Please study this carefully, so you understand the whole of the solution as you are working on the various components.
 
-![This solution diagram includes...](./media/preferred-solution-architecture.png "Preferred Solution diagram")
+![This solution diagram includes a high level overview of the architecture being implemented within this hands-on lab.](./media/preferred-solution-architecture.png "Preferred Solution diagram")
 
 The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service. After performing an assessment using the Data Migration Assistant, Contoso was able to determine that there were no compatibility issues or unsupported features to prevent them from migrating into a fully-managed SQL database service in Azure. Next, the web and API apps are migrated into Azure App Services. In addition, mobile apps, built for Android and iOS using Xamarin, are created to provide access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based apps provide the UI to mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to provide access to the database and policy documents stored in Blob Storage. Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App uses the Azure Redis Cache to implement the cache aside pattern, caching data as it is retrieved from SQL Database. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Search. PowerApps enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications that interact with SQL Database and Azure Storage, while Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
 
@@ -119,20 +119,25 @@ The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azur
 
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will not work.
-  - Rights to create an Azure Active Directory application and service principal and assign roles on your subscription.
 - A virtual machine configured with Visual Studio Community 2019 or higher (setup in the Before the hands-on lab exercises)
+- **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
+  - Create an Azure Active Directory application and service principal
+  - Assign roles on your subscription
+  - Register resource providers
 
 ## Exercise 1: Migrate the on-premises database to Azure SQL Database
 
 Duration: 45 minutes
 
-In this exercise, you will use the Microsoft Data Migration Assistant (DMA) to perform an assessment on the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and the Azure SQL DB.
+In this exercise, you will use the Microsoft Data Migration Assistant (DMA) to perform an assessment on the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and Azure SQL Database.
 
 > DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality in your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the [Data Migration Assistant documentation](https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current).
 
 ### Task 1: Restore and configure the ContosoInsurance database on the SqlServer2008 VM
 
 Before you begin the assessment, you need to restore a copy of the `ContosoInsurance` database in your SQL Server 2008 R2 instance. In this task, you will create an RDP connection to the SqlServer2008 VM and then restore the `ContosoInsurance` database onto the SQL Server 2008 R2 instance using a backup provided by Contoso, Ltd.
+
+> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2 which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008** VM by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008** VM from the list of resources.
 
@@ -161,7 +166,7 @@ Before you begin the assessment, you need to restore a copy of the `ContosoInsur
 
 7. Once logged into the SqlServer2008 VM, download a [backup of the ContosoInsurance database](https://raw.githubusercontent.com/microsoft/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip), and extract the zipped files into `C:\ContosoInsurance` on the VM.
 
-8. Next, open **Microsoft SQL Server Management Studio 17** by entering "sql server" into the search bar in the Windows Start menu.
+8. Next, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
@@ -242,7 +247,7 @@ Before you begin the assessment, you need to restore a copy of the `ContosoInsur
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
-Contoso, Ltd. would like an assessment to see what potential issue they would have to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/en-us/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
+Contoso, Ltd. would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/en-us/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
 > **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53595).
 
@@ -258,6 +263,7 @@ Contoso, Ltd. would like an assessment to see what potential issue they would ha
 
    - **Project type**: Select Assessment.
    - **Project name**: Enter Assessment.
+   - **Assessment type**: Select Database Engine.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
 
@@ -296,9 +302,9 @@ Contoso, Ltd. would like an assessment to see what potential issue they would ha
 
 11. Now, select **Compatibility issues** so you can review that report as well.
 
-    ![The Compatibility issues option is selected and highlighted.](media/dma-compability-issues.png "Compatibility issues")
+    ![The Compatibility issues option is selected and highlighted.](media/dma-compatibility-issues.png "Compatibility issues")
 
-> The DMA assessment for a migrating the `ContosoInsurance` database to a target platform of Azure SQL DB reveals that there are no issues or features that will prevent Contoso, Ltd. from migrating their database to Azure SQL DB. You can select **Export report** to save the report as a JSON file, if desired.
+> The DMA assessment for a migrating the `ContosoInsurance` database to a target platform of Azure SQL DB reveals that there are no issues or features that will prevent Contoso, Ltd. from migrating their database to Azure SQL DB. You can select **Export Assessment** at the top right to save the report as a JSON file, if desired.
 
 ### Task 3: Migrate the database schema using the Data Migration Assistant
 
@@ -409,16 +415,26 @@ In this task, you will use the Azure Cloud shell to retrieve the IP address of t
 5. At the prompt, you will retrieve the public IP address of the SqlServer2008 VM, which you will use to connect to the database on that server. Enter the following PowerShell command, **replacing hands-on-lab-SUFFIX** with your resource group name:
 
     ```powershell
-    az vm list-ip-addresses -g <your-resource-group-name> -n SqlServer2008
+    az vm list-ip-addresses -g hands-on-lab-SUFFIX -n SqlServer2008 --output table
     ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 6. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIpAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
     ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SqlServer2008 VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
 
-### Task 5: Migrate the data using the Azure Database Migration Service
+7. Next, run a second command to retrieve the server name of your Azure SQL Database, **replacing hands-on-lab-SUFFIX** with your resource group name:
+
+    ```powershell
+    az sql server list -g hands-on-lab-SUFFIX --output table
+    ```
+
+    ![The output from the az sql server list command is displayed in the Cloud Shell, and the Name for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
+
+8. Copy the **Name** value into a text editor for use below.
+
+### Task 5: Migrate the database using the Azure Database Migration Service
 
 At this point, you have migrated the database schema using DMA. In this task, you will migrate the data from the `ContosoInsurance` database into the new Azure SQL Database using the Azure Database Migration Service.
 
@@ -510,8 +526,6 @@ In this exercise you will explore some of the security features of Azure SQL Dat
 
 In this task, you will look at the [SQL Data Discovery and Classification](https://docs.microsoft.com/sql/relational-databases/security/sql-data-discovery-and-classification?view=sql-server-2017) feature of Advanced Data Security. Data Discovery & Classification introduces a new tool for discovering, classifying, labeling & reporting the sensitive data in your databases. It introduces a set of advanced services, forming a new SQL Information Protection paradigm aimed at protecting the data in your database, not just the database. Discovering and classifying your most sensitive data (business, financial, healthcare, etc.) can play a pivotal role in your organizational information protection stature.
 
-> **Note**: This functionality is currently available in _Preview_ through the Azure portal.
-
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
    ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
@@ -598,7 +612,7 @@ In this task, you will enable [Dynamic Data Masking](https://docs.microsoft.com/
 
     ![Dynamic Data Masking is highlighted in the left-hand menu.](media/e2-01.png "Dynamic Data Masking")
 
-2. On the Dynamic Data Masking blade, you can see a few recommended fields to mask that have been flagged as they may contain sensitive data. For our case, we want to apply a mask to the `DOB` field on the `people` table to provide more protection to GDPR data. To do this, select **+ Add mask** in the Dynamic Data Masking toolbar.
+2. On the Dynamic Data Masking blade, you may see a few recommended fields to mask that have been flagged as they may contain sensitive data. For our case, we want to apply a mask to the `DOB` field on the `people` table to provide more protection to GDPR data. To do this, select **+ Add mask** in the Dynamic Data Masking toolbar.
 
     ![Dynamic Data Masking window with recommended fields. The +Add mask button in the toolbar is highlighted.](media/e2-02.png "Dynamic Data Masking")
 
@@ -693,7 +707,7 @@ In this task, you will add an access policy to Key Vault to allow secrets to be 
    - **Key permissions**: Leave set to 0 selected.
    - **Secret permissions**: Select this, and then select **Select All**, to give yourself full rights to manage secrets.
    - **Certificate permissions**: Leave set to 0 selected.
-   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then click **Select**.
+   - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then choose **Select**.
    - **Authorized application**: Leave set to None selected.
 
    ![The values specified above are entered into the Add access policy dialog.](media/key-vault-add-access-policy.png "Key Vault")
@@ -773,7 +787,7 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
     az account list --output table
     ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account set -s <your-subscription-id>` after running the command above to set the appropriate account for the following Azure CLI commands, replacing `<your-subscription-id>` with the appropriate value from the output list above.
+    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account set --subscription <your-subscription-id>` after running the command above to set the appropriate account for the following Azure CLI commands, replacing `<your-subscription-id>` with the appropriate value from the output list above.
 
 5. In the output table, locate the subscription you are using for this hands-on lab, and copy the SubscriptionId value into a text editor, such as Notepad, for use below.
 
@@ -1095,7 +1109,7 @@ In this task, you will prepare your Web App to work with the API App by adding t
     az webapp list -g <your-resource-group-name> --output table
     ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 5. In the output, you will copy two values for use in the next step. Copy the **DefaultHostName** value for the your API App (the resource name will start with contosoins**api**) and also copy the Web App name value.
 
@@ -1275,7 +1289,7 @@ In this task, you will prepare your Azure Function App to work with your new Fun
     az functionapp list -g <your-resource-group-name> --output table
     ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 5. In the output, copy the **Name** value for use in the next step.
 
@@ -1296,7 +1310,7 @@ In this task, you will prepare your Azure Function App to work with your new Fun
 
 ### Task 2: Add project environment variables
 
-Functions use environment variables to retrieve configuration settings. To test your functions locally, you must add these settings as user environment variables on your development machine or to the project settings. 
+Functions use environment variables to retrieve configuration settings. To test your functions locally, you must add these settings as user environment variables on your development machine or to the project settings.
 
 In this task, you will create some environment variables on your LabVM, which will allow for debugging your Function App locally on the LabVM.
 
@@ -1304,7 +1318,7 @@ In this task, you will create some environment variables on your LabVM, which wi
 
 2. Select the **Debug** tab.
 
-3. In the **Environment Variables** section, click **Add**, then enter the following:
+3. In the **Environment Variables** section, choose **Add**, then enter the following:
 
     - **Name**: Enter **PolicyStorageSas**
     - **Value**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
@@ -1316,7 +1330,7 @@ In this task, you will create some environment variables on your LabVM, which wi
     - **Name**: Enter **PolicyStorageUrl**
     - **Value**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
 
-    ![Adding envrionment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
+    ![Adding environment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
 
 6. Save the project.
 
@@ -1363,6 +1377,8 @@ In this task, you will use Visual Studio to create an Azure Function. This Funct
 
 In this task, you will run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
+> **IMPORTANT**: Internet Explorer on Windows Server 2008 R2 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you will need to [download and install the Chrome browser](http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ) on your LabVM.
+
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
     ![In the Visual Studio Solution Explorer, the context menu for the Contoso.FunctionApp project is displayed, with Debug selected and Start new instance highlighted.](media/vs-function-app-debug.png "Solution Explorer")
@@ -1390,7 +1406,7 @@ In this task, you will run your Function locally through the Visual Studio debug
     http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ
     ```
 
-6. Paste the updated into the address bar of a new web browser window and press Enter.
+6. Paste the updated into the address bar of a new Chrome web browser window and press Enter.
 
 7. In the browser, the policy document will be downloaded.
 
@@ -1406,7 +1422,7 @@ In this task, you will deploy your function into an Azure Function App, where it
 
     ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **Azure Function App**, choose **Select Existing**, and then select **Publish**.
+2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Publish**.
 
     ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
 
@@ -1470,7 +1486,7 @@ In this task, you will add the URL of your Azure Function App to the Application
     az functionapp list -g <your-resource-group-name> --output table
    ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set -s <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 5. In the output, copy the **DefaultHostName** value into a text editor for use below.
 
@@ -1606,9 +1622,11 @@ Contoso, Ltd. has asked for the ability to conduct full-text searching on their 
 
 9. Select **Next: Create an indexer**.
 
-10. On the **Create an indexer** tab, enter **policy-docs-indexer** as the name, and then select **Submit**.
+10. On the **Create an indexer** tab, enter **policy-docs-indexer** as the name, select **Hourly** for the schedule, uncheck **Track deletions**, and then select **Submit**.
 
     ![The name field and submit button are highlighted on the Create an indexer tab.](media/add-azure-search-create-an-indexer.png "Add Azure Search")
+
+    > **NOTE**: You may need to check and then uncheck Track deletions to remove the fields associated with tracking deletions from the UI.
 
 11. Within a few seconds, you will receive a notification in the Azure portal that the import was successfully configured.
 
@@ -1622,9 +1640,9 @@ In this task, you will run a search query against your search index to see how t
 
 2. On the Search service blade, select **Indexers**.
 
-    ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/e7-02.png "Search Service")
+    ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/azure-search-indexers.png "Search Service")
 
-3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**.
+3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**. If the status is **In progress**, select **Refresh** every 15-20 seconds until it changes to **Success**.
 
    > If you see a status of **No history**, select the policy-docs-indexer, and select **Run** on the Indexer blade.
 
@@ -1760,7 +1778,7 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
     </cors>
     ```
 
-    You're updated policies value should look similar to the following:
+    Your updated policies value should look similar to the following:
 
     ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
 
@@ -1784,13 +1802,13 @@ In this task, you will import your Function App into APIM.
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
-3. In the Import Azure Functions blade, select **Function App** and then select the your Function App from the list, and click **Select**.
+3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
 
     ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
-    > You can filter using your resource group name, if needed.
+    >**Note**: You can filter using your resource group name, if needed.
 
-4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and click **Select**.
+4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and chooe **Select**.
 
     ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
 
@@ -1800,31 +1818,29 @@ In this task, you will import your Function App into APIM.
 
 ### Task 3: Open Developer Portal and retrieve you API key
 
-In this task, you will quickly look at the APIs in the Developer Portal, and retrieve your key.
+In this task, you will quickly look at the APIs in the Developer Portal, and retrieve your key. The Developer Portal allows you to check the list of APIs and endpoints as well as find useful information about them.
 
-1. Open the APIM Developer Portal by selecting **Developer portal**.
+1. Open the APIM Developer Portal by selecting **Developer portal** from the Overview blade of your API Management service in the Azure portal.
 
     ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/e8-t1-developer-portal.png "Developer Portal")
 
-2. In the portal you can check the list of APIs and endpoints as well as useful information to use them.
-
-    ![API developer portal with Contoso Insurance Web API displayed.](media/e8-t1-api-developer-portal.png "API Developer Portal")
-
-3. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
+2. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
 
     ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
 
-4. The API page allows you to view and test your API endpoints directly in the Developer portal. You will also find a link to your **Profile** that allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you will need to retrieve so the PolicyConnect web application can access the APIs through APIM.
+3. The API page allows you to view and test your API endpoints directly in the Developer portal. You will also find a link to your **Profile** that allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you will need to retrieve so the PolicyConnect web application can access the APIs through APIM.
 
     ![The Profile link is highlighted on the API page for the Function App API.](media/apim-profile.png "API Management")
 
-5. Copy the highlighted request URL. This will be the new value you use for the `PolicyDocumentsPath` setting in the next task.
+4. Copy the highlighted request URL. This will be the new value you use for the `PolicyDocumentsPath` setting in the next task.
 
     > **Note**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that will change for that is the base URL, which will be for APIM and not your API App.
 
-6. Now,  select the **Profile** link on the API page to navigate to your subscription page.
+5. Now,  select the **Profile** link on the API page to navigate to your subscription page.
 
-7. On the Your subscriptions page, select **Show** next to the Primary Key for the **Unlimited** Product, and then copy the key value, and paste it into a text editor for use below.
+6. On the Your subscriptions page, select **Show** next to the Primary Key for the **Unlimited** Product, and then copy the key value, and paste it into a text editor for use below.
+
+    ![The Primary Key field is highlighted under the Unlimited subscription.](media/apim-dev-portal-subscription-keys.png "API Management Developer Portal")
 
 ### Task 4: Update Web App to use API Management Endpoints
 
@@ -1855,7 +1871,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
-    - `<your-apim-url>`: Replace with the URL of your API Management instance.
+    - `<your-apim-url>`: Replace with the Gateway URL of your API Management instance, which you can find on the Overview blade of the API Management Service in the Azure portal.
     - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
     - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Management, that is to be used for the `PolicyDocumentsPath` setting.
     - `<your-resource-group-name>`: Replace with your resource group name.
@@ -1877,9 +1893,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
 
 Duration: 15 minutes
 
-Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app.
-
-Get them up and running with a new app created in PowerApps, which connects to the ContosoInsurance database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
+Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app. In this task, you will get them up and running with a new app created in PowerApps, which connects to the ContosoInsurance database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
 
 ### Task 1: Sign up for a PowerApps account
 
@@ -1893,9 +1907,9 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 ### Task 2: Create new SQL connection
 
-1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then click on the **Connections** option.
+1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then choose the **Connections** option.
 
-2. Click on the **Create a connection** button.
+2. Select the **Create a connection** button.
 
     ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps_connections.png "PowerApps Connections")
 
@@ -1903,36 +1917,39 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
     ![In the New connection section, the search field is set to SQL. In the item list below, SQL Server is selected.](media/powerapps_create_connection.png "PowerApps New Connection")
 
-4. Within the SQL Server connection dialog, select the **Connect directly (cloud services)** radio button.
+4. Within the SQL Server connection dialog, enter the following:
 
-5. On the SQL Server dialog, enter the following:
-
-   - **SQL Server name**: Enter the server name of your Azure SQL database.
+   - **Authentication Type**: Select **SQL Server Authentication**.
+   - **SQL Server name**: Enter the server name of your Azure SQL database. For example, `contosoinsurance-jjbp34uowoybc.database.windows.net`.
    - **SQL Database name**: Enter **ContosoInsurance**
    - **Username**: Enter **demouser**
    - **Password**: Enter **Password.1!!**
 
-    ![The SQL Server dialog box fields are completed.](media/powerapp_connection_sqlserver.png "SQL Server dialog box")
+    ![The SQL Server dialog box fields are completed.](media/powerapps_connection_sqlserver.png "SQL Server dialog box")
+
+5. Select **Create**.
 
 ### Task 3: Create a new app
 
-1. Open PowerApps Studio and sign in with your PowerApps account.
+1. Open the PowerApps Studio application you downloaded previously and sign in with your PowerApps account.
 
-2. Select **New** on the left-hand side, and then **select the right arrow** next to the list.
+2. Select **New** on the left-hand side and in the browser windows that opens confirm your country/region and select **Get started**.
+
+3. Then **select the right arrow** next to the **Start with your data** list.
 
     ![In the PowerApps Studio, the New button on the left is selected. The right arrow to the right of Create an app from your data is also selected.](media/powerapps_new.png "PowerApps Studio")
 
-3. Select the **SQL Server connection** you created in the previous task.
+4. Select the **SQL Server connection** you created in the previous task.
 
     ![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps Studio")
 
-4. If not selected already, select **default** under the **Choose a dataset** title.
+5. If not selected already, select **default** under the **Choose a dataset** title.
 
-5. Select the **Policies** table from the Choose a table list.
+6. Select the **Policies** table from the Choose a table list.
 
-    ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapp_select_table.png "PowerApps Studio")
+    ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
 
-6. Click **Connect**.
+7. Click **Connect**.
 
 ### Task 4: Design app
 
@@ -1962,17 +1979,21 @@ Get them up and running with a new app created in PowerApps, which connects to t
 
 ### Task 5: Edit the app settings and run the app
 
-1. Select **File** on the top menu. Select **App settings**, then **App name + icon** and type in a new **App name**, such as PolicyConnect Plus.
+1. Select **File** on the top menu.
+
+    ![The File menu is highlighted in the PowerApps page.](media/power-apps-file-menu.png "Power Apps")
+
+2. Select **App settings**, then **App name + icon** and type in a new **App name**, such as PolicyConnect Plus.
 
     ![In PowerShell App Studio, under App settings, App name plus icon is selected, and the App name is set to PolicyConnectPlus.](media/powerapp_appsettings.png "PowerShell App Studio")
 
-2. Select **Save** on the left-hand menu to save the app to the cloud, then select the **Save** button below.
+3. Select **Save** on the left-hand menu to save the app to the cloud, then select the **Save** button below.
 
-3. After saving, select the left arrow on top of the left-hand menu.
+4. After saving, select the left arrow on top of the left-hand menu.
 
     ![The left arrow on top of the left-hand menu highlighted. ](media/powerapp_save_app.png "PowerShell App Studio")
 
-4. Select the **Run** button on the top menu to preview the app. You should be able to view the current policies, edit their values, and create new policies.
+5. Select **BrowseScreen1** from the left-hand menu and then select the **Run** button on the top menu to preview the app. You should be able to view the current policies, edit their values, and create new policies.
 
     ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
 
