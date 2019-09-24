@@ -1,3 +1,5 @@
+<div style="text-align: right"> September 2019 </div>
+
 # App modernization
 
 Contoso, Ltd. (Contoso) is a new company in an old business. Founded in Auckland, NZ, in 2014, they provide a full range of long-term insurance services to help individuals who are under-insured, filling a void their founders saw in the market. From the beginning, they grew faster than anticipated and have struggled to cope with rapid growth. During their first year alone, they added over 100 new employees to keep up with the demand for their services. To manage policies and associated documentation, they use a custom developed Windows Forms application, called PolicyConnect. PolicyConnect uses an on-premises SQL Server 2008 R2 database as its data store, along with a file server on their local area network for storing policy documents. That application and its underlying processes for managing policies have become increasingly overloaded.
@@ -64,9 +66,11 @@ We welcome feedback and comments from Microsoft SMEs & learning partners who del
 - Next, submit an issue inside the workshop with a detailed description of the trouble you are having.
 - Please do not submit pull requests. Our authors will review open issues and submit pull requests for approval.  
 
+If you are planning to present a workshop, *review and test the materials early*! 
+
 ### Please allow 5 - 10 business days for review and resolution of issues.
 
-If you are planning to present a workshop, *review and test the materials early*!   
+  
 
 
 
