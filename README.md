@@ -59,13 +59,13 @@ At the end of this hands-on lab, you will be better able to build solutions for 
 
 We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
 
-*Having trouble?*
+***Having trouble?***
 - First, verify you have followed the written instructions.
 - Next, submit an issue inside the workshop with a detailed description of the trouble you are having.
 - Please do not submit pull requests. Our authors will review open issues and submit pull requests for approval.  
 
 **Please allow 5 - 10 business days for review and resolution of issues.**
 
-If you are planning to present a workshop, *review and test the materials early*!  Adding presentation dates in open issues will help us prioritize. 
+If you are planning to present a workshop, *review and test the materials early*!   
 
 September 2019
