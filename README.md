@@ -1,4 +1,4 @@
-<div style="text-align: right"> September 2019 </div>
+<div style="text-align: justify"> September 2019 </div>
 
 # App modernization
 
@@ -70,8 +70,3 @@ If you are planning to present a workshop, *review and test the materials early*
 
 ### Please allow 5 - 10 business days for review and resolution of issues.
 
-  
-
-
-
-September 2019
