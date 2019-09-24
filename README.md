@@ -64,8 +64,10 @@ We welcome feedback and comments from Microsoft SMEs & learning partners who del
 - Next, submit an issue inside the workshop with a detailed description of the trouble you are having.
 - Please do not submit pull requests. Our authors will review open issues and submit pull requests for approval.  
 
-###**Please allow 5 - 10 business days for review and resolution of issues.**
+### Please allow 5 - 10 business days for review and resolution of issues.
 
 If you are planning to present a workshop, *review and test the materials early*!   
+
+
 
 September 2019
