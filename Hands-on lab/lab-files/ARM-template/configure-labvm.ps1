@@ -10,7 +10,7 @@ function Disable-InternetExplorerESC {
 # Disable IE ESC
 Disable-InternetExplorerESC
 
-# Download and unzip the starter solution
+# Download and extract the starter solution files
 Invoke-WebRequest 'https://github.com/microsoft/MCW-App-modernization/archive/master.zip' -OutFile 'C:\MCW.zip'
 Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 
