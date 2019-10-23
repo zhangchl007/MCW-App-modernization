@@ -1255,11 +1255,11 @@ In this task, you download and install [AzCopy](https://docs.microsoft.com/en-us
 
 Duration: 30 minutes
 
-Contoso has made some updates to prepare their applications, but there are some features that they have not been able to build into the API yet. They have requested that you assist them in setting up a proof-of-concept (POC) API solution to enable users of their application to retrieve their policy documents directly from their Azure Storage account. In this exercise, you will create an Azure Function to enable this functionality using serverless technologies.
+Contoso has made some updates to prepare their applications, but there are some features that they have not been able to build into the API yet. They have requested that you assist them in setting up a proof-of-concept (POC) API solution to enable users of their application to retrieve their policy documents directly from their Azure Storage account. In this exercise, you create an Azure Function to enable this functionality using serverless technologies.
 
 ### Task 1: Add application settings to your Function App
 
-In this task, you will prepare your Azure Function App to work with your new Function by adding your storage account policies container URL and SAS token values to the Application Settings of your Function App, using the Azure Cloud Shell and Azure CLI.
+In this task, you prepare your Azure Function App to work with your new Function by adding your storage account policies container URL and SAS token values to the Application Settings of your Function App, using the Azure Cloud Shell and Azure CLI.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
@@ -1269,7 +1269,7 @@ In this task, you will prepare your Azure Function App to work with your new Fun
 
     ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
+3. After a moment, you should receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
@@ -1285,7 +1285,7 @@ In this task, you will prepare your Azure Function App to work with your new Fun
 
     ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list.png "Azure Cloud Shell")
 
-6. For the next command, you will need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
+6. For the next command, you need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
     - `<your-resource-group-name>`: Replace with your resource group name.
@@ -1293,16 +1293,18 @@ In this task, you will prepare your Azure Function App to work with your new Fun
     - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
 
     ```powershell
+    $functionAppName = "<your-function-app-name>"
+    $resourceGroup = "<your-resource-group-name>"
     $storageUrl = "<your-policies-container-url>"
     $storageSas = "<your-storage-account-sas-token>"
-    az functionapp config appsettings set -n <your-function-app-name> -g <your-resource-group-name> --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
+    az functionapp config appsettings set -n $functionAppName -g $resourceGroup --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
     ```
 
 ### Task 2: Add project environment variables
 
 Functions use environment variables to retrieve configuration settings. To test your functions locally, you must add these settings as user environment variables on your development machine or to the project settings.
 
-In this task, you will create some environment variables on your LabVM, which will allow for debugging your Function App locally on the LabVM.
+In this task, you create some environment variables on your LabVM, which allows for debugging your Function App locally on the LabVM.
 
 1. In Solution Explorer, right-click the **Contoso-FunctionApp** project, then select **Properties**
 
@@ -1326,7 +1328,7 @@ In this task, you will create some environment variables on your LabVM, which wi
 
 ### Task 3: Create an Azure Function in Visual Studio
 
-In this task, you will use Visual Studio to create an Azure Function. This Function will serve as a serverless API for retrieving policy documents from Blob storage.
+In this task, you use Visual Studio to create an Azure Function. This Function serves as a serverless API for retrieving policy documents from Blob storage.
 
 1. On your LabVM, return to Visual Studio and in the Solution explorer expand the `Contoso.FunctionApp` and then double-click `PolicyDocsFunction.cs` to open it.
 
@@ -1350,24 +1352,26 @@ In this task, you will use Visual Studio to create an Azure Function. This Funct
 
     ![The TODO #4 block is highlighted within the PolicyDocsFunction.cs code.](media/vs-policydocsfunction-cs-todo-4.png "PolicyDocsFunction.cs")
 
-5. Update the code in the block to retrieve the `PolicyStorageUrl` and `PolicyStorageSas` values from the environment variables you added above. The completed code will look like the following:
+5. Update the code in the block to retrieve the `PolicyStorageUrl` and `PolicyStorageSas` values from the environment variables you added above. The completed code should look like the following:
 
     ```csharp
     var containerUri = Environment.GetEnvironmentVariable("PolicyStorageUrl");
     var sasToken = Environment.GetEnvironmentVariable("PolicyStorageSas");
     ```
 
+    > **Note**: When the API is deployed to an Azure API App, `Environment.GetEnvironmentVariables()` looks for the specified values in the configured application settings.
+
 6. Save `PolicyDocsFunction.cs`.
 
-7. Take a moment to review the code in the Function, and understand how it functions. It uses an `HttpTrigger`, which means the function will execute whenever it receives an Http request. You added configuration to restrict the Http requests to only `GET` requests, and the requests must be in format `https://<function-name>.azurewebsites.net/policies/{policyHolder}/{policyName}` for the Function App to route the request to the `PolicyDocs` function. Within the function, an Http request is being made to your Storage account `policy` container URL to retrieve the PDF document for the specified policy holder and policy number. That is then returned to the browser as a PDF attachment.
+7. Take a moment to review the code in the Function, and understand how it functions. It uses an `HttpTrigger`, which means the function executes whenever it receives an Http request. You added configuration to restrict the Http requests to only `GET` requests, and the requests must be in format `https://<function-name>.azurewebsites.net/policies/{policyHolder}/{policyName}` for the Function App to route the request to the `PolicyDocs` function. Within the function, an Http request is being made to your Storage account `policy` container URL to retrieve the PDF document for the specified policy holder and policy number. That is then returned to the browser as a PDF attachment.
 
 8. Your Function App is now fully configured to retrieve parameterized values and then retrieve documents from the `policies` container in your Storage account.
 
 ### Task 4: Test the function locally
 
-In this task, you will run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
+In this task, you run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
-> **IMPORTANT**: Internet Explorer on Windows Server 2008 R2 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you will need to [download and install the Chrome browser](http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ) on your LabVM.
+> **IMPORTANT**: Internet Explorer on Windows Server 2008 R2 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Chrome browser](https://www.google.com/chrome/) on your LabVM.
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
@@ -1375,7 +1379,7 @@ In this task, you will run your Function locally through the Visual Studio debug
 
 2. If prompted, allow the function app to access your local machine resources.
 
-3. A new console dialog will appear, and the function app will be loaded. At the of the console, you will see output which provides the local URL of the Function.
+3. A new console dialog appears, and the function app is loaded. At the of the console, note the output, which provides the local URL of the Function.
 
     ![The Function console window is displayed with the `PolicyDocs` local URL highlighted.](media/vs-function-app-debug-console.png "Debug")
 
@@ -1398,21 +1402,21 @@ In this task, you will run your Function locally through the Visual Studio debug
 
 6. Paste the updated into the address bar of a new Chrome web browser window and press Enter.
 
-7. In the browser, the policy document will be downloaded.
+7. In the browser, the policy document opens in a new window.
 
     ![The downloaded PDF document is displayed in the web browser.](media/vs-function-app-debug-browser.png "Policy document download")
 
-8. You've confirmed the function is working properly. Stop your Visual Studio debugging session by closing the console window or selecting the stop button on the Visual Studio toolbar. In the next task, you will deploy the function to Azure.
+8. You've confirmed the function is working properly. Stop your Visual Studio debugging session by closing the console window or selecting the stop button on the Visual Studio toolbar. In the next task, you deploy the function to Azure.
 
 ### Task 5: Deploy the function to your Azure Function App
 
-In this task, you will deploy your function into an Azure Function App, where it will be used by the web application to retrieve policy documents.
+In this task, you deploy your function into an Azure Function App, where the web application uses it to retrieve policy documents.
 
-1. In Visual Studio on your LabVM, right-click on the `Contoso.FunctionApp` project in the Solution Explorer, and the select **Publish** from the context menu.
+1. In Visual Studio on your LabVM, right-click on the `Contoso.FunctionApp` project in the Solution Explorer, and then select **Publish** from the context menu.
 
     ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Publish**.
+2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Create Profile**.
 
     ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
 
@@ -1420,15 +1424,19 @@ In this task, you will deploy your function into an Azure Function App, where it
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
 
-4. Select **OK**, which will start the processing of publishing your Web API to your Azure API App.
+4. Select **OK**.
 
-5. Ensure you see a publish succeeded message in Visual Studio.
+5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-6. The Azure Function App is now ready for use within the PolicyConnect web application.
+    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-function.png "Publish")
+
+6. Ensure you see a publish succeeded message in the Visual Studio Output panel.
+
+7. The Azure Function App is now ready for use within the PolicyConnect web application.
 
 ### Task 6: Enable Application Insights on the Function App
 
-In this task, you will add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
+In this task, you add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
 
@@ -1450,13 +1458,13 @@ In this task, you will add Application Insights to your Function App in the Azur
 
     ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
-    > **Note**: You may see a message that your app is offline. We will address this below.
+    > **Note**: You may see a message that your app is offline. You handle this below.
 
 6. Leave the Live Metrics Stream window open for reference in the next task.
 
 ### Task 7: Add Function App URL to your Web App Application settings
 
-In this task, you will add the URL of your Azure Function App to the Application settings configuration of your Web App.
+In this task, you add the URL of your Azure Function App to the Application settings configuration of your Web App.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
@@ -1466,7 +1474,7 @@ In this task, you will add the URL of your Azure Function App to the Application
 
     ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
+3. After a moment, you receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
@@ -1488,7 +1496,7 @@ In this task, you will add the URL of your Azure Function App to the Application
     az webapp list -g <your-resource-group-name> --output table
     ```
 
-7. In the output, you will copy the name of Web App (the resource name will start with contoso-**web**) into a text editor for use below.
+7. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
     ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
@@ -1515,13 +1523,13 @@ In this task, you will add the URL of your Azure Function App to the Application
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
     ```
 
-11. In the output, you will see the newly added `PolicyDocumentsPath` setting in your Web App's application settings.
+11. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
 
     ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
 
 ### Task 8: Test document retrieval from web app
 
-In this task, you will open the PolicyConnect web app and download a policy document. Recall from above that this resulted in a page not found error when you tried it previously.
+In this task, you open the PolicyConnect web app and download a policy document. Recall from above that this resulted in a page not found error when you tried it previously.
 
 1. Open a web browser and navigate to the URL for your published Web App.
 
@@ -1540,7 +1548,7 @@ In this task, you will open the PolicyConnect web app and download a policy docu
 
     ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
-4. On the Policy Holders page, you will see a list of policy holders, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
+4. On the Policy Holders page, you see a list of policy holders, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
     ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
