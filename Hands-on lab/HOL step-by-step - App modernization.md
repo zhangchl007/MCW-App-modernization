@@ -128,9 +128,9 @@ Azure API Management is used to create an API Store for development teams and af
 
 Duration: 45 minutes
 
-In this exercise, you will use the Microsoft Data Migration Assistant (DMA) to perform an assessment on the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and Azure SQL Database.
+In this exercise, you use the Microsoft Data Migration Assistant (DMA) to assess the `ContosoInsurance` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database.
 
-> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality in your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the [Data Migration Assistant documentation](https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current).
+> DMA helps you upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. DMA recommends performance and reliability improvements for your target environment and allows you to move your schema, data, and uncontained objects from your source server to your target server. To learn more, read the [Data Migration Assistant documentation](https://docs.microsoft.com/sql/dma/dma-overview?view=azuresqldb-mi-current).
 
 ### Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM
 
@@ -163,25 +163,23 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](./media/remote-desktop-connection-identity-verification-sqlserver2008.png "Remote Desktop Connection dialog")
 
-7. Once logged into the SqlServer2008 VM, download a [backup of the ContosoInsurance database](https://raw.githubusercontent.com/microsoft/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip), and extract the zipped files into `C:\ContosoInsurance` on the VM.
-
-8. Next, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
+7. Once logged into the SqlServer2008 VM, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
-9. In the SSMS **Connect to Server** dialog, enter **SQLSERVER2008** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+8. In the SSMS **Connect to Server** dialog, enter **SQLSERVER2008** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
 
    ![The SQL Server Connect to Search dialog is displayed, with SQLSERVER2008 entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
 
-10. Once connected, expand **Databases** under SQLSERVER2008 in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
+9. Once connected, expand **Databases** under SQLSERVER2008 in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
     ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
-11. Next, you will execute a script in SSMS, which will reset the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
+10. Next, you will execute a script in SSMS, which will reset the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
 
     ![The New Query button is highlighted in the SSMS toolbar.](media/ssms-new-query.png "SSMS Toolbar")
 
-12. Copy and paste the SQL script below into the new query window:
+11. Copy and paste the SQL script below into the new query window:
 
     ```sql
     USE master;
@@ -220,21 +218,21 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
     GO
     ```
 
-13. To run the script, select **Execute** from the SSMS toolbar.
+12. To run the script, select **Execute** from the SSMS toolbar.
 
     ![The Execute button is highlighted in the SSMS toolbar.](media/ssms-execute.png "SSMS Toolbar")
 
-14. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the SqlServer2008 VM. To do this, you can use SSMS. Right-click the SQLSERVER2008 instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
+13. For Mixed Mode Authentication and the new `sa` password to take effect, you must restart the SQL Server (MSSQLSERVER) Service on the SqlServer2008 VM. To do this, you can use SSMS. Right-click the SQLSERVER2008 instance in the SSMS Object Explorer, and then select **Restart** from the context menu.
 
     ![In the SSMS Object Explorer, the context menu for the SQLSERVER2008 instance is displayed, and Restart is highlighted.](media/ssms-object-explorer-restart-sqlserver2008.png "Object Explorer")
 
-15. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service will take a few seconds to restart.
+14. When prompted about restarting the MSSQLSERVER service, select **Yes**. The service will take a few seconds to restart.
 
     ![The Yes button is highlighted on the dialog asking if you are sure you want to restart the MSSQLSERVER service.](media/ssms-restart-service.png "Restart MSSQLSERVER service")
 
 ### Task 2: Perform assessment for migration to Azure SQL Database
 
-Contoso, Ltd. would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/en-us/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
+Contoso would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/en-us/sql/dma/dma-overview?view=sql-server-2017) (DMA) to perform an assessment of the `ContosoInsurance` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment will provide a report about any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
 > **Note**: The Database Migration Assistant has already been installed on your SqlServer2008 VM. It can also be downloaded from the [Microsoft Download Center](https://www.microsoft.com/en-us/download/details.aspx?id=53595).
 
@@ -291,7 +289,7 @@ Contoso, Ltd. would like an assessment to see what potential issues they might n
 
     ![The Compatibility issues option is selected and highlighted.](media/dma-compatibility-issues.png "Compatibility issues")
 
-> The DMA assessment for a migrating the `ContosoInsurance` database to a target platform of Azure SQL DB reveals that there are no issues or features that will prevent Contoso, Ltd. from migrating their database to Azure SQL DB. You can select **Export Assessment** at the top right to save the report as a JSON file, if desired.
+> The DMA assessment for a migrating the `ContosoInsurance` database to a target platform of Azure SQL DB reveals that there are no issues or features that will prevent Contoso from migrating their database to Azure SQL DB. You can select **Export Assessment** at the top right to save the report as a JSON file, if desired.
 
 ### Task 3: Migrate the database schema using the Data Migration Assistant
 
@@ -414,12 +412,12 @@ In this task, you will use the Azure Cloud shell to retrieve the IP address of t
 7. Next, run a second command to retrieve the server name of your Azure SQL Database, **replacing hands-on-lab-SUFFIX** with your resource group name:
 
     ```powershell
-    az sql server list -g hands-on-lab-SUFFIX --output table
+    az sql server list -g hands-on-lab-SUFFIX
     ```
 
-    ![The output from the az sql server list command is displayed in the Cloud Shell, and the Name for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
+    ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
 
-8. Copy the **Name** value into a text editor for use below.
+8. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
 ### Task 5: Migrate the database using the Azure Database Migration Service
 
@@ -427,7 +425,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 > The [Azure Database Migration Service](https://docs.microsoft.com/en-us/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms** Azure Database Migration Service in the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueID** Azure Database Migration Service in the list of resources.
 
    ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-dms-resource.png "Resources")
 
@@ -460,7 +458,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 7. On the Migration Wizard **Select target** blade, enter the following:
 
-    - **Target server name**: Enter the server name associated with your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net).
+    - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
     - **Authentication type**: Select SQL Authentication.
     - **Username**: Enter **demouser**
     - **Password**: Enter **Password.1!!**
@@ -676,7 +674,7 @@ In this task, you will enable [Dynamic Data Masking](https://docs.microsoft.com/
 
 Duration: 15 minutes
 
-As part of their efforts to put tighter security controls in place, Contoso, Ltd. has asked for the application secrets to be stored in a secure manner, so they aren't visible in plain text in application configuration files. In this exercise, you will configure Azure Key Vault, which will be used to store application secrets for the Contoso web and API applications, once migrated to Azure.
+As part of their efforts to put tighter security controls in place, Contoso has asked for the application secrets to be stored in a secure manner, so they aren't visible in plain text in application configuration files. In this exercise, you will configure Azure Key Vault, which will be used to store application secrets for the Contoso web and API applications, once migrated to Azure.
 
 ### Task 1: Add Key Vault access policy
 
@@ -830,7 +828,7 @@ In this task, you will assign the service principal you created above to a reade
 
 Duration: 45 minutes
 
-The developers at Contoso, Ltd. have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web App and API App into Azure from Visual Studio.
+The developers at Contoso have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web App and API App into Azure from Visual Studio.
 
 ### Task 1: Connect to the LabVM
 
@@ -866,7 +864,7 @@ In this task, you will open the `Contoso` starter solution in Visual Studio. The
 - **Contoso.Azure**: Common library containing helper classes used by other projects within the solution to communicate with Azure services.
 - **Contoso.Data**: Library containing data access objects.
 - **Contoso.FunctionApp**: Contains an Azure Function that is used to retrieve policy documents from Blob storage.
-- `Contoso.Web`: ASP.NET Core 2.2 PolicyConnect web application.
+- **Contoso.Web**: ASP.NET Core 2.2 PolicyConnect web application.
 - **Contoso.WebApi**: ASP.NET Core 2.2 Web API used by the web application to communicate with the database.
 
 1. In File Explorer, navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and double-click the `Contoso.sln` file to open the solution in Visual Studio.
@@ -1162,7 +1160,7 @@ In this task, you will publish the `Contoso.Web` application into an Azure Web A
 
 Duration: 10 minutes.
 
-Contoso, Ltd. is currently storing all of their scanned PDF documents on a shared local network. They have asked to be able to store them in the cloud automatically from a workflow. In this exercise, you will provide a storage account that will be used to store the files in a blob container. Then, you will provide a way to bulk upload their existing PDFs.
+Contoso is currently storing all of their scanned PDF documents on a shared local network. They have asked to be able to store them in the cloud automatically from a workflow. In this exercise, you will provide a storage account that will be used to store the files in a blob container. Then, you will provide a way to bulk upload their existing PDFs.
 
 ### Task 1: Create container for storing PDFs in Azure storage
 
@@ -1246,7 +1244,7 @@ In this task, you will download and install [AzCopy](https://docs.microsoft.com/
 
 Duration: 30 minutes
 
-Contoso, Ltd. has made some updates to prepare their applications, but there are some features that they have not been able to build into the API yet. They have requested that you assist them in setting up a proof-of-concept (POC) API solution to enable users of their application to retrieve their policy documents directly from their Azure Storage account. In this exercise, you will create an Azure Function to enable this functionality using serverless technologies.
+Contoso has made some updates to prepare their applications, but there are some features that they have not been able to build into the API yet. They have requested that you assist them in setting up a proof-of-concept (POC) API solution to enable users of their application to retrieve their policy documents directly from their Azure Storage account. In this exercise, you will create an Azure Function to enable this functionality using serverless technologies.
 
 ### Task 1: Add application settings to your Function App
 
@@ -1555,7 +1553,7 @@ In this task, you will open the PolicyConnect web app and download a policy docu
 
 Duration: 15 minutes
 
-Contoso, Ltd. has asked for the ability to conduct full-text searching on their policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about [cognitive search with Azure Search Service](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro), and are interested to learn if they can be used to make the data in their search index more useful. In this exercise, you will provision an Azure Search service, then configure search indexing on the policies blob storage container.
+Contoso has asked for the ability to conduct full-text searching on their policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about [cognitive search with Azure Search Service](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro), and are interested to learn if they can be used to make the data in their search index more useful. In this exercise, you will provision an Azure Search service, then configure search indexing on the policies blob storage container.
 
 ### Task 1: Add Azure Search to Blob Storage account
 
@@ -1696,7 +1694,7 @@ In this task, you will run a search query against your search index to see how t
    }
    ```
 
-8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and will help to make documents and their contents more usable by Contoso, Ltd..
+8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and will help to make documents and their contents more usable by Contoso.
 
 ## Exercise 9: Import and publish APIs into APIM
 
