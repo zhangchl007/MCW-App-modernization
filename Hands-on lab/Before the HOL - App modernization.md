@@ -106,12 +106,12 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
 - App Service (API App)
 - Function App
 - API Management
-- SignalR service
 - Key Vault
 - Azure Search
+- Azure Cognitive Services account
 - Virtual Network
 
->**Note**: You can review the steps to manually provision the lab resources in [Appendix A](./Manual-resource-setup.md).
+>**Note**: You can review the steps to manually provision the lab resources in the [Manual resource setup guide](./Manual-resource-setup.md).
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which will open a custom deployment screen in the Azure portal.
 
