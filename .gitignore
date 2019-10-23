@@ -286,3 +286,9 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# macOS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
