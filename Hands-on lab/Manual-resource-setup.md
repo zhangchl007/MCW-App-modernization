@@ -19,7 +19,8 @@ This appendix provides the steps to manually provision and configure the resourc
   - [Task 12: Connect to the Lab VM](#task-12-connect-to-the-lab-vm)
   - [Task 13: Install required software on the LabVM](#task-13-install-required-software-on-the-labvm)
   - [Task 14: Connect to SqlServer2008 VM](#task-14-connect-to-sqlserver2008-vm)
-  - [Task 15: Install required software on the SqlServer2008 VM](#task-15-install-required-software-on-the-sqlserver2008-vm)
+  - [Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-15-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
+  - [Task 16: Install required software on the SqlServer2008 VM](#task-16-install-required-software-on-the-sqlserver2008-vm)
 
 > **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
@@ -456,13 +457,9 @@ In this task, you will create an RDP connection to your Lab virtual machine (VM)
 
 ## Task 13: Install required software on the LabVM
 
-In this task, you will install SQL Server Management Studio (SSMS) on the LabVM.
+In this task, you will download and install SQL Server Management Studio (SSMS) on the LabVM. You also download a copy of the Visual Studio starter solution and unzip it into a folder named `C:\MCW`.
 
-1. First, you will install SSMS on the LabVM. Open a web browser on your LabVM, navigate to <https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms> and then select the **Download SQL Server Management Studio 18.x** link to download the latest version of SSMS.
-
-    ![The Download SQL Server Management Studio 18.x link is highlighted on the page specified above.](media/download-ssms.png "Download SSMS")
-
-    > **Note**: Versions change frequently, so if the version number you see does not match the screenshot, just download and install the most recent version.
+1. First, you will install SSMS on the LabVM. Open a web browser on your LabVM, navigate to <https://aka.ms/ssmsfullsetup>. This will download the latest version of SSMS.
 
 2. Run the downloaded installer.
 
@@ -474,9 +471,17 @@ In this task, you will install SQL Server Management Studio (SSMS) on the LabVM.
 
     ![The Close button is highlighted on the SSMS Setup Completed dialog.](media/ssms-install-close.png "Setup completed")
 
+5. Next, [download a copy of the GitHub repo for the App modernization MCW](https://github.com/microsoft/MCW-App-modernization/archive/master.zip).
+
+6. Extract the download ZIP file to `C:\MCW`.
+
+   ![The Extract Compressed Folders dialog is displayed, with `C:\MCW` entered into the extraction location.](media/mcw-download-extract.png "Extract Compressed ZIP")
+
 ## Task 14: Connect to SqlServer2008 VM
 
-In this task, you will open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic. You will also install Data Migration Assistant (DMA).
+In this task, you will open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic.
+
+> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2 which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
 1. As you did for the LabVM, navigate to the SqlServer2008 VM blade in the Azure portal, select **Overview** from the left-hand menu, and then select **Connect** on the top menu.
 
@@ -509,7 +514,37 @@ In this task, you will open an RDP connection to the SqlServer2008 VM, disable I
 
     ![Screenshot of the Internet Explorer Enhanced Security Configuration dialog box, with Administrators set to Off.](./media/2008-internet-explorer-enhanced-security-configuration-dialog.png "Internet Explorer Enhanced Security Configuration dialog box")
 
-## Task 15: Install required software on the SqlServer2008 VM
+## Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM
+
+In this task, you restore the `ContosoInsurance` database onto the SQL Server 2008 R2 instance using a backup provided by Contoso, Ltd.
+
+1. On the SqlServer2008 VM, download a [backup of the ContosoInsurance database](https://raw.githubusercontent.com/microsoft/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip), and extract the zipped files into `C:\ContosoInsurance` on the VM.
+
+2. Next, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
+
+   ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
+
+3. In the SSMS **Connect to Server** dialog, enter **SQLSERVER2008** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+
+   ![The SQL Server Connect to Search dialog is displayed, with SQLSERVER2008 entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
+
+4. Once connected, right-click **Databases** under SQLSERVER2008 in the Object Explorer, and then select **Attach...** from the context menu.
+
+    ![In the SSMS Object Explorer, the context menu for Databases is displayed and Restore Database is highlighted.](media/ssms-databases-attach.png "SSMS Object Explorer")
+
+5. You will now attach the `ContosoInsurance` database using the downloaded `ContosoInsurance.mdf` and `ContosoInsurance_log.ldf` files. On the **General** page of the Attach Databases dialog, select the **Add** button, and in the Locate Database Files dialog, expand the ContosoInsurance folder, select `ContosoInsurance.mdf`, and then select **OK**.
+
+    ![ContosoInsurance.mdf is selected and highlighted in the Select a file box. The OK button is highlighted.](media/ssms-attach-database-source.png "Locate Database files")
+
+6. Back on the Attach Databases dialog, verify you see the ContosoInsurance Data and Log files under database details, and then select **OK**.
+
+    ![The completed Attach Databases dialog is displayed, with the ContosoInsurance database specified as the target.](media/ssms-attach-database.png "Attach Database")
+
+7. You should now see the `ContosoInsurance` database listed under Databases.
+
+    ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
+
+## Task 16: Install required software on the SqlServer2008 VM
 
 In this task, you will install the Microsoft Data Migration Assistant (DMA) on the SqlServer2008 VM.
 
