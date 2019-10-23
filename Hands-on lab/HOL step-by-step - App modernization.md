@@ -425,7 +425,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 > The [Azure Database Migration Service](https://docs.microsoft.com/en-us/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueID** Azure Database Migration Service in the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your Azure Database Migration Service by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-dms-UniqueId** Azure Database Migration Service in the list of resources.
 
    ![The contoso-dms Azure Database Migration Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-dms-resource.png "Resources")
 
@@ -670,6 +670,8 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
 
+> **NOTE**: The SqlServer2008 VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
+
 ## Exercise 3: Configure Key Vault
 
 Duration: 15 minutes
@@ -680,11 +682,13 @@ As part of their efforts to put tighter security controls in place, Contoso has 
 
 In this task, you add an access policy to Key Vault to allow secrets to be created with your account.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Key Vault** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosokvUNIQUE-IDENTIFIER** Key vault resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Key Vault** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
    ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
 
 2. On the Key Vault blade, select **Access policies** under Settings in the left-hand menu, and then select **+ Add Access Policy**.
+
+    ![The + Add Access Policy link is highlighted on the Access policies blade.](media/key-vault-add-access-policy-link.png "Access policies")
 
 3. In the Add access policy dialog, enter the following:
 
@@ -705,7 +709,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
 
 ### Task 2: Create a new secret to store the SQL connection string
 
-In this task, you will add a secret to Key Vault containing the connection string for the `ContosoInsurance` Azure SQL database.
+In this task, you add a secret to Key Vault containing the connection string for the `ContosoInsurance` Azure SQL database.
 
 1. First, you need to retrieve the connection string to your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
 
@@ -715,12 +719,9 @@ In this task, you will add a secret to Key Vault containing the connection strin
 
    ![Connection strings is selected and highlighted in the left-hand menu on the SQL database blade, and the copy button is highlighted next to the ADO.NET connection string](media/sql-db-connection-strings.png "Connection strings")
 
-3. Paste the copied connection string into a text editor, such as Notepad.exe. This is necessary because you will need to replace the tokenized username and password values before adding the connection string as a Secret in Key Vault.
+3. Paste the copied connection string into a text editor, such as Notepad.exe. This is necessary because you need to replace the tokenized password value before adding the connection string as a Secret in Key Vault.
 
-4. In the text editor, find and replace the tokenized values as follows:
-
-    - Replace `{your_username}` with **demouser**
-    - Replace `{your_password}` with **Password.1!!**
+4. In the text editor, find and replace the tokenized `{your_password}` value with `Password.1!!`.
 
 5. Your connection string should now resemble the following:
 
@@ -730,13 +731,13 @@ In this task, you will add a secret to Key Vault containing the connection strin
 
 6. Copy your updated connection string from the text editor.
 
-7. In the [Azure portal](https://portal.azure.com), navigate to your **Key Vault** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosokvUNIQUE-IDENTIFIER** Key vault resource from the list of resources.
+7. In the [Azure portal](https://portal.azure.com), navigate back to your **Key Vault** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-kv-UniqueId** Key vault resource from the list of resources.
 
    ![The contosokv Key vault resource is highlighted in the list of resources.](media/azure-resources-key-vault.png "Key vault")
 
 8. On the Key Vault blade, select **Secrets** under Settings in the left-hand menu, and then select **+ Generate/Import**.
 
-    ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](media/e3-03.png "Key Vault Secrets")
+    ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](media/key-vault-secrets.png "Key Vault Secrets")
 
 9. On the Create a secret blade, enter the following:
 
@@ -744,13 +745,13 @@ In this task, you will add a secret to Key Vault containing the connection strin
     - **Name**: Enter **SqlConnectionString**
     - **Value**: Paste the updated SQL connection string you copied from the text editor.
 
-    ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/e3-04.png "Create a secret")
+    ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/key-vault-secrets-create.png "Create a secret")
 
 10. Select **Create**.
 
 ### Task 3: Create a service principal
 
-In this task, you will use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) that will be used to provide your web and API apps access to secrets stored in Azure Key Vault.
+In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) used to provide your web and API apps access to secrets stored in Azure Key Vault.
 
 > **IMPORTANT**: You must have rights within your Azure AD tenant to create applications and assign roles to complete this task.
 
@@ -762,7 +763,7 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
 
     ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
+3. After a moment, you should receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
@@ -786,7 +787,7 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
 
     ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
 
-7. Copy the entire output from the command above into a text editor, as you will need the `appId`, `name` and `password` values in upcoming tasks. The output should be similar to:
+7. Copy the entire output from the command above into a text editor, as you need the `appId`, `name` and `password` values in upcoming tasks. The output should be similar to:
 
     ```json
     {
@@ -798,11 +799,11 @@ In this task, you will use the Azure Cloud Shell and Azure Command Line Interfac
     }
     ```
 
-    > **IMPORTANT**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session will eventually time out, and you will no longer have access to the output. The `appId` will be used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` will be used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
+    > **IMPORTANT**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session eventually times out, and you won't have access to the output. The `appId` is used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` are used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
 
 ### Task 4: Assign the service principal access to Key Vault
 
-In this task, you will assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
+In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
 
 1. Next, run the following command to get the name of your Key Vault, replacing `<your-resource-group-name>` with the name of your resource group.
 
@@ -810,7 +811,7 @@ In this task, you will assign the service principal you created above to a reade
     az keyvault list -g <your-resource-group-name> --output table
     ```
 
-2. In the output from the previous command, copy the value from the `name` field into a text editor. You will use it in the next step and also for configuration of your web and API apps.
+2. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
 
     ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
 
@@ -820,7 +821,7 @@ In this task, you will assign the service principal you created above to a reade
     az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
     ```
 
-4. In the output, you will see your service principal appId listed with "get" and "list" permissions for secrets.
+4. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
 
     ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 
@@ -828,11 +829,11 @@ In this task, you will assign the service principal you created above to a reade
 
 Duration: 45 minutes
 
-The developers at Contoso have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you will apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you will deploy the Web App and API App into Azure from Visual Studio.
+The developers at Contoso have been working toward migrating their apps to the cloud, and they have provided you with a starter solution developed using ASP.NET Core 2.2. As such, most of the pieces are already in place to deploy the apps to Azure, as well as configure them to communicate with the new app services. Since the required services have already been provisioned, what remains is to integrate Azure Key Vault into the API, apply application-level configuration settings, and then deploy the apps from the Visual Studio starter solution. In this task, you apply application settings to the Web API using the Azure Portal. Once the application settings have been set, you deploy the Web App and API App into Azure from Visual Studio.
 
 ### Task 1: Connect to the LabVM
 
-In this task, you will open an RDP connection to the LabVM, and downloading a copy of the starter solution provided by Contoso. You will be using Visual Studio 2019, installed on the LabVM, to deploy the Contoso applications into Azure.
+In this task, you open an RDP connection to the LabVM, and downloading a copy of the starter solution provided by Contoso. The application deployments are handled using Visual Studio 2019, installed on the LabVM.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **LabVM** virtual machine by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **LabVM** virtual machine from the list of resources.
 
@@ -954,7 +955,7 @@ In this task, you will update the `Contoso.WebApi` project to use Azure Key Vaul
 
 Before deploying the Web API to Azure, you need to add the required application settings into the configuration for the Azure API App. In this task, you will use the advanced configuration editor in your API App to add in the configuration settings required to connect to and retrieve secrets from Key Vault.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsapiUNIQUE-IDENTIFIER** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsapi-UniqueId** App service from the list of resources.
 
    ![The API App resource is highlighted in the list of resources.](media/azure-resources-api-app.png "API App")
 
@@ -1166,7 +1167,7 @@ Contoso is currently storing all of their scanned PDF documents on a shared loca
 
 In this task, you will create a new container in your storage account for the scanned PDF policy documents.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUNIQUE-IDENTIFIER** Storage account resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
 
     ![The Storage Account resource is highlighted in the list of resources.](media/e5-01.png "Storage account")
 
@@ -1419,7 +1420,7 @@ In this task, you will deploy your function into an Azure Function App, where it
 
 In this task, you will add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsfuncUNIQUE-IDENTIFIER** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsfunc-UniqueId** App service from the list of resources.
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
@@ -1557,7 +1558,7 @@ Contoso has asked for the ability to conduct full-text searching on their policy
 
 ### Task 1: Add Azure Search to Blob Storage account
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUNIQUE-IDENTIFIER** Storage account resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
 
    ![The Storage Account resource is highlighted in the list of resources.](media/e5-01.png "Storage account")
 
@@ -1613,7 +1614,7 @@ Contoso has asked for the ability to conduct full-text searching on their policy
 
 In this task, you will run a search query against your search index to see how the addition of cognitive search skills enriches the data extracted from policy documents.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoinssearchUNIQUE-IDENTIFIER** Search service resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoinssearch-UniqueId** Search service resource from the list of resources.
 
    ![The Search service resource is highlighted in the list of resources.](media/azure-resources-search.png "Search service")
 
