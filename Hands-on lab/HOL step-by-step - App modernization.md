@@ -1556,7 +1556,7 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
     ![The PDF document link is highlighted and the underlying URL is highlighted at the bottom of the browser window.](media/web-app-policy-holder-details-file-path.png "PolicyConnect")
 
-6. Now, select the link under **File Path**, and the policy document will be downloaded.
+6. Now, select the link under **File Path**, and download the policy document.
 
     ![The download policy document is displayed.](media/policy-document-download.png "PolicyConnect")
 
@@ -1564,7 +1564,7 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 1. Return to the Application Insights Live Metrics Stream in the Azure portal.
 
-2. The page should now display a dashboard featuring telemetry for requests hitting your Function App. Look under the Sample Telemetry section on the right, and you will see the document request you just made listed. Select the Trace whose message begins with "PolicyDocs function received a request...", and observe the details in the panel below it.
+2. The page should now display a dashboard featuring telemetry for requests hitting your Function App. Look under the Sample Telemetry section on the right, and you locate the document request you just made. Select the Trace whose message begins with "PolicyDocs function received a request...", and observe the details in the panel below it.
 
     ![Sample telemetry data is displayed on the Live Metrics Stream page.](media/application-insights-sample-telemetry.png "Application Insights")
 
@@ -1572,13 +1572,13 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 Duration: 15 minutes
 
-Contoso has asked for the ability to conduct full-text searching on their policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about [cognitive search with Azure Search Service](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro), and are interested to learn if they can be used to make the data in their search index more useful. In this exercise, you will provision an Azure Search service, then configure search indexing on the policies blob storage container.
+Contoso has requested the ability to perform full-text searching on policy documents. Previously, they have not been able to extract information from the documents in a usable way, but they have read about [cognitive search with Azure Search Service](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro), and are interested to learn if it could be used to make the data in their search index more useful. In this exercise, you configure cognitive search for the policies blob storage container.
 
-### Task 1: Add Azure Search to Blob Storage account
+### Task 1: Add Azure Search to Storage account
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-UniqueId** Storage account resource from the list of resources.
 
-   ![The Storage Account resource is highlighted in the list of resources.](media/e5-01.png "Storage account")
+   ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
 
 2. On the Storage account blade, select **Add Azure Search** from the left-hand menu, and then on the **Select a search service** tab, select your search service.
 
@@ -1626,11 +1626,11 @@ Contoso has asked for the ability to conduct full-text searching on their policy
 
     > **NOTE**: You may need to check and then uncheck Track deletions to remove the fields associated with tracking deletions from the UI.
 
-11. Within a few seconds, you will receive a notification in the Azure portal that the import was successfully configured.
+11. Within a few seconds, you receive a notification in the Azure portal that the import was successfully configured.
 
 ### Task 2: Review search results
 
-In this task, you will run a search query against your search index to see how the addition of cognitive search skills enriches the data extracted from policy documents.
+In this task, you run a query against your search index to review the enrichments added by cognitive search to policy documents.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-search-UniqueId** Search service resource from the list of resources.
 
@@ -1640,7 +1640,7 @@ In this task, you will run a search query against your search index to see how t
 
     ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/azure-search-indexers.png "Search Service")
 
-3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**. If the status is **In progress**, select **Refresh** every 15-20 seconds until it changes to **Success**.
+3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**. If the status is **In progress**, select **Refresh** every 20-30 seconds until it changes to **Success**.
 
    > If you see a status of **No history**, select the policy-docs-indexer, and select **Run** on the Indexer blade.
 
@@ -1650,51 +1650,57 @@ In this task, you will run a search query against your search index to see how t
 
 5. On the **Search explorer** blade, select **Search**.
 
-6. In the search results, inspect the returned documents, paying special attention to the fields added by the cognitive skills you added when creating the search index. These fields are `people`, `organizations`, `locations`, `keyphrases`, and `language`.
+6. In the search results, inspect the returned documents, paying special attention to the fields added by the cognitive skills you added when creating the search index. These fields are `People`, `Organizations`, `Locations`, `Keyphrases`, `Language`, and `Translated_Text`.
 
    ```json
    {
-      "@search.score": 1,
-      "content": "\nContoso Insurance - Your Gold Policy\n\nPolicy Holder: Christen Cohen\nPolicy #: COH291A8F5SMX8\nEffective Coverage Dates: 25 August 2015 - 26 July 2024\nAddress: 8721 Augue Av.New Plymouth, North Island 4889\nPolicy Amount: $22,336.00\nDeductible: $500.00\nOut of Pocket Max: $2,000.00\n\nDEPENDENTS\nYou have no dependents to list.\n\n1 / 0 25 August 2015\n\n\n",
-      "metadata_storage_content_type": "application/octet-stream",
-      "metadata_storage_size": 134504,
-      "metadata_storage_last_modified": "2019-06-21T15:34:51Z",
-      "metadata_storage_content_md5": "6eJPF2YolzovSeb2++LY1w==",
-      "metadata_storage_name": "Cohen-COH291A8F5SMX8.pdf",
-      "metadata_storage_path": "aHR0cHM6Ly9jb250b3NvanQ3eWMzenBoeGZkYS5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29oZW4tQ09IMjkxQThGNVNNWDgucGRm0",
-      "metadata_content_type": "application/pdf",
-      "metadata_language": "en",
-      "metadata_author": "Contoso Insurance",
-      "metadata_title": "Your Policy",
-      "people": [
-          "Christen Cohen",
-          "Max"
-      ],
-      "organizations": [
-          "Contoso Insurance - Your Gold Policy",
-          "Contoso",
-          "Av.New Plymouth",
-          "Plymouth, North"
-      ],
-      "locations": [
-          "North Island"
-      ],
-      "keyphrases": [
-          "Gold Policy",
-          "Policy Holder",
-          "DEPENDENTS",
-          "Augue Av",
-          "New Plymouth",
-          "North Island",
-          "Address",
-          "Contoso Insurance",
-          "Effective Coverage Dates",
-          "Cohen",
-          "Pocket Max",
-          "list",
-          "COH291A8F5SMX8"
-      ],
-      "language": "en"
+        "@search.score": 1,
+        "content": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\n\nworksheet1\n\n\t\tFirst Name\t\tDate of Birth\n\n\t\tIma\t\t21 January 2002\n\n\t\tEcho\t\t12 August 2003\n\n\n\n\n\n\n",
+        "metadata_storage_content_type": "application/octet-stream",
+        "metadata_storage_size": 142754,
+        "metadata_storage_last_modified": "2019-10-23T21:42:23Z",
+        "metadata_storage_content_md5": "ksk3JZT5QPkHfAR0F17ZEw==",
+        "metadata_storage_name": "Cooke-COO13CE2ZLOKD.pdf",
+        "metadata_storage_path": "aHR0cHM6Ly9ob2xzdG9yYWdlYWNjb3VudC5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29va2UtQ09PMTNDRTJaTE9LRC5wZGY1",
+        "metadata_content_type": "application/pdf",
+        "metadata_language": "en",
+        "metadata_author": "Contoso Insurance",
+        "metadata_title": "Your Policy",
+        "People": [
+            "Igor Cooke",
+            "Cooke",
+            "Max"
+        ],
+        "Organizations": [
+            "Contoso Insurance - Your Platinum Policy",
+            "NI",
+            "DEPENDENTS\nFirst",
+            "Ima",
+            "Page Summary\nDependents",
+            "Echo"
+        ],
+        "Locations": [],
+        "Keyphrases": [
+            "Platinum Policy",
+            "Policy Holder",
+            "Date of Birth",
+            "Echo",
+            "DEPENDENTS",
+            "Ima",
+            "Box",
+            "Pellentesque AveTaupo",
+            "Address",
+            "NI",
+            "Contoso Insurance",
+            "Igor Cooke",
+            "Effective Coverage Dates",
+            "Pocket Max",
+            "Page Summary",
+            "COO13CE2ZLOKD",
+            "worksheet1"
+        ],
+        "Language": "en",
+        "Translated_Text": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\nworksheet1\n\nFirst Name\t\tDate of Birth\n\nIma\t\t21 January 2002\n\nEcho\t\t12 August 2003\n\n"
    }
    ```
 
@@ -1702,14 +1708,18 @@ In this task, you will run a search query against your search index to see how t
 
    ```json
    {
-      "@search.score": 1,
-      "content": "\nContoso Insurance - Your Bronze Policy\n\nPolicy Holder: Leo Burch\nPolicy #: BUR124DY7VNUTM\nEffective Coverage Dates: 28 May 2013 - 14 February 2021\nAddress: P.O. Box 203, 9529 Dolor. Av.Waitara, North Island 6175\nPolicy Amount: $63,424.00\nDeductible: $1,000.00\nOut of Pocket Max: $3,000.00\n\nDEPENDENTS\nYou have no dependents to list.\n\n1 / 0 28 May 2013\n\n\n",
-      "metadata_storage_content_type": "application/octet-stream",
-      "metadata_storage_size": 135907,
-      "metadata_storage_last_modified": "2019-06-04T02:57:06Z",
-      "metadata_storage_name": "Burch-BUR124DY7VNUTM.pdf",
-      "metadata_storage_path": "aHR0cHM6Ly9jb250b3NvaW5zdXJhbmNla2FiLmJsb2IuY29yZS53aW5kb3dzLm5ldC9wb2xpY2llcy9CdXJjaC1CVVIxMjREWTdWTlVUTS5wZGY1",
-      "metadata_title": "Your Policy"
+        "@search.score": 1,
+        "content": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\n\nworksheet1\n\n\t\tFirst Name\t\tDate of Birth\n\n\t\tIma\t\t21 January 2002\n\n\t\tEcho\t\t12 August 2003\n\n\n\n\n\n\n",
+        "metadata_storage_content_type": "application/octet-stream",
+        "metadata_storage_size": 142754,
+        "metadata_storage_last_modified": "2019-10-23T21:42:23Z",
+        "metadata_storage_content_md5": "ksk3JZT5QPkHfAR0F17ZEw==",
+        "metadata_storage_name": "Cooke-COO13CE2ZLOKD.pdf",
+        "metadata_storage_path": "aHR0cHM6Ly9ob2xzdG9yYWdlYWNjb3VudC5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29va2UtQ09PMTNDRTJaTE9LRC5wZGY1",
+        "metadata_content_type": "application/pdf",
+        "metadata_language": "en",
+        "metadata_author": "Contoso Insurance",
+        "metadata_title": "Your Policy"
    }
    ```
 
