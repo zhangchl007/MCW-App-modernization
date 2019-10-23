@@ -527,7 +527,7 @@ In this task, you look at the [SQL Data Discovery and Classification](https://do
 
     ![The DOB recommendation is highlighted in the recommendations list.](media/ads-data-discovery-and-classification-recommendations-dob.png "Data Discovery & Classification")
 
-5. ContosoInsurance is very concerned about the potential cost of any GDPR violations, and would like to label any GDPR fields as _Highly Confidential - GDPR_. To update this, select **+ Add classification** in the Data Discovery & Classification toolbar.
+5. Contoso is very concerned about the potential cost of any GDPR violations, and would like to label any GDPR fields as _Highly Confidential - GDPR_. To update this, select **+ Add classification** in the Data Discovery & Classification toolbar.
 
    ![The +Add classification button is highlighted in the toolbar.](media/ads-data-discovery-and-classification-add-classification.png "Data Discovery & Classification")
 
@@ -860,7 +860,7 @@ In this task, you open an RDP connection to the LabVM, and downloading a copy of
 
 ### Task 2: Open starter solution with Visual Studio
 
-In this task, you will open the `Contoso` starter solution in Visual Studio. The Visual Studio solution contains the following projects:
+In this task, you open the `Contoso` starter solution in Visual Studio. The Visual Studio solution contains the following projects:
 
 - **Contoso.Azure**: Common library containing helper classes used by other projects within the solution to communicate with Azure services.
 - **Contoso.Data**: Library containing data access objects.
@@ -884,7 +884,7 @@ In this task, you will open the `Contoso` starter solution in Visual Studio. The
 
     ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
-5. If you see errors in the Error list pertaining to a version conflict, you will need to install the .NET CORE 2.2 framework, using the steps below. If you don't see these errors, you can skip to the next task.
+5. If you see errors in the Error list pertaining to a version conflict, you need to install the .NET CORE 2.2 framework, using the steps below. If you don't see these errors, you can skip to the next task.
 
     ![Error pane in Visual Studio](media/vs-net-core-errors.png "Visual Studio errors")
 
@@ -904,13 +904,13 @@ In this task, you will open the `Contoso` starter solution in Visual Studio. The
 
     ![The .NET Core 2.2 installer is displayed, and Install is highlighted.](media/installed-net-core-2-2.png "Install .NET Core 2.2.")
 
-10. Select **Close** when the installation finishes. You will then need to close and reopen Visual Studio and the `Contoso` solution.
+10. Select **Close** when the installation finishes. You then need to close and reopen Visual Studio and the `Contoso` solution.
 
 ### Task 3: Update Web API to use Key Vault
 
-In this task, you will update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You will start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
+In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You will start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
 
-> The required NuGet package to enable interaction with Key Vault has already been added to the project to save time. The package added to facilitate this is: `Microsoft.Extensions.Configuration.AzureKeyVault`.
+> The required NuGet package to enable interaction with Key Vault has already been referenced in the project to save time. The package added to facilitate this is: `Microsoft.Extensions.Configuration.AzureKeyVault`.
 
 1. In Visual Studio, expand the `Contoso.WebApi` project in the Solution Explorer, locate the `Program.cs` file and open it by double-clicking on it.
 
@@ -955,7 +955,7 @@ In this task, you will update the `Contoso.WebApi` project to use Azure Key Vaul
 
 Before deploying the Web API to Azure, you need to add the required application settings into the configuration for the Azure API App. In this task, you will use the advanced configuration editor in your API App to add in the configuration settings required to connect to and retrieve secrets from Key Vault.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsapi-UniqueId** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
 
    ![The API App resource is highlighted in the list of resources.](media/azure-resources-api-app.png "API App")
 
@@ -1025,39 +1025,43 @@ In this task, you will use Visual Studio to deploy the API project into an API A
 
     ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
 
-2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Publish**.
+2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
 
-    ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Publish button is highlighted..](media/e4-05.png "Pick a publish target")
+    ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Provile button is highlighted..](media/visual-studio-publish-api-app.png "Pick a publish target")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contosoins**api**") under your hands-on-lab-SUFFIX resource group.
+3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contoso-**api**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsapi App Service is highlighted.](media/e4-06.png "Select App Service")
+    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-api App Service is highlighted.](media/visual-studio-publish-app-service-api.png "Select App Service")
 
-4. Select **OK**, which will start the processing of publishing your Web API to your Azure API App.
+4. Select **OK**.
 
-5. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
+5. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![Web Publish Activity view with the publish process status and API site url](media/e4-07.png "Web Publish Activity")
+    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
+
+6. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
+
+    ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
 
     > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
-6. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you will see a message that the page cannot be found.
+7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you will see a message that the page cannot be found.
 
     ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-7. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contosoinsapijjbp34uowoybc.azurewebsites.net/swagger/>). This will bring up the Swagger profile of your API, where you will a list of the available API endpoints.
+8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This will bring up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
-    ![Swagger screen displayed for the API App.](media/e4-08.png "Validate published Web API")
+    ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
-8. You can test the functionality of the API by selecting one of the endpoints, and selecting **Try it out**.
+9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
     ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
 
-9. Select **Execute**.
+10. Select **Execute**.
 
     ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
 
-10. In the Response, you will see a Response Code of 200, and JSON objects in the Response body.
+11. In the Response, you will see a Response Code of 200, and JSON objects in the Response body.
 
     ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
 
@@ -1091,7 +1095,7 @@ In this task, you will prepare your Web App to work with the API App by adding t
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
-5. In the output, you will copy two values for use in the next step. Copy the **DefaultHostName** value for the your API App (the resource name will start with contosoins**api**) and also copy the Web App name value.
+5. In the output, you will copy two values for use in the next step. Copy the **DefaultHostName** value for the your API App (the resource name will start with contoso-**api**) and also copy the Web App name value.
 
     ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
 
@@ -1124,9 +1128,9 @@ In this task, you will publish the `Contoso.Web` application into an Azure Web A
 
     ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-web-publish-target.png "Publish")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contosoins**web**") under your hands-on-lab-SUFFIX resource group.
+3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contoso-**web**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsweb App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
+    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
 
 4. Select **OK**, which will start the processing of publishing your Web API to your Azure API App.
 
@@ -1406,9 +1410,9 @@ In this task, you will deploy your function into an Azure Function App, where it
 
     ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contosoins**func**") under your hands-on-lab-SUFFIX resource group.
+3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contoso-**func**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contosoinsfunc App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
+    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
 
 4. Select **OK**, which will start the processing of publishing your Web API to your Azure API App.
 
@@ -1420,7 +1424,7 @@ In this task, you will deploy your function into an Azure Function App, where it
 
 In this task, you will add Application Insights to your Function App in the Azure Portal, to be able to collect insights into requests against the Function.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contosoinsfunc-UniqueId** App service from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-func-UniqueId** App service from the list of resources.
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
@@ -1478,7 +1482,7 @@ In this task, you will add the URL of your Azure Function App to the Application
     az webapp list -g <your-resource-group-name> --output table
     ```
 
-7. In the output, you will copy the name of Web App (the resource name will start with contosoins**web**) into a text editor for use below.
+7. In the output, you will copy the name of Web App (the resource name will start with contoso-**web**) into a text editor for use below.
 
     ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
@@ -1614,7 +1618,7 @@ Contoso has asked for the ability to conduct full-text searching on their policy
 
 In this task, you will run a search query against your search index to see how the addition of cognitive search skills enriches the data extracted from policy documents.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoinssearch-UniqueId** Search service resource from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Search service** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contoso-search-UniqueId** Search service resource from the list of resources.
 
    ![The Search service resource is highlighted in the list of resources.](media/azure-resources-search.png "Search service")
 
@@ -1719,7 +1723,7 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
 
     ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
 
-4. You will retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This will be the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contosoinsapijt7yc3zphxfda.azurewebsites.net/swagger>).
+4. You will retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This will be the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger>).
 
 5. On the Swagger page for your API App, right-click on the `swagger/v1/swagger.json` file link just below the PolicyConnect API title, and select **Copy link address**.
 
@@ -1844,7 +1848,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
     az webapp list -g <your-resource-group-name> --output table
     ```
 
-5. In the output, you will copy the name of Web App (the resource name will start with contosoins**web**) into a text editor for use below.
+5. In the output, you will copy the name of Web App (the resource name will start with contoso-**web**) into a text editor for use below.
 
     ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
@@ -1873,7 +1877,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
 
 Duration: 15 minutes
 
-Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app. In this task, you will get them up and running with a new app created in PowerApps, which connects to the ContosoInsurance database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
+Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app. In this task, you will get them up and running with a new app created in PowerApps, which connects to the `ContosoInsurance` database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
 
 ### Task 1: Sign up for a PowerApps account
 
