@@ -1053,6 +1053,8 @@ In this task, you will use Visual Studio to deploy the API project into an API A
 
     ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
+    > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
+
 9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
     ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
