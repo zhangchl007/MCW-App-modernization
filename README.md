@@ -46,6 +46,7 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 - Azure Search
 - Azure SQL Database
 - Azure Storage
+- Azure Virtual Machines
 - Flow
 - PowerApps
 - Visual Studio
