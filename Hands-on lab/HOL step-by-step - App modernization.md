@@ -1723,17 +1723,17 @@ In this task, you run a query against your search index to review the enrichment
    }
    ```
 
-8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and will help to make documents and their contents more usable by Contoso.
+8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and helps to make documents and their contents more usable by Contoso.
 
 ## Exercise 9: Import and publish APIs into APIM
 
 Duration: 30 minutes
 
-In this exercise, you will publish your API App and Function App API endpoints through API Management.
+In this exercise, you publish your API App and Function App API endpoints through API Management.
 
 ### Task 1: Import API App
 
-In this task, you will import your API App into APIM, using the OpenAPI specification, which leverages the Swagger definition associated with your API app.
+In this task, you import your API App into APIM, using the OpenAPI specification, which leverages the Swagger definition associated with your API app.
 
 1. In the Azure portal, navigate to your **API Management Service** by selecting it from the list of resources under your hands-on-lab-SUFFIX resource group.
 
@@ -1741,13 +1741,13 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
 
 2. On the API Management service select the **APIs** blade, and then select **+ Add API** and select **OpenAPI**.
 
-    ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/e8-t1-add-api.png "API Management Service Add OpenAPI")
+    ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/apim-add-api.png "API Management Service Add OpenAPI")
 
-3. A dialog to Create from OpenAPI specification will be displayed. Select **Full** to expand the options that will be entered.
+3. A dialog to Create from OpenAPI specification is displayed. Select **Full** to expand the options that need to be entered.
 
     ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
 
-4. You will retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This will be the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger>).
+4. Retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This is the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger>).
 
 5. On the Swagger page for your API App, right-click on the `swagger/v1/swagger.json` file link just below the PolicyConnect API title, and select **Copy link address**.
 
@@ -1756,8 +1756,8 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
 6. Return to the API Management Create from OpenAPI specification dialog, and enter the following:
 
     - **OpenAPI specification**: Paste the copied link address from your Swagger page.
-    - **Display name**: This will automatically populate from the Swagger definition.
-    - **Name**: This will automatically populate from the Swagger definition.
+    - **Display name**: This is automatically populated from the Swagger definition.
+    - **Name**: This is automatically populated from the Swagger definition.
     - **URL scheme**: Choose **HTTPS**.
     - **Products**: Select the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
 
@@ -1767,7 +1767,7 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
 
     ![On the All operations section, the Inbound processing policies icon is highlighted.](media/apim-inbound-processing.png "API Management")
 
-8. On the Policies screen, insert the code below between the `<inbound></inbound>` tags, and below the `<base />` tag. You will need to **replace** `<your-web-app-url>` between the `<origin></origin>` tags with the URL for your Web App.
+8. On the Policies screen, insert the code below between the `<inbound></inbound>` tags, and below the `<base />` tag. You need to **replace** `<your-web-app-url>` between the `<origin></origin>` tags with the URL for your Web App.
 
     ```xml
     <cors allow-credentials="true">
@@ -1790,11 +1790,11 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
 
     ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
 
-    > The policy you added is for handling CORS.
+    > **Note**: The policy added above is for handling cross-origin resource sharing (CORS). If you are testing the web app locally, you need to add another `<origin></origin>` tag within `<allowed-origins></allowed-origins>` that contains `https://localhost:<port-number>`, where `<port-number>` is the port assigned by your debugger (as is shown in the screenshot above).
 
 9. Select **Save**.
 
-10. Next, select the **Settings** tab. On the Settings tab, you will need to enter the URL of your API App, starting with `https://`. **Note**: You can copy this value from the text edit you have been using to store values throughout this lab.
+10. Next, select the **Settings** tab. On the Settings tab, enter the URL of your API App, starting with `https://`. **Note**: You can copy this value from the text editor you have been using to store values throughout this lab.
 
     ![The settings tab for the PolicyConnect API is displayed, with the API App url entered into the Web Service URL field.](media/apim-policyconnect-api-settings.png "API Settings")
 
@@ -1802,31 +1802,33 @@ In this task, you will import your API App into APIM, using the OpenAPI specific
 
 ### Task 2: Import Function App
 
-In this task, you will import your Function App into APIM.
+In this task, you import your Function App into APIM.
 
-1. Select **+ Add API** again, and this time choose **Function App** as the source of the API.
+1. Select **+ Add API** again, and this time select **Function App** as the source of the API.
 
     ![Add API is highlighted in the left-hand menu, and the Function App tile is highlighted.](media/api-management-add-function-app.png "API Management")
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
-3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
+3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and select **Select**.
 
     ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
     >**Note**: You can filter using your resource group name, if needed.
 
-4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and chooe **Select**.
+4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and select **Select**.
 
     ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
 
-5. Back on the Create from Function App dialog in APIM, all of the properties for the API will be set from your Azure Function. Set the Products to Unlimited, as you did previously, and select **Create**.
+5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously.
 
     ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
 
+6. Select **Create**.
+
 ### Task 3: Open Developer Portal and retrieve you API key
 
-In this task, you will quickly look at the APIs in the Developer Portal, and retrieve your key. The Developer Portal allows you to check the list of APIs and endpoints as well as find useful information about them.
+In this task, you quickly look at the APIs in the Developer Portal, and retrieve your key. The Developer Portal allows you to check the list of APIs and endpoints as well as find useful information about them.
 
 1. Open the APIM Developer Portal by selecting **Developer portal** from the Overview blade of your API Management service in the Azure portal.
 
@@ -1836,23 +1838,23 @@ In this task, you will quickly look at the APIs in the Developer Portal, and ret
 
     ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
 
-3. The API page allows you to view and test your API endpoints directly in the Developer portal. You will also find a link to your **Profile** that allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you will need to retrieve so the PolicyConnect web application can access the APIs through APIM.
+3. The API page allows you to view and test your API endpoints directly in the Developer portal.
 
-    ![The Profile link is highlighted on the API page for the Function App API.](media/apim-profile.png "API Management")
+    ![The Profile link is highlighted on the API page for the Function App API.](media/apim-endpoint-details.png "API Management")
 
-4. Copy the highlighted request URL. This will be the new value you use for the `PolicyDocumentsPath` setting in the next task.
+4. Copy the highlighted request URL. This is the new value you use for the `PolicyDocumentsPath` setting in the next task.
 
-    > **Note**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that will change for that is the base URL, which will be for APIM and not your API App.
+    > **Note**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that needs to change for that is the base URL, which points to APIM and not your API App.
 
-5. Now,  select the **Profile** link on the API page to navigate to your subscription page.
+5. Next, select the **Administrator** drop down located near the top right of the API page, and then select **Profile** from the fly-out menu. The **Profile** page allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you need to retrieve so the PolicyConnect web application can access the APIs through APIM.
 
-6. On the Your subscriptions page, select **Show** next to the Primary Key for the **Unlimited** Product, and then copy the key value, and paste it into a text editor for use below.
+6. On the Profile page, select **Show** next to the Primary Key for the **Unlimited** Product, copy the key value and paste it into a text editor for use below.
 
     ![The Primary Key field is highlighted under the Unlimited subscription.](media/apim-dev-portal-subscription-keys.png "API Management Developer Portal")
 
 ### Task 4: Update Web App to use API Management Endpoints
 
-In this task, you will use the Azure Cloud Shell and Azure CLI to update the `ApiUrl` and `PolicyDocumentsPath` settings for the PolicyConnect Web App. You will also add a new setting to or the APIM access key.
+In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl` and `PolicyDocumentsPath` settings for the PolicyConnect Web App. You also add a new setting for the APIM access key.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
@@ -1862,7 +1864,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
 
     ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
+3. After a moment, you receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
@@ -1872,7 +1874,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
     az webapp list -g <your-resource-group-name> --output table
     ```
 
-5. In the output, you will copy the name of Web App (the resource name will start with contoso-**web**) into a text editor for use below.
+5. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
     ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
@@ -1893,7 +1895,7 @@ In this task, you will use the Azure Cloud Shell and Azure CLI to update the `Ap
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
     ```
 
-7. In the output, you will see the newly added and updated settings in your Web App's application settings. The settings will be updated, and your web app will be restarted.
+7. In the output, note the newly added and updated settings in your Web App's application settings. The settings were updated by the script above and triggered a restart of your web app.
 
 8. In a web browser, navigate to the Web app URL, and verify you still see data when you select one of the tabs.
 
