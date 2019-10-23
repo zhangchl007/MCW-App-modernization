@@ -137,7 +137,7 @@ In this task, you will run an Azure Resource Manager (ARM) template to deploy th
 
 3. Select **Purchase** to start provisioning the lab resources.
 
-    > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete.
+    > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete. If you receive any errors, you can manually provision the missing resources following the steps within the [Manual resource setup guide](./Manual-resource-setup.md) or you can delete the resource group, select a different region, and re-run the ARM template.
 
 4. You can monitor the progress of the deployment by navigating to the hands-on-lab-SUFFIX resource group in the Azure portal, and then selecting **Deployments** from the left-hand menu. The deployment will be named **Microsoft.Template**. Select that to view the progress of each item in the template.
 

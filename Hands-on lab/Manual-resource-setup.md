@@ -1,10 +1,12 @@
-# Appendix A: Manual lab environment setup
+# Manual resource setup guide
 
-This appendix provides the steps to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
+This guide provides step-by-step instructions to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
+
+> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
 **Contents**:
 
-- [Appendix A: Manual lab environment setup](#appendix-a-manual-lab-environment-setup)
+- [Manual resource setup guide](#manual-resource-setup-guide)
   - [Task 1: Create an Azure Storage account](#task-1-create-an-azure-storage-account)
   - [Task 2: Create the LabVM](#task-2-create-the-labvm)
   - [Task 3: Create SQL Server 2008 R2 virtual machine](#task-3-create-sql-server-2008-r2-virtual-machine)
@@ -21,8 +23,6 @@ This appendix provides the steps to manually provision and configure the resourc
   - [Task 14: Connect to SqlServer2008 VM](#task-14-connect-to-sqlserver2008-vm)
   - [Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-15-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
   - [Task 16: Install required software on the SqlServer2008 VM](#task-16-install-required-software-on-the-sqlserver2008-vm)
-
-> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
 ## Task 1: Create an Azure Storage account
 
