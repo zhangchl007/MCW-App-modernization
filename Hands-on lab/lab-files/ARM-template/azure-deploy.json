@@ -137,7 +137,7 @@
             "resources": [
                 {
                     "name": "SetupLabVm",
-                    "type": "extensions",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
                     "apiVersion": "2019-03-01",
                     "location": "[variables('location')]",
                     "properties": {
@@ -207,7 +207,7 @@
             "resources": [
                 {
                     "name": "SetupSqlVm",
-                    "type": "extensions",
+                    "type": "Microsoft.Compute/virtualMachines/extensions",
                     "apiVersion": "2019-03-01",
                     "location": "[variables('location')]",
                     "properties": {
