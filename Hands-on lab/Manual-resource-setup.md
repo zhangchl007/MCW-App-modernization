@@ -24,6 +24,8 @@ This guide provides step-by-step instructions to manually provision and configur
   - [Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-15-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
   - [Task 16: Install required software on the SqlServer2008 VM](#task-16-install-required-software-on-the-sqlserver2008-vm)
 
+TODO: Update screenshots to reflect new resource names.
+
 ## Task 1: Create an Azure Storage account
 
 In this task, you will provision an Azure Storage account, which will be used for storing policy documents, as well as vulnerability assessments performed using SQL Advanced Data Security.
@@ -256,7 +258,7 @@ In this task, you will provision an App Service (Web app), which will be used fo
 
     - Instance Details:
 
-        - **Name**: Enter contosoinswebSUFFIX.
+        - **Name**: Enter contoso-web-SUFFIX.
         - **Publish**: Select Code.
         - **Runtime stack**: Select .NET Core 2.2.
         - **Operating System**: Select Windows.
@@ -293,7 +295,7 @@ In this task, you will provision an App Service (API App), which will be used fo
 
 3. On the API App Create blade, enter the following:
 
-    - **App name**: Enter contosoinsapiSUFFIX.
+    - **App name**: Enter contoso-api-SUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource Group**: Choose Use exiting and select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
     - **App Service plan/Location**: Select the hands-on-lab-asp App Service plan.
@@ -315,7 +317,7 @@ In this task, you will provision Function App, which will be used for retrieving
 
 3. On the Function App Create blade, enter the following:
 
-    - **App name**: Enter contosoinsfuncSUFFIX.
+    - **App name**: Enter contoso-func-SUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource Group**: Choose Use exiting and select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
     - **OS**: Select Windows.
@@ -341,7 +343,7 @@ In this task, you will provision API Management, which will be used for managing
 
 3. On the API Management service blade, enter the following:
 
-    - **Name**: Enter contosoinsapimSUFFIX.
+    - **Name**: Enter contoso-apim-SUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource Group**: Select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
     - **Location**: Select the location you are using for resources in this hands-on lab.
@@ -398,7 +400,7 @@ In this task, you will provision an Azure Key Vault, which will be used for secu
 
     - Instance Details:
 
-      - **Key vault name**: Enter contosoinskvSUFFIX.
+      - **Key vault name**: Enter contoso-kv-SUFFIX.
       - **Region**: Select the region you are using for resources in this hands-on lab.
       - **Pricing tier**: Select Standard.
 

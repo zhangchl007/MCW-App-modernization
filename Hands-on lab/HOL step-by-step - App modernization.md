@@ -908,7 +908,7 @@ In this task, you open the `Contoso` starter solution in Visual Studio. The Visu
 
 ### Task 3: Update Web API to use Key Vault
 
-In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You will start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
+In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
 
 > The required NuGet package to enable interaction with Key Vault has already been referenced in the project to save time. The package added to facilitate this is: `Microsoft.Extensions.Configuration.AzureKeyVault`.
 
@@ -934,9 +934,9 @@ In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for
 
     ![Screenshot of the updated Program.cs file.](media/vs-program-cs-updated.png "Program.cs")
 
-5. Next, you will update the `Startup.cs` file in the `Contoso.WebApi` project. Locate the file in the Solution Explorer and double-click it.
+5. Next, you update the `Startup.cs` file in the `Contoso.WebApi` project. Locate the file in the Solution Explorer and double-click it.
 
-6. In the previous exercise, you added the connection string for your Azure SQL Database to Key Vault, and assigned the secret a name of `SqlConnectionString`. Using the code below, update the `TODO #2` block (line 38), within the `Startup.cs` file's `Configuration` property. This will allow your application to retrieve the connection string from Key Vault using the secret name.
+6. In the previous exercise, you added the connection string for your Azure SQL Database to Key Vault, and assigned the secret a name of `SqlConnectionString`. Using the code below, update the `TODO #2` block (line 38), within the `Startup.cs` file's `Configuration` property. This allows your application to retrieve the connection string from Key Vault using the secret name.
 
     ![The TODO #2 block is highlighted within the Startup.cs code.](media/vs-startup-cs-todo-2.png "Startup.cs")
 
@@ -945,7 +945,7 @@ In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for
         options.UseSqlServer(Configuration["SqlConnectionString"]));
     ```
 
-7. Save `Startup.cs`. The updated `Configuration` property will now look like the following:
+7. Save `Startup.cs`. The updated `Configuration` property now looks like the following:
 
     ![Screenshot of the updated Startup.cs file.](media/vs-startup-cs-updated.png "Startup.cs")
 
@@ -953,7 +953,7 @@ In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for
 
 ### Task 4: Copy KeyVault configuration section to API App in Azure
 
-Before deploying the Web API to Azure, you need to add the required application settings into the configuration for the Azure API App. In this task, you will use the advanced configuration editor in your API App to add in the configuration settings required to connect to and retrieve secrets from Key Vault.
+Before deploying the Web API to Azure, you need to add the required application settings into the configuration for the Azure API App. In this task, you use the advanced configuration editor in your API App to add in the configuration settings required to connect to and retrieve secrets from Key Vault.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **API App** by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **contoso-api-UniqueId** App service from the list of resources.
 
@@ -963,11 +963,11 @@ Before deploying the Web API to Azure, you need to add the required application 
 
     ![The Configuration item is highlighted in the API App left-hand menu.](media/api-app-configuration-menu.png "API App")
 
-3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen will allow you to paste JSON directly into the configuration.
+3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen allows you to paste JSON directly into the configuration.
 
     ![Advanced edit is highlighted on the Application settings tab.](media/api-app-configuration-advanced-edit.png "API App")
 
-4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you will need to update as follows:
+4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
 
     - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
     - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal.
@@ -1019,7 +1019,7 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 ### Task 5: Deploy the API to Azure
 
-In this task, you will use Visual Studio to deploy the API project into an API App in Azure.
+In this task, you use Visual Studio to deploy the API project into an API App in Azure.
 
 1. In Visual Studio, right-click on the **Contoso.WebApi** project in the Solution Explorer and select **Publish** from the context menu.
 
@@ -1027,7 +1027,7 @@ In this task, you will use Visual Studio to deploy the API project into an API A
 
 2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
 
-    ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Provile button is highlighted..](media/visual-studio-publish-api-app.png "Pick a publish target")
+    ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Profile button is highlighted..](media/visual-studio-publish-app-service.png "Pick a publish target")
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contoso-**api**") under your hands-on-lab-SUFFIX resource group.
 
@@ -1039,17 +1039,17 @@ In this task, you will use Visual Studio to deploy the API project into an API A
 
     ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
 
-6. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
+6. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
 
     ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
 
     > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
-7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you will see a message that the page cannot be found.
+7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
 
     ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This will bring up the Swagger UI page of your API, which displays a list of the available API endpoints.
+8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
     ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
@@ -1063,7 +1063,7 @@ In this task, you will use Visual Studio to deploy the API project into an API A
 
     ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
 
-11. In the Response, you will see a Response Code of 200, and JSON objects in the Response body.
+11. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
 
     ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
 
@@ -1071,11 +1071,11 @@ In this task, you will use Visual Studio to deploy the API project into an API A
 
 Duration: 10 minutes
 
-In this exercise, you will update the `Contoso.Web` web application to connect to your newly deployed API App and then deploy the web app into Azure App Services.
+In this exercise, you update the `Contoso.Web` web application to connect to your newly deployed API App and then deploy the web app into Azure App Services.
 
 ### Task 1: Add API App URL to Web App Application settings
 
-In this task, you will prepare your Web App to work with the API App by adding the URL of your published API App to the Application Settings of your Web App, using the Azure Cloud Shell and Azure CLI.
+In this task, you prepare your Web App to work with the API App by adding the URL of your published API App to the Application Settings of your Web App, using the Azure Cloud Shell and Azure CLI.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
@@ -1085,7 +1085,7 @@ In this task, you will prepare your Web App to work with the API App by adding t
 
     ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
-3. After a moment, you will receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
+3. After a moment, you are presented with a PS Azure prompt.
 
     ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
@@ -1097,9 +1097,9 @@ In this task, you will prepare your Web App to work with the API App by adding t
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
-5. In the output, you will copy two values for use in the next step. Copy the **DefaultHostName** value for the your API App (the resource name will start with contoso-**api**) and also copy the Web App name value.
+5. In the output, copy two values for use in the next step. Copy the **DefaultHostName** value for the your API App (the resource name starts with contoso-**api**) and also copy the Web App **Name** value.
 
-    ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
+    ![The Web App Name and API App DefaultHostName values are highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
 
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
@@ -1114,64 +1114,68 @@ In this task, you will prepare your Web App to work with the API App by adding t
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "ApiUrl=https://$defaultHostName"
     ```
 
-7. In the output, you will see the newly added setting in your Web App's application settings.
+7. In the output, you should see the newly added setting in your Web App's application settings.
 
     ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output.png "Azure Cloud Shell")
 
 ### Task 2: Deploy web application to Azure
 
-In this task, you will publish the `Contoso.Web` application into an Azure Web App.
+In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
 1. In Visual Studio on your LabVM, right-click the `Contoso.Web` project in the Solution Explorer, and then select **Publish** from the context menu.
 
     ![Publish in highlighted in the context menu for the Contoso.Web project.](media/vs-web-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Publish**.
+2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
 
-    ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-web-publish-target.png "Publish")
+    ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/visual-studio-publish-app-service.png "Publish")
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contoso-**web**") under your hands-on-lab-SUFFIX resource group.
 
     ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
 
-4. Select **OK**, which will start the processing of publishing your Web API to your Azure API App.
+4. Select **OK**.
 
-5. In the Visual Studio **Web Publish Activity** view, you will see a status that indicates the Web API was published successfully, along with the URL to the site.
+5. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+
+    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
+
+6. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
 
     ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
 
-6. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
+7. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
 
-7. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
+8. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
     - **Username**: demouser
     - **Password**: Password.1!!
 
     ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
-8. Once logged in, select **Managed Policy Holders** from the top menu.
+9. Once logged in, select **Managed Policy Holders** from the top menu.
 
     ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
-9. On the Policy Holders page, you will see a list of policy holders, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
+10. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
     ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-10. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
+11. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
 
     ![The File Path link is highlighted on the Policy Holder Details page.](media/web-app-policy-holder-details.png "PolicyConnect")
 
-11. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, we will address that issue.
+12. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
 
 ## Exercise 6: Upload policy documents into blob storage
 
 Duration: 10 minutes.
 
-Contoso is currently storing all of their scanned PDF documents on a shared local network. They have asked to be able to store them in the cloud automatically from a workflow. In this exercise, you will provide a storage account that will be used to store the files in a blob container. Then, you will provide a way to bulk upload their existing PDFs.
+Contoso is currently storing all of their scanned PDF documents on a shared local network. They have asked to be able to store them in the cloud automatically from a workflow. In this exercise, you provide a storage account to store the files in a blob container. Then, you provide a way to bulk upload their existing PDFs.
 
 ### Task 1: Create container for storing PDFs in Azure storage
 
-In this task, you will create a new container in your storage account for the scanned PDF policy documents.
+In this task, you create a new container in your storage account for the scanned PDF policy documents.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from the left-hand navigation menu, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
 
