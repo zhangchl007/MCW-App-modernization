@@ -1903,7 +1903,7 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 
 Duration: 15 minutes
 
-Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app. In this task, you will get them up and running with a new app created in PowerApps, which connects to the `ContosoInsurance` database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
+Since creating mobile apps is a long development cycle, Contoso is interested in using PowerApps to create mobile applications to add functionality not currently offered by their app rapidly. In this scenario, they want to be able to edit the Policy lookup values (Silver, Gold, Platinum, etc.), which they are unable to do in the current app. In this task, you get them up and running with a new app created in PowerApps, which connects to the `ContosoInsurance` database and performs basic CRUD (Create, Read, Update, and Delete) operations against the Policies table.
 
 ### Task 1: Sign up for a PowerApps account
 
@@ -1917,7 +1917,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 ### Task 2: Create new SQL connection
 
-1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then choose the **Connections** option.
+1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then select **Connections**.
 
 2. Select the **Create a connection** button.
 
@@ -2011,7 +2011,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 Duration: 10 minutes
 
-In this exercise, you will de-provision all Azure resources that were created in support of this hands-on lab.
+In this exercise, you de-provision all Azure resources that were created in support of this hands-on lab.
 
 ### Task 1: Delete Azure resource groups
 

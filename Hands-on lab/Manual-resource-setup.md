@@ -24,8 +24,6 @@ This guide provides step-by-step instructions to manually provision and configur
   - [Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-15-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
   - [Task 16: Install required software on the SqlServer2008 VM](#task-16-install-required-software-on-the-sqlserver2008-vm)
 
-TODO: Update screenshots to reflect new resource names.
-
 ## Task 1: Create an Azure Storage account
 
 In this task, you will provision an Azure Storage account, which will be used for storing policy documents, as well as vulnerability assessments performed using SQL Advanced Data Security.
