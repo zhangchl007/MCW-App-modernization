@@ -1963,7 +1963,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 ### Task 4: Design app
 
-1. The new app will automatically be created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the formula field to read **Policies**.
+1. The new app is automatically created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the formula field to read **Policies**.
 
     ![All of the Policy options display.](media/powerapp_update_app_name.png "Policies section")
 
