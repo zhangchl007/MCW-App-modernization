@@ -193,7 +193,7 @@ In this task, you provision an Azure SQL Database (Azure SQL DB).
           - **Password**: Enter Password.1!!
           - **Location**: Select the region you are using for resources in this hands-on lab.
           - **Allow Azure services to access server**: Check this box.
-          - Select **Select**.
+          - Choose **Select**.
         - **Want to use SQL elastic pool**: Choose No.
         - **Compute + storage**: Accept the default, SO with 10 DTUs and 250 GB storage.
 
