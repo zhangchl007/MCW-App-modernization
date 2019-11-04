@@ -126,6 +126,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
     - **SQL Server Name**: Accept the default value, **contosoinsurance**.
 
+
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
     - **Admin Username**: Accept the default value, **demouser**.
