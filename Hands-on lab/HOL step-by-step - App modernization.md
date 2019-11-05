@@ -67,12 +67,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 5: Deploy the function to your Azure Function App](#task-5-deploy-the-function-to-your-azure-function-app)
     - [Task 6: Enable Application Insights on the Function App](#task-6-enable-application-insights-on-the-function-app)
     - [Task 7: Add Function App URL to your Web App Application settings](#task-7-add-function-app-url-to-your-web-app-application-settings)
-  - [Exercise 9: Import and publish APIs into APIM](#exercise-9-import-and-publish-apis-into-apim)
+  - [Exercise 8: Import and publish APIs into APIM](#exercise-8-import-and-publish-apis-into-apim)
     - [Task 1: Import API App](#task-1-import-api-app)
     - [Task 2: Import Function App](#task-2-import-function-app)
     - [Task 3: Open Developer Portal and retrieve you API key](#task-3-open-developer-portal-and-retrieve-you-api-key)
     - [Task 4: Update Web App to use API Management Endpoints](#task-4-update-web-app-to-use-api-management-endpoints)
-  - [Exercise 10: Create an app in PowerApps](#exercise-10-create-an-app-in-powerapps)
+  - [Exercise 9: Create an app in PowerApps](#exercise-9-create-an-app-in-powerapps)
     - [Task 1: Sign up for a PowerApps account](#task-1-sign-up-for-a-powerapps-account)
     - [Task 2: Create new SQL connection](#task-2-create-new-sql-connection)
     - [Task 3: Create a new app](#task-3-create-a-new-app)
@@ -670,7 +670,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
 
-> **NOTE**: The SqlServer2008 VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
+> **Note**: The SqlServer2008 VM is not needed for the remaining exercises of this hands-on lab. You can log off of that VM.
 
 ## Exercise 3: Configure Key Vault
 
@@ -694,7 +694,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
 
    - **Configure from template (optional)**: Leave blank.
    - **Key permissions**: Leave set to 0 selected.
-   - **Secret permissions**: Select this, and then select **Select All**, to give yourself full rights to manage secrets.
+   - **Secret permissions**: Select this, and then choose **Select All**, to give yourself full rights to manage secrets.
    - **Certificate permissions**: Leave set to 0 selected.
    - **Select principal**: Enter the email address of the account you are logged into the Azure portal with, select the user object that appears, and then choose **Select**.
    - **Authorized application**: Leave set to None selected.
@@ -753,7 +753,7 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CLI) to create an Azure Active Directory (Azure AD) application and service principal (SP) used to provide your web and API apps access to secrets stored in Azure Key Vault.
 
-> **IMPORTANT**: You must have rights within your Azure AD tenant to create applications and assign roles to complete this task.
+> **Important**: You must have rights within your Azure AD tenant to create applications and assign roles to complete this task.
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
@@ -799,7 +799,7 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
     }
     ```
 
-    > **IMPORTANT**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session eventually times out, and you won't have access to the output. The `appId` is used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` are used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
+    > **Important**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session eventually times out, and you won't have access to the output. The `appId` is used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` are used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
 
 ### Task 4: Assign the service principal access to Key Vault
 
@@ -1624,7 +1624,7 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
     ![The name field and submit button are highlighted on the Create an indexer tab.](media/add-azure-search-create-an-indexer.png "Add Azure Search")
 
-    > **NOTE**: You may need to check and then uncheck Track deletions to remove the fields associated with tracking deletions from the UI.
+    > **Note**: You may need to check and then uncheck Track deletions to remove the fields associated with tracking deletions from the UI.
 
 11. Within a few seconds, you receive a notification in the Azure portal that the import was successfully configured.
 
@@ -1725,7 +1725,7 @@ In this task, you run a query against your search index to review the enrichment
 
 8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and helps to make documents and their contents more usable by Contoso.
 
-## Exercise 9: Import and publish APIs into APIM
+## Exercise 8: Import and publish APIs into APIM
 
 Duration: 30 minutes
 
@@ -1810,13 +1810,13 @@ In this task, you import your Function App into APIM.
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
-3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and select **Select**.
+3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
 
     ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
     >**Note**: You can filter using your resource group name, if needed.
 
-4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and select **Select**.
+4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and choose **Select**.
 
     ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
 
@@ -1899,7 +1899,7 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 
 8. In a web browser, navigate to the Web app URL, and verify you still see data when you select one of the tabs.
 
-## Exercise 10: Create an app in PowerApps
+## Exercise 9: Create an app in PowerApps
 
 Duration: 15 minutes
 
@@ -1959,7 +1959,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
     ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
 
-7. Click **Connect**.
+7. Select **Connect**.
 
 ### Task 4: Design app
 
