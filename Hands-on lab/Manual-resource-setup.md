@@ -1,10 +1,12 @@
-# Appendix A: Manual lab environment setup
+# Manual resource setup guide
 
-This appendix provides the steps to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
+This guide provides step-by-step instructions to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
+
+> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
 **Contents**:
 
-- [Appendix A: Manual lab environment setup](#appendix-a-manual-lab-environment-setup)
+- [Manual resource setup guide](#manual-resource-setup-guide)
   - [Task 1: Create an Azure Storage account](#task-1-create-an-azure-storage-account)
   - [Task 2: Create the LabVM](#task-2-create-the-labvm)
   - [Task 3: Create SQL Server 2008 R2 virtual machine](#task-3-create-sql-server-2008-r2-virtual-machine)
@@ -19,13 +21,12 @@ This appendix provides the steps to manually provision and configure the resourc
   - [Task 12: Connect to the Lab VM](#task-12-connect-to-the-lab-vm)
   - [Task 13: Install required software on the LabVM](#task-13-install-required-software-on-the-labvm)
   - [Task 14: Connect to SqlServer2008 VM](#task-14-connect-to-sqlserver2008-vm)
-  - [Task 15: Install required software on the SqlServer2008 VM](#task-15-install-required-software-on-the-sqlserver2008-vm)
-
-> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps you will see the word "SUFFIX" as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
+  - [Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-15-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
+  - [Task 16: Install required software on the SqlServer2008 VM](#task-16-install-required-software-on-the-sqlserver2008-vm)
 
 ## Task 1: Create an Azure Storage account
 
-In this task, you will provision an Azure Storage account, which will be used for storing policy documents, as well as vulnerability assessments performed using SQL Advanced Data Security.
+In this task, you provision an Azure Storage account, which is used for storing policy documents, as well as vulnerability assessments performed using SQL Advanced Data Security.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "storage account" into the Search the Marketplace box and select **Storage account** from the results, and then select **Create**.
 
@@ -55,7 +56,7 @@ In this task, you will provision an Azure Storage account, which will be used fo
 
 ## Task 2: Create the LabVM
 
-In this task, you will provision a virtual machine (VM) in Azure. The VM image used will have Visual Studio Community 2019 installed.
+In this task, you provision a virtual machine (VM) in Azure. The VM image used has the latest version of Visual Studio Community 2019 installed.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "visual studio 2019" into the Search the Marketplace box and then select **Visual Studio 2019 Latest** from the results.
 
@@ -92,7 +93,7 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
     ![Screenshot of the Basics tab, with fields set to the previously mentioned settings.](media/lab-virtual-machine-basics-tab.png "Create a virtual machine Basics tab")
 
-    > **Note**: The remaining tabs can be skipped, and default values will be used.
+    > **Note**: Default settings are used for the remaining tabs, so they can be skipped.
 
 4. Select **Review + create** to validate the configuration.
 
@@ -100,11 +101,11 @@ In this task, you will provision a virtual machine (VM) in Azure. The VM image u
 
     ![The Review + create tab is displayed, with a Validation passed message.](media/lab-virtual-machine-review-create-tab.png "Create a virtual machine Review + create tab")
 
-6. It will take approximately 10 minutes for the VM to finish provisioning. You can move on to the next task while you wait.
+6. It takes approximately 10 minutes for the VM to finish provisioning. You can move on to the next task while you wait.
 
 ## Task 3: Create SQL Server 2008 R2 virtual machine
 
-In this task, you will provision another virtual machine (VM) in Azure which will host your "on-premises" instance of SQL Server 2008 R2. The VM will use the SQL Server 2008 R2 SP3 Standard on Windows Server 2008 R2 image.
+In this task, you provision another Azure virtual machine (VM) to host your "on-premises" instance of SQL Server 2008 R2. The VM uses the SQL Server 2008 R2 SP3 Standard on Windows Server 2008 R2 image.
 
 > **Note**:  An older version of Windows Server is being used because SQL Server 2008 R2 is not supported on Windows Server 2016.
 
@@ -141,7 +142,7 @@ In this task, you will provision another virtual machine (VM) in Azure which wil
 
     ![Screenshot of the Basics tab, with fields set to the previously mentioned settings.](media/sql-server-2008-r2-vm-basics-tab.png "Create a virtual machine Basics tab")
 
-4. Select the **SQL Server settings** tab from the top menu. The default values will be used for Disks, Networking, Management and Advanced, so you don't need to do anything on those tabs.
+4. Select the **SQL Server settings** tab from the top menu. Default values are used for Disks, Networking, Management and Advanced, so you don't need to do anything on those tabs.
 
     ![The SQL Server settings tab is highlighted and selected in the Create a virtual machine configuration tabs list.](media/sql-server-create-vm-sql-settings-tab.png "Create a virtual machine configuration tabs")
 
@@ -170,7 +171,7 @@ In this task, you will provision another virtual machine (VM) in Azure which wil
 
 ## Task 4: Provision an Azure SQL Database
 
-In this task, you will provision an Azure SQL Database (Azure SQL DB).
+In this task, you provision an Azure SQL Database (Azure SQL DB).
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "sql database" into the Search the Marketplace box, select **SQL Database** from the results, and then select **Create**.
 
@@ -192,7 +193,7 @@ In this task, you will provision an Azure SQL Database (Azure SQL DB).
           - **Password**: Enter Password.1!!
           - **Location**: Select the region you are using for resources in this hands-on lab.
           - **Allow Azure services to access server**: Check this box.
-          - Select **Select**.
+          - Choose **Select**.
         - **Want to use SQL elastic pool**: Choose No.
         - **Compute + storage**: Accept the default, SO with 10 DTUs and 250 GB storage.
 
@@ -210,7 +211,7 @@ In this task, you will provision an Azure SQL Database (Azure SQL DB).
 
 ## Task 5: Create Azure Database Migration Service
 
-In this task, you will provision an instance of the Azure Database Migration Service (DMS).
+In this task, you provision an instance of the Azure Database Migration Service (DMS).
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "database migration" into the Search the Marketplace box, select **Azure Database Migration Service** from the results, and select **Create**.
 
@@ -218,14 +219,14 @@ In this task, you will provision an instance of the Azure Database Migration Ser
 
 2. On the Create Migration Service blade, enter the following:
 
-    - **Service Name**: Enter contoso-dms.
+    - **Service Name**: Enter contoso-dms-SUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
 
         > **Note**: If you see the message `Your subscription doesn't have proper access to Microsoft.DataMigration`, refresh the browser window before proceeding. If the message persists, verify you successfully registered the resource provider, and then you can safely ignore this message.
 
     - **Resource Group**: Select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
     - **Location**: Select the location you are using for resources in this hands-on lab.
-    - **Virtual network**: Select the **hands-on-lab-SUFFIX-vnet/default** virtual network, and then select **OK**. This will place the DMS instance into the same VNet as your LabVM and SqlServer2008 virtual machines.
+    - **Virtual network**: Select the **hands-on-lab-SUFFIX-vnet/default** virtual network, and then select **OK**. This places the DMS instance into the same VNet as your LabVM and SqlServer2008 virtual machines.
     - **Pricing tier**: Select Premium: 4 vCores.
 
     ![The Create Migration Service blade is displayed, with the values specified above entered into the appropriate fields.](media/create-migration-service.png "Create Migration Service")
@@ -236,7 +237,7 @@ In this task, you will provision an instance of the Azure Database Migration Ser
 
 ## Task 6: Provision a Web App
 
-In this task, you will provision an App Service (Web app), which will be used for hosting the Contoso Insurance web application.
+In this task, you provision an App Service (Web app), which provides hosting for the Contoso Insurance web application.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "web app" into the Search the Marketplace box, select **Web App** from the results.
 
@@ -255,7 +256,7 @@ In this task, you will provision an App Service (Web app), which will be used fo
 
     - Instance Details:
 
-        - **Name**: Enter contosoinswebSUFFIX.
+        - **Name**: Enter contoso-web-SUFFIX.
         - **Publish**: Select Code.
         - **Runtime stack**: Select .NET Core 2.2.
         - **Operating System**: Select Windows.
@@ -278,11 +279,11 @@ In this task, you will provision an App Service (Web app), which will be used fo
 
 7. On the **Review and create** tab, select **Create**.
 
-8. It will take a few minutes for the Web App creation to complete. You can move on to the next task while you wait.
+8. It takes a few minutes for the Web App creation to complete. You can move on to the next task while you wait.
 
 ## Task 7: Provision an API App
 
-In this task, you will provision an App Service (API App), which will be used for hosting the Contoso Insurance APIs.
+In this task, you provision an App Service (API App), which provides hosting for the Contoso Insurance APIs.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "api app" into the Search the Marketplace box, select **API App** from the results.
 
@@ -292,7 +293,7 @@ In this task, you will provision an App Service (API App), which will be used fo
 
 3. On the API App Create blade, enter the following:
 
-    - **App name**: Enter contosoinsapiSUFFIX.
+    - **App name**: Enter contoso-api-SUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource Group**: Choose Use exiting and select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
     - **App Service plan/Location**: Select the hands-on-lab-asp App Service plan.
@@ -304,7 +305,7 @@ In this task, you will provision an App Service (API App), which will be used fo
 
 ## Task 8: Provision a Function App
 
-In this task, you will provision Function App, which will be used for retrieving PDF documents from Azure Storage.
+In this task, you provision a Function App, which is used for retrieving PDF documents from Azure Storage.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "function app" into the Search the Marketplace box, select **Function App** from the results.
 
@@ -312,25 +313,40 @@ In this task, you will provision Function App, which will be used for retrieving
 
 2. On the Function App blade, select **Create**.
 
-3. On the Function App Create blade, enter the following:
+3. On the Function App Basics blade, enter the following:
 
-    - **App name**: Enter contosoinsfuncSUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource Group**: Choose Use exiting and select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
-    - **OS**: Select Windows.
-    - **Hosting Plan**: Select Consumption Plan.
-    - **Location**: Select the location you are using for resources in this hands-on lab.
-    - **Runtime Stack**: Select .NET.
-    - **Storage**: Choose Create new and accept the default name.
-    - **Application Insights**: Select **Disabled**.
+    - **Function App name**: Enter contoso-func-SUFFIX.
+    - **Publish**: Select Code.
+    - **Runtime Stack**: Select .NET Core.
+    - **Region**: Select the region you are using for resources in this hands-on lab.
 
-    ![On the Function App Create blade, the values specified above are entered into the associated fields.](media/function-app-create.png "Create Function App")
+    ![On the Function App Basics tab, the values specified above are entered into the associated fields.](media/create-function-app-basics-tab.png "Create Function App")
 
-4. Select **Create**.
+4. Select **Next: Hosting**.
+
+    - **Storage Account**: Select the storage account you created in Task 1, above.
+    - **Operating System**: Select Windows.
+    - **Plan type**: Select Consumption.
+
+    ![On the Function App Hosting tab, the values specified above are entered into the fields.](media/create-function-app-hosting-tab.png "Create Function App")
+
+5. Select **Next: Monitoring**.
+
+    - **Enable Application Insights**: Select **No**.
+
+    ![Enable Application Insights is set to no on the Monitoring tab.](media/create-function-app-monitoring-tab.png "Create Function App")
+
+6. Select **Review + create**.
+
+    ![A summary of the configured settings is displayed on the Review + create tab.](media/create-function-app-review-create-tab.png "Create Function App")
+
+7. Select **Create**.
 
 ## Task 9: Provision API Management
 
-In this task, you will provision API Management, which will be used for managing the Contoso APIs.
+In this task, you provision API Management (APIM). APIM provides the ability to manage the Contoso APIs.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "api management" into the Search the Marketplace box, select **API Management** from the results.
 
@@ -340,7 +356,7 @@ In this task, you will provision API Management, which will be used for managing
 
 3. On the API Management service blade, enter the following:
 
-    - **Name**: Enter contosoinsapimSUFFIX.
+    - **Name**: Enter contoso-apim-SUFFIX.
     - **Subscription**: Select the subscription you are using for this hands-on lab.
     - **Resource Group**: Select the hands-on-lab-SUFFIX resource group from the list of existing resource groups.
     - **Location**: Select the location you are using for resources in this hands-on lab.
@@ -353,11 +369,11 @@ In this task, you will provision API Management, which will be used for managing
 
 4. Select **Create**.
 
-5. It will take around 30 minutes for API Management to finish provisioning. You can move on to the next task while you wait.
+5. It takes around 30 minutes for API Management to finish provisioning. You can move on to the next task while you wait.
 
 ## Task 10: Create Cognitive Services account
 
-In this task, you will create a Cognitive Services account.
+In this task, you create a Cognitive Services account.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "cognitive services" into the Search the Marketplace box, select **Cognitive Services** from the results.
 
@@ -380,7 +396,7 @@ In this task, you will create a Cognitive Services account.
 
 ## Task 11: Create an Azure Key Vault
 
-In this task, you will provision an Azure Key Vault, which will be used for securing application secrets.
+In this task, you provision an Azure Key Vault, which enables application secrets to be stored securely.
 
 1. In the [Azure portal](https://portal.azure.com/), select **+Create a resource**, enter "key vault" into the Search the Marketplace box, select **Key Vault** from the results.
 
@@ -397,7 +413,7 @@ In this task, you will provision an Azure Key Vault, which will be used for secu
 
     - Instance Details:
 
-      - **Key vault name**: Enter contosoinskvSUFFIX.
+      - **Key vault name**: Enter contoso-kv-SUFFIX.
       - **Region**: Select the region you are using for resources in this hands-on lab.
       - **Pricing tier**: Select Standard.
 
@@ -409,7 +425,7 @@ In this task, you will provision an Azure Key Vault, which will be used for secu
 
 ## Task 12: Connect to the Lab VM
 
-In this task, you will create an RDP connection to your Lab virtual machine (VM), and disable Internet Explorer Enhanced Security Configuration.
+In this task, you create an RDP connection to your Lab virtual machine (VM), and disable Internet Explorer Enhanced Security Configuration.
 
 1. In the [Azure portal](https://portal.azure.com), select **Resource groups** in the Azure navigation pane, and select the hands-on-lab-SUFFIX resource group from the list.
 
@@ -456,13 +472,9 @@ In this task, you will create an RDP connection to your Lab virtual machine (VM)
 
 ## Task 13: Install required software on the LabVM
 
-In this task, you will install SQL Server Management Studio (SSMS) on the LabVM.
+In this task, you download and install SQL Server Management Studio (SSMS) on the LabVM. You also download a copy of the Visual Studio starter solution and unzip it into a folder named `C:\MCW`.
 
-1. First, you will install SSMS on the LabVM. Open a web browser on your LabVM, navigate to <https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms> and then select the **Download SQL Server Management Studio 18.x** link to download the latest version of SSMS.
-
-    ![The Download SQL Server Management Studio 18.x link is highlighted on the page specified above.](media/download-ssms.png "Download SSMS")
-
-    > **Note**: Versions change frequently, so if the version number you see does not match the screenshot, just download and install the most recent version.
+1. First, install SSMS on the LabVM by opening a web browser on your LabVM and navigating to <https://aka.ms/ssmsfullsetup>. This link downloads the latest version of SSMS.
 
 2. Run the downloaded installer.
 
@@ -474,9 +486,17 @@ In this task, you will install SQL Server Management Studio (SSMS) on the LabVM.
 
     ![The Close button is highlighted on the SSMS Setup Completed dialog.](media/ssms-install-close.png "Setup completed")
 
+5. Next, [download a copy of the GitHub repo for the App modernization MCW](https://github.com/microsoft/MCW-App-modernization/archive/master.zip).
+
+6. Extract the download ZIP file to `C:\MCW`.
+
+   ![The Extract Compressed Folders dialog is displayed, with `C:\MCW` entered into the extraction location.](media/mcw-download-extract.png "Extract Compressed ZIP")
+
 ## Task 14: Connect to SqlServer2008 VM
 
-In this task, you will open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic. You will also install Data Migration Assistant (DMA).
+In this task, you open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic.
+
+> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2 which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
 1. As you did for the LabVM, navigate to the SqlServer2008 VM blade in the Azure portal, select **Overview** from the left-hand menu, and then select **Connect** on the top menu.
 
@@ -509,11 +529,41 @@ In this task, you will open an RDP connection to the SqlServer2008 VM, disable I
 
     ![Screenshot of the Internet Explorer Enhanced Security Configuration dialog box, with Administrators set to Off.](./media/2008-internet-explorer-enhanced-security-configuration-dialog.png "Internet Explorer Enhanced Security Configuration dialog box")
 
-## Task 15: Install required software on the SqlServer2008 VM
+## Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM
 
-In this task, you will install the Microsoft Data Migration Assistant (DMA) on the SqlServer2008 VM.
+In this task, you restore the `ContosoInsurance` database onto the SQL Server 2008 R2 instance using a backup provided by Contoso, Ltd.
 
-1. Next, you will install the Microsoft Data Migration Assistant v4.x by navigating to <https://www.microsoft.com/en-us/download/details.aspx?id=53595> in a web browser on the SqlServer2008 VM, and then selecting the **Download** button.
+1. On the SqlServer2008 VM, download a [backup of the ContosoInsurance database](https://raw.githubusercontent.com/microsoft/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip), and extract the zipped files into `C:\ContosoInsurance` on the VM.
+
+2. Next, open **Microsoft SQL Server Management Studio** (SSMS) by entering "sql server" into the search bar in the Windows Start menu and selecting **Microsoft SQL Server Management Studio 17** from the results.
+
+   ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
+
+3. In the SSMS **Connect to Server** dialog, enter **SQLSERVER2008** into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+
+   ![The SQL Server Connect to Search dialog is displayed, with SQLSERVER2008 entered into the Server name and Windows Authentication selected.](media/sql-server-2008-connect-to-server.png "Connect to Server")
+
+4. Once connected, right-click **Databases** under SQLSERVER2008 in the Object Explorer, and then select **Attach...** from the context menu.
+
+    ![In the SSMS Object Explorer, the context menu for Databases is displayed and Restore Database is highlighted.](media/ssms-databases-attach.png "SSMS Object Explorer")
+
+5. Now, attach the `ContosoInsurance` database using the downloaded `ContosoInsurance.mdf` and `ContosoInsurance_log.ldf` files. On the **General** page of the Attach Databases dialog, select the **Add** button, and in the Locate Database Files dialog, expand the ContosoInsurance folder, select `ContosoInsurance.mdf`, and then select **OK**.
+
+    ![ContosoInsurance.mdf is selected and highlighted in the Select a file box. The OK button is highlighted.](media/ssms-attach-database-source.png "Locate Database files")
+
+6. Back on the Attach Databases dialog, verify you see the ContosoInsurance Data and Log files under database details, and then select **OK**.
+
+    ![The completed Attach Databases dialog is displayed, with the ContosoInsurance database specified as the target.](media/ssms-attach-database.png "Attach Database")
+
+7. You should now see the `ContosoInsurance` database listed under Databases.
+
+    ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
+
+## Task 16: Install required software on the SqlServer2008 VM
+
+In this task, you install the Microsoft Data Migration Assistant (DMA) on the SqlServer2008 VM.
+
+1. Install the Microsoft Data Migration Assistant v4.x by navigating to <https://www.microsoft.com/en-us/download/details.aspx?id=53595> in a web browser on the SqlServer2008 VM, and then selecting the **Download** button.
 
     ![The Download button is highlighted on the Data Migration Assistant download page.](media/dma-download.png "Download Data Migration Assistant")
 

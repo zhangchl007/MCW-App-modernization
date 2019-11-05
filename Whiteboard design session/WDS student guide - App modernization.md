@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-September 2019
+October 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -44,9 +44,9 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 ## Abstract and learning objectives
 
-In this whiteboard design session, you will work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services, while adding a mix of web and mobile services, all secured using Azure Active Directory.
+In this whiteboard design session, you work with a group to design a solution for modernizing legacy on-premises applications and infrastructure by leveraging cloud services. As part of the modernization effort, application enhancements are added using a mix of web and mobile services, all secured using Azure Active Directory.
 
-At the end of this whiteboard design session, you will be better able to design a modernization plan for organizations looking to move services from on-premises to the cloud.
+At the end of this whiteboard design session, your ability to design a modernization plan for organizations looking to move services from on-premises to the cloud will be improved.
 
 ## Step 1: Review the customer case study
 
@@ -66,75 +66,67 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 ### Customer situation
 
-Contoso, Ltd. is a new company in a very old business. Founded in Auckland, New Zealand, in 2005 by senior life insurance executives, the ambitious new company provides a full range of long-term insurance services to help people who are underinsured.
+Contoso, Ltd. (Contoso) is a new company in an old business. The company was founded in Auckland, New Zealand, in 2011, by senior life insurance executives. The ambitious new company provides a full range of long-term insurance services to help underinsured people.
 
-Almost from the start, the company grew far faster than anticipated. An avalanche of business meant that the original processes created to manage policy documentation became overloaded. Employees struggled to cope, even as the headcount rose from five to 110 during the first year.
+Almost from the start, the company grew far faster than anticipated. An avalanche of business meant that the initial processes created to manage policy documentation became overloaded. Employees struggled to cope, even as the headcount rose from five to 110 during the first two years. "By the beginning of 2013, we had over 750,000 pages of partly hand-written policy documents filed in our offices," says Charlene Mathis, General Manager, Contoso. "Customer-facing employees could not retrieve policies quickly, and we faced a service bottleneck. Slow response times impacted customer service, and the ability to locate documents quickly cost us time and money."
 
-"By the beginning of 2007, we had over 750,000 pages of partly hand-written policy documents filed in our offices," says Mirand Lark, General Manager, Contoso, Ltd. "Customer-facing employees could not retrieve policies quickly, and we faced a service bottleneck. Slow response times impacted customer service, and the ability to locate documents quickly cost us time and money."
+To overcome these challenges, the founders launched a project to build an application that could digitize and file all existing policy documents and file new policies as brokers submit them. They also had requirements to allow automated document forwarding from brokers, secure access for brokers, access to policy information, and ready policy retrieval for a dispersed workforce. The result of this project was a custom Windows Forms application was named PolicyConnect. Contoso employees use PolicyConnect to enter essential policy metadata, including insured amount, beneficiary information, policy type, and any deductible and out-of-pocket requirements, and associate that with the digitized policy documents.
 
-With a combined 150 years of industry experience, the founders of Contoso, Ltd. knew exactly what capabilities they wanted: automated document forwarding from brokers, secure access for brokers to Contoso, Ltd., access to policy information, and ready policy retrieval for a dispersed workforce.
+PolicyConnect was built using a traditional n-tier application architecture. The data access layer houses methods for interacting with the underlying SQL Server 2008 R2 database. A business logic layer handles things like user login and policy rules. The presentation layer provides the user interface (UI). The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. The application stores associated policy documents as PDF files on a file server accessible via an SMB network share on their local area network. PolicyConnect accesses these files using a canonical path (customer last name and policy number). A SQL Server 2008 R2 database houses the policy metadata for each policy document, which is currently entered manually into PolicyConnect by Contoso staff members. Contoso provided the following diagram about its current topology:
 
-To overcome its challenges, executives set about to digitize and file all existing policy documents and find a way to automatically file new policies as soon as brokers submitted them. To accomplish this, Contoso, Ltd. implemented PolicyConnect, a custom Windows Forms application used by its staff to input key metadata that includes policyholder information such as insured amount, beneficiary, policy type, and any deductible and out-of-pocket requirements. Contoso employees access this application, which ultimately stores its data in a SQL Server 2008 and a file server on their local area network.
+![The Contoso topology diagram has a local area network comprised of the on-premises user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
-Contoso, Ltd. provided the following diagram about its current topology:
+The application currently supports access via a virtual private network (VPN) connection for users outside the Contoso local area network. As such, Contoso brokers are unable to view data or documents unless granted VPN access. This requirement has proven to be time-consuming and frustrating for brokers.
 
-![The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
+Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customer's policies have been scanned and indexed. They are using Office 365. The company executives have frequent challenges in gauging productivity and throughput, given the manual workflow. They feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
 
-Contoso's Windows Forms application is a traditional n-tier platform containing a data access layer, which houses the SQL Server data access methods; a business logic layer that handles things like user login (username and password) and policy rules; and a presentation layer comprised of the screens a user views while creating a new policy holder. The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. Scanned PDFs of policy documents are stored on a file server accessible via an SMB network share and referenced in the solution by a canonical path (customer last name and policy number). The key metadata for each policy document is currently entered manually by Contoso staff members into the application and ultimately stored in a SQL Server.
+Contoso recently started investigating ways to leverage the cloud to modernize its policyholder system and begin addressing several issues with the existing PolicyConnect system. However, they lack any tangible experience with the cloud and are looking for guidance on how they can best modernize and take advantage of cloud technologies.
 
-The application currently supports access via VPN for users outside the Contoso local area network. As such, Contoso brokers are unable to view data or documents unless granted VPN access, which has proven time-consuming and difficult for the brokers.
+Contoso stated that their highest priority is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once the database is in the cloud, they want to take advantage of some of the primary benefits that enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. They would also like to understand better the performance and security features they might be able to leverage once their database is running in Azure.
 
-Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customer's policies have been scanned and indexed. They are using Office 365.
+Another top priority is making the system available to employees and brokers via web and mobile applications and eliminating the requirement for establishing a VPN connection. They also want to store policies in cloud storage for retrieval via these web and mobile applications. Both the web and mobile applications should permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. An application programming interface (API), shared by both application, provides access to data and policy documents. The goal is to deploy the web application, database, and API to the cloud. Also, they want to learn more about lightweight, serverless architectures that may help them implement some API functionality more rapidly. They mentioned a possible use case of providing access to policy documents in storage.
 
-The company executives have frequent challenges in gauging productivity and throughput given the manual workflow -- they feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
+As part of the application modernization process, Contoso would also like to learn more about how Azure Search might be able to improve their ability to find policy documents. PolicyConnect stores all policy documents as opaque PDF files on a network file share, and key metadata is entered into the PolicyConnect application manually. Searching is limited to file names, and the limited metadata entered manually. Presently, they cannot search for information contained within the policy documents. They have found that metadata entered manually has not provided the best results for being able to search for and retrieve policy information quickly.
 
-Contoso Insurance has started a project to modernize their policyholder system and make it available to its employees and brokers via web and mobile applications without requiring VPN, and is looking for guidance on how they can best modernize and take advantage of cloud technologies. They also want to store policies in cloud storage for retrieval via these web and mobile applications. The new web application will permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. The mobile application will permit the same functionality. An Application Programming Interface (API) will provide access to data and policy documents and will be shared by the web and mobile applications. The web application, database, and API will all be deployed to the cloud. In addition, they are interested in learning about light weight, serverless architectures that may help them implement some API functionality more rapidly, such as providing access to policy documents in storage. Contoso brokers will be provided a link to the mobile application via the website, which targets iOS and Android devices.
+Given the potential for these new applications to increase the load on its database, they want to employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in 24 hours, as well as the approximate the number of operations that user performed within the system in perpetuity. Both metrics are attractive to management to be able to get a cursory understanding of who the heaviest users are and how much they use the system.
 
-As part of the application modernization process, Contoso would also like to learn more about how Azure Search might be able to improve their ability to find policy documents. In their current configuration, all policy documents are stored as opaque PDF files on a network file share, and key metadata is entered into the PolicyConnect application manually. Searching is limited to file names and the limited metadata entered manually. They are unable to conduct searches for information contained within the policy documents, and the metadata they enter manually has not provided the best results for being able to easily search for and retrieve documents.
+Contoso has multiple development teams that focus on separate business units (e.g., underwriting, sales, compliance, and brokers). IT leadership is excited to move as much business logic to APIs as possible. However, they are concerned that, over time, there may be duplication of effort as each team develops new or revises existing APIs. They would also like to open up a subset of APIs to a network of affiliated partners. They are interested in strategies to help them provide discoverability, security, and lifecycle management of an evolving API ecosystem. They would like advanced analytics and data visualizations of API usage to help manage the API inventory.
 
-Contoso stated that one of their highest priorities is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure, and take advantage of some of the key benefits that are enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. As part of the database migration, they would also like to better understand the performance and security features they might be able to leverage once their database is running in Azure.
+According to Charlene Mathis, "Mobile applications represent a way to empower our brokers and our employees by bringing our software to the palm of their hands. Our primary investment is in making the best mobile app version of PolicyConnect possible. But, we also want to provide a streamlined way for our internal departments to quickly build custom apps to automate time-saving micro-processes without having to involve our developers." One micro-process she mentioned is enabling employees to set rules. For example, when a VIP customer sends an email, they get an application notification on their mobile device. Another scenario would be enabling employees to set workflows, like automatically saving attachments in emails with policy documents to the proper location in cloud storage.
 
-Given all these new clients, their databases will become overloaded, so they want to ensure they employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in a 24-hour period, as well approximates the number of operations that user performed with the system in perpetuity. Both metrics are interesting to management to be able to get a cursory understanding of who the heaviest users are and how much they really use the system.
+With this new system, Contoso would like to improve its security practices. In the previous version, each application tier maintained its configuration settings locally. For example, the data access layer would store the connection strings for SQL Server locally on disk. They would like to take an approach of externalizing secrets such as these from the web apps and APIs and storing them in an encrypted location accessible only to authorized services.
 
-Contoso has multiple development teams that focus on separate business units, e.g. underwriting, sales and brokers, compliance, etc. IT leadership is excited to move as much business logic to APIs as possible, but concerned that, over time, there will be duplication of effort as each team develops new or revises existing APIs. Contoso would also like to open up a subset of APIs to a network of affiliated partners. They are interested in strategies that will help them provide discoverability, security and lifecycle management of an evolving API ecosystem. In the future, they realize they will need advanced analytics and data visualizations of API usage to help manage the API inventory.
-
-According to Mirand Lark, "Mobile applications represent a way to empower our brokers and our employees by bringing our software to the palm of their hands. While we will invest in making the best mobile app version of PolicyConnect possible, we also want to make sure we have a streamlined way for our internal departments to quickly build their own apps to automate their own time-saving micro-processes without having to involve the PolicyConnect development team or ideally even developers." He cited additional examples of these micro-processes, such as enabling employees to set rules, such as when a VIP customer sends an email, they get an application notification on their mobile device; or enabling them to set workflows, like automatically saving attachments in emails with policy documents to the proper location in cloud storage.
-
-With this new system, Contoso would like to improve its security practices. In the previous version, each application tier maintained its configuration settings locally. For example, the data access layer would store the connection strings for SQL Server locally on disk. It would like to take an approach of externalizing secrets such as these from the web apps and APIs, and storing them in an encrypted location accessible only to authorized services.
-
-Cost containment will be achieved through use of cloud-based services. The aging Contoso datacenter can be retired and the hardware therein repurposed or disposed. Additional mail processing costs of approximately $250,000 will be eliminated through the new cloud-based platform.
-
-"Our directors wanted a document system they could quickly adapt, that would keep costs low, but help them expand very quickly indeed," says Lark. "They did not want to invest in on-site infrastructure if the resources and IT support involved ultimately slowed our growth. The directors had a clear ICT strategy: 'All systems to the cloud.'"
+"Our founders want a document system that can be quickly adapted to meet changing business needs while keeping costs low," says Mathis. "They do not want to invest in on-site infrastructure if the resources and IT support involved ultimately slow our growth. They have a clear IT strategy: 'All systems to the cloud.'"
 
 ### Customer needs
 
-1. Contoso wants to modernize the architecture of its solution, while keeping it .NET-based.
+1. Contoso wants to modernize the architecture of its solution while keeping it .NET-based.
 
 2. They would like a .NET developer-friendly way to implement its PolicyConnect mobile app for Android and iOS.
 
-3. They are looking for ways to empower its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps.
+3. They are looking for ways to empower their business users to create internal mobile apps that help them streamline their processes. They would like to add this capability without the time and resource investment that goes into implementing full-scale mobile apps.
 
-4. They would like to improve the management of application secrets.
+4. They want to improve the management of application secrets.
 
-5. They would like to make all of its policy documents full-text searchable, with the minimal amount of implementation effort.
+5. They would like to make policy documents full-text searchable, with a minimal amount of implementation effort.
 
-6. They are interested in leveraging serverless technologies to speed up API development and are interested in a POC that can be used to retrieve policy documents from storage.
+6. They are interested in leveraging serverless technologies to speed up API development. They have requested a proof-of-concept (POC) that can be used to retrieve policy documents from storage.
 
-7. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure, and take advantage of some of the key benefits that are enabled by using a PaaS database service.
+7. They want to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once in Azure, they would like to take advantage of some of the primary benefits enabled by using a PaaS database service.
 
-8. Contoso wants to understand how to better deploy caching in its solution, both for the purposes of lessening load on the database and for providing scalable scoreboards.
+8. Contoso wants to understand how to deploy better caching in its solution, both to lessen the load on the database and for providing scalable scoreboards.
 
 ### Customer objections
 
 1. We have seen services like IFTTT (If This, Then That) that let business users automate processes. Does Microsoft Azure offer something similar?
 
-2. Our developers have heard of Logic Apps. Will these be replaced by Microsoft Flow?
+2. Our developers have heard of Logic Apps. Will Microsoft Flow replace these?
 
-3. Is there really a way to securely store application secrets in the cloud?
+3. Is there a way to securely store application secrets in the cloud?
 
-4. We noticed that Azure SQL Database does not support all the features we are accustomed to in SQL Server, not that we are using them currently. Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker. What are our options for these in Azure?
+4. We noticed that Azure SQL Database does not support all the features available in SQL Server. We are not using these features currently, but are curious to know what the options are for these in Azure? Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker.
 
-5. Moving everything to APIs sounds great but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to easily develop a proof of concept now?
+5. Moving everything to APIs sounds terrific, but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to develop a proof of concept quickly?
 
 6. We have been using .NET Framework for years, and now in Visual Studio web have options for .NET Framework, .NET Standard, and .NET Core. As we look at creating our new web and API applications, how do we choose the correct framework?
 
@@ -186,17 +178,17 @@ Directions: With all participants at your table, respond to the following questi
 
 2. What patterns and services would you use to reduce load on the database? Implement the scoreboards? Be specific on the Azure services used and how the application would take advantage of them.
 
+3. Given their requirements, how would you enable full-text search on the stored policy documents?
+
 *Search*
 
-1. Given their requirements, how would you enable full-text search on the stored policy documents?
+1. How can Azure Search be used to extract more information from Contoso's policy documents?
 
-2. How can Azure Search be used to extract more information from Contoso's policy documents?
-
-3. Can Contoso's developers extend the capabilities of Azure Search to include in-house developed cognitive skills to enrich their search index?
+2. Can Contoso's developers extend the capabilities of Azure Search to include in-house developed cognitive skills to enrich their search index?
 
 *Extensibility*
 
-1. How would you enable Contoso business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
+1. How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
 
 2. Given your answer to the previous question, how would a Contoso business user implement the scenario where a high-priority email is sent to his Office 365 email and in response an application notification appears on his device?
 

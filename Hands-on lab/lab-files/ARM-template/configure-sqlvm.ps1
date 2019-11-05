@@ -38,3 +38,26 @@ Add-SqlFirewallRule
 # Download and install Data Mirgation Assistant
 Invoke-WebRequest 'https://download.microsoft.com/download/C/6/3/C63D8695-CEF2-43C3-AF0A-4989507E429B/DataMigrationAssistant.msi' -OutFile 'C:\DataMigrationAssistant.msi'
 Start-Process -file 'C:\DataMigrationAssistant.msi' -arg '/qn /l*v C:\dma_install.txt' -passthru | wait-process
+
+# Download and unzip the database backup file from the GitHub repo
+Invoke-WebRequest 'https://raw.githubusercontent.com/microsoft/MCW-App-modernization/master/Hands-on%20lab/lab-files/Database/ContosoInsurance.zip' -OutFile 'C:\ContosoInsurance.zip'
+Expand-Archive -LiteralPath 'C:\ContosoInsurance.zip' -DestinationPath 'C:\ContosoInsurance' -Force
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+[System.IO.Compression.ZipFile]::ExtractToDirectory('C:\ContosoInsurance.zip','C:\ContosoInsurance')
+
+# Attach the downloaded backup files to the local SQL Server instance
+function Attach-SqlDatabase {
+    #Add snap-in
+    Add-PSSnapin SqlServerCmdletSnapin* -ErrorAction SilentlyContinue
+
+    $ServerName = 'SQLSERVER2008'
+    $DatabaseName = 'ContosoInsurance'
+    $FilePath = 'C:\ContosoInsurance\'
+    $MdfFileName = $FilePath + 'ContosoInsurance.mdf'
+    $LdfFileName = $FilePath + 'ContosoInsurance_log.ldf'
+    
+    $AttachCmd = "USE [master] CREATE DATABASE [$DatabaseName] ON (FILENAME ='$MdfFileName'),(FILENAME = '$LdfFileName') for ATTACH"
+    Invoke-Sqlcmd $AttachCmd -QueryTimeout 3600 -ServerInstance $ServerName
+}
+
+Attach-SqlDatabase
