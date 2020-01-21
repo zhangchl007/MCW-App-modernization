@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Contoso.Web.Controllers
 {
@@ -63,6 +65,21 @@ namespace Contoso.Web.Controllers
         public IActionResult PolicyHolder()
         {
             return View();
+        }
+
+        [HttpGet("download/{policyHolder}/{policyNumber}")]
+        public async Task<IActionResult> DownloadPolicyDocument(string policyHolder, string policyNumber)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", _configuration["ApimSubscriptionKey"]);
+                var policyDocumentsPath = _configuration["PolicyDocumentsPath"];
+                var url = policyDocumentsPath.Replace("{policyHolder}", policyHolder).Replace("{policyNumber}", policyNumber);
+
+                var bytes = await client.GetByteArrayAsync(url);
+
+                return File(bytes, "application/pdf");
+            }
         }
     }
 }
