@@ -34,7 +34,8 @@ var contoso = contoso || {};
                     $http.get(rootPath + '/api/policyholders/' + $routeParams.id, headers)
                         .then(function (response) {
                             $scope.data = response.data;
-                            $scope.azureFunctionsProxyUrl = proxyPath.replace("{policyHolder}", $scope.data.person.lName).replace("{policyNumber}", $scope.data.policyNumber);
+                            //$scope.azureFunctionsProxyUrl = proxyPath.replace("{policyHolder}", $scope.data.person.lName).replace("{policyNumber}", $scope.data.policyNumber);
+                            $scope.azureFunctionsProxyUrl = 'download/' + $scope.data.person.lName + '/' + $scope.data.policyNumber;
                         });
                 }
             ]);
