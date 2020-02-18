@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-October 2019
+February 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,9 +18,9 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
-Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
+Microsoft and the trademarks listed at <https://www.microsoft.com/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
 **Contents**
 
@@ -212,7 +212,7 @@ Contoso stated that their highest priority is addressing the end-of-support for 
 
 Another top priority is making the system available to employees and brokers via web and mobile applications and eliminating the requirement for establishing a VPN connection. They also want to store policies in cloud storage for retrieval via these web and mobile applications. Both the web and mobile applications should permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. An application programming interface (API), shared by both application, provides access to data and policy documents. The goal is to deploy the web application, database, and API to the cloud. Also, they want to learn more about lightweight, serverless architectures that may help them implement some API functionality more rapidly. They mentioned a possible use case of providing access to policy documents in storage.
 
-As part of the application modernization process, Contoso would also like to learn more about how Azure Search might be able to improve their ability to find policy documents. PolicyConnect stores all policy documents as opaque PDF files on a network file share, and key metadata is entered into the PolicyConnect application manually. Searching is limited to file names, and the limited metadata entered manually. Presently, they cannot search for information contained within the policy documents. They have found that metadata entered manually has not provided the best results for being able to search for and retrieve policy information quickly.
+As part of the application modernization process, Contoso would also like to learn more about how Azure Cognitive Search might be able to improve their ability to find policy documents. PolicyConnect stores all policy documents as opaque PDF files on a network file share, and key metadata is entered into the PolicyConnect application manually. Searching is limited to file names, and the limited metadata entered manually. Presently, they cannot search for information contained within the policy documents. They have found that metadata entered manually has not provided the best results for being able to search for and retrieve policy information quickly.
 
 Given the potential for these new applications to increase the load on its database, they want to employ best practices for mitigating the impact of repeated querying of the database. Along these lines, they would like to implement a scoreboard of sorts that tracks the most active users in 24 hours, as well as the approximate the number of operations that user performed within the system in perpetuity. Both metrics are attractive to management to be able to get a cursory understanding of who the heaviest users are and how much they use the system.
 
@@ -308,9 +308,9 @@ Directions: With all participants at your table, respond to the following questi
 
 *Search*
 
-1. How can Azure Search be used to extract more information from Contoso's policy documents?
+1. How can Azure Cognitive Search be used to extract more information from Contoso's policy documents?
 
-2. Can Contoso's developers extend the capabilities of Azure Search to include in-house developed cognitive skills to enrich their search index?
+2. Can Contoso's developers extend the capabilities of Azure Cognitive Search to include in-house developed cognitive skills to enrich their search index?
 
 *Extensibility*
 
@@ -368,18 +368,18 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 |-----------------|-----------|
 | **Description** | **Links** |
 | Hi-resolution version of blueprint | <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo> |
-| Getting started with Xamarin and Mobile Apps | <https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
-| Key Vault Developer's Guide | <https://azure.microsoft.com/en-us/documentation/articles/key-vault-developers-guide/> |
-| About Keys and Secrets | <https://msdn.microsoft.com/en-us/library/dn903623.aspx> |
-| Register an Application with AAD | <https://azure.microsoft.com/en-us/documentation/articles/key-vault-get-started/#register> |
-| How to Use Azure Redis Cache | <https://azure.microsoft.com/en-us/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/> |
+| Getting started with Xamarin and Mobile Apps | <https://azure.microsoft.com/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
+| Key Vault Developer's Guide | <https://azure.microsoft.com/documentation/articles/key-vault-developers-guide/> |
+| About Keys and Secrets | <https://msdn.microsoft.com/library/dn903623.aspx> |
+| Register an Application with AAD | <https://azure.microsoft.com/documentation/articles/key-vault-get-started/#register> |
+| How to Use Azure Redis Cache | <https://azure.microsoft.com/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/> |
 | Intro to Redis data types & abstractions | <http://redis.io/topics/data-types-intro> |
-| Intro to PowerApps | <https://docs.microsoft.com/en-us/powerapps/getting-started> |
-| Get Started with Flow | <https://flow.microsoft.com/en-us/documentation/getting-started/> |
-| Indexing Documents in Blob Storage | <https://azure.microsoft.com/en-us/documentation/articles/search-howto-indexing-azure-blob-storage/> |
+| Intro to PowerApps | <https://docs.microsoft.com/powerapps/getting-started> |
+| Get Started with Flow | <https://flow.microsoft.com/documentation/getting-started/> |
+| Indexing Documents in Blob Storage | <https://azure.microsoft.com/documentation/articles/search-howto-indexing-azure-blob-storage/> |
 | Working with Azure Functions Proxies | <https://docs.microsoft.com/azure/azure-functions/functions-proxies> |
-| Azure API Management Overview | <https://docs.microsoft.com/en-us/azure/api-management/api-management-key-concepts> |
-| What is "cognitive search" in Azure Search? | <https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro> |
+| Azure API Management Overview | <https://docs.microsoft.com/azure/api-management/api-management-key-concepts> |
+| What is "cognitive search" in Azure Cognitive Search? | <https://docs.microsoft.com/azure/search/cognitive-search-concept-intro> |
 
 # App modernization whiteboard design session trainer guide
 
@@ -441,7 +441,7 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
     The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Contoso determined that they can migrate into a fully-managed SQL database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. Next, they deploy the web and API apps into Azure App Services. Also, mobile apps, built for Android and iOS using Xamarin, are created to provide remote access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based app provides the UI for mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to provide access to the database and policy documents stored in Blob Storage.
 
-    Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App implements the cache aside pattern using Azure Redis Cache. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Search. PowerApps is used to enable authorized business users to build mobile, and web create, read, update, delete (CRUD) applications. These apps interact with SQL Database and Azure Storage. Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
+    Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App implements the cache aside pattern using Azure Redis Cache. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Cognitive Search. PowerApps is used to enable authorized business users to build mobile, and web create, read, update, delete (CRUD) applications. These apps interact with SQL Database and Azure Storage. Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
 
     > **Note:** The preferred solution is only one of many possible, viable approaches.
 
@@ -533,26 +533,26 @@ After lawyers affirmed that Contoso, Ltd. could legally store customer data in t
 
 1. Given the Contoso requirements, how would you enable full-text search on the stored policy documents?
 
-    Contoso could use Azure Search and the Indexer for Azure Storage Blobs. For files stored in Azure Storage Blobs, this indexer will full-text index PDFs, Microsoft Office Documents (DOCX, DOC, XLSX, XLS, PPTX, PPT, and MSG), HTML, XML, ZIP, EML, JSON, and plain text files. Contoso could then use the Azure Search .NET SDK from the API App to kick off searches.
+    Contoso could use Azure Cognitive Search and the Indexer for Azure Storage Blobs. For files stored in Azure Storage Blobs, this indexer will full-text index PDFs, Microsoft Office Documents (DOCX, DOC, XLSX, XLS, PPTX, PPT, and MSG), HTML, XML, ZIP, EML, JSON, and plain text files. Contoso could then use the Azure Cognitive Search .NET SDK from the API App to kick off searches.
 
-2. How can Azure Search be used to extract more information from Contoso's policy documents?
+2. How can Azure Cognitive Search be used to extract more information from Contoso's policy documents?
 
-    Cognitive search could be used within Azure Search to enrich the metadata added to the search index.
+    Cognitive search could be used within Azure Cognitive Search to enrich the metadata added to the search index.
 
-    Cognitive search is an AI feature in Azure Search, used to extract text from images, blobs, and other unstructured data sources - enriching the content to make it more searchable in an Azure Search index. Extraction and enrichment are implemented through cognitive skills attached to an indexing pipeline. AI enrichments are supported in the following ways:
+    Cognitive search is an AI feature in Azure Cognitive Search, used to extract text from images, blobs, and other unstructured data sources - enriching the content to make it more searchable in an Azure Cognitive Search index. Extraction and enrichment are implemented through cognitive skills attached to an indexing pipeline. AI enrichments are supported in the following ways:
 
     - **Natural language processing** skills include entity recognition, language detection, key phrase extraction, text manipulation, and sentiment detection. With these skills, unstructured text can assume new forms, mapped as searchable and filterable fields in an index.
-    - **Image processing skills** include Optical Character Recognition (OCR) and identification of visual features, such as facial detection, image interpretation, image recognition (famous people and landmarks) or attributes like colors or image orientation. You can create text-representations of image content, searchable using all the query capabilities of Azure Search.
+    - **Image processing skills** include Optical Character Recognition (OCR) and identification of visual features, such as facial detection, image interpretation, image recognition (famous people and landmarks) or attributes like colors or image orientation. You can create text-representations of image content, searchable using all the query capabilities of Azure Cognitive Search.
 
     ![Cognitive search graphic.](media/cognitive-search.png "Cognitive Search")
 
-    Cognitive skills in Azure Search are based on machine learning models in Cognitive Services APIs: Computer Vision and Text Analysis.
+    Cognitive skills in Azure Cognitive Search are based on machine learning models in Cognitive Services APIs: Computer Vision and Text Analysis.
 
-    Natural language and image processing is applied during the data ingestion phase, with results becoming part of a document's composition in a searchable index in Azure Search. Data is sourced as an Azure data set and then pushed through an indexing pipeline using whichever built-in skills you need.
+    Natural language and image processing is applied during the data ingestion phase, with results becoming part of a document's composition in a searchable index in Azure Cognitive Search. Data is sourced as an Azure data set and then pushed through an indexing pipeline using whichever built-in skills you need.
 
-3. Can Contoso's developers extend the capabilities of Azure Search to include in-house developed cognitive skills to enrich their search index?
+3. Can Contoso's developers extend the capabilities of Azure Cognitive Search to include in-house developed cognitive skills to enrich their search index?
 
-    The cognitive search architecture of Azure Search is extensible, so if the built-in skills are not sufficient, you can create and attach custom skills to integrate custom processing. Building custom skills provides a way to insert unique transformations to your content.
+    The cognitive search architecture of Azure Cognitive Search is extensible, so if the built-in skills are not sufficient, you can create and attach custom skills to integrate custom processing. Building custom skills provides a way to insert unique transformations to your content.
 
     Custom skills execute independently, applying whatever enrichment step you require. For example, you could define field-specific custom entities, build custom classification models to differentiate business and financial contracts and documents or add a speech recognition skill to reach deeper into audio files for relevant content.
 

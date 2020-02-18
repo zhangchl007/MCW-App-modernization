@@ -80,7 +80,7 @@ In this task, you create an Azure resource group to serve as a container for the
 
 ### Task 2: Register required resource providers
 
-In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers within your Azure subscription. These resource providers allow Azure Search and the Azure Database Migration Service to be provisioned within your subscription.
+In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers within your Azure subscription. These resource providers allow Azure Cognitive Search and the Azure Database Migration Service to be provisioned within your subscription.
 
 1. In the [Azure portal](https://portal.azure.com), select **Subscriptions** from the Azure services list.
 
