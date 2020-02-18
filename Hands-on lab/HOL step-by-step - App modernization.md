@@ -501,9 +501,19 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     > The migration takes approximately 2 - 3 minutes to complete.
 
-16. When the migration is complete, you should see the status as **Completed**.
+16. When the migration is complete, you should see the status as **Completed**, but may also see a status of **Warning**.
 
     ![On the Migration job blade, the status of Completed is highlighted](media/dms-migration-wizard-status-complete.png "Migration with Completed status")
+
+    ![On the Migration job blade, the status of Completed is highlighted](media/dms-migration-wizard-status-warning.png "Migration with Warning status")
+
+17. When the migration is complete, select the ellipsis button on the toolbar, and then select **Download report**.
+
+    ![The download report button is highlighted in the toolbar menu.](media/dms-migration-wizard-download-report.png "Download report")
+
+18. Review the database migration report. If you received a status of "Warning" for your migration, you can find the reason in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
+
+    ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
 
 ## Exercise 2: Post upgrade database enhancements
 
@@ -555,15 +565,19 @@ In this task, you look at the [SQL Data Discovery and Classification](https://do
 
 9. After adding the new classification, the **dbo - people - DOB** field disappears from the recommendations list, and the number of recommendations drop by 1.
 
-10. To accept the remaining recommendations, you can check the **Select all** option and then select **Accept selected recommendations**.
-
-    ![Classification tab on Data Discovery & Classification window showing a list of classification recommendations for ContosoInsurance database. Select all checkbox is highlighted and selected. Accept selected recommendations button is highlighted.](media/e2-05.png "Accept selected recommendations")
-
-11. Select **Save** on the toolbar to save the changes.
+10. Select **Save** on the toolbar to save the changes.
 
     ![The Save button is highlighted on the Data Discovery & Classification toolbar.](media/ads-data-discovery-and-classification-save.png "Save")
 
-12. When the save completes, select the **Overview** tab on the Data Discovery & Classification blade to view a report with a full summary of the database classification state.
+11. To accept the remaining recommendations, you can check the **Select all** option and then select **Accept selected recommendations**.
+
+    ![Classification tab on Data Discovery & Classification window showing a list of classification recommendations for ContosoInsurance database. Select all checkbox is highlighted and selected. Accept selected recommendations button is highlighted.](media/e2-05.png "Accept selected recommendations")
+
+12. Select **Save** on the toolbar to save the changes.
+
+    ![The Save button is highlighted on the Data Discovery & Classification toolbar.](media/ads-data-discovery-and-classification-save.png "Save")
+
+13. When the save completes, select the **Overview** tab on the Data Discovery & Classification blade to view a report with a full summary of the database classification state.
 
     ![The overview dashboard is displayed.](media/ads-data-discovery-and-classification-overview.png "Overview report")
 
@@ -811,10 +825,10 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
 
 In this task, you assign the service principal you created above to a reader role on your resource group and add an access policy to Key Vault to allow it to view secrets stored there.
 
-1. Next, run the following command to get the name of your Key Vault, replacing `<your-resource-group-name>` with the name of your resource group.
+1. Next, run the following command to get the name of your Key Vault:
 
     ```powershell
-    az keyvault list -g <your-resource-group-name> --output table
+    az keyvault list -g $resourceGroup --output table
     ```
 
 2. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
