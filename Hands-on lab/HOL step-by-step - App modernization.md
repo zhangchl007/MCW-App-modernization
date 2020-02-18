@@ -1273,7 +1273,8 @@ In this task, you prepare your Azure Function App to work with your new Function
 4. At the prompt, retrieve your Function App name by running the following command at the Cloud Shell prompt, replacing `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az functionapp list -g <your-resource-group-name> --output table
+    $resourceGroup = "<your-resource-group-name>"
+    az functionapp list -g $resourceGroup --output table
     ```
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -1285,13 +1286,11 @@ In this task, you prepare your Azure Function App to work with your new Function
 6. For the next command, you need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
-    - `<your-resource-group-name>`: Replace with your resource group name.
     - `<your-policies-container-url>`: Replace with the `policies` container URL you copied into a text editor previously.
     - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
 
     ```powershell
     $functionAppName = "<your-function-app-name>"
-    $resourceGroup = "<your-resource-group-name>"
     $storageUrl = "<your-policies-container-url>"
     $storageSas = "<your-storage-account-sas-token>"
     az functionapp config appsettings set -n $functionAppName -g $resourceGroup --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
@@ -1299,7 +1298,7 @@ In this task, you prepare your Azure Function App to work with your new Function
 
 ### Task 2: Add project environment variables
 
-Functions use environment variables to retrieve configuration settings. To test your functions locally, you must add these settings as user environment variables on your development machine or to the project settings.
+Functions can use environment variables to retrieve configuration settings. To test your functions locally using environment variables, you must add these settings as user environment variables on your development machine or to the project settings.
 
 In this task, you create some environment variables on your LabVM, which allows for debugging your Function App locally on the LabVM.
 
@@ -1368,7 +1367,7 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 In this task, you run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
-> **IMPORTANT**: Internet Explorer on Windows Server 2008 R2 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Chrome browser](https://www.google.com/chrome/) on your LabVM.
+> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Chrome browser](https://www.google.com/chrome/) on your LabVM.
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
@@ -1478,7 +1477,8 @@ In this task, you add the URL of your Azure Function App to the Application sett
 4. At the prompt, retrieve your Function App URL by running the following command at the Cloud Shell prompt, replacing `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az functionapp list -g <your-resource-group-name> --output table
+    $resourceGroup = "<your-resource-group-name>"
+    az functionapp list -g $resourceGroup --output table
    ```
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -1487,10 +1487,10 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
     ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
 
-6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name, making sure to replace `<your-resource-group-name>` with your resource group name:
+6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name:
 
     ```powershell
-    az webapp list -g <your-resource-group-name> --output table
+    az webapp list -g $resourceGroup --output table
     ```
 
 7. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
@@ -1510,13 +1510,11 @@ In this task, you add the URL of your Azure Function App to the Application sett
     - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
     - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
     - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
-    - `<your-resource-group-name>`: Replace with your resource group name.
 
     ```powershell
     $webAppName = "<your-web-app-name>"
     $defaultHostName = "<your-function-app-default-host-name>"
     $defaultHostKey = "<your-function-app-default-host-key>"
-    $resourceGroup = "<your-resource-group-name>"
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
     ```
 
