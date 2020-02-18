@@ -19,13 +19,13 @@ February 2020
   - [Task 8: Provision a Function App](#task-8-provision-a-function-app)
   - [Task 9: Provision API Management](#task-9-provision-api-management)
   - [Task 10: Create Azure Cognitive Search service](#task-10-create-azure-cognitive-search-service)
-  - [Task 10: Create Cognitive Services account](#task-10-create-cognitive-services-account)
-  - [Task 11: Create an Azure Key Vault](#task-11-create-an-azure-key-vault)
-  - [Task 12: Connect to the Lab VM](#task-12-connect-to-the-lab-vm)
-  - [Task 13: Install required software on the LabVM](#task-13-install-required-software-on-the-labvm)
-  - [Task 14: Connect to SqlServer2008 VM](#task-14-connect-to-sqlserver2008-vm)
-  - [Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-15-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
-  - [Task 16: Install the Microsoft Data Migration Assistant on the SqlServer2008 VM](#task-16-install-the-microsoft-data-migration-assistant-on-the-sqlserver2008-vm)
+  - [Task 11: Create Cognitive Services account](#task-11-create-cognitive-services-account)
+  - [Task 12: Create an Azure Key Vault](#task-12-create-an-azure-key-vault)
+  - [Task 13: Connect to the Lab VM](#task-13-connect-to-the-lab-vm)
+  - [Task 14: Install required software on the LabVM](#task-14-install-required-software-on-the-labvm)
+  - [Task 15: Connect to SqlServer2008 VM](#task-15-connect-to-sqlserver2008-vm)
+  - [Task 16: Restore and configure the ContosoInsurance database on the SqlServer2008 VM](#task-16-restore-and-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
+  - [Task 17: Install the Microsoft Data Migration Assistant on the SqlServer2008 VM](#task-17-install-the-microsoft-data-migration-assistant-on-the-sqlserver2008-vm)
 
 ## Task 1: Create an Azure Storage account
 
@@ -35,7 +35,7 @@ In this task, you provision an Azure Storage account, which is used for storing 
 
     ![The Show portal menu icon is highlighted, and the portal menu is displayed. Create a resource is highlighted in the portal menu.](media/create-a-resource.png "Create a resource")
 
-2. Enter "storage account" into the Search the Marketplace box and select **Storage account** from the results, and then select **Create**.
+2. Enter "storage account" into the Search the Marketplace box, and select **Storage account** from the results, and then select **Create**.
 
     !["Storage account" is entered into the Search the Marketplace box. Storage account is selected in the results.](./media/create-resource-storage-account.png "Create Storage account")
 
@@ -73,11 +73,11 @@ In this task, you provision a virtual machine (VM) in Azure. The VM image used h
 
     !["Visual studio 2019" is entered into the Search the Marketplace box. Visual Studio 2019 latest is selected in the results.](./media/create-resource-visual-studio-vm.png "Visual Studio 2019 Latest")
 
-3. On the Visual Studio 2019 Latest blade, select **Visual Studio 2019 Community (latest release) on Windows Server 2019 (x64)** from the Select a software plan drop down list, and then select **Create**.
+3. On the Visual Studio 2019 Latest blade, select **Visual Studio 2019 Community (latest release) on Windows Server 2019 (x64)** from the Select a software plan drop-down list, and then select **Create**.
 
-    ![On the Visual Studio 2019 Latest blade, Visual Studio 2019 Community (latest release) on Windows Server 2019 (x64) is highlighted in the Select a software plan drop down list.](media/visual-studio-create.png "Visual Studio 2019 Latest")
+    ![On the Visual Studio 2019 Latest blade, Visual Studio 2019 Community (latest release) on Windows Server 2019 (x64) is highlighted in the Select a software plan drop-down list.](media/visual-studio-create.png "Visual Studio 2019 Latest")
 
-4. On the Create a virtual machine **Basics** tab, set the following configuration:
+4. On the Create a virtual machine **Basics** tab set the following configuration:
 
     - Project Details:
 
@@ -104,7 +104,7 @@ In this task, you provision a virtual machine (VM) in Azure. The VM image used h
 
     ![Screenshot of the Basics tab, with fields set to the previously mentioned settings.](media/lab-virtual-machine-basics-tab.png "Create a virtual machine Basics tab")
 
-    > **Note**: Default settings are used for the remaining tabs, so they can be skipped.
+    > **Note**: Default settings are used for the remaining tabs so that they can be skipped.
 
 5. Select **Review + create** to validate the configuration.
 
@@ -130,7 +130,7 @@ In this task, you provision another Azure virtual machine (VM) to host your "on-
 
     ![The SQL Server 2008 R2 SP3 on Windows Server 2008 R2 blade is displayed with the standard edition selected for the software plan, and the Create button highlighted.](media/create-resource-sql-server-2008-r2.png "Create SQL Server 2008 R2 Resource")
 
-4. On the Create a virtual machine Basics tab, set the following configuration:
+4. On the Create a virtual machine Basics tab set the following configuration:
 
    - Project Details:
 
@@ -157,7 +157,7 @@ In this task, you provision another Azure virtual machine (VM) to host your "on-
 
     ![Screenshot of the Basics tab, with fields set to the previously mentioned settings.](media/sql-server-2008-r2-vm-basics-tab.png "Create a virtual machine Basics tab")
 
-5. Select the **SQL Server settings** tab from the top menu. Default values are used for Disks, Networking, Management and Advanced, so you don't need to do anything on those tabs.
+5. Select the **SQL Server settings** tab from the top menu. Default values are used for Disks, Networking, Management, and Advanced tabs, so you don't need to do anything on those tabs.
 
     ![The SQL Server settings tab is highlighted and selected in the Create a virtual machine configuration tabs list.](media/sql-server-create-vm-sql-settings-tab.png "Create a virtual machine configuration tabs")
 
@@ -246,7 +246,7 @@ In this task, you provision an instance of the Azure Database Migration Service 
 
 3. On the Create Migration Service **Basics** tab, enter the following:
 
-    > **Note**: If you see the message `Your subscription doesn't have proper access to Microsoft.DataMigration`, refresh the browser window before proceeding. If the message persists, verify you successfully registered the resource provider, and then you can safely ignore this message.
+    > **Note**: If you see the message, `Your subscription doesn't have proper access to Microsoft.DataMigration`, refresh the browser window before proceeding. If the message persists, verify you successfully registered the resource provider, and then you can safely ignore this message.
 
     - Project Details:
 
@@ -464,7 +464,7 @@ In this task, you create an Azure Cognitive Search service.
 
 7. It takes around 10 minutes for the new search service to finish provisioning. You can move on to the next task while you wait.
 
-## Task 10: Create Cognitive Services account
+## Task 11: Create Cognitive Services account
 
 In this task, you create a Cognitive Services account.
 
@@ -491,7 +491,7 @@ In this task, you create a Cognitive Services account.
 
 5. Select **Create**.
 
-## Task 11: Create an Azure Key Vault
+## Task 12: Create an Azure Key Vault
 
 In this task, you provision an Azure Key Vault, which enables application secrets to be stored securely.
 
@@ -521,11 +521,11 @@ In this task, you provision an Azure Key Vault, which enables application secret
 
     ![The values specified above are entered into the Create Key Vault blade.](media/key-vault-create-basics-tab.png "Create Key Vault")
 
-5. Select **Review + create**. The default values for Access policy and Virtual network are used, so these tabs can be skipped.
+5. Select **Review + create**. The default values for Access policy and Virtual network are used so that these tabs can be skipped.
 
 6. On the **Review + create** tab, select **Create**.
 
-## Task 12: Connect to the Lab VM
+## Task 13: Connect to the Lab VM
 
 In this task, you create an RDP connection to your Lab virtual machine (VM), and disable Internet Explorer Enhanced Security Configuration.
 
@@ -576,9 +576,9 @@ In this task, you create an RDP connection to your Lab virtual machine (VM), and
 
 12. Close the Server Manager, but leave the connection to the LabVM open for the next task.
 
-## Task 13: Install required software on the LabVM
+## Task 14: Install required software on the LabVM
 
-In this task, you configure the LabVM with required software and downloads. First, you download and install SQL Server Management Studio (SSMS). Next, you download and install .NET Core 2.2. You also download a copy of the Visual Studio starter solution and unzip it into a folder named `C:\MCW`.
+In this task, you configure the LabVM with the required software and downloads. First, you download and install SQL Server Management Studio (SSMS). Next, you download and install .NET Core 2.2. You also download a copy of the Visual Studio starter solution and unzip it into a folder named `C:\MCW`.
 
 1. First, install SSMS on the LabVM by opening a web browser on your LabVM and navigating to <https://aka.ms/ssmsfullsetup>. This link downloads the latest version of SSMS.
 
@@ -602,11 +602,11 @@ In this task, you configure the LabVM with required software and downloads. Firs
 
    ![The Extract Compressed Folders dialog is displayed, with `C:\MCW` entered into the extraction location.](media/mcw-download-extract.png "Extract Compressed ZIP")
 
-## Task 14: Connect to SqlServer2008 VM
+## Task 15: Connect to SqlServer2008 VM
 
 In this task, you open an RDP connection to the SqlServer2008 VM, disable Internet Explorer Enhanced Security Configuration, and add a firewall rule to open port 1433 to inbound TCP traffic.
 
-> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2 which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
+> **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
 1. As you did for the LabVM, navigate to the SqlServer2008 VM blade in the Azure portal, select **Overview** from the left-hand menu, and then select **Connect** on the top menu.
 
@@ -639,7 +639,7 @@ In this task, you open an RDP connection to the SqlServer2008 VM, disable Intern
 
     ![Screenshot of the Internet Explorer Enhanced Security Configuration dialog box, with Administrators set to Off.](./media/2008-internet-explorer-enhanced-security-configuration-dialog.png "Internet Explorer Enhanced Security Configuration dialog box")
 
-## Task 15: Restore and configure the ContosoInsurance database on the SqlServer2008 VM
+## Task 16: Restore and configure the ContosoInsurance database on the SqlServer2008 VM
 
 In this task, you restore the `ContosoInsurance` database onto the SQL Server 2008 R2 instance using a backup provided by Contoso, Ltd.
 
@@ -669,11 +669,11 @@ In this task, you restore the `ContosoInsurance` database onto the SQL Server 20
 
     ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
-## Task 16: Install the Microsoft Data Migration Assistant on the SqlServer2008 VM
+## Task 17: Install the Microsoft Data Migration Assistant on the SqlServer2008 VM
 
 In this task, you install the Microsoft Data Migration Assistant (DMA) on the SqlServer2008 VM.
 
-1. Install the Microsoft Data Migration Assistant v4.x by navigating to <https://www.microsoft.com/en-us/download/details.aspx?id=53595> in a web browser on the SqlServer2008 VM, and then selecting the **Download** button.
+1. Install the Microsoft Data Migration Assistant v4.x by navigating to <https://www.microsoft.com/en-us/download/details.aspx?id=53595> in a web browser on the SqlServer2008 VM, and then select the **Download** button.
 
     ![The Download button is highlighted on the Data Migration Assistant download page.](media/dma-download.png "Download Data Migration Assistant")
 
@@ -681,7 +681,7 @@ In this task, you install the Microsoft Data Migration Assistant (DMA) on the Sq
 
 2. Run the downloaded installer.
 
-3. Select **Next** on each of the screens, accepting to the license terms and privacy policy in the process.
+3. Select **Next** on each of the screens, accepting the license terms and privacy policy in the process.
 
 4. Select **Install** on the Privacy Policy screen to begin the installation.
 
