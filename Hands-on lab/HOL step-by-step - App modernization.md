@@ -1815,7 +1815,7 @@ In this task, you import your Function App into APIM.
 
     ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
 
-5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously.
+5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously. Note, you may need to select **Full** at the top to see the Products box.
 
     ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
 
@@ -1825,9 +1825,9 @@ In this task, you import your Function App into APIM.
 
 In this task, you quickly look at the APIs in the Developer Portal, and retrieve your key. The Developer Portal allows you to check the list of APIs and endpoints as well as find useful information about them.
 
-1. Open the APIM Developer Portal by selecting **Developer portal** from the Overview blade of your API Management service in the Azure portal.
+1. Open the APIM Developer Portal by selecting **Developer portal (legacy)** from the Overview blade of your API Management service in the Azure portal.
 
-    ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/e8-t1-developer-portal.png "Developer Portal")
+    ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/apim-developer-portal.png "Developer Portal")
 
 2. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
 
@@ -1866,7 +1866,8 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 4. At the Cloud Shell prompt, run the following command to retrieve your Web App name, making sure to replace `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az webapp list -g <your-resource-group-name> --output table
+    $resourceGroup = "<your-resource-group-name>"
+    az webapp list -g $resourceGroup --output table
     ```
 
 5. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
@@ -1876,17 +1877,15 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
-    - `<your-apim-url>`: Replace with the Gateway URL of your API Management instance, which you can find on the Overview blade of the API Management Service in the Azure portal.
+    - `<your-apim-gateway-url>`: Replace with the Gateway URL of your API Management instance, which you can find on the Overview blade of the API Management Service in the Azure portal.
     - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
     - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Management, that is to be used for the `PolicyDocumentsPath` setting.
-    - `<your-resource-group-name>`: Replace with your resource group name.
 
     ```powershell
     $webAppName = "<your-web-app-name>"
-    $apimUrl = "<your-apim-url>"
+    $apimUrl = "<your-apim-gateway-url>"
     $apimKey = "<your-apim-subscription-key>"
     $policyDocsPath = "<your-apim-function-app-path>"
-    $resourceGroup = "<your-resource-group-name>"
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
     ```
 
