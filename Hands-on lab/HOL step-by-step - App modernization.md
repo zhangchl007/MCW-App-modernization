@@ -1090,7 +1090,8 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 4. At the Cloud Shell prompt, run the following command to retrieve both your API App URL and your Web App, making sure to replace `<your-resource-group-name>` with your resource group name:
 
     ```powershell
-    az webapp list -g <your-resource-group-name> --output table
+    $resourceGroup = "<your-resource-group-name>"
+    az webapp list -g $resourceGroup --output table
     ```
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
@@ -1102,13 +1103,11 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
     - `<your-web-app-name>`: Replace with your Function App name, which you copied in the previous step.
-    - `<your-resource-group-name>`: Replace with your resource group name.
     - `<your-storage-account-sas-token>`: Replace with the `policies` container URL you copied into a text editor previously.
 
     ```powershell
     $webAppName = "<your-web-app-name>"
     $defaultHostName = "<your-api-default-host-name>"
-    $resourceGroup = "<your-resource-group-name>"
     az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "ApiUrl=https://$defaultHostName"
     ```
 
