@@ -1911,11 +1911,11 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 ### Task 2: Create new SQL connection
 
-1. With your PowerApps account created and logged into the PowerApps website, expand the **Data** option from the left-hand navigation menu, then select **Connections**.
+1. From the PowerApps website, expand the **Data** option from the left-hand navigation menu, then select **Connections**.
 
-2. Select the **Create a connection** button.
+2. Select the **+ New connection** button.
 
-    ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps_connections.png "PowerApps Connections")
+    ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps-new-connection.png "PowerApps Connections")
 
 3. Type **SQL** into the search box, and then select the SQL Server item in the list below.
 
@@ -1947,21 +1947,19 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
     ![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps Studio")
 
-5. If not selected already, select **default** under the **Choose a dataset** title.
-
-6. Select the **Policies** table from the Choose a table list.
+5. Select the **policies** table from the Choose a table list.
 
     ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
 
-7. Select **Connect**.
+6. Select **Connect**.
 
 ### Task 4: Design app
 
-1. The new app is automatically created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the formula field to read **Policies**.
+1. The new app is automatically created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the field to read **Policies**.
 
-    ![All of the Policy options display.](media/powerapp_update_app_name.png "Policies section")
+    ![All of the Policy options display.](media/powerapps-update-app-title.png "Policies section")
 
-2. Select the **DetailScreen** screen on the left-hand side.
+2. Select the **DetailScreen1** screen in the left-hand menu.
 
     ![On the Home tab, under Screens, DetailScreen1 is selected.](media/powerapp_select_detailsscreen.png "DetailScreen")
 
@@ -1987,11 +1985,13 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
     ![The File menu is highlighted in the PowerApps page.](media/power-apps-file-menu.png "Power Apps")
 
-2. Select **App settings**, then **App name + icon** and type in a new **App name**, such as PolicyConnect Plus.
+2. Select **Name + icon** under Settings and enter in a new **Name**, such as "PolicyConnect Plus".
 
-    ![In PowerShell App Studio, under App settings, App name plus icon is selected, and the App name is set to PolicyConnectPlus.](media/powerapp_appsettings.png "PowerShell App Studio")
+    ![In PowerShell App Studio, under Settings, Name + icon is selected, and the Name is set to PolicyConnectPlus.](media/powerapps-settings-name-icon.png "PowerShell App Studio")
 
 3. Select **Save** on the left-hand menu to save the app to the cloud, then select the **Save** button below.
+
+    ![The Save menu is highlighted on the left-hand menu and the Save button is highlighted on the Save form.](media/powerapps-save.png "Save App")
 
 4. After saving, select the left arrow on top of the left-hand menu.
 
@@ -2001,6 +2001,8 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
     ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
 
+6. Browse through the various policies in the app to explore the functionality.
+
 ## After the hands-on lab
 
 Duration: 10 minutes
@@ -2009,7 +2011,7 @@ In this exercise, you de-provision all Azure resources that were created in supp
 
 ### Task 1: Delete Azure resource groups
 
-1. In the Azure portal, select **Resource groups** from the left-hand menu, and locate and delete the **hands-on-lab-SUFFIX** following resource group.
+1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** following resource group.
 
 ### Task 2: Delete the contoso-apps service principal
 
