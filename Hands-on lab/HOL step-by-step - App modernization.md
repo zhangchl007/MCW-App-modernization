@@ -904,28 +904,6 @@ In this task, you open the `Contoso` starter solution in Visual Studio. The Visu
 
     ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
-5. If you see errors in the Error list pertaining to a version conflict, you need to install the .NET CORE 2.2 framework, using the steps below. If you don't see these errors, you can skip to the next task.
-
-    ![Error pane in Visual Studio](media/vs-net-core-errors.png "Visual Studio errors")
-
-6. In the Visual Studio Solution Explorer, right-click on the `Contoso.Web` project, and select **Properties** from the context menu.
-
-    ![Visual Studio project properties menu.](media/vs-project-properties.png "Project properties")
-
-7. In the project properties window, select the **Target framework** drop down, and select **Install other frameworks...**
-
-    ![The target framework options are displayed.](media/vs-project-target-framework.png "Project properties")
-
-8. On the Download .NET SDKs for Visual Studio page web page that opens, select the .NET CORE 2.2 x64 SDK under **Visual Studio 2019 SDK**.
-
-    ![The download .NET Core 2.2 web page is displayed.](media/download-net-core-2-2.png "Download .NET Core 2.2")
-
-9. Run the downloaded installer, selecting **Install** in the .NET Core SDK installer dialog.
-
-    ![The .NET Core 2.2 installer is displayed, and Install is highlighted.](media/installed-net-core-2-2.png "Install .NET Core 2.2.")
-
-10. Select **Close** when the installation finishes. You then need to close and reopen Visual Studio and the `Contoso` solution.
-
 ### Task 3: Update Web API to use Key Vault
 
 In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for storing and retrieving application secrets. You start by adding the connection information to the `appsettings.json` file in the `Contoso.WebApi` project, and then add some code to enable the use of Azure Key Vault.
