@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-October 2019
+February 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2019 Microsoft Corporation. All rights reserved.
+© 2020 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -58,25 +58,33 @@ In this exercise, you set up an environment for use in the rest of the hands-on 
 
 In this task, you create an Azure resource group to serve as a container for the resources used throughout this lab.
 
-1. In the [Azure portal](https://portal.azure.com), select **Resource groups**, select **+Add**, then enter the following in the Create an empty resource group blade:
+1. In the [Azure portal](https://portal.azure.com), select **Resource groups** from the Azure services list.
+
+    ![Resource groups is highlighted in the Azure services list.](media/azure-services-resource-groups.png "Azure services")
+
+2. On the Resource groups blade, select **+Add**.
+
+    ![+Add is highlighted in the toolbar on Resource groups blade.t](media/resource-groups-add.png "Resource groups")
+
+3. On the Create a resource group **Basics** tab, enter the following:
 
     - **Subscription**: Select the subscription you are using for this hands-on lab.
-    - **Resource group**: Enter hands-on-lab-SUFFIX.
-    - **Region**: Select the region you would like to use for resources in this hands-on lab. Remember this location so you can use it for the other resources you'll provision throughout this lab.
+    - **Resource group**: Enter **hands-on-lab-SUFFIX** as the name of the new resource group.
+    - **Region**: Select the region you are using for this hands-on lab.
 
-    ![Add Resource group Resource groups is highlighted in the navigation pane of the Azure portal, +Add is highlighted in the Resource groups blade, and "hands-on-labs" is entered into the Resource group name box on the Create an empty resource group blade.](./media/create-resource-group.png "Create resource group")
+    ![The values specified above are entered into the Create a resource group Basics tab.](media/create-resource-group.png "Create resource group")
 
-2. Select **Review + Create**.
+4. Select **Review + Create**.
 
-3. On the Review + Create tab, select **Create** to provision the resource group.
+5. On the **Review + create** tab, ensure the Validation passed message is displayed and then select **Create**.
 
 ### Task 2: Register required resource providers
 
 In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers within your Azure subscription. These resource providers allow Azure Search and the Azure Database Migration Service to be provisioned within your subscription.
 
-1. In the [Azure portal](https://portal.azure.com), select **All services** from the Azure navigation pane, and then select **Subscriptions**.
+1. In the [Azure portal](https://portal.azure.com), select **Subscriptions** from the Azure services list.
 
-    ![All services is highlighted in the Azure navigation pane, and Subscriptions is highlighted in the All services blade.](media/azure-portal-all-services-subscriptions.png "Azure All services blade")
+    ![Subscriptions is highlighted in the Azure services list.](media/azure-services-subscriptions.png "Azure services")
 
 2. Select the subscription you are using for this hands-on lab from the list, select **Resource providers**, enter "migration" into the filter box, select **Microsoft.DataMigration** and then select **Register**.
 
@@ -97,8 +105,8 @@ In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` 
 In this task, you run an Azure Resource Manager (ARM) template to deploy and configure the resources used throughout this hands-on lab. The resources created by the ARM template include:
 
 - Azure Blob Storage account
-- A lab virtual machine (VM) with Visual Studio 2019 Community edition and SQL Server Management Studio (SSMS) installed
-- A SQL Server 2008 R2 VM with the Microsoft Data Migration Assistant (DMA) installed
+- A lab virtual machine (VM) with Visual Studio 2019 Community edition and SQL Server Management Studio (SSMS) installed.
+- A SQL Server 2008 R2 VM with the Microsoft Data Migration Assistant (DMA) installed and a copy of the ContosoInsurance database installed.
 - Azure SQL Database
 - Azure Database Migration Service (DMS)
 - Azure App Service Plan
@@ -125,7 +133,6 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
     - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
     - **SQL Server Name**: Accept the default value, **contosoinsurance**.
-
 
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
