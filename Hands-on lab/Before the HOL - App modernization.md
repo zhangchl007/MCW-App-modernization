@@ -115,7 +115,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
 - Function App
 - API Management
 - Key Vault
-- Azure Search
+- Azure Cognitive Search
 - Azure Cognitive Services account
 - Virtual Network
 
