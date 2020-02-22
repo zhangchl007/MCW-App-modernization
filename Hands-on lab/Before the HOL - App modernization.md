@@ -64,7 +64,7 @@ In this task, you create an Azure resource group to serve as a container for the
 
 2. On the Resource groups blade, select **+Add**.
 
-    ![+Add is highlighted in the toolbar on Resource groups blade.t](media/resource-groups-add.png "Resource groups")
+    ![+Add is highlighted in the toolbar on Resource groups blade.](media/resource-groups-add.png "Resource groups")
 
 3. On the Create a resource group **Basics** tab, enter the following:
 
@@ -133,6 +133,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
     - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
     - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
     - **SQL Server Name**: Accept the default value, **contosoinsurance**.
+
 
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
