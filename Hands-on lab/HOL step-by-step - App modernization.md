@@ -67,6 +67,11 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 5: Deploy the function to your Azure Function App](#task-5-deploy-the-function-to-your-azure-function-app)
     - [Task 6: Enable Application Insights on the Function App](#task-6-enable-application-insights-on-the-function-app)
     - [Task 7: Add Function App URL to your Web App Application settings](#task-7-add-function-app-url-to-your-web-app-application-settings)
+    - [Task 8: Test document retrieval from web app](#task-8-test-document-retrieval-from-web-app)
+    - [Task 9: View Live Metrics Stream](#task-9-view-live-metrics-stream)
+  - [Exercise 8: Add Cognitive Search for policy documents](#exercise-8-add-cognitive-search-for-policy-documents)
+    - [Task 1: Add Azure Cognitive Search to Storage account](#task-1-add-azure-cognitive-search-to-storage-account)
+    - [Task 2: Review search results](#task-2-review-search-results)
   - [Exercise 8: Import and publish APIs into APIM](#exercise-8-import-and-publish-apis-into-apim)
     - [Task 1: Import API App](#task-1-import-api-app)
     - [Task 2: Import Function App](#task-2-import-function-app)
@@ -1479,7 +1484,7 @@ In this task, you add the URL of your Azure Function App to the Application sett
     ```powershell
     $resourceGroup = "<your-resource-group-name>"
     az functionapp list -g $resourceGroup --output table
-   ```
+    ```
 
     > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
