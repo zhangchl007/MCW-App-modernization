@@ -72,12 +72,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Exercise 8: Add Cognitive Search for policy documents](#exercise-8-add-cognitive-search-for-policy-documents)
     - [Task 1: Add Azure Cognitive Search to Storage account](#task-1-add-azure-cognitive-search-to-storage-account)
     - [Task 2: Review search results](#task-2-review-search-results)
-  - [Exercise 8: Import and publish APIs into APIM](#exercise-8-import-and-publish-apis-into-apim)
+  - [Exercise 9: Import and publish APIs into APIM](#exercise-9-import-and-publish-apis-into-apim)
     - [Task 1: Import API App](#task-1-import-api-app)
     - [Task 2: Import Function App](#task-2-import-function-app)
     - [Task 3: Open Developer Portal and retrieve you API key](#task-3-open-developer-portal-and-retrieve-you-api-key)
     - [Task 4: Update Web App to use API Management Endpoints](#task-4-update-web-app-to-use-api-management-endpoints)
-  - [Exercise 9: Create an app in PowerApps](#exercise-9-create-an-app-in-powerapps)
+  - [Exercise 10: Create an app in PowerApps](#exercise-10-create-an-app-in-powerapps)
     - [Task 1: Sign up for a PowerApps account](#task-1-sign-up-for-a-powerapps-account)
     - [Task 2: Create new SQL connection](#task-2-create-new-sql-connection)
     - [Task 3: Create a new app](#task-3-create-a-new-app)
@@ -1725,7 +1725,7 @@ In this task, you run a query against your search index to review the enrichment
 
 8. As you can see from the search results, the addition of cognitive skills adds valuable metadata to your search index, and helps to make documents and their contents more usable by Contoso.
 
-## Exercise 8: Import and publish APIs into APIM
+## Exercise 9: Import and publish APIs into APIM
 
 Duration: 30 minutes
 
@@ -1898,7 +1898,7 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 
 8. In a web browser, navigate to the Web app URL, and verify you still see data when you select one of the tabs.
 
-## Exercise 9: Create an app in PowerApps
+## Exercise 10: Create an app in PowerApps
 
 Duration: 15 minutes
 
