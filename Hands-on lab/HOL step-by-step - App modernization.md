@@ -1582,6 +1582,8 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 5. Now, select the link under **File Path**, and download the policy document.
 
+   ![The link to the policy document under File Path is highlighted.](media/policy-document-link.png "PolicyConnect download policy document")
+
    ![The download policy document is displayed.](media/policy-document-download.png "PolicyConnect")
 
 ### Task 9: View Live Metrics Stream
