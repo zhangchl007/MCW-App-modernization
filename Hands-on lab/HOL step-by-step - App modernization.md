@@ -1216,11 +1216,20 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
    ![The Shared access signature menu item is highlighted.](media/storage-shared-access-signature.png "Storage account")
 
-2. On the Shared access signature blade, select **Generate SAS and connection string**, and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
+2. On the Shared access signature blade, set the following configuration:
+
+   - **Allowed services**: Select **Blob** and uncheck all other services.
+   - **Allowed resource types**: Uncheck **Service** and check **Container** and **Object**.
+   - **Allowed permissions**: Select **Read** and **List** and uncheck all the other boxes.
+   - **Expiry date/time End**: Select this and choose a date a few days or weeks in the future. For this hands-on lab, the date can be any date/time beyond when you plan on completing the lab.
+
+   ![The SAS token configuration settings specified above are entered into the Generate SAS form.](media/storage-sas-token-config.png "Shared access signature configuration")
+
+3. Select **Generate SAS and connection string** and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
 
    ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](media/storage-shared-access-signature-generate.png "Shared access signature")
 
-3. Paste the SAS token into a text editor for later use.
+4. Paste the SAS token into a text editor for later use.
 
 ### Task 3: Bulk upload PDFs to blob storage using AzCopy
 
