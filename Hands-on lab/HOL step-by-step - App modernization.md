@@ -511,11 +511,19 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-warning.png "Migration with Warning status")
 
-17. When the migration is complete, select the ellipsis button on the toolbar, and then select **Download report**.
+17. When the migration is complete, select the **ContosoInsurance** migration item.
 
-    ![The download report button is highlighted in the toolbar menu.](media/dms-migration-wizard-download-report.png "Download report")
+18. Review the database migration details.
 
-18. Review the database migration report. If you received a status of "Warning" for your migration, you can find the reason in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
+    ![A detailed list of tables included in the migration is displayed.](media/dms-migration-details.png "Database migration details")
+
+19. If you received a status of "Warning" for your migration, you can find more details by selecting **Download report** from the ContosoDataMigration screen.
+
+    ![The Download report button is highlighted on the DMS Migration toolbar.](media/dms-toolbar-download-report.png "Download report")
+
+    > **Note**: The **Download report** button will be disabled if the migration completed without warnings or errors.
+
+20. The reason for the warning can be found in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
 
     ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
 
