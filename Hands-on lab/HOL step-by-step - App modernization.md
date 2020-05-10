@@ -513,6 +513,8 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 17. When the migration is complete, select the **ContosoInsurance** migration item.
 
+    ![The ContosoInsurance migration item is highlighted on the ContosoDataMigration blade.](media/dms-migration-completion.png "ContosoDataMigration details")
+
 18. Review the database migration details.
 
     ![A detailed list of tables included in the migration is displayed.](media/dms-migration-details.png "Database migration details")
