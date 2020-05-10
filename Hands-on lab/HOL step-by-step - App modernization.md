@@ -1419,6 +1419,8 @@ In this task, you run your Function locally through the Visual Studio debugger, 
    http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ
    ```
 
+   > **Note**: Paths for documents in Azure Blob Storage are case sensitive, so the policyholder Name and Policy number casing need to match the values specified above.
+
 6. Paste the updated into the address bar of a new Chrome web browser window and press Enter.
 
 7. In the browser, the policy document opens in a new window.
@@ -1578,11 +1580,7 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
    ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-5. On the Policy Holder Details page, hover your mouse cursor over the document link under **File Path**, and notice that the path that is displayed at the bottom now points to your Function App, and that the policy holder's last name and policy number are inserted into the path.
-
-   ![The PDF document link is highlighted and the underlying URL is highlighted at the bottom of the browser window.](media/web-app-policy-holder-details-file-path.png "PolicyConnect")
-
-6. Now, select the link under **File Path**, and download the policy document.
+5. Now, select the link under **File Path**, and download the policy document.
 
    ![The download policy document is displayed.](media/policy-document-download.png "PolicyConnect")
 
