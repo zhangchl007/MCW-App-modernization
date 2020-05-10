@@ -1461,25 +1461,33 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-2. On the Function App blade, select **Configure Application Insights to capture function logs.** at the top of the blade.
+2. On the Function App blade, select the **Platform features** tab and then select **All settings** under the General Settings section.
+
+   ![The Platform features tab is selected and highlighted and All settings is highlighted under the General Settings section.](media/function-app-platform-features-all-settings.png "Function App Platform Features")
+
+3. On the Function App blade that opens, select **Application insights** under **Settings** from the left-hand menu and then select **Turn on Application Insights**.
 
    ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
 
-3. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-ai-SUFFIX, and then select **OK**.
+4. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-app-insights-SUFFIX, and then select **Apply**.
 
    ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
 
-4. Once the Application Insights resource is created, return to the Overview blade of your Function App, and select **Application Insights** under Configured Features.
+5. Select **Yes** when prompted about restarting the Function App to apply monitoring settings.
 
-   ![Application Insights is highlighted under Configured features.](media/function-app-app-insights-link.png "Function App")
+   ![The Yes button is highlighted on the Apply monitoring settings dialog.](media/function-app-apply-monitoring-settings.png "Apply monitoring settings")
 
-5. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
+6. After the Function App restarts, select **View Application Insights data**.
+
+   ![The View Application Insights data link is highlighted.](media/function-app-view-application-insights-data.png "View Application Insights data")
+
+7. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
 
    ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
 
    > **Note**: You may see a message that your app is offline. You handle this below.
 
-6. Leave the Live Metrics Stream window open for reference in the next task.
+8. Leave the Live Metrics Stream window open for reference in the next task.
 
 ### Task 7: Add Function App URL to your Web App Application settings
 
