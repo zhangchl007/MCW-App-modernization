@@ -178,7 +178,7 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
 9. Once connected, expand **Databases** under SQLSERVER2008 in the Object Explorer, and then select **ContosoInsurance** from the list of databases.
 
-    ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
+   ![The ContosoInsurance database is highlighted in the list of databases.](media/ssms-databases.png "Databases")
 
 10. Next, you execute a script in SSMS, which resets the `sa` password, enable mixed mode authentication, create the `WorkshopUser` account, and change the database recovery model to FULL. To create the script, open a new query window in SSMS by selecting **New Query** in the SSMS toolbar.
 
@@ -263,7 +263,7 @@ Contoso would like an assessment to see what potential issues they might need to
 
 5. On the **Options** screen, ensure **Check database compatibility** and **Check feature parity** are both checked, and then select **Next**.
 
-    ![Check database compatibility and check feature parity are checked on the Options screen.](media/dma-options.png "DMA options")
+   ![Check database compatibility and check feature parity are checked on the Options screen.](media/dma-options.png "DMA options")
 
 6. On the **Sources** screen, enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
@@ -386,47 +386,47 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
 
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
 3. If prompted that you have no storage mounted, select the subscription you are using for this hands-on lab and select **Create storage**.
 
-    ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/cloud-shell-create-storage.png "Azure Cloud Shell")
+   ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/cloud-shell-create-storage.png "Azure Cloud Shell")
 
-    > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account.
+   > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account.
 
 4. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
 
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
 5. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name resource group:
 
-    ```powershell
-    $resourceGroup = "<your-resource-group-name>"
-    ```
+   ```powershell
+   $resourceGroup = "<your-resource-group-name>"
+   ```
 
 6. Next, retrieve the public IP address of the SqlServer2008 VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:
 
-    ```powershell
-    az vm list-ip-addresses -g $resourceGroup -n SqlServer2008 --output table
-    ```
+   ```powershell
+   az vm list-ip-addresses -g $resourceGroup -n SqlServer2008 --output table
+   ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+   > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SqlServer2008 VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
+   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SqlServer2008 VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
 
 8. Next, run a second command to retrieve the server name of your Azure SQL Database:
 
-    ```powershell
-    az sql server list -g $resourceGroup
-    ```
+   ```powershell
+   az sql server list -g $resourceGroup
+   ```
 
-    ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
+   ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
 
 9. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
@@ -446,42 +446,42 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 3. On the New migration project blade, enter the following:
 
-    - **Project name**: Enter DataMigration.
-    - **Source server type**: Select SQL Server.
-    - **Target server type**: Select Azure SQL Database.
-    - **Choose type of activity**: Select **Offline data migration** and select **Save**.
+   - **Project name**: Enter DataMigration.
+   - **Source server type**: Select SQL Server.
+   - **Target server type**: Select Azure SQL Database.
+   - **Choose type of activity**: Select **Offline data migration** and select **Save**.
 
-    ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
+   ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
 4. Select **Create and run activity**.
 
 5. On the Migration Wizard **Select source** blade, enter the following:
 
-    - **Source SQL Server instance name**: Enter the IP address of your SqlServer2008 VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
-    - **Authentication type**: Select SQL Authentication.
-    - **Username**: Enter **WorkshopUser**
-    - **Password**: Enter **Password.1!!**
-    - **Connection properties**: Check both Encrypt connection and Trust server certificate.
+   - **Source SQL Server instance name**: Enter the IP address of your SqlServer2008 VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
+   - **Authentication type**: Select SQL Authentication.
+   - **Username**: Enter **WorkshopUser**
+   - **Password**: Enter **Password.1!!**
+   - **Connection properties**: Check both Encrypt connection and Trust server certificate.
 
-    ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
+   ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
 
 6. Select **Save**.
 
 7. On the Migration Wizard **Select target** blade, enter the following:
 
-    - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
-    - **Authentication type**: Select SQL Authentication.
-    - **Username**: Enter **demouser**
-    - **Password**: Enter **Password.1!!**
-    - **Connection properties**: Check Encrypt connection.
+   - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
+   - **Authentication type**: Select SQL Authentication.
+   - **Username**: Enter **demouser**
+   - **Password**: Enter **Password.1!!**
+   - **Connection properties**: Check Encrypt connection.
 
-    ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
+   ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
 
 8. Select **Save**.
 
 9. On the Migration Wizard **Map to target databases** blade, confirm that **ContosoInsurance** is checked as the source database, and that it is also the target database on the same line, then select **Save**.
 
-    ![The Migration Wizard Map to target database blade is displayed, with the ContosoInsurance line highlighted.](media/dms-migration-wizard-map-to-target-databases.png "Migration Wizard Map to target databases")
+   ![The Migration Wizard Map to target database blade is displayed, with the ContosoInsurance line highlighted.](media/dms-migration-wizard-map-to-target-databases.png "Migration Wizard Map to target databases")
 
 10. Select **Save**.
 
@@ -494,9 +494,8 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 13. On the Migration Wizard **Summary** blade, enter the following:
 
     - **Activity name**: Enter ContosoDataMigration.
-    - **Validation option**: Select Validate my database(s), check all three Validation options, and then select **Save**.
 
-    ![The Migration Wizard summary blade is displayed, ContosoDataMigration is entered into the name field, and Validate my database(s) is selected in the Choose validation option blade, with all three validation options selected.](media/dms-migration-wizard-migration-summary.png "Migration Wizard Summary")
+    ![The Migration Wizard summary blade is displayed, with ContosoDataMigration entered into the name field.](media/dms-migration-wizard-migration-summary.png "Migration Wizard Summary")
 
 14. Select **Run migration**.
 
@@ -512,11 +511,21 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-warning.png "Migration with Warning status")
 
-17. When the migration is complete, select the ellipsis button on the toolbar, and then select **Download report**.
+17. When the migration is complete, select the **ContosoInsurance** migration item.
 
-    ![The download report button is highlighted in the toolbar menu.](media/dms-migration-wizard-download-report.png "Download report")
+    ![The ContosoInsurance migration item is highlighted on the ContosoDataMigration blade.](media/dms-migration-completion.png "ContosoDataMigration details")
 
-18. Review the database migration report. If you received a status of "Warning" for your migration, you can find the reason in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
+18. Review the database migration details.
+
+    ![A detailed list of tables included in the migration is displayed.](media/dms-migration-details.png "Database migration details")
+
+19. If you received a status of "Warning" for your migration, you can find more details by selecting **Download report** from the ContosoDataMigration screen.
+
+    ![The Download report button is highlighted on the DMS Migration toolbar.](media/dms-toolbar-download-report.png "Download report")
+
+    > **Note**: The **Download report** button will be disabled if the migration completed without warnings or errors.
+
+20. The reason for the warning can be found in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
 
     ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
 
@@ -538,15 +547,15 @@ In this task, you look at the [SQL Data Discovery and Classification](https://do
 
 2. On the SQL database blade, select **Advance Data Security** from the left-hand menu, and then select the **Data Discovery & Classification** tile.
 
-    ![Advanced Data Security is highlighted in the menu. Data Discovery & Classification option is highlighted to select.](media/e2-03.png "Advance Data Security")
+   ![Advanced Data Security is highlighted in the menu. Data Discovery & Classification option is highlighted to select.](media/e2-03.png "Advance Data Security")
 
 3. On the **Data Discovery & Classification** blade, select the info link with the message **We have found 7 columns with classification recommendations**.
 
-    ![The recommendations link on the Data Discovery & Classification blade is highlighted.](media/ads-data-discovery-and-classification-recommendations-link.png "Data Discovery & Classification")
+   ![The recommendations link on the Data Discovery & Classification blade is highlighted.](media/ads-data-discovery-and-classification-recommendations-link.png "Data Discovery & Classification")
 
 4. The classification engine scans the database and provides a list of recommended column classifications. Look over the list of recommendations to get a better understanding of the types of data and classifications are assigned, based on the built-in classification settings. In the list of classification recommendations, note the recommended classification for the **dbo - people - DOB** field (Confidential - GDPR).
 
-    ![The DOB recommendation is highlighted in the recommendations list.](media/ads-data-discovery-and-classification-recommendations-dob.png "Data Discovery & Classification")
+   ![The DOB recommendation is highlighted in the recommendations list.](media/ads-data-discovery-and-classification-recommendations-dob.png "Data Discovery & Classification")
 
 5. Contoso is very concerned about the potential cost of any GDPR violations, and would like to label any GDPR fields as _Highly Confidential - GDPR_. To update this, select **+ Add classification** in the Data Discovery & Classification toolbar.
 
@@ -554,17 +563,17 @@ In this task, you look at the [SQL Data Discovery and Classification](https://do
 
 6. In the Add classification dialog, quickly expand the **Sensitivity label** field, and review the various built-in labels you can choose from. You can also add your own labels, should you desire.
 
-    ![The list of built-in Sensitivity labels is displayed.](media/ads-data-discovery-and-classification-sensitivity-labels.png "Data Discovery & Classification")
+   ![The list of built-in Sensitivity labels is displayed.](media/ads-data-discovery-and-classification-sensitivity-labels.png "Data Discovery & Classification")
 
 7. In the Add classification dialog, enter the following:
 
-    - **Schema name**: Select dbo.
-    - **Table name**: Select people.
-    - **Column name**: Select DOB (date).
-    - **Information type**: Select Date Of Birth.
-    - **Sensitivity level**: Select Highly Confidential - GDPR.
+   - **Schema name**: Select dbo.
+   - **Table name**: Select people.
+   - **Column name**: Select DOB (date).
+   - **Information type**: Select Date Of Birth.
+   - **Sensitivity level**: Select Highly Confidential - GDPR.
 
-    ![The values specified above are entered into the Add classification dialog.](media/ads-data-discovery-and-classification-add-dob-classification.png "Add classification")
+   ![The values specified above are entered into the Add classification dialog.](media/ads-data-discovery-and-classification-add-dob-classification.png "Add classification")
 
 8. Select **Add classification**.
 
@@ -596,21 +605,21 @@ In this task, you review an assessment report generated by ADS for the `ContosoI
 
 3. Select **Vulnerability Assessment**.
 
-    ![ContosoInsurance Azure SQL database into Azure Portal. Advanced Data Security is highlighted in the menu. Vulnerability Assessment section is highlighted](media/e2-06.png "Vulnerability Assessment")
+   ![ContosoInsurance Azure SQL database into Azure Portal. Advanced Data Security is highlighted in the menu. Vulnerability Assessment section is highlighted](media/e2-06.png "Vulnerability Assessment")
 
 4. On the Vulnerability Assessment blade, select **Scan** on the toolbar.
 
-    ![Vulnerability Assessment window with Scan Option highlighted](media/e2-07.png "Scan Option")
+   ![Vulnerability Assessment window with Scan Option highlighted](media/e2-07.png "Scan Option")
 
 5. When the scan completes, select the **Overview** tab and observe the dashboard, which displays the number of failing checks, passing checks, and a breakdown of the risk summary by severity level.
 
-    ![Vulnerability Assessment window with the assessment results](media/e2-08.png "Vulnerability Assessment results")
+   ![Vulnerability Assessment window with the assessment results](media/e2-08.png "Vulnerability Assessment results")
 
 6. In the scan results, take a few minutes to browse both the Failed and Passed checks, and review the types of checks that are performed. In the **Failed** the list, select any of the failed checks to view the detailed description.
 
-    ![The details of the VA1143 - Transparent data encryption should be enabled finding are displayed with the description, impact, and remediation fields highlighted.](media/vulnerability-assessment-failed-va1143-details.png "Vulnerability Assessment")
+   ![The details of the VA1143 - Transparent data encryption should be enabled finding are displayed with the description, impact, and remediation fields highlighted.](media/vulnerability-assessment-failed-va1143-details.png "Vulnerability Assessment")
 
-    > The details for each finding provide more insight into the reason for the finding. Of note are the fields describing the finding, the impact of the recommended settings, and details on how to remediate the finding.
+   > The details for each finding provide more insight into the reason for the finding. Of note are the fields describing the finding, the impact of the recommended settings, and details on how to remediate the finding.
 
 ### Task 3: Enable Dynamic Data Masking
 
@@ -620,11 +629,11 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
 1. Return to the Overview blade of your SQL database in the [Azure portal](https://portal.azure.com), and select **Dynamic Data Masking** from the left-hand menu.
 
-    ![Dynamic Data Masking is highlighted in the left-hand menu.](media/e2-01.png "Dynamic Data Masking")
+   ![Dynamic Data Masking is highlighted in the left-hand menu.](media/e2-01.png "Dynamic Data Masking")
 
 2. On the Dynamic Data Masking blade, you may see a few recommended fields to mask that have been flagged as they may contain sensitive data. For our case, we want to apply a mask to the `DOB` field on the `people` table to provide more protection to GDPR data. To do this, select **+ Add mask** in the Dynamic Data Masking toolbar.
 
-    ![Dynamic Data Masking window with recommended fields. The +Add mask button in the toolbar is highlighted.](media/e2-02.png "Dynamic Data Masking")
+   ![Dynamic Data Masking window with recommended fields. The +Add mask button in the toolbar is highlighted.](media/e2-02.png "Dynamic Data Masking")
 
 3. On the Add masking rule blade, enter the following:
 
@@ -642,13 +651,13 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 
 5. To view the impact of the Dynamic Data Masking, return to SSMS on your SqlServer2008 VM and run a few queries against the `people` table. On your SqlServer2008 VM, open SSMS and connect to the Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
-    - **Server name**: Paste the server name of your Azure SQL Database, as you've done previously.
-    - **Authentication type**: Select SQL Server Authentication.
-    - **Username**: Enter **demouser**
-    - **Password**: Enter **Password.1!!**
-    - **Remember password**: Check this box.
+   - **Server name**: Paste the server name of your Azure SQL Database, as you've done previously.
+   - **Authentication type**: Select SQL Server Authentication.
+   - **Username**: Enter **demouser**
+   - **Password**: Enter **Password.1!!**
+   - **Remember password**: Check this box.
 
-    ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
+   ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
 
 6. Select **Connect**.
 
@@ -713,7 +722,7 @@ In this task, you add an access policy to Key Vault to allow secrets to be creat
 
 2. On the Key Vault blade, select **Access policies** under Settings in the left-hand menu, and then select **+ Add Access Policy**.
 
-    ![The + Add Access Policy link is highlighted on the Access policies blade.](media/key-vault-add-access-policy-link.png "Access policies")
+   ![The + Add Access Policy link is highlighted on the Access policies blade.](media/key-vault-add-access-policy-link.png "Access policies")
 
 3. In the Add access policy dialog, enter the following:
 
@@ -750,9 +759,9 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 5. Your connection string should now resemble the following:
 
-    ```csharp
-    Server=tcp:contosoinsurance-jt7yc3zphxfda.database.windows.net,1433;Initial Catalog=ContosoInsurance;Persist Security Info=False;User ID=demouser;Password=Password.1!!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-    ```
+   ```csharp
+   Server=tcp:contosoinsurance-jt7yc3zphxfda.database.windows.net,1433;Initial Catalog=ContosoInsurance;Persist Security Info=False;User ID=demouser;Password=Password.1!!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
+   ```
 
 6. Copy your updated connection string from the text editor.
 
@@ -762,15 +771,15 @@ In this task, you add a secret to Key Vault containing the connection string for
 
 8. On the Key Vault blade, select **Secrets** under Settings in the left-hand menu, and then select **+ Generate/Import**.
 
-    ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](media/key-vault-secrets.png "Key Vault Secrets")
+   ![On the Key Vault blade, Secrets is selected and the +Generate/Import button is highlighted.](media/key-vault-secrets.png "Key Vault Secrets")
 
 9. On the Create a secret blade, enter the following:
 
-    - **Upload options**: Select Manual.
-    - **Name**: Enter **SqlConnectionString**
-    - **Value**: Paste the updated SQL connection string you copied from the text editor.
+   - **Upload options**: Select Manual.
+   - **Name**: Enter **SqlConnectionString**
+   - **Value**: Paste the updated SQL connection string you copied from the text editor.
 
-    ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/key-vault-secrets-create.png "Create a secret")
+   ![On the Create a secret blade, the values specified above are entered into the appropriate fields.](media/key-vault-secrets-create.png "Create a secret")
 
 10. Select **Create**.
 
@@ -782,49 +791,49 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
 3. After a moment, you should receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
 4. At the prompt, retrieve your subscription ID by running the following command at the Cloud Shell prompt:
 
-    ```powershell
-    az account list --output table
-    ```
+   ```powershell
+   az account list --output table
+   ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account set --subscription <your-subscription-id>` after running the command above to set the appropriate account for the following Azure CLI commands, replacing `<your-subscription-id>` with the appropriate value from the output list above.
+   > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account set --subscription <your-subscription-id>` after running the command above to set the appropriate account for the following Azure CLI commands, replacing `<your-subscription-id>` with the appropriate value from the output list above.
 
 5. In the output table, locate the subscription you are using for this hands-on lab, and copy the SubscriptionId value into a text editor, such as Notepad, for use below.
 
 6. Next, enter the following `az ad sp create-for-rbac` command at the Cloud Shell prompt, replacing `<your-subscription-id>` with the value you copied above and `<your-resource-group-name>` with the name of your **hands-on-lab-SUFFIX** resource group, and then press `Enter` to run the command.
 
-    ```powershell
-    $subscriptionId = "<your-subscription-id>"
-    $resourceGroup = "<your-resource-group-name>"
-    az ad sp create-for-rbac -n "contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
-    ```
+   ```powershell
+   $subscriptionId = "<your-subscription-id>"
+   $resourceGroup = "<your-resource-group-name>"
+   az ad sp create-for-rbac -n "contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
+   ```
 
-    ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
+   ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
 
 7. Copy the entire output from the command above into a text editor, as you need the `appId`, `name` and `password` values in upcoming tasks. The output should be similar to:
 
-    ```json
-    {
-        "appId": "94ee2739-794b-4038-a378-573a5f52918c",
-        "displayName": "contoso-apps",
-        "name": "http://contoso-apps",
-        "password": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4",
-        "tenant": "d280491c-b27a-XXXX-XXXX-XXXXXXXXXXXX"
-    }
-    ```
+   ```json
+   {
+     "appId": "94ee2739-794b-4038-a378-573a5f52918c",
+     "displayName": "contoso-apps",
+     "name": "http://contoso-apps",
+     "password": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4",
+     "tenant": "d280491c-b27a-XXXX-XXXX-XXXXXXXXXXXX"
+   }
+   ```
 
-    > **Important**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session eventually times out, and you won't have access to the output. The `appId` is used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` are used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
+   > **Important**: Make sure you copy the output into a text editor, as the Azure Cloud Shell session eventually times out, and you won't have access to the output. The `appId` is used in the steps below to assign an access policy to Key Vault, and both the `appId` and `password` are used in the next exercise to add the configuration values to the web and API apps to allow them to read secrets from Key Vault.
 
 ### Task 4: Assign the service principal access to Key Vault
 
@@ -832,23 +841,23 @@ In this task, you assign the service principal you created above to a reader rol
 
 1. Next, run the following command to get the name of your Key Vault:
 
-    ```powershell
-    az keyvault list -g $resourceGroup --output table
-    ```
+   ```powershell
+   az keyvault list -g $resourceGroup --output table
+   ```
 
 2. In the output from the previous command, copy the value from the `name` field into a text editor. You use it in the next step and also for configuration of your web and API apps.
 
-    ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
+   ![The value of the name property is highlighted in the output from the previous command.](media/azure-cloud-shell-az-keyvault-list.png "Azure Cloud Shell")
 
 3. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor.
 
-    ```powershell
-    az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
-    ```
+   ```powershell
+   az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+   ```
 
 4. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
 
-    ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
+   ![In the output from the command above, the secrets array is highlighted.](media/azure-cloud-shell-az-keyvault-set-policy.png "Azure Cloud Shell")
 
 ## Exercise 4: Deploy Web API into Azure App Services
 
@@ -899,15 +908,15 @@ In this task, you open the `Contoso` starter solution in Visual Studio. The Visu
 
 2. If prompted about how to open the file, select **Visual Studio 2019** and then select **OK**.
 
-    ![Visual Studio 2019 is highlighted in the How do you want to open this file? dialog.](media/solution-file-open-with.png "Visual Studio 2019")
+   ![Visual Studio 2019 is highlighted in the How do you want to open this file? dialog.](media/solution-file-open-with.png "Visual Studio 2019")
 
 3. Sign in to Visual Studio using your Azure account credentials.
 
-    ![The Sign in button is highlighted on the Visual Studio Welcome screen.](media/visual-studio-sign-in.png "Visual Studio 2019")
+   ![The Sign in button is highlighted on the Visual Studio Welcome screen.](media/visual-studio-sign-in.png "Visual Studio 2019")
 
 4. When prompted with a security warning, uncheck **Ask me for every project in this solution**, and then select **OK**.
 
-    ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
+   ![On the security warning dialog, the Ask me for every project in this solution box is unchecked and highlighted.](media/visual-studio-security-warning.png "Visual Studio")
 
 ### Task 3: Update Web API to use Key Vault
 
@@ -917,40 +926,40 @@ In this task, you update the `Contoso.WebApi` project to use Azure Key Vault for
 
 1. In Visual Studio, expand the `Contoso.WebApi` project in the Solution Explorer, locate the `Program.cs` file and open it by double-clicking on it.
 
-    ![In the Visual Studio Solution Explorer, the Program.cs file is highlighted under the Contoso.WebApi project.](media/vs-api-program-cs.png "Solution Explorer")
+   ![In the Visual Studio Solution Explorer, the Program.cs file is highlighted under the Contoso.WebApi project.](media/vs-api-program-cs.png "Solution Explorer")
 
 2. In the `Program.cs` file, locate the `TODO #1` block (line 23) within the `CreateWebHostBuilder` method.
 
-    ![The TODO #1 block is highlighted within the Program.cs code.](media/vs-program-cs-todo-1.png "Program.cs")
+   ![The TODO #1 block is highlighted within the Program.cs code.](media/vs-program-cs-todo-1.png "Program.cs")
 
 3. Complete the code within the block, using the following code, to add Key Vault to the configuration, and provide Key Vault with the appropriate connection information.
 
-    ```csharp
-    config.AddAzureKeyVault(
-        KeyVaultConfig.GetKeyVaultEndpoint(buildConfig["KeyVaultName"]),
-        buildConfig["KeyVaultClientId"],
-        buildConfig["KeyVaultClientSecret"]
-    );
-    ```
+   ```csharp
+   config.AddAzureKeyVault(
+       KeyVaultConfig.GetKeyVaultEndpoint(buildConfig["KeyVaultName"]),
+       buildConfig["KeyVaultClientId"],
+       buildConfig["KeyVaultClientSecret"]
+   );
+   ```
 
 4. Save `Program.cs`. The updated `CreateWebHostBuilder` method should now look like the following:
 
-    ![Screenshot of the updated Program.cs file.](media/vs-program-cs-updated.png "Program.cs")
+   ![Screenshot of the updated Program.cs file.](media/vs-program-cs-updated.png "Program.cs")
 
 5. Next, you update the `Startup.cs` file in the `Contoso.WebApi` project. Locate the file in the Solution Explorer and double-click it.
 
 6. In the previous exercise, you added the connection string for your Azure SQL Database to Key Vault, and assigned the secret a name of `SqlConnectionString`. Using the code below, update the `TODO #2` block (line 38), within the `Startup.cs` file's `Configuration` property. This allows your application to retrieve the connection string from Key Vault using the secret name.
 
-    ![The TODO #2 block is highlighted within the Startup.cs code.](media/vs-startup-cs-todo-2.png "Startup.cs")
+   ![The TODO #2 block is highlighted within the Startup.cs code.](media/vs-startup-cs-todo-2.png "Startup.cs")
 
-    ```csharp
-    services.AddDbContext<ContosoDbContext>(options =>
-        options.UseSqlServer(Configuration["SqlConnectionString"]));
-    ```
+   ```csharp
+   services.AddDbContext<ContosoDbContext>(options =>
+       options.UseSqlServer(Configuration["SqlConnectionString"]));
+   ```
 
 7. Save `Startup.cs`. The updated `Configuration` property now looks like the following:
 
-    ![Screenshot of the updated Startup.cs file.](media/vs-startup-cs-updated.png "Startup.cs")
+   ![Screenshot of the updated Startup.cs file.](media/vs-startup-cs-updated.png "Startup.cs")
 
 8. Your Web API is now fully configured to retrieve secrets from Azure Key Vault.
 
@@ -964,61 +973,61 @@ Before deploying the Web API to Azure, you need to add the required application 
 
 2. On the API App blade, select **Configuration** on the left-hand menu.
 
-    ![The Configuration item is highlighted in the API App left-hand menu.](media/api-app-configuration-menu.png "API App")
+   ![The Configuration item is highlighted in the API App left-hand menu.](media/api-app-configuration-menu.png "API App")
 
 3. On the Application settings tab of the Configuration blade, select **Advanced edit** under Application settings. The Advanced edit screen allows you to paste JSON directly into the configuration.
 
-    ![Advanced edit is highlighted on the Application settings tab.](media/api-app-configuration-advanced-edit.png "API App")
+   ![Advanced edit is highlighted on the Application settings tab.](media/api-app-configuration-advanced-edit.png "API App")
 
 4. We are going to use the Advanced editor to add all three of the Key Vault settings at once. To do this, we are going to replace the content of the Advanced editor with the following, which you need to update as follows:
 
-    - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
-    - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal.
-    - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal.
+   - `<your-key-vault-name>`: Replace this with the name of your Key Vault, which you copied into a text editor in in the previous exercise.
+   - `<your-service-principal-application-id>`: Replace this with the `appId` value you received as output when you created the service principal.
+   - `<your-service-principal-password>`: Replace this with the `password` value you received as output when you created the service principal.
 
-    ```json
-    [
-        {
-            "name": "KeyVaultName",
-            "value": "<your-key-vault-name>"
-        },
-        {
-            "name": "KeyVaultClientId",
-            "value": "<your-service-principal-application-id>"
-        },
-        {
-            "name": "KeyVaultClientSecret",
-            "value": "<your-service-principal-password>"
-        }
-    ]
-    ```
+   ```json
+   [
+     {
+       "name": "KeyVaultName",
+       "value": "<your-key-vault-name>"
+     },
+     {
+       "name": "KeyVaultClientId",
+       "value": "<your-service-principal-application-id>"
+     },
+     {
+       "name": "KeyVaultClientSecret",
+       "value": "<your-service-principal-password>"
+     }
+   ]
+   ```
 
 5. The final contents of the editor should look similar to the following:
 
-    ```json
-    [
-        {
-            "name": "KeyVaultName",
-            "value": "contosokvjt7yc3zphxfda"
-        },
-        {
-            "name": "KeyVaultClientId",
-            "value": "94ee2739-794b-4038-a378-573a5f52918c"
-        },
-        {
-            "name": "KeyVaultClientSecret",
-            "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
-        }
-    ]
-    ```
+   ```json
+   [
+     {
+       "name": "KeyVaultName",
+       "value": "contosokvjt7yc3zphxfda"
+     },
+     {
+       "name": "KeyVaultClientId",
+       "value": "94ee2739-794b-4038-a378-573a5f52918c"
+     },
+     {
+       "name": "KeyVaultClientSecret",
+       "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
+     }
+   ]
+   ```
 
 6. Select **OK**.
 
-    ![The OK button is highlighted on the Advanced edit dialog.](media/api-app-configuration-advanced-editor.png "Advanced edit")
+   ![The OK button is highlighted on the Advanced edit dialog.](media/api-app-configuration-advanced-editor.png "Advanced edit")
 
 7. Select **Save** on the Configuration blade.
 
-    ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
+   ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
 
 ### Task 5: Deploy the API to Azure
 
@@ -1026,41 +1035,41 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
 1. In Visual Studio, right-click on the **Contoso.WebApi** project in the Solution Explorer and select **Publish** from the context menu.
 
-    ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
+   ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
 
 2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
 
-    ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Profile button is highlighted..](media/visual-studio-publish-app-service.png "Pick a publish target")
+   ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Profile button is highlighted..](media/visual-studio-publish-app-service.png "Pick a publish target")
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contoso-**api**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-api App Service is highlighted.](media/visual-studio-publish-app-service-api.png "Select App Service")
+   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-api App Service is highlighted.](media/visual-studio-publish-app-service-api.png "Select App Service")
 
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
+   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
 
 6. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
 
-    ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
+   ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
 
-    > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
+   > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
 7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
 
-    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
+   ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
 8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
-    ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
+   ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
-    > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
+   > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
 
 9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
-    ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
+   ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
 
 10. Select **Execute**.
 
@@ -1082,43 +1091,43 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
 3. After a moment, you are presented with a PS Azure prompt.
 
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
 4. At the Cloud Shell prompt, run the following command to retrieve both your API App URL and your Web App, making sure to replace `<your-resource-group-name>` with your resource group name:
 
-    ```powershell
-    $resourceGroup = "<your-resource-group-name>"
-    az webapp list -g $resourceGroup --output table
-    ```
+   ```powershell
+   $resourceGroup = "<your-resource-group-name>"
+   az webapp list -g $resourceGroup --output table
+   ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+   > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 5. In the output, copy two values for use in the next step. Copy the **DefaultHostName** value for your API App (the resource name starts with contoso-**api**) and also copy the Web App **Name** value.
 
-    ![The Web App Name and API App DefaultHostName values are highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
+   ![The Web App Name and API App DefaultHostName values are highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list.png "Azure Cloud Shell")
 
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
-    - `<your-web-app-name>`: Replace with your Function App name, which you copied in the previous step.
-    - `<your-storage-account-sas-token>`: Replace with the `policies` container URL you copied into a text editor previously.
+   - `<your-web-app-name>`: Replace with your Function App name, which you copied in the previous step.
+   - `<your-storage-account-sas-token>`: Replace with the `policies` container URL you copied into a text editor previously.
 
-    ```powershell
-    $webAppName = "<your-web-app-name>"
-    $defaultHostName = "<your-api-default-host-name>"
-    az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "ApiUrl=https://$defaultHostName"
-    ```
+   ```powershell
+   $webAppName = "<your-web-app-name>"
+   $defaultHostName = "<your-api-default-host-name>"
+   az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "ApiUrl=https://$defaultHostName"
+   ```
 
 7. In the output, you should see the newly added setting in your Web App's application settings.
 
-    ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output.png "Azure Cloud Shell")
+   ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output.png "Azure Cloud Shell")
 
 ### Task 2: Deploy web application to Azure
 
@@ -1126,38 +1135,38 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
 1. In Visual Studio on your LabVM, right-click the `Contoso.Web` project in the Solution Explorer, and then select **Publish** from the context menu.
 
-    ![Publish in highlighted in the context menu for the Contoso.Web project.](media/vs-web-publish.png "Publish")
+   ![Publish in highlighted in the context menu for the Contoso.Web project.](media/vs-web-publish.png "Publish")
 
 2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
 
-    ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/visual-studio-publish-app-service.png "Publish")
+   ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/visual-studio-publish-app-service.png "Publish")
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contoso-**web**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
+   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
 
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
+   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
 
 6. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
 
-    ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
+   ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
 
 7. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
 
 8. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
-    - **Username**: demouser
-    - **Password**: Password.1!!
+   - **Username**: demouser
+   - **Password**: Password.1!!
 
-    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
+   ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
 9. Once logged in, select **Managed Policy Holders** from the top menu.
 
-    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
+   ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
 10. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
@@ -1181,23 +1190,23 @@ In this task, you create a new blob container in your storage account for the sc
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **Storage account** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **contosoUniqueId** Storage account resource from the list of resources.
 
-    ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
+   ![The Storage Account resource is highlighted in the list of resources.](media/resource-group-resources-storage-account.png "Storage account")
 
 2. From the Storage account Overview blade, select **Containers** under services.
 
-    ![Containers is selected on the Overview blade of the Storage account.](media/storage-account-containers.png "Storage account")
+   ![Containers is selected on the Overview blade of the Storage account.](media/storage-account-containers.png "Storage account")
 
 3. On the Container blade, select **+ Container** to create a new container, and in the New container dialog, enter "policies" as the container name. Leave the Public access level set to **Private (no anonymous access)**, and then select **OK**.
 
-    ![The New container dialog is displayed with a name of \"policies\" entered, and the Public access level set to Container (anonymous read access for containers and blobs).](media/e5-03.png "Container")
+   ![The New container dialog is displayed with a name of "policies" entered, and the Public access level set to Container (anonymous read access for containers and blobs).](media/e5-03.png "Container")
 
 4. After the container has been created, select it on the Container blade, then select **Properties** from the left-hand menu, and copy the URL from the policies - Properties blade. Paste the copied URL into a text editor for later reference.
 
-    ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/e5-04.png "Container properties")
+   ![The policies container is selected, with the Properties blade selected, and the URL of the storage container highlighted.](media/e5-04.png "Container properties")
 
 5. Next retrieve the access key for your storage account, which you need to provide to AzCopy below to connect to your storage container. On your Storage account blade in the Azure portal, select **Access keys** from the left-hand menu, and copy the **key1 Key** value to a text editor for use below.
 
-    ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](media/e5-05.png "Access Keys")
+   ![Access Keys is selected on the Storage account. On the blade, access keys and buttons to copy are displayed](media/e5-05.png "Access Keys")
 
 ### Task 2: Create a SAS token
 
@@ -1205,13 +1214,22 @@ In this task, you generate a shared access signature (SAS) token for your storag
 
 1. On your Storage account blade in the Azure portal, and select **Shared access signature** from the left-hand menu.
 
-    ![The Shared access signature menu item is highlighted.](media/storage-shared-access-signature.png "Storage account")
+   ![The Shared access signature menu item is highlighted.](media/storage-shared-access-signature.png "Storage account")
 
-2. On the Shared access signature blade, select **Generate SAS and connection string**, and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
+2. On the Shared access signature blade, set the following configuration:
 
-    ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](media/storage-shared-access-signature-generate.png "Shared access signature")
+   - **Allowed services**: Select **Blob** and uncheck all other services.
+   - **Allowed resource types**: Uncheck **Service** and check **Container** and **Object**.
+   - **Allowed permissions**: Select **Read** and **List** and uncheck all the other boxes.
+   - **Expiry date/time End**: Select this and choose a date a few days or weeks in the future. For this hands-on lab, the date can be any date/time beyond when you plan on completing the lab.
 
-3. Paste the SAS token into a text editor for later use.
+   ![The SAS token configuration settings specified above are entered into the Generate SAS form.](media/storage-sas-token-config.png "Shared access signature configuration")
+
+3. Select **Generate SAS and connection string** and then copy the SAS token value by selecting the Copy to clipboard button to the right of the value.
+
+   ![On the Share access signature blade, the Generate SAS and connection string button is highlighted, and the copy to clipboard button is highlighted to the right of the SAS token value.](media/storage-shared-access-signature-generate.png "Shared access signature")
+
+4. Paste the SAS token into a text editor for later use.
 
 ### Task 3: Bulk upload PDFs to blob storage using AzCopy
 
@@ -1241,17 +1259,17 @@ In this task, you download and install [AzCopy](https://docs.microsoft.com/en-us
 
 6. The final command should resemble the following:
 
-    ```bash
-    AzCopy /Source:"C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\policy-documents" /Dest:"https://contosojt7yc3zphxfda.blob.core.windows.net/policies" /DestKey:"XJT3us2KT1WQHAQBbeotrRCWQLZayFDNmhLHt3vl2miKOHeXasB7IUlw2+y4afH6R/03wbTiRK9SRqGXt9JVqQ==" /S
-    ```
+   ```bash
+   AzCopy /Source:"C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\policy-documents" /Dest:"https://contosojt7yc3zphxfda.blob.core.windows.net/policies" /DestKey:"XJT3us2KT1WQHAQBbeotrRCWQLZayFDNmhLHt3vl2miKOHeXasB7IUlw2+y4afH6R/03wbTiRK9SRqGXt9JVqQ==" /S
+   ```
 
 7. In the output of the command, you should see that 650 files were transferred successfully.
 
-    ![The output of the AzCopy command is displayed.](media/e5-06.png "AzCopy output")
+   ![The output of the AzCopy command is displayed.](media/e5-06.png "AzCopy output")
 
 8. You can verify the upload by navigating to the policies container in your Azure Storage account.
 
-    ![The policies Container with the Overview blade selected shows the list of uploaded files.](media/e5-07.png "Policies Container")
+   ![The policies Container with the Overview blade selected shows the list of uploaded files.](media/e5-07.png "Policies Container")
 
 ## Exercise 7: Create serverless API for accessing PDFs
 
@@ -1265,41 +1283,41 @@ In this task, you prepare your Azure Function App to work with your new Function
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
 3. After a moment, you should receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
 4. At the prompt, retrieve your Function App name by running the following command at the Cloud Shell prompt, replacing `<your-resource-group-name>` with your resource group name:
 
-    ```powershell
-    $resourceGroup = "<your-resource-group-name>"
-    az functionapp list -g $resourceGroup --output table
-    ```
+   ```powershell
+   $resourceGroup = "<your-resource-group-name>"
+   az functionapp list -g $resourceGroup --output table
+   ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+   > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 5. In the output, copy the **Name** value for use in the next step.
 
-    ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list.png "Azure Cloud Shell")
+   ![The Function App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list.png "Azure Cloud Shell")
 
 6. For the next command, you need the URL of your `policies` container and the `SAS token` values you added to your text editor previously. Replace the tokenized values in the following command, and then run it from the Azure Cloud Shell command prompt.
 
-    - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
-    - `<your-policies-container-url>`: Replace with the `policies` container URL you copied into a text editor previously.
-    - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
+   - `<your-function-app-name>`: Replace with your Function App name, which you copied in the previous step.
+   - `<your-policies-container-url>`: Replace with the `policies` container URL you copied into a text editor previously.
+   - `<your-storage-account-sas-token>`: Replace with the `SAS Token` of your Storage account, which you copied into a text editor previously.
 
-    ```powershell
-    $functionAppName = "<your-function-app-name>"
-    $storageUrl = "<your-policies-container-url>"
-    $storageSas = "<your-storage-account-sas-token>"
-    az functionapp config appsettings set -n $functionAppName -g $resourceGroup --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
-    ```
+   ```powershell
+   $functionAppName = "<your-function-app-name>"
+   $storageUrl = "<your-policies-container-url>"
+   $storageSas = "<your-storage-account-sas-token>"
+   az functionapp config appsettings set -n $functionAppName -g $resourceGroup --settings "PolicyStorageUrl=$storageUrl" "PolicyStorageSas=$storageSas"
+   ```
 
 ### Task 2: Add project environment variables
 
@@ -1313,17 +1331,17 @@ In this task, you create some environment variables on your LabVM, which allows 
 
 3. In the **Environment Variables** section, choose **Add**, then enter the following:
 
-    - **Name**: Enter **PolicyStorageSas**
-    - **Value**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
+   - **Name**: Enter **PolicyStorageSas**
+   - **Value**: Paste in the **SAS token** you created and copied into a text editor in the previous exercise.
 
 4. Select **OK**.
 
 5. Select **Add** again, and in the New User Variable dialog, enter the following:
 
-    - **Name**: Enter **PolicyStorageUrl**
-    - **Value**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
+   - **Name**: Enter **PolicyStorageUrl**
+   - **Value**: Paste in the **URL** of the policies container you copied into a text editor in the previous exercise.
 
-    ![Adding environment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
+   ![Adding environment variables via visual studio project settings.](media/vs-env-variables.png "Add environment variables")
 
 6. Save the project.
 
@@ -1333,34 +1351,34 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 1. On your LabVM, return to Visual Studio and in the Solution explorer expand the `Contoso.FunctionApp` and then double-click `PolicyDocsFunction.cs` to open it.
 
-    ![The Contoso.FunctionApp project is expanded and the PolicyDocsFunction.cs file is highlighted and selected.](media/vs-function-app-function.png "Solution Explorer")
+   ![The Contoso.FunctionApp project is expanded and the PolicyDocsFunction.cs file is highlighted and selected.](media/vs-function-app-function.png "Solution Explorer")
 
 2. In the `PolicyDocsFunction.cs` file, locate the `TODO #3` block (begins on line 14).
 
-    ![The TODO #3 block is highlighted within the PolicyDocsFunction.cs code.](media/vs-policydocsfunction-cs-todo-3.png "PolicyDocsFunction.cs")
+   ![The TODO #3 block is highlighted within the PolicyDocsFunction.cs code.](media/vs-policydocsfunction-cs-todo-3.png "PolicyDocsFunction.cs")
 
 3. Update the code within the block to allow passing in the policy holder last and policy number. Also, update it to only allow "get" requests. The updated code should look like the below when completed.
 
-    ```csharp
-    [FunctionName("PolicyDocs")]
-        public static async Task<IActionResult> Run(
-                [HttpTrigger(AuthorizationLevel.Function, "get", Route = "policies/{policyHolder}/{policyNumber}")] HttpRequest req, string policyHolder, string policyNumber, ILogger log)
-    ```
+   ```csharp
+   [FunctionName("PolicyDocs")]
+       public static async Task<IActionResult> Run(
+               [HttpTrigger(AuthorizationLevel.Function, "get", Route = "policies/{policyHolder}/{policyNumber}")] HttpRequest req, string policyHolder, string policyNumber, ILogger log)
+   ```
 
-    > **Note**: Notice that in the code you removed `"post"` from the list of acceptable verbs, and then updated the Route of the HttpTrigger from `null` to `policies/{policyHolder}/{policyNumber}`. This allows for the function to be parameterized. You then added `string` parameters to the Run method to allow those parameters to be received and used within the function.
+   > **Note**: Notice that in the code you removed `"post"` from the list of acceptable verbs, and then updated the Route of the HttpTrigger from `null` to `policies/{policyHolder}/{policyNumber}`. This allows for the function to be parameterized. You then added `string` parameters to the Run method to allow those parameters to be received and used within the function.
 
 4. Next, locate `TODO #4` within the `GetDocumentsFromStorage` method in the `PolicyDocsFunction.cs` file.
 
-    ![The TODO #4 block is highlighted within the PolicyDocsFunction.cs code.](media/vs-policydocsfunction-cs-todo-4.png "PolicyDocsFunction.cs")
+   ![The TODO #4 block is highlighted within the PolicyDocsFunction.cs code.](media/vs-policydocsfunction-cs-todo-4.png "PolicyDocsFunction.cs")
 
 5. Update the code in the block to retrieve the `PolicyStorageUrl` and `PolicyStorageSas` values from the environment variables you added above. The completed code should look like the following:
 
-    ```csharp
-    var containerUri = Environment.GetEnvironmentVariable("PolicyStorageUrl");
-    var sasToken = Environment.GetEnvironmentVariable("PolicyStorageSas");
-    ```
+   ```csharp
+   var containerUri = Environment.GetEnvironmentVariable("PolicyStorageUrl");
+   var sasToken = Environment.GetEnvironmentVariable("PolicyStorageSas");
+   ```
 
-    > **Note**: When the API is deployed to an Azure API App, `Environment.GetEnvironmentVariables()` looks for the specified values in the configured application settings.
+   > **Note**: When the API is deployed to an Azure API App, `Environment.GetEnvironmentVariables()` looks for the specified values in the configured application settings.
 
 6. Save `PolicyDocsFunction.cs`.
 
@@ -1376,36 +1394,38 @@ In this task, you run your Function locally through the Visual Studio debugger, 
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
-    ![In the Visual Studio Solution Explorer, the context menu for the Contoso.FunctionApp project is displayed, with Debug selected and Start new instance highlighted.](media/vs-function-app-debug.png "Solution Explorer")
+   ![In the Visual Studio Solution Explorer, the context menu for the Contoso.FunctionApp project is displayed, with Debug selected and Start new instance highlighted.](media/vs-function-app-debug.png "Solution Explorer")
 
 2. If prompted, allow the function app to access your local machine resources.
 
 3. A new console dialog appears, and the function app is loaded. At the of the console, note the output, which provides the local URL of the Function.
 
-    ![The Function console window is displayed with the `PolicyDocs` local URL highlighted.](media/vs-function-app-debug-console.png "Debug")
+   ![The Function console window is displayed with the `PolicyDocs` local URL highlighted.](media/vs-function-app-debug-console.png "Debug")
 
 4. Copy the URL that appears after `PolicyDocs`, and paste it into a text editor. The copied value should look like:
 
-    ```http
-    http://localhost:7071/api/policies/{policyHolder}/{policyNumber}
-    ```
+   ```http
+   http://localhost:7071/api/policies/{policyHolder}/{policyNumber}
+   ```
 
 5. In the text editor, you need to replace the tokenized values as follows:
 
    - `{policyHolder}`: Acevedo
    - `{policyNumber}`: ACE5605VZZ2ACQ
 
-    The updated URL should now look like:
+   The updated URL should now look like:
 
-    ```http
-    http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ
-    ```
+   ```http
+   http://localhost:7071/api/policies/Acevedo/ACE5605VZZ2ACQ
+   ```
+
+   > **Note**: Paths for documents in Azure Blob Storage are case sensitive, so the policyholder Name and Policy number casing need to match the values specified above.
 
 6. Paste the updated into the address bar of a new Chrome web browser window and press Enter.
 
 7. In the browser, the policy document opens in a new window.
 
-    ![The downloaded PDF document is displayed in the web browser.](media/vs-function-app-debug-browser.png "Policy document download")
+   ![The downloaded PDF document is displayed in the web browser.](media/vs-function-app-debug-browser.png "Policy document download")
 
 8. You've confirmed the function is working properly. Stop your Visual Studio debugging session by closing the console window or selecting the stop button on the Visual Studio toolbar. In the next task, you deploy the function to Azure.
 
@@ -1415,21 +1435,21 @@ In this task, you deploy your function into an Azure Function App, where the web
 
 1. In Visual Studio on your LabVM, right-click on the `Contoso.FunctionApp` project in the Solution Explorer, and then select **Publish** from the context menu.
 
-    ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
+   ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
 
 2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Create Profile**.
 
-    ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
+   ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
 
 3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contoso-**func**") under your hands-on-lab-SUFFIX resource group.
 
-    ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
+   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
 
 4. Select **OK**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
-    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-function.png "Publish")
+   ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-function.png "Publish")
 
 6. Ensure you see a publish succeeded message in the Visual Studio Output panel.
 
@@ -1443,25 +1463,33 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-2. On the Function App blade, select **Configure Application Insights to capture function logs.** at the top of the blade.
+2. On the Function App blade, select the **Platform features** tab and then select **All settings** under the General Settings section.
 
-    ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
+   ![The Platform features tab is selected and highlighted and All settings is highlighted under the General Settings section.](media/function-app-platform-features-all-settings.png "Function App Platform Features")
 
-3. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-ai-SUFFIX, and then select **OK**.
+3. On the Function App blade that opens, select **Application insights** under **Settings** from the left-hand menu and then select **Turn on Application Insights**.
 
-    ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
+   ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
 
-4. Once the Application Insights resource is created, return to the Overview blade of your Function App, and select **Application Insights** under Configured Features.
+4. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-app-insights-SUFFIX, and then select **Apply**.
 
-    ![Application Insights is highlighted under Configured features.](media/function-app-app-insights-link.png "Function App")
+   ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
 
-5. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
+5. Select **Yes** when prompted about restarting the Function App to apply monitoring settings.
 
-    ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
+   ![The Yes button is highlighted on the Apply monitoring settings dialog.](media/function-app-apply-monitoring-settings.png "Apply monitoring settings")
 
-    > **Note**: You may see a message that your app is offline. You handle this below.
+6. After the Function App restarts, select **View Application Insights data**.
 
-6. Leave the Live Metrics Stream window open for reference in the next task.
+   ![The View Application Insights data link is highlighted.](media/function-app-view-application-insights-data.png "View Application Insights data")
+
+7. On the Application Insights blade, select **Live Metrics Stream** from the left-hand menu.
+
+   ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
+
+   > **Note**: You may see a message that your app is offline. You handle this below.
+
+8. Leave the Live Metrics Stream window open for reference in the next task.
 
 ### Task 7: Add Function App URL to your Web App Application settings
 
@@ -1469,46 +1497,46 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
 3. After a moment, you receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
 4. At the prompt, retrieve your Function App URL by running the following command at the Cloud Shell prompt, replacing `<your-resource-group-name>` with your resource group name:
 
-    ```powershell
-    $resourceGroup = "<your-resource-group-name>"
-    az functionapp list -g $resourceGroup --output table
-    ```
+   ```powershell
+   $resourceGroup = "<your-resource-group-name>"
+   az functionapp list -g $resourceGroup --output table
+   ```
 
-    > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+   > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 5. In the output, copy the **DefaultHostName** value into a text editor for use below.
 
-    ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
+   ![The Function App DefaultHostName value is highlighted in the output of the command above.](media/azure-cloud-shell-az-functionapp-list-host-name.png "Azure Cloud Shell")
 
 6. At the Cloud Shell prompt, run the following command to retrieve both your Web App name:
 
-    ```powershell
-    az webapp list -g $resourceGroup --output table
-    ```
+   ```powershell
+   az webapp list -g $resourceGroup --output table
+   ```
 
 7. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
-    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
+   ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
 8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and on the overview blade, select **Function app settings**.
 
-    ![Function app settings is highlighted under Configured Features](media/function-app-configured-features-app-settings.png "Function App")
+   ![Function app settings is highlighted under Configured Features](media/function-app-configured-features-app-settings.png "Function App")
 
 9. On the Function app settings tab, locate the **Host Keys** section, and copy the **default** key by selecting the **Copy** Action link to the right of the key. Paste the value into a text editor for reference below.
 
-    ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
+   ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
 
 10. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
@@ -1533,32 +1561,30 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 1. Open a web browser and navigate to the URL for your published Web App.
 
-    > **Note**: You can retrieve the URL from the Overview blade of your Web App resource in the Azure portal if you aren't sure what it is.
+   > **Note**: You can retrieve the URL from the Overview blade of your Web App resource in the Azure portal if you aren't sure what it is.
 
-    ![The URL field in highlighted on the Web App overview blade.](media/web-app-url.png "Web App")
+   ![The URL field in highlighted on the Web App overview blade.](media/web-app-url.png "Web App")
 
 2. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
-    - **Username**: demouser
-    - **Password**: Password.1!!
+   - **Username**: demouser
+   - **Password**: Password.1!!
 
-    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
+   ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
 3. Once logged in, select **Managed Policy Holders** from the top menu.
 
-    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
+   ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
 4. On the Policy Holders page, you see a list of policy holders, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
-    ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
+   ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-5. On the Policy Holder Details page, hover your mouse cursor over the document link under **File Path**, and notice that the path that is displayed at the bottom now points to your Function App, and that the policy holder's last name and policy number are inserted into the path.
+5. Now, select the link under **File Path**, and download the policy document.
 
-    ![The PDF document link is highlighted and the underlying URL is highlighted at the bottom of the browser window.](media/web-app-policy-holder-details-file-path.png "PolicyConnect")
+   ![The link to the policy document under File Path is highlighted.](media/policy-document-link.png "PolicyConnect download policy document")
 
-6. Now, select the link under **File Path**, and download the policy document.
-
-    ![The download policy document is displayed.](media/policy-document-download.png "PolicyConnect")
+   ![The download policy document is displayed.](media/policy-document-download.png "PolicyConnect")
 
 ### Task 9: View Live Metrics Stream
 
@@ -1566,7 +1592,7 @@ In this task, you open the PolicyConnect web app and download a policy document.
 
 2. The page should now display a dashboard featuring telemetry for requests hitting your Function App. Look under the Sample Telemetry section on the right, and you locate the document request you just made. Select the Trace whose message begins with "PolicyDocs function received a request...", and observe the details in the panel below it.
 
-    ![Sample telemetry data is displayed on the Live Metrics Stream page.](media/application-insights-sample-telemetry.png "Application Insights")
+   ![Sample telemetry data is displayed on the Live Metrics Stream page.](media/application-insights-sample-telemetry.png "Application Insights")
 
 ## Exercise 8: Add Cognitive Search for policy documents
 
@@ -1638,7 +1664,7 @@ In this task, you run a query against your search index to review the enrichment
 
 2. On the Search service blade, select **Indexers**.
 
-    ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/azure-search-indexers.png "Search Service")
+   ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/azure-search-indexers.png "Search Service")
 
 3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**. If the status is **In progress**, select **Refresh** every 20-30 seconds until it changes to **Success**.
 
@@ -1654,53 +1680,49 @@ In this task, you run a query against your search index to review the enrichment
 
    ```json
    {
-        "@search.score": 1,
-        "content": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\n\nworksheet1\n\n\t\tFirst Name\t\tDate of Birth\n\n\t\tIma\t\t21 January 2002\n\n\t\tEcho\t\t12 August 2003\n\n\n\n\n\n\n",
-        "metadata_storage_content_type": "application/octet-stream",
-        "metadata_storage_size": 142754,
-        "metadata_storage_last_modified": "2019-10-23T21:42:23Z",
-        "metadata_storage_content_md5": "ksk3JZT5QPkHfAR0F17ZEw==",
-        "metadata_storage_name": "Cooke-COO13CE2ZLOKD.pdf",
-        "metadata_storage_path": "aHR0cHM6Ly9ob2xzdG9yYWdlYWNjb3VudC5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29va2UtQ09PMTNDRTJaTE9LRC5wZGY1",
-        "metadata_content_type": "application/pdf",
-        "metadata_language": "en",
-        "metadata_author": "Contoso Insurance",
-        "metadata_title": "Your Policy",
-        "People": [
-            "Igor Cooke",
-            "Cooke",
-            "Max"
-        ],
-        "Organizations": [
-            "Contoso Insurance - Your Platinum Policy",
-            "NI",
-            "DEPENDENTS\nFirst",
-            "Ima",
-            "Page Summary\nDependents",
-            "Echo"
-        ],
-        "Locations": [],
-        "Keyphrases": [
-            "Platinum Policy",
-            "Policy Holder",
-            "Date of Birth",
-            "Echo",
-            "DEPENDENTS",
-            "Ima",
-            "Box",
-            "Pellentesque AveTaupo",
-            "Address",
-            "NI",
-            "Contoso Insurance",
-            "Igor Cooke",
-            "Effective Coverage Dates",
-            "Pocket Max",
-            "Page Summary",
-            "COO13CE2ZLOKD",
-            "worksheet1"
-        ],
-        "Language": "en",
-        "Translated_Text": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\nworksheet1\n\nFirst Name\t\tDate of Birth\n\nIma\t\t21 January 2002\n\nEcho\t\t12 August 2003\n\n"
+     "@search.score": 1,
+     "content": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\n\nworksheet1\n\n\t\tFirst Name\t\tDate of Birth\n\n\t\tIma\t\t21 January 2002\n\n\t\tEcho\t\t12 August 2003\n\n\n\n\n\n\n",
+     "metadata_storage_content_type": "application/octet-stream",
+     "metadata_storage_size": 142754,
+     "metadata_storage_last_modified": "2019-10-23T21:42:23Z",
+     "metadata_storage_content_md5": "ksk3JZT5QPkHfAR0F17ZEw==",
+     "metadata_storage_name": "Cooke-COO13CE2ZLOKD.pdf",
+     "metadata_storage_path": "aHR0cHM6Ly9ob2xzdG9yYWdlYWNjb3VudC5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29va2UtQ09PMTNDRTJaTE9LRC5wZGY1",
+     "metadata_content_type": "application/pdf",
+     "metadata_language": "en",
+     "metadata_author": "Contoso Insurance",
+     "metadata_title": "Your Policy",
+     "People": ["Igor Cooke", "Cooke", "Max"],
+     "Organizations": [
+       "Contoso Insurance - Your Platinum Policy",
+       "NI",
+       "DEPENDENTS\nFirst",
+       "Ima",
+       "Page Summary\nDependents",
+       "Echo"
+     ],
+     "Locations": [],
+     "Keyphrases": [
+       "Platinum Policy",
+       "Policy Holder",
+       "Date of Birth",
+       "Echo",
+       "DEPENDENTS",
+       "Ima",
+       "Box",
+       "Pellentesque AveTaupo",
+       "Address",
+       "NI",
+       "Contoso Insurance",
+       "Igor Cooke",
+       "Effective Coverage Dates",
+       "Pocket Max",
+       "Page Summary",
+       "COO13CE2ZLOKD",
+       "worksheet1"
+     ],
+     "Language": "en",
+     "Translated_Text": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\nworksheet1\n\nFirst Name\t\tDate of Birth\n\nIma\t\t21 January 2002\n\nEcho\t\t12 August 2003\n\n"
    }
    ```
 
@@ -1708,18 +1730,18 @@ In this task, you run a query against your search index to review the enrichment
 
    ```json
    {
-        "@search.score": 1,
-        "content": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\n\nworksheet1\n\n\t\tFirst Name\t\tDate of Birth\n\n\t\tIma\t\t21 January 2002\n\n\t\tEcho\t\t12 August 2003\n\n\n\n\n\n\n",
-        "metadata_storage_content_type": "application/octet-stream",
-        "metadata_storage_size": 142754,
-        "metadata_storage_last_modified": "2019-10-23T21:42:23Z",
-        "metadata_storage_content_md5": "ksk3JZT5QPkHfAR0F17ZEw==",
-        "metadata_storage_name": "Cooke-COO13CE2ZLOKD.pdf",
-        "metadata_storage_path": "aHR0cHM6Ly9ob2xzdG9yYWdlYWNjb3VudC5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29va2UtQ09PMTNDRTJaTE9LRC5wZGY1",
-        "metadata_content_type": "application/pdf",
-        "metadata_language": "en",
-        "metadata_author": "Contoso Insurance",
-        "metadata_title": "Your Policy"
+     "@search.score": 1,
+     "content": "\nContoso Insurance - Your Platinum Policy\n\nPolicy Holder: Igor Cooke\nPolicy #: COO13CE2ZLOKD\nEffective Coverage Dates: 22 July 2008 - 13 August 2041\nAddress: P.O. Box 442, 802 Pellentesque AveTaupo, NI 240\nPolicy Amount: $48,247.00\nDeductible: $250.00\nOut of Pocket Max: $1,000.00\n\nDEPENDENTS\nFirst Name Date of Birth\n\nIma 21 January 2002\nEcho 12 August 2003\n\nPage Summary\nDependents\n\n1 / 0 22 July 2008\n\n\nworksheet1\n\n\t\tFirst Name\t\tDate of Birth\n\n\t\tIma\t\t21 January 2002\n\n\t\tEcho\t\t12 August 2003\n\n\n\n\n\n\n",
+     "metadata_storage_content_type": "application/octet-stream",
+     "metadata_storage_size": 142754,
+     "metadata_storage_last_modified": "2019-10-23T21:42:23Z",
+     "metadata_storage_content_md5": "ksk3JZT5QPkHfAR0F17ZEw==",
+     "metadata_storage_name": "Cooke-COO13CE2ZLOKD.pdf",
+     "metadata_storage_path": "aHR0cHM6Ly9ob2xzdG9yYWdlYWNjb3VudC5ibG9iLmNvcmUud2luZG93cy5uZXQvcG9saWNpZXMvQ29va2UtQ09PMTNDRTJaTE9LRC5wZGY1",
+     "metadata_content_type": "application/pdf",
+     "metadata_language": "en",
+     "metadata_author": "Contoso Insurance",
+     "metadata_title": "Your Policy"
    }
    ```
 
@@ -1737,60 +1759,60 @@ In this task, you import your API App into APIM, using the OpenAPI specification
 
 1. In the Azure portal, navigate to your **API Management Service** by selecting it from the list of resources under your hands-on-lab-SUFFIX resource group.
 
-    ![The API Management service is highlighted in the resources list.](media/azure-resources-api-management.png "API Management service")
+   ![The API Management service is highlighted in the resources list.](media/azure-resources-api-management.png "API Management service")
 
 2. On the API Management service select the **APIs** blade, and then select **+ Add API** and select **OpenAPI**.
 
-    ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/apim-add-api.png "API Management Service Add OpenAPI")
+   ![API Management Service with APIs blade selected. A button to add a new OpenAPI is highlighted](media/apim-add-api.png "API Management Service Add OpenAPI")
 
 3. A dialog to Create from OpenAPI specification is displayed. Select **Full** to expand the options that need to be entered.
 
-    ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
+   ![The Create from OpenAPI specification dialog is displayed and Full is highlighted](media/e8-t1-create-api-dialog.png "Create from OpenAPI specification")
 
 4. Retrieve the value for the OpenAPI specification field from the `swagger` page of your API APP. (This is the URL of your API app, which you can retrieve from its overview blade in the Azure portal) plus "/swagger". (e.g., <https://contoso-api-jt7yc3zphxfda.azurewebsites.net/swagger>).
 
 5. On the Swagger page for your API App, right-click on the `swagger/v1/swagger.json` file link just below the PolicyConnect API title, and select **Copy link address**.
 
-    ![A context menu is displayed next to the swagger/v1/swagger.json link, and Copy link address is highlighted.](media/swagger-copy-json-link-address.png "Swagger")
+   ![A context menu is displayed next to the swagger/v1/swagger.json link, and Copy link address is highlighted.](media/swagger-copy-json-link-address.png "Swagger")
 
 6. Return to the API Management Create from OpenAPI specification dialog, and enter the following:
 
-    - **OpenAPI specification**: Paste the copied link address from your Swagger page.
-    - **Display name**: This is automatically populated from the Swagger definition.
-    - **Name**: This is automatically populated from the Swagger definition.
-    - **URL scheme**: Choose **HTTPS**.
-    - **Products**: Select the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
+   - **OpenAPI specification**: Paste the copied link address from your Swagger page.
+   - **Display name**: This is automatically populated from the Swagger definition.
+   - **Name**: This is automatically populated from the Swagger definition.
+   - **URL scheme**: Choose **HTTPS**.
+   - **Products**: Select the **Unlimited** tag by clicking the field and selecting it from the dropdown list.
 
-    ![Create from OpenAPI specification dialog is filled and the create button is highlighted.](media/open-api-dialog-complete.png "Create OpenAPI specification")
+   ![Create from OpenAPI specification dialog is filled and the create button is highlighted.](media/open-api-dialog-complete.png "Create OpenAPI specification")
 
 7. After creating the API, select the **PolicyConnect API** from the list of APIs on the left, and on the Design tab, with All operations selected, select the **Policies** icon in the Inbound process tile.
 
-    ![On the All operations section, the Inbound processing policies icon is highlighted.](media/apim-inbound-processing.png "API Management")
+   ![On the All operations section, the Inbound processing policies icon is highlighted.](media/apim-inbound-processing.png "API Management")
 
 8. On the Policies screen, insert the code below between the `<inbound></inbound>` tags, and below the `<base />` tag. You need to **replace** `<your-web-app-url>` between the `<origin></origin>` tags with the URL for your Web App.
 
-    ```xml
-    <cors allow-credentials="true">
-        <allowed-origins>
-            <origin><your-web-app-url></origin>
-        </allowed-origins>
-        <allowed-methods>
-            <method>*</method>
-        </allowed-methods>
-        <allowed-headers>
-            <header>*</header>
-        </allowed-headers>
-        <expose-headers>
-            <header>*</header>
-        </expose-headers>
-    </cors>
-    ```
+   ```xml
+   <cors allow-credentials="true">
+       <allowed-origins>
+           <origin><your-web-app-url></origin>
+       </allowed-origins>
+       <allowed-methods>
+           <method>*</method>
+       </allowed-methods>
+       <allowed-headers>
+           <header>*</header>
+       </allowed-headers>
+       <expose-headers>
+           <header>*</header>
+       </expose-headers>
+   </cors>
+   ```
 
-    Your updated policies value should look similar to the following:
+   Your updated policies value should look similar to the following:
 
-    ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
+   ![The XML code above has been inserted into the Policies XML document.](media/apim-policies.png "API Management")
 
-    > **Note**: The policy added above is for handling cross-origin resource sharing (CORS). If you are testing the web app locally, you need to add another `<origin></origin>` tag within `<allowed-origins></allowed-origins>` that contains `https://localhost:<port-number>`, where `<port-number>` is the port assigned by your debugger (as is shown in the screenshot above).
+   > **Note**: The policy added above is for handling cross-origin resource sharing (CORS). If you are testing the web app locally, you need to add another `<origin></origin>` tag within `<allowed-origins></allowed-origins>` that contains `https://localhost:<port-number>`, where `<port-number>` is the port assigned by your debugger (as is shown in the screenshot above).
 
 9. Select **Save**.
 
@@ -1806,23 +1828,23 @@ In this task, you import your Function App into APIM.
 
 1. Select **+ Add API** again, and this time select **Function App** as the source of the API.
 
-    ![Add API is highlighted in the left-hand menu, and the Function App tile is highlighted.](media/api-management-add-function-app.png "API Management")
+   ![Add API is highlighted in the left-hand menu, and the Function App tile is highlighted.](media/api-management-add-function-app.png "API Management")
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
 3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
 
-    ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
+   ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
-    >**Note**: You can filter using your resource group name, if needed.
+   > **Note**: You can filter using your resource group name, if needed.
 
 4. Back on the Import Azure Functions blade, ensure the PolicyDocs function is checked, and choose **Select**.
 
-    ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
+   ![The Import Azure Functions blade is displayed, with the configuration specified above set.](media/import-azure-functions.png "Import Azure Functions")
 
 5. Back on the Create from Function App dialog in APIM, all of the properties for the API are set from your Azure Function. Set the Products to Unlimited, as you did previously. Note, you may need to select **Full** at the top to see the Products box.
 
-    ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
+   ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
 
 6. Select **Create**.
 
@@ -1832,25 +1854,25 @@ In this task, you quickly look at the APIs in the Developer Portal, and retrieve
 
 1. Open the APIM Developer Portal by selecting **Developer portal (legacy)** from the Overview blade of your API Management service in the Azure portal.
 
-    ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/apim-developer-portal.png "Developer Portal")
+   ![On the APIM Service Overview blade the link for the developer portal is highlighted.](media/apim-developer-portal.png "Developer Portal")
 
 2. In the Azure API Management portal, select **APIs** from the top menu, and then select the API associated with your Function App.
 
-    ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
+   ![In the Developer portal, the APIs menu item is selected and highlighted, and the Function App API is highlighted.](media/dev-portal-apis-function-app.png "Developer portal")
 
 3. The API page allows you to view and test your API endpoints directly in the Developer portal.
 
-    ![The Profile link is highlighted on the API page for the Function App API.](media/apim-endpoint-details.png "API Management")
+   ![The Profile link is highlighted on the API page for the Function App API.](media/apim-endpoint-details.png "API Management")
 
 4. Copy the highlighted request URL. This is the new value you use for the `PolicyDocumentsPath` setting in the next task.
 
-    > **Note**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that needs to change for that is the base URL, which points to APIM and not your API App.
+   > **Note**: We don't need to do this for the PolicyConnect API because the path is defined by the Swagger definition. The only thing that needs to change for that is the base URL, which points to APIM and not your API App.
 
 5. Next, select the **Administrator** drop down located near the top right of the API page, and then select **Profile** from the fly-out menu. The **Profile** page allows you to retrieve your `Ocp-Apim-Subscription-Key` value, which you need to retrieve so the PolicyConnect web application can access the APIs through APIM.
 
 6. On the Profile page, select **Show** next to the Primary Key for the **Unlimited** Product, copy the key value and paste it into a text editor for use below.
 
-    ![The Primary Key field is highlighted under the Unlimited subscription.](media/apim-dev-portal-subscription-keys.png "API Management Developer Portal")
+   ![The Primary Key field is highlighted under the Unlimited subscription.](media/apim-dev-portal-subscription-keys.png "API Management Developer Portal")
 
 ### Task 4: Update Web App to use API Management Endpoints
 
@@ -1858,41 +1880,41 @@ In this task, you use the Azure Cloud Shell and Azure CLI to update the `ApiUrl`
 
 1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the menu at the top right of the screen.
 
-    ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
+   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-    ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
 
 3. After a moment, you receive a message that you have successfully requested a Cloud Shell, and be presented with a PS Azure prompt.
 
-    ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
 
 4. At the Cloud Shell prompt, run the following command to retrieve your Web App name, making sure to replace `<your-resource-group-name>` with your resource group name:
 
-    ```powershell
-    $resourceGroup = "<your-resource-group-name>"
-    az webapp list -g $resourceGroup --output table
-    ```
+   ```powershell
+   $resourceGroup = "<your-resource-group-name>"
+   az webapp list -g $resourceGroup --output table
+   ```
 
 5. In the output, copy the name of Web App (the resource name starts with contoso-**web**) into a text editor for use below.
 
-    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
+   ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
-    - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
-    - `<your-apim-gateway-url>`: Replace with the Gateway URL of your API Management instance, which you can find on the Overview blade of the API Management Service in the Azure portal.
-    - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
-    - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Management, that is to be used for the `PolicyDocumentsPath` setting.
+   - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
+   - `<your-apim-gateway-url>`: Replace with the Gateway URL of your API Management instance, which you can find on the Overview blade of the API Management Service in the Azure portal.
+   - `<your-apim-subscription-key>`: Replace with the APIM `Ocp-Apim-Subscription-Key` value that you copied into a text editor above.
+   - `<your-apim-function-app-path>`: Replace with path you copied for your Function App within API Management, that is to be used for the `PolicyDocumentsPath` setting.
 
-    ```powershell
-    $webAppName = "<your-web-app-name>"
-    $apimUrl = "<your-apim-gateway-url>"
-    $apimKey = "<your-apim-subscription-key>"
-    $policyDocsPath = "<your-apim-function-app-path>"
-    az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
-    ```
+   ```powershell
+   $webAppName = "<your-web-app-name>"
+   $apimUrl = "<your-apim-gateway-url>"
+   $apimKey = "<your-apim-subscription-key>"
+   $policyDocsPath = "<your-apim-function-app-path>"
+   az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=$policyDocsPath" "ApiUrl=$apimUrl" "ApimSubscriptionKey=$apimKey"
+   ```
 
 7. In the output, note the newly added and updated settings in your Web App's application settings. The settings were updated by the script above and triggered a restart of your web app.
 
@@ -1920,11 +1942,11 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 2. Select the **+ New connection** button.
 
-    ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps-new-connection.png "PowerApps Connections")
+   ![Connections is highlighted in the left-hand menu and the Create a connection button is highlighted.](media/powerapps-new-connection.png "PowerApps Connections")
 
 3. Type **SQL** into the search box, and then select the SQL Server item in the list below.
 
-    ![In the New connection section, the search field is set to SQL. In the item list below, SQL Server is selected.](media/powerapps_create_connection.png "PowerApps New Connection")
+   ![In the New connection section, the search field is set to SQL. In the item list below, SQL Server is selected.](media/powerapps_create_connection.png "PowerApps New Connection")
 
 4. Within the SQL Server connection dialog, enter the following:
 
@@ -1934,7 +1956,7 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
    - **Username**: Enter **demouser**
    - **Password**: Enter **Password.1!!**
 
-    ![The SQL Server dialog box fields are completed.](media/powerapps_connection_sqlserver.png "SQL Server dialog box")
+   ![The SQL Server dialog box fields are completed.](media/powerapps_connection_sqlserver.png "SQL Server dialog box")
 
 5. Select **Create**.
 
@@ -1946,15 +1968,15 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 3. Then **select the right arrow** next to the **Start with your data** list.
 
-    ![In the PowerApps Studio, the New button on the left is selected. The right arrow to the right of Create an app from your data is also selected.](media/powerapps_new.png "PowerApps Studio")
+   ![In the PowerApps Studio, the New button on the left is selected. The right arrow to the right of Create an app from your data is also selected.](media/powerapps_new.png "PowerApps Studio")
 
 4. Select the **SQL Server connection** you created in the previous task.
 
-    ![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps Studio")
+   ![PowerApps - New option from left-hand side highlighted, as well as previously-created SQL Server connection. ](media/powerapps_create_newapp.png "PowerApps Studio")
 
 5. Select the **policies** table from the Choose a table list.
 
-    ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
+   ![PowerApps - Previously-created Connection from the left-hand menu highlighted, as well as the Policies table. ](media/powerapps_select_table.png "PowerApps Studio")
 
 6. Select **Connect**.
 
@@ -1962,23 +1984,23 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 1. The new app is automatically created and displayed within the designer. Select the title for the first page (currently named [dbo].[Policies]) and edit the text in the field to read **Policies**.
 
-    ![All of the Policy options display.](media/powerapps-update-app-title.png "Policies section")
+   ![All of the Policy options display.](media/powerapps-update-app-title.png "Policies section")
 
 2. Select the **DetailScreen1** screen in the left-hand menu.
 
-    ![On the Home tab, under Screens, DetailScreen1 is selected.](media/powerapp_select_detailsscreen.png "DetailScreen")
+   ![On the Home tab, under Screens, DetailScreen1 is selected.](media/powerapp_select_detailsscreen.png "DetailScreen")
 
 3. Reorder the fields on the form by selecting them, then dragging them by the **Card: <field_name>** tag to the desired location. The new order should be **Name**, **Description**, **DefaultDeductible**, then **DefaultOutOfPocketMax**.
 
-    ![In the dbo.policies window, the new order of the fields displays.](media/powerapp_reorder_fields.png "dbo.policies window")
+   ![In the dbo.policies window, the new order of the fields displays.](media/powerapp_reorder_fields.png "dbo.policies window")
 
 4. On the form, edit the **DefaultDeductible** and **DefaultOutOfPocketMax** labels to be **Default Deductible** and **Default Out of Pocket Max**, respectively. To do so, select the field and type the new title in quotes within the formula field.
 
-    > **Hint**: You need to select **Unlock** in order to change fields.
+   > **Hint**: You need to select **Unlock** in order to change fields.
 
 5. Rename the screen title to Policy by typing "Policy" in quotation marks within the formula field.
 
-    ![The formula field is set to \"Policy\".](media/powerapp_update_fields_names.png "Formula field")
+   ![The formula field is set to "Policy".](media/powerapp_update_fields_names.png "Formula field")
 
 6. Select EditScreen on the left-hand menu.
 
@@ -1988,23 +2010,23 @@ Since creating mobile apps is a long development cycle, Contoso is interested in
 
 1. Select **File** on the top menu.
 
-    ![The File menu is highlighted in the PowerApps page.](media/power-apps-file-menu.png "Power Apps")
+   ![The File menu is highlighted in the PowerApps page.](media/power-apps-file-menu.png "Power Apps")
 
 2. Select **Name + icon** under Settings and enter in a new **Name**, such as "PolicyConnect Plus".
 
-    ![In PowerShell App Studio, under Settings, Name + icon is selected, and the Name is set to PolicyConnectPlus.](media/powerapps-settings-name-icon.png "PowerShell App Studio")
+   ![In PowerShell App Studio, under Settings, Name + icon is selected, and the Name is set to PolicyConnectPlus.](media/powerapps-settings-name-icon.png "PowerShell App Studio")
 
 3. Select **Save** on the left-hand menu to save the app to the cloud, then select the **Save** button below.
 
-    ![The Save menu is highlighted on the left-hand menu and the Save button is highlighted on the Save form.](media/powerapps-save.png "Save App")
+   ![The Save menu is highlighted on the left-hand menu and the Save button is highlighted on the Save form.](media/powerapps-save.png "Save App")
 
 4. After saving, select the left arrow on top of the left-hand menu.
 
-    ![The left arrow on top of the left-hand menu highlighted. ](media/powerapp_save_app.png "PowerShell App Studio")
+   ![The left arrow on top of the left-hand menu highlighted. ](media/powerapp_save_app.png "PowerShell App Studio")
 
 5. Select **BrowseScreen1** from the left-hand menu and then select the **Run** button on the top menu to preview the app. You should be able to view the current policies, edit their values, and create new policies.
 
-    ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
+   ![The Run button is highlighted in the toolbar.](media/powerapp_run_app.png "PowerShell App Studio")
 
 6. Browse through the various policies in the app to explore the functionality.
 
@@ -2023,4 +2045,4 @@ In this exercise, you de-provision all Azure resources that were created in supp
 1. In the Azure portal, select **Azure Active Directory** and then select **App registrations**.
 2. Select the **contoso-apps** application, and select **Delete** on the application blade.
 
-You should follow all steps provided *after* attending the Hands-on lab.
+You should follow all steps provided _after_ attending the Hands-on lab.
