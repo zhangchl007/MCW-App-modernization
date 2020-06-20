@@ -1396,7 +1396,7 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 In this task, you run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
-> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Chrome browser](https://www.google.com/chrome/) on your LabVM.
+> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Microsoft Edge browser](https://www.microsoft.com/edge) for Windows 10 on your LabVM.
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
@@ -1443,15 +1443,15 @@ In this task, you deploy your function into an Azure Function App, where the web
 
    ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Create Profile**.
+2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box.](media/vs-publish-function-to-azure.png "Publish Function App to Azure")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contoso-**func**") under your hands-on-lab-SUFFIX resource group.
+3. Next, in the **Function instance** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
+   ![In the Publish dialog, The Contoso Function App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-function-app-service.png "Publish Function App to Azure")
 
-4. Select **OK**.
+4. Ensure **Run from package file** is checked and then select **Finish**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
@@ -1469,15 +1469,15 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-2. On the Function App blade, select the **Platform features** tab and then select **All settings** under the General Settings section.
+2. On the Function App blade, select **Application Insights** under Settings from the left-hand menu.
 
-   ![The Platform features tab is selected and highlighted and All settings is highlighted under the General Settings section.](media/function-app-platform-features-all-settings.png "Function App Platform Features")
+   ![The Application Insights menu is highlighted under Settings for the Function App.](media/function-app-application-insights-menu.png "Application Insights menu")
 
-3. On the Function App blade that opens, select **Application insights** under **Settings** from the left-hand menu and then select **Turn on Application Insights**.
+3. On the Application Insights blade, select **Turn on Application Insights**.
 
-   ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
+   ![The Turn on Application Insights button is highlighted.](media/function-app-add-app-insights.png "Turn on Application Insights for Function App")
 
-4. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-app-insights-SUFFIX, and then select **Apply**.
+4. On the Application Insights blade, select **Create new resource**, accept the default name provided, and then select **Apply**.
 
    ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
 
@@ -1536,28 +1536,24 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
-8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and on the overview blade, select **Function app settings**.
-
-   ![Function app settings is highlighted under Configured Features](media/function-app-configured-features-app-settings.png "Function App")
-
-9. On the Function app settings tab, locate the **Host Keys** section, and copy the **default** key by selecting the **Copy** Action link to the right of the key. Paste the value into a text editor for reference below.
+8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, select **App keys** under Functions from the left-hand menu, then select **default** under Host Keys, and copy the **Value**.
 
    ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
 
-10. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
+9. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
-    - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
-    - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
-    - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
+   - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
+   - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
+   - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
 
-    ```powershell
-    $webAppName = "<your-web-app-name>"
-    $defaultHostName = "<your-function-app-default-host-name>"
-    $defaultHostKey = "<your-function-app-default-host-key>"
-    az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
-    ```
+   ```powershell
+   $webAppName = "<your-web-app-name>"
+   $defaultHostName = "<your-function-app-default-host-name>"
+   $defaultHostKey = "<your-function-app-default-host-key>"
+   az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
+   ```
 
-11. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
+10. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
 
     ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
 
