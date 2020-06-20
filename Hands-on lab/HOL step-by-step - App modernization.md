@@ -1625,9 +1625,9 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
    ![On the Connect to your data tab, the values specified above are entered in to the form.](media/add-azure-search-connect-to-your-data.png "Add Azure Search")
 
-5. Select **Next: Add cognitive search (Optional)**.
+5. Select **Next: Add cognitive skills (Optional)**.
 
-6. On the **Add cognitive search** tab, set the following configuration:
+6. On the **Add cognitive skills** tab, set the following configuration:
 
    - Expand Attach Cognitive Services, and select your Cognitive Services account.
    - Expand Add enrichments:
