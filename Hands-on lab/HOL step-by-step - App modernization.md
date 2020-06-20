@@ -1834,7 +1834,7 @@ In this task, you import your Function App into APIM.
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
-3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
+3. In the Import Azure Functions blade, select **Function App Configure required settings** and then select your Function App from the list, and choose **Select**.
 
    ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
@@ -1849,6 +1849,12 @@ In this task, you import your Function App into APIM.
    ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
 
 6. Select **Create**.
+
+7. After the Function App API is created, select it from the left-hand menu, select the **Settings** tab, and under **Products** select **Unlimited**.
+
+   ![On the Settings tab for the newly created Function App managed API, Unlimited is highlighted in the Products field.](media/apim-create-from-function-app-settings.png "API settings for Function App")
+
+8. Select **Save**.
 
 ### Task 3: Open Developer Portal and retrieve you API key
 
