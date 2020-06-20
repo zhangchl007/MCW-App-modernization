@@ -688,7 +688,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
     GO
 
     EXECUTE AS USER = 'DDMUser';
-    SELECT * FROM [dbo].[people];
+    SELECT TOP 10 * FROM [dbo].[people];
     REVERT;
     ```
 
@@ -699,7 +699,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 12. For comparison, run the following query in a new query window to see how the data looks when running as a privileged user.
 
     ```sql
-    SELECT TOP 100 * FROM [dbo].[people]
+    SELECT TOP 10 * FROM [dbo].[people]
     ```
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
@@ -816,10 +816,8 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
    ```powershell
    $subscriptionId = "<your-subscription-id>"
    $resourceGroup = "<your-resource-group-name>"
-   az ad sp create-for-rbac -n "contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
+   az ad sp create-for-rbac -n "https://contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
    ```
-
-   ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
 
 7. Copy the entire output from the command above into a text editor, as you need the `appId`, `name` and `password` values in upcoming tasks. The output should be similar to:
 
@@ -827,7 +825,7 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
    {
      "appId": "94ee2739-794b-4038-a378-573a5f52918c",
      "displayName": "contoso-apps",
-     "name": "http://contoso-apps",
+     "name": "https://contoso-apps",
      "password": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4",
      "tenant": "d280491c-b27a-XXXX-XXXX-XXXXXXXXXXXX"
    }
@@ -852,7 +850,7 @@ In this task, you assign the service principal you created above to a reader rol
 3. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor.
 
    ```powershell
-   az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+   az keyvault set-policy -n <your-key-vault-name> --spn https://contoso-apps --secret-permissions get list
    ```
 
 4. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
