@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-February 2020
+June 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -156,7 +156,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 - **Consider creating a "parking lot"** to record issues or questions raised that are outside the scope of the whiteboard design session or can be answered later. Decide how you will address these issues, so you can acknowledge them without being derailed by them.
 
-***Have fun**! Encourage participants to have fun and share!*
+**\*Have fun**! Encourage participants to have fun and share!\*
 
 **Involve your participants.** Talk and share your knowledge but always involve your participants, even while you are the one speaking.
 
@@ -198,17 +198,17 @@ Almost from the start, the company grew far faster than anticipated. An avalanch
 
 To overcome these challenges, the founders launched a project to build an application that could digitize and file all existing policy documents and file new policies as brokers submit them. They also had requirements to allow automated document forwarding from brokers, secure access for brokers, access to policy information, and ready policy retrieval for a dispersed workforce. The result of this project was a custom Windows Forms application was named PolicyConnect. Contoso employees use PolicyConnect to enter essential policy metadata, including insured amount, beneficiary information, policy type, and any deductible and out-of-pocket requirements, and associate that with the digitized policy documents.
 
-PolicyConnect was built using a traditional n-tier application architecture. The data access layer houses methods for interacting with the underlying SQL Server 2008 R2 database. A business logic layer handles things like user login and policy rules. The presentation layer provides the user interface (UI). The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. The application stores associated policy documents as PDF files on a file server accessible via an SMB network share on their local area network. PolicyConnect accesses these files using a canonical path (customer last name and policy number). A SQL Server 2008 R2 database houses the policy metadata for each policy document, which is currently entered manually into PolicyConnect by Contoso staff members. Contoso provided the following diagram about its current topology:
+Contoso built PolicyConnect using a traditional n-tier application architecture. The data access layer houses methods for interacting with the underlying SQL Server 2008 R2 database. A business logic layer handles things like user login and policy rules. The presentation layer provides the user interface (UI). The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. The application stores associated policy documents as PDF files on a file server accessible via an SMB network share on their local area network. PolicyConnect accesses these files using a canonical path (customer last name and policy number). A SQL Server 2008 R2 database houses the policy metadata for each policy document, which is currently entered manually into PolicyConnect by Contoso staff members. Contoso provided the following diagram about its current topology:
 
 ![The Contoso topology diagram has a local area network comprised of the on-premises user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
 The application currently supports access via a virtual private network (VPN) connection for users outside the Contoso local area network. As such, Contoso brokers are unable to view data or documents unless granted VPN access. This requirement has proven to be time-consuming and frustrating for brokers.
 
-Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customer's policies have been scanned and indexed. They are using Office 365. The company executives have frequent challenges in gauging productivity and throughput, given the manual workflow. They feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
+Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customers' policy documents have been scanned and indexed. They are using Office 365. The company executives have frequent challenges in gauging productivity and throughput, given the manual workflow. They feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
 
 Contoso recently started investigating ways to leverage the cloud to modernize its policyholder system and begin addressing several issues with the existing PolicyConnect system. However, they lack any tangible experience with the cloud and are looking for guidance on how they can best modernize and take advantage of cloud technologies.
 
-Contoso stated that their highest priority is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once the database is in the cloud, they want to take advantage of some of the primary benefits that enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. They would also like to understand better the performance and security features they might be able to leverage once their database is running in Azure.
+Contoso stated that their highest priority is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once the database is in the cloud, they want to take advantage of some of the primary benefits that enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. They would also like to better understand the performance and security features they might be able to leverage once their database is running in Azure.
 
 Another top priority is making the system available to employees and brokers via web and mobile applications and eliminating the requirement for establishing a VPN connection. They also want to store policies in cloud storage for retrieval via these web and mobile applications. Both the web and mobile applications should permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. An application programming interface (API), shared by both application, provides access to data and policy documents. The goal is to deploy the web application, database, and API to the cloud. Also, they want to learn more about lightweight, serverless architectures that may help them implement some API functionality more rapidly. They mentioned a possible use case of providing access to policy documents in storage.
 
@@ -270,7 +270,7 @@ Timeframe: 60 minutes
 
 **Business needs**
 
-Directions:  With all participants at your table, answer the following questions and list the answers on a flip chart:
+Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
 1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
@@ -280,11 +280,11 @@ Directions:  With all participants at your table, answer the following questions
 
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
-*High-level architecture*
+_High-level architecture_
 
 1. Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, search, and extensibility.
 
-*Mobile and web applications*
+_Mobile and web applications_
 
 1. How should Contoso implement the PolicyConnect mobile app?
 
@@ -296,9 +296,9 @@ Directions: With all participants at your table, respond to the following questi
 
 5. How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
+6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept _API Store_ experience now and serve as path to development in the future?
 
-*Data management*
+_Data management_
 
 1. What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
 
@@ -306,13 +306,13 @@ Directions: With all participants at your table, respond to the following questi
 
 3. Given their requirements, how would you enable full-text search on the stored policy documents?
 
-*Search*
+_Search_
 
 1. How can Azure Cognitive Search be used to extract more information from Contoso's policy documents?
 
 2. Can Contoso's developers extend the capabilities of Azure Cognitive Search to include in-house developed cognitive skills to enrich their search index?
 
-*Extensibility*
+_Extensibility_
 
 1. How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
 
@@ -364,22 +364,22 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ## Additional references
 
-|                 |           |
-|-----------------|-----------|
-| **Description** | **Links** |
-| Hi-resolution version of blueprint | <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo> |
-| Getting started with Xamarin and Mobile Apps | <https://azure.microsoft.com/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
-| Key Vault Developer's Guide | <https://azure.microsoft.com/documentation/articles/key-vault-developers-guide/> |
-| About Keys and Secrets | <https://msdn.microsoft.com/library/dn903623.aspx> |
-| Register an Application with AAD | <https://azure.microsoft.com/documentation/articles/key-vault-get-started/#register> |
-| How to Use Azure Redis Cache | <https://azure.microsoft.com/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/> |
-| Intro to Redis data types & abstractions | <http://redis.io/topics/data-types-intro> |
-| Intro to PowerApps | <https://docs.microsoft.com/powerapps/getting-started> |
-| Get Started with Flow | <https://flow.microsoft.com/documentation/getting-started/> |
-| Indexing Documents in Blob Storage | <https://azure.microsoft.com/documentation/articles/search-howto-indexing-azure-blob-storage/> |
-| Working with Azure Functions Proxies | <https://docs.microsoft.com/azure/azure-functions/functions-proxies> |
-| Azure API Management Overview | <https://docs.microsoft.com/azure/api-management/api-management-key-concepts> |
-| What is "cognitive search" in Azure Cognitive Search? | <https://docs.microsoft.com/azure/search/cognitive-search-concept-intro> |
+|                                                       |                                                                                                    |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Description**                                       | **Links**                                                                                          |
+| Hi-resolution version of blueprint                    | <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo>                                             |
+| Getting started with Xamarin and Mobile Apps          | <https://azure.microsoft.com/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
+| Key Vault Developer's Guide                           | <https://azure.microsoft.com/documentation/articles/key-vault-developers-guide/>                   |
+| About Keys and Secrets                                | <https://msdn.microsoft.com/library/dn903623.aspx>                                                 |
+| Register an Application with AAD                      | <https://azure.microsoft.com/documentation/articles/key-vault-get-started/#register>               |
+| How to Use Azure Redis Cache                          | <https://azure.microsoft.com/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/>    |
+| Intro to Redis data types & abstractions              | <http://redis.io/topics/data-types-intro>                                                          |
+| Intro to PowerApps                                    | <https://docs.microsoft.com/powerapps/getting-started>                                             |
+| Get Started with Flow                                 | <https://flow.microsoft.com/documentation/getting-started/>                                        |
+| Indexing Documents in Blob Storage                    | <https://azure.microsoft.com/documentation/articles/search-howto-indexing-azure-blob-storage/>     |
+| Working with Azure Functions Proxies                  | <https://docs.microsoft.com/azure/azure-functions/functions-proxies>                               |
+| Azure API Management Overview                         | <https://docs.microsoft.com/azure/api-management/api-management-key-concepts>                      |
+| What is "cognitive search" in Azure Cognitive Search? | <https://docs.microsoft.com/azure/search/cognitive-search-concept-intro>                           |
 
 # App modernization whiteboard design session trainer guide
 
@@ -427,202 +427,202 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 Charlene Mathis, General Manager, Contoso, Ltd.
 
-The primary audience is the business and technology decision makers. From the case study scenario, it would include the Director of Analytics. Usually we talk to the infrastructure managers who report to the chief information officer (CIO), or to application sponsors, such as a line of business (LOB) vice president (VP), chief marketing officer (CMO), or to those who represent the business unit IT or developers who report to application sponsors.
+The primary audience is business and technology decision-makers. From the case study scenario, it would include the Director of Analytics. Usually, we talk to the infrastructure managers who report to the chief information officer (CIO), or to application sponsors, such as a line of business (LOB) vice president (VP), chief marketing officer (CMO), or to those who represent the business unit IT or developers who report to application sponsors.
 
 ## Preferred solution
 
 After lawyers affirmed that Contoso, Ltd. could legally store customer data in the cloud, Contoso created a strategy that capitalized on the capabilities of Microsoft Azure.
 
-*High-level architecture*
+_High-level architecture_
 
 1. Without getting into the details, which you address below, diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, and extensibility.
 
-    ![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications.](media/preferred-solution-architecture.png "Preferred solution architecture")
+   ![Architecture diagram of the preferred solution. Mobile and web apps connect APIs and Azure Functions Proxies, secured by Azure AD, with application secrets stored in Key Vault. Redis Cache is used to improve application performance, and data is stored in SQL Server and Azure Blob Storage. PowerApps and Flow are used to enable business users to build mobile and web (CRUD) applications.](media/preferred-solution-architecture.png "Preferred solution architecture")
 
-    The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Contoso determined that they can migrate into a fully-managed SQL database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. Next, they deploy the web and API apps into Azure App Services. Also, mobile apps, built for Android and iOS using Xamarin, are created to provide remote access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based app provides the UI for mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to provide access to the database and policy documents stored in Blob Storage.
+   The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Contoso determined that they can migrate into a fully-managed SQL database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. Next, they deploy the web and API apps into Azure App Services. Also, mobile apps, built for Android and iOS using Xamarin, are created to provide remote access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based app provides the UI for mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to provide access to the database and policy documents stored in Blob Storage.
 
-    Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App implements the cache aside pattern using Azure Redis Cache. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Cognitive Search. PowerApps is used to enable authorized business users to build mobile, and web create, read, update, delete (CRUD) applications. These apps interact with SQL Database and Azure Storage. Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
+   Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App implements the cache aside pattern using Azure Redis Cache. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Cognitive Search. PowerApps is used to enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications. These apps interact with SQL Database and Azure Storage. Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
 
-    > **Note:** The preferred solution is only one of many possible, viable approaches.
+   > **Note:** The preferred solution is only one of many possible, viable approaches.
 
-*Mobile and Web Applications*
+_Mobile and Web Applications_
 
 1. How should Contoso implement the PolicyConnect mobile app?
 
-    To keep the development of the mobile app ".NET developer-friendly," Contoso should use Xamarin within Visual Studio. Xamarin.Forms should be used to build the user interface once and produce a mobile application that has the native experience for Android and iOS. Xamarin.Forms is recommended for line-of-business apps, where advanced platform-specific rendering is not required, and maximum code reuse (\>90%) is desired across the target platforms.
+   To keep the development of the mobile app ".NET developer-friendly," Contoso should use Xamarin within Visual Studio. Xamarin.Forms should be used to build the user interface once and produce a mobile application that has the native experience for Android and iOS. Xamarin.Forms is recommended for line-of-business apps, where advanced platform-specific rendering is not required, and maximum code reuse (\>90%) is desired across the target platforms.
 
 2. What Azure service would host the web site?
 
-    A Web App.
+   A Web App.
 
 3. What Azure service would host the services supporting the mobile app backend? Would you suggest a Mobile App or an API App? Why?
 
-    In this scenario, either one would work because API Apps and Mobile Apps expose the same functionality that Contoso needs to support the Web App and the APIs that are behind the Web App and the Xamarin mobile application.
+   In this scenario, either one would work because API Apps and Mobile Apps expose the same functionality that Contoso needs to support the Web App and the APIs that are behind the Web App and the Xamarin mobile application.
 
-    Azure Functions is also a good option for building highly-scalable serverless APIs. Azure Functions comes with a collection of built-in HTTP triggers and bindings, which make it easy to author endpoints in a variety of languages, including Node.JS, C#, and more. Function App projects can be added to Contoso's Visual Studio solution, allowing the code to be managed as part of their DevOps workflow.
+   Azure Functions is also a good option for building highly-scalable serverless APIs. Azure Functions comes with a collection of built-in HTTP triggers and bindings, which make it easy to author endpoints in a variety of languages, including Node.JS, C#, and more. Function App projects can be added to Contoso's Visual Studio solution, allowing the code to be managed as part of their DevOps workflow.
 
 4. What Azure service would provide a lightweight, serverless API solution for retrieving policy documents from Azure blob storage?
 
-    Azure Functions Proxies provide an easy way to create serverless APIs. They provide a way to break large APIs into multiple function apps (as in a microservices architecture), while still presenting a single API surface for clients.
+   Azure Functions Proxies provide an easy way to create serverless APIs. They provide a way to break large APIs into multiple function apps (as in a microservices architecture), while still presenting a single API surface for clients.
 
 5. How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-    Rather than storing sensitive application secrets like credentials and database connection strings in the `appsettings.json` of the Web and API Apps, Contoso should use Key Vault to store these secrets. After provisioning its Web and API Apps, Contoso would need to register each in Azure Active Directory. This would yield it a Client ID and Key for each registered application (for example, the Web gets a pair, and the API app gets a different pair). This pair of credentials could then be provided to the Apps via the portal using the Settings \> Configuration blade of the main Web/API App and adding new entries to the Application settings tables.
+   Rather than storing sensitive application secrets like credentials and database connection strings in the `appsettings.json` of the Web and API Apps, Contoso should use Key Vault to store these secrets. After provisioning its Web and API Apps, Contoso would need to register each in Azure Active Directory. This would yield it a Client ID and Key for each registered application (for example, the Web gets a pair, and the API app gets a different pair). This pair of credentials could then be provided to the Apps via the portal using the Settings \> Configuration blade of the main Web/API App and adding new entries to the Application settings tables.
 
-    By doing so, Contoso is storing the credentials to access Key Vault in a manner that reduces the risk of storing sensitive settings in a config file, which can be accidentally shared or checked into source control. Contoso would need to use the PowerShell cmdlets to create a new Key Vault (`New-AzureKeyVault`) and to set ACLs on the Key Vault (`Set-AzureKeyVaultAccessPolicy`) that grant access to the applications. Contoso could use PowerShell to add the secrets required by the apps into Key Vault. Contoso would then need to use the Key Vault SDK for .NET, which requires the Key Vault Uniform Resource Identifier (URI) of their provisioned Key Vault instance, the Client ID and Key for the Web/API App together to acquire an access token from AAD, and then with a KeyVaultClient instance in hand get the secret from Key Vault. This logic would run when the application needs to access the secret information (for example, to open a connection to SQL Database).
+   By doing so, Contoso is storing the credentials to access Key Vault in a manner that reduces the risk of storing sensitive settings in a config file, which can be accidentally shared or checked into source control. Contoso would need to use the PowerShell cmdlets to create a new Key Vault (`New-AzureKeyVault`) and to set ACLs on the Key Vault (`Set-AzureKeyVaultAccessPolicy`) that grant access to the applications. Contoso could use PowerShell to add the secrets required by the apps into Key Vault. Contoso would then need to use the Key Vault SDK for .NET, which requires the Key Vault Uniform Resource Identifier (URI) of their provisioned Key Vault instance, the Client ID and Key for the Web/API App together to acquire an access token from AAD, and then with a KeyVaultClient instance in hand get the secret from Key Vault. This logic would run when the application needs to access the secret information (for example, to open a connection to SQL Database).
 
-6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as a path to development in the future?
+6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept _API Store_ experience now and serve as a path to development in the future?
 
-    Contoso should use Azure API Management. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. APIM has features to help Contoso quickly build and scale an API ecosystem and grow into the future. APIs can be organized into Product groups to provide organization, and AAD integration comes out of the box. It will be relatively easy to develop new customer channels for affiliated partners and provide controlled discoverability and lifecycle management to development teams. Azure API Management does not have a strong opinion on change management but instead provides flexible options to handle API versioning and revisions.
+   Contoso should use Azure API Management. API Management provides the core competencies to ensure a successful API program through developer engagement, business insights, analytics, security, and protection. APIM has features to help Contoso quickly build and scale an API ecosystem and grow into the future. APIs can be organized into Product groups to provide organization, and AAD integration comes out of the box. It will be relatively easy to develop new customer channels for affiliated partners and provide controlled discoverability and lifecycle management to development teams. Azure API Management does not have a strong opinion on change management but instead offers flexible options to handle API versioning and revisions.
 
-*Data management*
+_Data management_
 
 1. What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
 
-    The database migration should be handled using the [Azure Database Migration Service's](https://docs.microsoft.com/azure/dms/dms-overview) (DMS). DMS is a fully managed service designed to enable seamless migrations from multiple database sources to Azure Data platforms with minimal downtime. It provides customers with a comprehensive, highly available migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required before performing a migration. When you're ready to begin the migration process, the Azure Database Migration Service performs all of the required steps, following best practices as determined by Microsoft.
+   The database migration should be handled using the [Azure Database Migration Service's](https://docs.microsoft.com/azure/dms/dms-overview) (DMS). DMS is a fully managed service designed to enable seamless migrations from multiple database sources to Azure Data platforms with minimal downtime. It provides customers with a comprehensive, highly available migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required before performing a migration. When you're ready to begin the migration process, the Azure Database Migration Service executes all of the steps necessary, following best practices as determined by Microsoft.
 
-    > In addition to SQL database migrations, DMS can also be used for migrating other database types, such as MongoDB to Cosmos DB and MySQL and PostgreSQL migrations to the Azure Data Platform.
+   > In addition to SQL database migrations, DMS can also be used for migrating other database types, such as MongoDB to Cosmos DB and MySQL and PostgreSQL migrations to the Azure Data Platform.
 
-    Contoso should use the online data migration capabilities of DMS to migrate their on-premises database into Azure SQL Database with minimal to no downtime. Data platform migrations should be approached with the same rigor and processes as a full software or hardware project, meaning a solid methodology is required for success.
+   Contoso should use the online data migration capabilities of DMS to migrate their on-premises database into Azure SQL Database with minimal to no downtime. Data platform migrations should be approached with the same rigor and processes as a full software or hardware project, meaning a robust methodology is required for success.
 
-    In planning their migration project, they should consider the process similar to that shown in the following graphic:
+   In planning their migration project, they should consider the process similar to that shown in the following graphic:
 
-    ![Diagram providing an overview of the data platform migration process.](media/data-platform-migration-process.png "Data Platform Migration")
+   ![Diagram providing an overview of the data platform migration process.](media/data-platform-migration-process.png "Data Platform Migration")
 
-    *Pre-migration*:
+   _Pre-migration_:
 
-    - **Discover**: Inventory your source database assets and perform an application stack discovery.
-    - **Assess**: Assess source workloads and fix recommendations.
-    - **Convert**: Convert the source schema to work in the target environment. This is only relevant for heterogeneous migrations.
+   - **Discover**: Inventory your source database assets and perform an application stack discovery.
+   - **Assess**: Assess source workloads and fix recommendations.
+   - **Convert**: Convert the source schema to work in the target environment. This is only relevant for heterogeneous migrations.
 
-    *Migration*:
+   _Migration_:
 
-    - **Migrate schema, data, and objects**: Migrate the source schema and then migrate the source data to the target.
-    - **Sync data**: Sync your target schema and data with the source. This is only relevant for minimal-downtime migrations.
-    - **Cutover**: Cutover from the source to the target environment. This is only relevant for minimal-downtime migrations.
+   - **Migrate schema, data, and objects**: Migrate the source schema and then migrate the source data to the target.
+   - **Sync data**: Sync your target schema and data with the source. This is only relevant for minimal-downtime migrations.
+   - **Cutover**: Cutover from the source to the target environment. This is only relevant for minimal-downtime migrations.
 
-    *Post-migration*:
+   _Post-migration_:
 
-    - **Remediate applications**: Iteratively make any necessary changes to your applications.
-    - **Perform Tests**: Iteratively run functional and performance tests.
-    - **Optimize**: Based on the tests you performed, address any performance issues, and then retest to confirm the performance improvements.
+   - **Remediate applications**: Iteratively make any necessary changes to your applications.
+   - **Perform Tests**: Iteratively run functional and performance tests.
+   - **Optimize**: Based on the tests you performed, address any performance issues, and then retest to confirm the performance improvements.
 
-    In addition to DMS, Microsoft provides multiple tools for assisting with cloud migrations and upgrades of databases.
+   In addition to DMS, Microsoft provides multiple tools for assisting with cloud migrations and upgrades of databases.
 
-    *Database Migration Assistant (DMA)*
+   _Database Migration Assistant (DMA)_
 
-    The Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility and feature parity issues that can impact an upgrade or migration to your target version of SQL Server or Azure SQL Database. DMA also provides recommendations on performance and reliability improvements you can make once your databases have been migrated to your target environment. It allows you to move your schema, data, and uncontained objects (SQL Agent jobs, SSIS packages, roles, users, and logins) from your source server to your target server.
+   The Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility and feature parity issues that can impact an upgrade or migration to your target version of SQL Server or Azure SQL Database. DMA also provides recommendations on performance and reliability improvements you can make once your databases have been migrated to your target environment. It allows you to move your schema, data, and uncontained objects (SQL Agent jobs, SSIS packages, roles, users, and logins) from your source server to your target server.
 
-    *Database Experimentation Assistant (DEA)*
+   _Database Experimentation Assistant (DEA)_
 
-    The Database Experimentation Assistant (DEA) is an A/B testing solution for SQL Server upgrades. It assists in evaluating specific workloads against a targeted version of SQL Server or SQL Database. DEA is not a migration tool but can be used to help determine the appropriate target version of SQL Server or SQL Database for migrations.
+   The Database Experimentation Assistant (DEA) is an A/B testing solution for SQL Server upgrades. It assists in evaluating specific workloads against a targeted version of SQL Server or SQL Database. DEA is not a migration tool but can be used to help determine the appropriate target version of SQL Server or SQL Database for migrations.
 
-    DEA guides you through running A/B testing by completing three steps:
+   DEA guides you through running A/B testing by completing three steps:
 
-    1. **Capture**: The first step of SQL Server A/B testing is to capture a trace on your source server. Trace files capture the entire query workload on that server.
-    2. **Replay**: The second step of SQL Server A/B testing is to replay the trace file that was captured on your target servers, and then collect extensive traces from the replay for analysis.
-    3. **Analysis**: The final step is to generate an analysis report by using the replay traces. The analysis report can help you gain insight into the implications of the proposed change.
+   1. **Capture**: The first step of SQL Server A/B testing is to capture a trace on your source server. Trace files capture the entire query workload on that server.
+   2. **Replay**: The second step of SQL Server A/B testing is to replay the trace file that was captured on your target servers, and then collect extensive traces from the replay for analysis.
+   3. **Analysis**: The final step is to generate an analysis report by using the replay traces. The analysis report can help you gain insight into the implications of the proposed change.
 
-    Using the analysis metrics provided by DEA, customers who are upgrading from an earlier version of SQL Server (starting with 2005) to a more recent version can identify compatibility errors, degraded queries and query plans, and other workload comparison data. The comparison data can lead to a higher confidence level and a more successful upgrade experience.
+   Using the analysis metrics provided by DEA, customers who are upgrading from an earlier version of SQL Server (starting with 2005) to a more recent version can identify compatibility errors, degraded queries and query plans, and other workload comparison data. The comparison data can lead to a higher confidence level and more successful upgrade experience.
 
 2. What patterns and services would you use to reduce the load on the database? Implement the scoreboards? Be specific on the Azure services used and how the application would take advantage of them.
 
-    Contoso could use Azure Redis Cache and the cache-aside pattern to help mitigate load coming from large numbers of connections performing repetitive querying. In this approach, as data items are requested, the Azure Redis Cache is first checked to see if it exists there; if it is, then the cached copy is returned. Failing that, the application makes a request directly against SQL Database, but while returning the result to the client it also adds the data item into the Redis Cache. Scoreboards can be implemented effectively using Azure Redis Cache because of its support for fast atomic incrementing of the values for any given string key (for example, the key would be the username, the value the count). To reduce memory requirements for very large counts (such as possible collecting transaction counts per user in perpetuity), Contoso could use Redis' HyperLogLog to store the counted value for each user key. The HyperLogLog approximates the cardinality of a set that approximates the count of the number of unique items added (with an error rate less than 1 percent) and uses a fixed size of 12 KB (not including the bytes used to store the key).
+   Contoso could use Azure Redis Cache and the cache-aside pattern to help mitigate load coming from large numbers of connections performing repetitive querying. In this approach, as data items are requested, the Azure Redis Cache is first checked to see if it exists there; if it is, then the cached copy is returned. If the item is not found in the cache, the application makes a request directly against SQL Database, but while returning the result to the client, it also adds the data item into the Redis Cache. Scoreboards can be implemented effectively using Azure Redis Cache because of its support for fast atomic incrementing of the values for any given string key (for example, the key would be the username, the value the count). To reduce memory requirements for very large counts (such as possible collecting transaction counts per user in perpetuity), Contoso could use Redis' HyperLogLog to store the counted value for each user key. HyperLogLog approximates the cardinality of a set that approximates the count of the number of unique items added (with an error rate less than 1 percent) and uses a fixed size of 12 KB (not including the bytes used to store the key).
 
-*Search*
+_Search_
 
 1. Given the Contoso requirements, how would you enable full-text search on the stored policy documents?
 
-    Contoso could use Azure Cognitive Search and the Indexer for Azure Storage Blobs. For files stored in Azure Storage Blobs, this indexer will full-text index PDFs, Microsoft Office Documents (DOCX, DOC, XLSX, XLS, PPTX, PPT, and MSG), HTML, XML, ZIP, EML, JSON, and plain text files. Contoso could then use the Azure Cognitive Search .NET SDK from the API App to kick off searches.
+   Contoso could use Azure Cognitive Search and the Indexer for Azure Storage Blobs. For files stored in Azure Storage Blobs, this indexer will full-text index PDFs, Microsoft Office Documents (DOCX, DOC, XLSX, XLS, PPTX, PPT, and MSG), HTML, XML, ZIP, EML, JSON, and plain text files. Contoso could then use the Azure Cognitive Search .NET SDK from the API App to kick off searches.
 
 2. How can Azure Cognitive Search be used to extract more information from Contoso's policy documents?
 
-    Cognitive search could be used within Azure Cognitive Search to enrich the metadata added to the search index.
+   Knowledge mining could be used within Azure Cognitive Search to enrich the metadata added to the search index.
 
-    Cognitive search is an AI feature in Azure Cognitive Search, used to extract text from images, blobs, and other unstructured data sources - enriching the content to make it more searchable in an Azure Cognitive Search index. Extraction and enrichment are implemented through cognitive skills attached to an indexing pipeline. AI enrichments are supported in the following ways:
+   Knowledge mining is an AI feature in Azure Cognitive Search, used to extract text from images, blobs, and other unstructured data sources - enriching the content to make it more searchable in an Azure Cognitive Search index. Extraction and enrichment are implemented through cognitive skills attached to an indexing pipeline. AI enrichments are supported in the following ways:
 
-    - **Natural language processing** skills include entity recognition, language detection, key phrase extraction, text manipulation, and sentiment detection. With these skills, unstructured text can assume new forms, mapped as searchable and filterable fields in an index.
-    - **Image processing skills** include Optical Character Recognition (OCR) and identification of visual features, such as facial detection, image interpretation, image recognition (famous people and landmarks) or attributes like colors or image orientation. You can create text-representations of image content, searchable using all the query capabilities of Azure Cognitive Search.
+   - **Natural language processing** skills include entity recognition, language detection, key phrase extraction, text manipulation, and sentiment detection. With these skills, unstructured text can assume new forms, mapped as searchable and filterable fields in an index.
+   - **Image processing skills** include Optical Character Recognition (OCR) and identification of visual features, such as facial detection, image interpretation, image recognition (famous people and landmarks), or attributes like colors or image orientation. You can create text-representations of image content, searchable using all the query capabilities of Azure Cognitive Search.
 
-    ![Cognitive search graphic.](media/cognitive-search.png "Cognitive Search")
+   ![Cognitive search graphic.](media/cognitive-search.png "Cognitive Search")
 
-    Cognitive skills in Azure Cognitive Search are based on machine learning models in Cognitive Services APIs: Computer Vision and Text Analysis.
+   Cognitive skills in Azure Cognitive Search are based on machine learning models in Cognitive Services APIs: Computer Vision and Text Analysis.
 
-    Natural language and image processing is applied during the data ingestion phase, with results becoming part of a document's composition in a searchable index in Azure Cognitive Search. Data is sourced as an Azure data set and then pushed through an indexing pipeline using whichever built-in skills you need.
+   Natural language and image processing are applied during the data ingestion phase, with results becoming part of a document's composition in a searchable index in Azure Cognitive Search. Data is sourced as an Azure data set and then pushed through an indexing pipeline using whichever built-in skills you need.
 
 3. Can Contoso's developers extend the capabilities of Azure Cognitive Search to include in-house developed cognitive skills to enrich their search index?
 
-    The cognitive search architecture of Azure Cognitive Search is extensible, so if the built-in skills are not sufficient, you can create and attach custom skills to integrate custom processing. Building custom skills provides a way to insert unique transformations to your content.
+   The cognitive search architecture of Azure Cognitive Search is extensible, so if the built-in skills are not sufficient, you can create and attach custom skills to integrate custom processing. Building custom skills provides a way to insert unique transformations to your content.
 
-    Custom skills execute independently, applying whatever enrichment step you require. For example, you could define field-specific custom entities, build custom classification models to differentiate business and financial contracts and documents or add a speech recognition skill to reach deeper into audio files for relevant content.
+   Custom skills execute independently, applying whatever enrichment step you require. For example, you could define field-specific custom entities, build custom classification models to differentiate business and financial contracts and documents, or add a speech recognition skill to reach deeper into audio files for relevant content.
 
-    There is a simple and clear interface for connecting a custom skill to the rest of the enrichment pipeline. The only requirement for inclusion in a skillset is the ability to accept inputs and emit outputs in ways that are consumable within the skillset as a whole.
+   There is a simple and clear interface for connecting a custom skill to the rest of the enrichment pipeline. The only requirement for inclusion in a skillset is the ability to accept inputs and emit outputs in ways that are consumable within the skillset as a whole.
 
-*Extensibility*
+_Extensibility_
 
 1. How would you enable Contoso business users to create customized internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
 
-    PowerApps would enable business users at Contoso to create web and mobile apps to support CRUD functionality against data in SQL DB and Azure Storage Blobs. Microsoft Flow, which integrates with PowerApps but can also be used standalone, would enable them to create automated processes in ad hoc fashion. Business users could create these for private use or share them with the rest of the organization.
+   PowerApps would enable business users at Contoso to create web and mobile apps to support CRUD functionality against data in SQL DB and Azure Storage Blobs. Microsoft Flow, which integrates with PowerApps but can also be used standalone, would enable them to create automated processes in ad hoc fashion. Business users could create these for private use or share them with the rest of the organization.
 
 2. Given your answer to the previous question, how would a Contoso business user implement the scenario where a high-priority email is sent to the user's Office 365 email, and in response, an application notification appears on this user's device?
 
-    This could be implemented with Microsoft Flow. The business user would log in to Microsoft Flow and create a new flow. It would begin with the Office 365---on new email, where the priority flag is set to High. Then a Push notification---send a push notification action would follow that can use the subject and sender of the email in the subject of the notification. The user would save this flow. To receive notifications, the user would need to install the Microsoft Flow app on a mobile device.
+   This could be implemented with Microsoft Flow. The business user would log in to Microsoft Flow and create a new flow. It would begin with the Office 365---on new email, where the priority flag is set to High. Then a Push notification---send a push notification action would follow that can use the subject and sender of the email in the subject of the notification. The user would save this flow. To receive notifications, the user would need to install the Microsoft Flow app on a mobile device.
 
 ## Checklist of preferred objection handling
 
 1. We have seen services like IFTTT (If This, Then That) that let business users automate processes. Does Microsoft Azure offer something similar?
 
-    Yes, Microsoft Flow is a service that lets attendees and business professionals automate business processes.
+   Yes, Microsoft Flow is a service that lets attendees and business professionals automate business processes.
 
 2. Our developers have heard of Logic Apps. Will Microsoft Flow replace these?
 
-    No, Logic Apps represent an "advanced" version of Microsoft Flow. The difference is the authoring experience (Logic Apps are implemented within the Azure Portal and Flows are implemented in the Flow portal) and that Logic Apps provide support for more developer centric tasks, such as integrating API Apps as custom actions, whereas Flow only provides pre-built actions.
+   No, Logic Apps represent an "advanced" version of Microsoft Flow. Logic Apps are implemented within the Azure Portal, and Flows are implemented in the Flow portal, providing different authoring experiences for each. Also, Logic Apps offers support for more developer-centric tasks, such as integrating API Apps as custom actions, whereas Flow only provides pre-built actions.
 
-    The following table helps you determine whether Microsoft Flow or Logic Apps is best for a particular integration:
+   The following table helps you determine whether Microsoft Flow or Logic Apps is best for a particular integration:
 
-    |     |                    |                |
-    |-----|--------------------|----------------|
-    |     | **Microsoft Flow** | **Logic Apps** |
-    |Users | Office workers, business users, SharePoint administrators | Pro integrators and developers, IT pros |
-    | Scenarios | Self-service | Advanced integrations |
-    | Design tool | In-browser and mobile app, UI only | In-browser and Visual Studio, Code view available |
-    | Application lifecycle management (ALM) | Design and test in non-production environments, promote to production when ready | Azure DevOps: source control, testing, support, automation, and manageability in Azure Resource Manager |
-    | Admin experience | Manage Microsoft Flow environments and data loss prevention (DLP) policies, track licensing: Microsoft Flow Admin Center | Manage resource groups, connections, access management, and logging: Azure portal |
-    | Security | Office 365 Security and Compliance audit logs, DLP, encryption at rest for sensitive data | Security assurance of Azure: Azure security, Azure Security Center, audit logs |
+   |                                        |                                                                                                                          |                                                                                                         |
+   | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+   |                                        | **Microsoft Flow**                                                                                                       | **Logic Apps**                                                                                          |
+   | Users                                  | Office workers, business users, SharePoint administrators                                                                | Pro integrators and developers, IT pros                                                                 |
+   | Scenarios                              | Self-service                                                                                                             | Advanced integrations                                                                                   |
+   | Design tool                            | In-browser and mobile app, UI only                                                                                       | In-browser and Visual Studio, Code view available                                                       |
+   | Application lifecycle management (ALM) | Design and test in non-production environments, promote to production when ready                                         | Azure DevOps: source control, testing, support, automation, and manageability in Azure Resource Manager |
+   | Admin experience                       | Manage Microsoft Flow environments and data loss prevention (DLP) policies, track licensing: Microsoft Flow Admin Center | Manage resource groups, connections, access management, and logging: Azure portal                       |
+   | Security                               | Office 365 Security and Compliance audit logs, DLP, encryption at rest for sensitive data                                | Security assurance of Azure: Azure security, Azure Security Center, audit logs                          |
 
 3. Is there a way to securely store application secrets in the cloud?
 
-    Yes, Key Vault provides a mechanism to encrypt and securely store secrets within the confines of specialized hardware called Hardware Security Modules (HSM).
+   Yes, Key Vault provides a mechanism to encrypt and securely store secrets within the confines of specialized hardware called Hardware Security Modules (HSM).
 
 4. We noticed that Azure SQL Database does not support all the features available in SQL Server. We are not using these features currently, but are curious to know what the options are for these in Azure? Specifically, we were thinking about Linked Servers, Database Mail, SQL Server Agent Jobs, and Service Broker.
 
-    Addressing each service, it is likely the case that a feature that was previously built into SQL Server and used from applications directly, now runs external to Azure SQL Database in the form of a separate Azure service. Linked servers are not supported by SQL Server, but cross-database read-only querying is possible using elastic database query. Database Mail, which was used to send email directly from SQL Server, is not supported, but there are multiple alternatives (such as using Office 365 and SendGrid) that applications can use to send email. Regarding SQL Server Agent Jobs, these background processes can usually be migrated to a Web Job (running within an App Service), Azure Functions, or to a Cloud Service Worker Role. Finally, regarding Service Broker, numerous alternative messaging options exist in Azure, including Azure Storage Queues and Azure Service Bus Brokered Messaging.
+   It is likely the case that a feature that was previously built into SQL Server and used directly from applications now runs externally to Azure SQL Database in the form of a separate Azure service. Azure SQL Database does not support linked servers, but cross-database read-only querying is possible using an elastic database query. Database Mail, which provided the ability to send emails directly from SQL Server, is not supported. Still, there are multiple alternatives (such as using Office 365 and SendGrid) that applications can use to send emails. Regarding SQL Server Agent Jobs, these background processes can usually be migrated to a Web Job (running within an App Service), Azure Functions, or to a Cloud Service Worker Role. Finally, regarding Service Broker, numerous alternative messaging options exist in Azure, including Azure Storage Queues and Azure Service Bus Brokered Messaging.
 
-    If the features listed above are needed, Azure SQL Database Managed Instance could be a viable option. SQL MI is a fully-managed PaaS SQL Server Database Engine Instance hosted in Azure that provides near 100% compatibility with on-premises SQL Server database instances. Unlike SQL DB, it does not use an isolated multi-tenant model, but instead provides a native virtual network (VNet) implementation that addresses many common isolation and security concerns of on-premises SQL Server customers. As such, it is the best PaaS option for migrating existing SQL Server databases to the cloud.
+   If the features listed above are needed, Azure SQL Database Managed Instance could be a viable option. SQL MI is a fully-managed PaaS SQL Server Database Engine Instance hosted in Azure that provides near 100% compatibility with on-premises SQL Server database instances. Unlike SQL DB, it does not use an isolated multi-tenant model. Instead, it gives a native virtual network (VNet) implementation that addresses many common isolation and security concerns of on-premises SQL Server customers. As such, it is the best PaaS option for migrating existing SQL Server databases to the cloud.
 
-    The managed instance model allows existing SQL Server customers to lift-and-shift their on-premises applications to the cloud with minimal application and database changes. As a deployment option of Azure SQL Database, it preserves all the PaaS capabilities that drastically reduce management overhead and TCO. While the majority of on-premises SQL features are supported, there are some features, like Filestream, that are not available. Unlike SQL DB, SQL MI does support distributed transactions, SQL Agent jobs, .NET CLR integration, and Service broker.
+   The managed instance model allows existing SQL Server customers to lift-and-shift their on-premises applications to the cloud with minimal application and database changes. As a deployment option of Azure SQL Database, it preserves all the PaaS capabilities that drastically reduce management overhead and TCO. While the majority of on-premises SQL features are supported, there are some features, like Filestream, that are not available. Unlike SQL DB, SQL MI does support distributed transactions, SQL Agent jobs, .NET CLR integration, and Service broker.
 
 5. Moving everything to APIs sounds terrific, but how can we stay on top of our API inventory and manage discoverability, security, lifecycle, and monitoring into the future? Is there something we could use to develop a proof of concept quickly?
 
-    Discoverability for development teams was a primary consideration in the development of Azure API Management. Access can be controlled through several provider models, including AAD. Concepts such as Policy Scopes and Expressions provide flexible options for fine-grained control and monitoring. In addition, when APIM is provisioned the instance will automatically have the capability to provide advanced analytics and Power BI visualizations, including ML-based analysis developed by Microsoft Research specifically for API management. A proof of concept that demonstrates all of these capabilities can be put together quickly and can easily be scaled up to create the API Store experience Contoso is looking for.
+   Discoverability for development teams was a primary consideration in the development of Azure API Management. Access can be controlled through several provider models, including AAD. Concepts such as Policy Scopes and Expressions provide flexible options for fine-grained control and monitoring. Also, when APIM is provisioned, the instance will automatically have the capability to provide advanced analytics and Power BI visualizations, including ML-based analysis developed by Microsoft Research specifically for API management. A proof of concept that demonstrates all of these capabilities can be put together quickly and easily scaled up to create the API Store experience Contoso desires.
 
 6. We have been using .NET Framework for years, and now in Visual Studio web have options for .NET Framework, .NET Standard, and .NET Core. As we look at creating our new web and API applications, how do we choose the correct framework?
 
-    *.NET Framework*
+   _.NET Framework_
 
-    .NET Framework is the "full" version of .NET that is distributed with Windows. This should be used when building windows only applications, such as a Windows app.
+   .NET Framework is the "full" version of .NET that is distributed with Windows. This should be used when building windows only applications, such as a Windows app.
 
-    *.NET Core*
+   _.NET Core_
 
-    .NET Core is a cross-platform version of .NET that can run on Windows, Mac, and Linux. This should be used when you are building applications that need to run on any platform, including ASP.NET Core (cross-platform web applications).
+   .NET Core is a cross-platform version of .NET that can run on Windows, Mac, and Linux. This should be used when you are building applications that need to run on any platform, including ASP.NET Core (cross-platform web applications).
 
-    > .NET Framework and .NET Core are two different implementations of the .NET runtime, but they have different profiles of the many APIs and assemblies Microsoft has created for .NET.
+   > .NET Framework and .NET Core are two different implementations of the .NET runtime, but they have different profiles of the many APIs and assemblies Microsoft has created for .NET.
 
-    *.NET Standard*
+   _.NET Standard_
 
-    .NET Standard solves the code sharing problem for .NET developers across all .NET managed frameworks by providing a specification for implementing the base class library (BCL).
+   .NET Standard solves the code sharing problem for .NET developers across all .NET managed frameworks by providing a specification for implementing the base class library (BCL).
 
-    ![Graphic showing the relationship between .NET Framework, .NET Core, Xamarin, and .NET Standard.](media/dot-net-framework.png ".NET Frameworks")
+   ![Graphic showing the relationship between .NET Framework, .NET Core, Xamarin, and .NET Standard.](media/dot-net-framework.png ".NET Frameworks")
 
 ## Customer quote (to be read back to the attendees at the end)
 

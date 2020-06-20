@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-February 2020
+June 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -72,17 +72,17 @@ Almost from the start, the company grew far faster than anticipated. An avalanch
 
 To overcome these challenges, the founders launched a project to build an application that could digitize and file all existing policy documents and file new policies as brokers submit them. They also had requirements to allow automated document forwarding from brokers, secure access for brokers, access to policy information, and ready policy retrieval for a dispersed workforce. The result of this project was a custom Windows Forms application was named PolicyConnect. Contoso employees use PolicyConnect to enter essential policy metadata, including insured amount, beneficiary information, policy type, and any deductible and out-of-pocket requirements, and associate that with the digitized policy documents.
 
-PolicyConnect was built using a traditional n-tier application architecture. The data access layer houses methods for interacting with the underlying SQL Server 2008 R2 database. A business logic layer handles things like user login and policy rules. The presentation layer provides the user interface (UI). The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. The application stores associated policy documents as PDF files on a file server accessible via an SMB network share on their local area network. PolicyConnect accesses these files using a canonical path (customer last name and policy number). A SQL Server 2008 R2 database houses the policy metadata for each policy document, which is currently entered manually into PolicyConnect by Contoso staff members. Contoso provided the following diagram about its current topology:
+Contoso built PolicyConnect using a traditional n-tier application architecture. The data access layer houses methods for interacting with the underlying SQL Server 2008 R2 database. A business logic layer handles things like user login and policy rules. The presentation layer provides the user interface (UI). The design follows a service-oriented architecture, with a series of Windows Communication Foundation (WCF) services representing the services and capabilities required for each tier. The application stores associated policy documents as PDF files on a file server accessible via an SMB network share on their local area network. PolicyConnect accesses these files using a canonical path (customer last name and policy number). A SQL Server 2008 R2 database houses the policy metadata for each policy document, which is currently entered manually into PolicyConnect by Contoso staff members. Contoso provided the following diagram about its current topology:
 
 ![The Contoso topology diagram has a local area network comprised of the on-premises user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.](media/image2.png "The Contoso topology diagram has a local area network comprised of the on-premise user, Application servers for authentication and authorization, policy management and data access service, database servers, and file servers. A VPN server connects them to the Remote User via PolicyConnect.")
 
 The application currently supports access via a virtual private network (VPN) connection for users outside the Contoso local area network. As such, Contoso brokers are unable to view data or documents unless granted VPN access. This requirement has proven to be time-consuming and frustrating for brokers.
 
-Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customer's policies have been scanned and indexed. They are using Office 365. The company executives have frequent challenges in gauging productivity and throughput, given the manual workflow. They feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
+Contoso employees rely on email as a workflow engine relative to the document management tasks. One group is responsible for scanning and cataloging while another group is responsible for assigning the policies to the specified broker. Manually written emails are sent to brokers when their customers' policy documents have been scanned and indexed. They are using Office 365. The company executives have frequent challenges in gauging productivity and throughput, given the manual workflow. They feel that they are blocked in quickly getting to the insights they need because each new question seems to need more custom development.
 
 Contoso recently started investigating ways to leverage the cloud to modernize its policyholder system and begin addressing several issues with the existing PolicyConnect system. However, they lack any tangible experience with the cloud and are looking for guidance on how they can best modernize and take advantage of cloud technologies.
 
-Contoso stated that their highest priority is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once the database is in the cloud, they want to take advantage of some of the primary benefits that enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. They would also like to understand better the performance and security features they might be able to leverage once their database is running in Azure.
+Contoso stated that their highest priority is addressing the end-of-support for SQL Server 2008 R2. They would like to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. Once the database is in the cloud, they want to take advantage of some of the primary benefits that enabled by using a platform-as-a-service (PaaS) database service. According to Contoso, it does not use any of the "fancy" SQL Server features and hopes the migration can be a slam dunk. They would also like to better understand the performance and security features they might be able to leverage once their database is running in Azure.
 
 Another top priority is making the system available to employees and brokers via web and mobile applications and eliminating the requirement for establishing a VPN connection. They also want to store policies in cloud storage for retrieval via these web and mobile applications. Both the web and mobile applications should permit policyholders to log in, review their information, and retrieve a PDF copy of their policy. An application programming interface (API), shared by both application, provides access to data and policy documents. The goal is to deploy the web application, database, and API to the cloud. Also, they want to learn more about lightweight, serverless architectures that may help them implement some API functionality more rapidly. They mentioned a possible use case of providing access to policy documents in storage.
 
@@ -144,7 +144,7 @@ Timeframe: 60 minutes
 
 **Business needs**
 
-Directions:  With all participants at your table, answer the following questions and list the answers on a flip chart:
+Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
 1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
@@ -154,11 +154,11 @@ Directions:  With all participants at your table, answer the following questions
 
 Directions: With all participants at your table, respond to the following questions on a flip chart:
 
-*High-level architecture*
+_High-level architecture_
 
 1. Without getting into the details (the following sections will address the particular details), diagram your initial vision for handling the top-level requirements for the mobile and web applications, data management, search, and extensibility.
 
-*Mobile and web applications*
+_Mobile and web applications_
 
 1. How should Contoso implement the PolicyConnect mobile app?
 
@@ -170,9 +170,9 @@ Directions: With all participants at your table, respond to the following questi
 
 5. How would you secure sensitive information used by the website and APIs? Be specific on the Azure Service used, how you would configure it, and how the web or API logic would retrieve its secrets at run time.
 
-6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept *API Store* experience now and serve as path to development in the future?
+6. What recommendations can you make to help Contoso manage its API inventory as it grows in the future? Are there services in Azure that can provide a proof of concept _API Store_ experience now and serve as path to development in the future?
 
-*Data management*
+_Data management_
 
 1. What tools would you recommend Contoso use to migrate its database? How would you use these? Be specific.
 
@@ -180,13 +180,13 @@ Directions: With all participants at your table, respond to the following questi
 
 3. Given their requirements, how would you enable full-text search on the stored policy documents?
 
-*Search*
+_Search_
 
 1. How can Azure Cognitive Search be used to extract more information from Contoso's policy documents?
 
 2. Can Contoso's developers extend the capabilities of Azure Cognitive Search to include in-house developed cognitive skills to enrich their search index?
 
-*Extensibility*
+_Extensibility_
 
 1. How would you enable its business users to create their own internal mobile apps that help them streamline their processes without the time and resource investment that goes into implementing full-scale mobile apps?
 
@@ -238,19 +238,19 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ## Additional references
 
-|                 |           |
-|-----------------|-----------|
-| **Description** | **Links** |
-| Hi-resolution version of blueprint | <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo> |
-| Getting started with Xamarin and Mobile Apps | <https://azure.microsoft.com/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
-| Key Vault Developer's Guide | <https://azure.microsoft.com/documentation/articles/key-vault-developers-guide/> |
-| About Keys and Secrets | <https://msdn.microsoft.com/library/dn903623.aspx> |
-| Register an Application with AAD | <https://azure.microsoft.com/documentation/articles/key-vault-get-started/#register> |
-| How to Use Azure Redis Cache | <https://azure.microsoft.com/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/> |
-| Intro to Redis data types & abstractions | <http://redis.io/topics/data-types-intro> |
-| Intro to PowerApps | <https://docs.microsoft.com/powerapps/getting-started> |
-| Get Started with Flow | <https://flow.microsoft.com/documentation/getting-started/> |
-| Indexing Documents in Blob Storage | <https://azure.microsoft.com/documentation/articles/search-howto-indexing-azure-blob-storage/> |
-| Working with Azure Functions Proxies | <https://docs.microsoft.com/azure/azure-functions/functions-proxies> |
-| Azure API Management Overview | <https://docs.microsoft.com/azure/api-management/api-management-key-concepts> |
-| What is "cognitive search" in Azure Cognitive Search? | <https://docs.microsoft.com/azure/search/cognitive-search-concept-intro> |
+|                                                       |                                                                                                    |
+| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Description**                                       | **Links**                                                                                          |
+| Hi-resolution version of blueprint                    | <https://msdn.microsoft.com/dn630664#fbid=rVymR_3WSRo>                                             |
+| Getting started with Xamarin and Mobile Apps          | <https://azure.microsoft.com/documentation/articles/app-service-mobile-xamarin-forms-get-started/> |
+| Key Vault Developer's Guide                           | <https://azure.microsoft.com/documentation/articles/key-vault-developers-guide/>                   |
+| About Keys and Secrets                                | <https://msdn.microsoft.com/library/dn903623.aspx>                                                 |
+| Register an Application with AAD                      | <https://azure.microsoft.com/documentation/articles/key-vault-get-started/#register>               |
+| How to Use Azure Redis Cache                          | <https://azure.microsoft.com/documentation/articles/cache-dotnet-how-to-use-azure-redis-cache/>    |
+| Intro to Redis data types & abstractions              | <http://redis.io/topics/data-types-intro>                                                          |
+| Intro to PowerApps                                    | <https://docs.microsoft.com/powerapps/getting-started>                                             |
+| Get Started with Flow                                 | <https://flow.microsoft.com/documentation/getting-started/>                                        |
+| Indexing Documents in Blob Storage                    | <https://azure.microsoft.com/documentation/articles/search-howto-indexing-azure-blob-storage/>     |
+| Working with Azure Functions Proxies                  | <https://docs.microsoft.com/azure/azure-functions/functions-proxies>                               |
+| Azure API Management Overview                         | <https://docs.microsoft.com/azure/api-management/api-management-key-concepts>                      |
+| What is "cognitive search" in Azure Cognitive Search? | <https://docs.microsoft.com/azure/search/cognitive-search-concept-intro>                           |
