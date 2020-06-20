@@ -873,7 +873,7 @@ In this task, you open an RDP connection to the LabVM, and downloading a copy of
 
 2. On the LabVM's **Overview** blade, select **Connect** on the top menu.
 
-   ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-labvm.png "Connect to LabVM")
+   ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-vm-rdp.png "Connect to LabVM")
 
 3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
 
@@ -1006,7 +1006,7 @@ Before deploying the Web API to Azure, you need to add the required application 
    [
      {
        "name": "KeyVaultName",
-       "value": "contosokvjt7yc3zphxfda"
+       "value": "contoso-kv-jjbp34uowoybc"
      },
      {
        "name": "KeyVaultClientId",
@@ -1014,16 +1014,14 @@ Before deploying the Web API to Azure, you need to add the required application 
      },
      {
        "name": "KeyVaultClientSecret",
-       "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
+       "value": "Ej4fUGhxP9D~8aXgk_HFNhJhN8lhSWEInX"
      }
    ]
    ```
 
 6. Select **OK**.
 
-   ![The OK button is highlighted on the Advanced edit dialog.](media/api-app-configuration-advanced-editor.png "Advanced edit")
-
-7. Select **Save** on the Configuration blade.
+7. Select **Save** on the Configuration blade and then select **Continue** when prompted about restarting the app.
 
    ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
 
@@ -1035,45 +1033,49 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
    ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
 
-2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
+2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Profile button is highlighted..](media/visual-studio-publish-app-service.png "Pick a publish target")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box. The Next button is highlighted.](media/vs-publish-to-azure.png "Publish API App to Azure")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contoso-**api**") under your hands-on-lab-SUFFIX resource group.
+3. Next, in the **Specific target** box, select **Azure App Service (Windows)**.
 
-   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-api App Service is highlighted.](media/visual-studio-publish-app-service-api.png "Select App Service")
+   ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish API App to Azure")
 
-4. Select **OK**.
+4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-5. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+   ![In the Publish dialog, The Contoso API App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-api-app-service.png "Publish API App to Azure")
+
+5. Select **Finish**.
+
+6. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
 
-6. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
+7. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
 
    ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
 
    > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
-7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
+8. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
 
    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
+9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
    ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
    > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
 
-9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
+10. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
-   ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
+    ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
 
-10. Select **Execute**.
+11. Select **Execute**.
 
     ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
 
-11. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
+12. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
 
     ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
 
@@ -1135,46 +1137,52 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
    ![Publish in highlighted in the context menu for the Contoso.Web project.](media/vs-web-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
+2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/visual-studio-publish-app-service.png "Publish")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box. The Next button is highlighted.](media/vs-publish-to-azure.png "Publish Web App to Azure")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contoso-**web**") under your hands-on-lab-SUFFIX resource group.
+3. Next, in the **Specific target** box, select **Azure App Service (Windows)**.
 
-   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
+   ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish Web App to Azure")
 
-4. Select **OK**.
+4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-5. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+   ![In the Publish dialog, The Contoso Web App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-web-app-service.png "Publish Web App to Azure")
+
+5. Select **Finish**.
+
+6. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
 
-6. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
+7. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
 
    ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
 
-7. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
+8. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
 
-8. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
+9. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
    - **Username**: demouser
    - **Password**: Password.1!!
 
    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
-9. Once logged in, select **Managed Policy Holders** from the top menu.
+10. Once logged in, select **Managed Policy Holders** from the top menu.
 
-   ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
+    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
-10. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
+    > **Note**: It can take a few seconds for data to appear the first time the page is loaded, as the API must also be initialized.
+
+11. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
     ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-11. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
+12. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
 
     ![The File Path link is highlighted on the Policy Holder Details page.](media/web-app-policy-holder-details.png "PolicyConnect")
 
-12. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
+13. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
 
 ## Exercise 6: Upload policy documents into blob storage
 
