@@ -9,7 +9,7 @@ Hands-on lab step-by-step guide
 </div>
 
 <div class="MCWHeader3">
-February 2020
+June 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -93,7 +93,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 ## Abstract and learning objectives
 
-In this hands-on lab, you implement the steps to modernize a legacy on-premises application, including upgrading and migrating the database to Azure and updating the application to take advantage of serverless and cloud services.
+In this hands-on lab, you implement the steps to modernize a legacy on-premises application, including upgrading and migrating the database to Azure and updating the app to take advantage of serverless and cloud services.
 
 At the end of this hands-on lab, your ability to build solutions for modernizing legacy on-premises applications and infrastructure using cloud services will be improved.
 
@@ -101,7 +101,7 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 
 Contoso, Ltd. (Contoso) is a new company in an old business. Founded in Auckland, NZ, in 2011, they provide a full range of long-term insurance services to help individuals who are under-insured, filling a void their founders saw in the market. From the beginning, they grew faster than anticipated and have struggled to cope with rapid growth. During their first year alone, they added over 100 new employees to keep up with the demand for their services. To manage policies and associated documentation, they use a custom-developed Windows Forms application, called PolicyConnect. PolicyConnect uses an on-premises SQL Server 2008 R2 database as its data store, along with a file server on its local area network for storing policy documents. That application and its underlying processes for managing policies have become increasingly overloaded.
 
-Contoso recently started a new web and mobile projects to allow policyholders, brokers, and employees to access policy information without requiring a VPN connection into the Contoso network. The web project is a new .NET Core 2.2 MVC web application, which accesses the PolicyConnect database using REST APIs. They eventually intend to share the REST APIs across all their applications, including the mobile app and WinForms version of PolicyConnect. They have a prototype of the web application running on-premises and are interested in taking their modernization efforts a step further by hosting the app in the cloud. However, they don't know how to take advantage of all the managed services of the cloud since they have no experience with it. They would like some direction converting what they have created so far into a more cloud-native application.
+Contoso recently started a new web and mobile projects to allow policyholders, brokers, and employees to access policy information without requiring a VPN connection into the Contoso network. The web project is a new .NET Core 2.2 MVC web application, which accesses the PolicyConnect database using REST APIs. They eventually intend to share the REST APIs across all their applications, including the mobile app and WinForms version of PolicyConnect. They have a prototype of the web application running on-premises and are interested in taking their modernization efforts a step further by hosting the app in the cloud. However, they don't know how to take advantage of all the managed services of the cloud since they have no experience with it. They would like some direction for converting what they have created so far into a more cloud-native application.
 
 They have not started the development of a mobile app yet. Contoso is looking for guidance on how to take a .NET developer-friendly approach to implement the PolicyConnect mobile app on Android and iOS.
 
@@ -113,7 +113,7 @@ Below is a high-level architecture diagram of the solution you implement in this
 
 ![This solution diagram includes a high-level overview of the architecture implemented within this hands-on lab.](./media/preferred-solution-architecture.png "Preferred Solution diagram")
 
-The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Contoso determined that they can migrate into a fully-managed SQL database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. Next, they deploy the web and API apps into Azure App Services. Also, mobile apps, built for Android and iOS using Xamarin, are created to provide remote access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based app provides the UI for mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to provide access to the database and policy documents stored in Blob Storage.
+The solution begins with migrating Contoso's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Contoso determined that they can migrate into a fully-managed SQL database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. Next, they deploy the web and API apps into Azure App Services. Also, mobile apps, built for Android and iOS using Xamarin, are created to provide remote access to PolicyConnect. The website, hosted in a Web App, provides the user interface for browser-based clients, whereas the Xamarin Forms-based app provides the UI for mobile devices. Both the mobile app and website rely on web services hosted in a Function App, which sits behind API Management. An API App is also deployed to host APIs for the legacy Windows Forms desktop application. Light-weight, serverless APIs are provided by Azure Functions and Azure Functions Proxies to give access to the database and policy documents stored in Blob Storage.
 
 Azure API Management is used to create an API Store for development teams and affiliated partners. Sensitive configuration data, like connection strings, are stored in Key Vault and accessed from the APIs or Web App on demand so that these settings never live in their file system. The API App implements the cache aside pattern using Azure Redis Cache. A full-text cognitive search pipeline is used to index policy documents in Blob Storage. Cognitive Services are used to enable search index enrichment using cognitive skills in Azure Search. PowerApps is used to enable authorized business users to build mobile and web create, read, update, delete (CRUD) applications. These apps interact with SQL Database and Azure Storage. Microsoft Flow enables them to orchestrations between services such as Office 365 email and services for sending mobile notifications. These orchestrations can be used independently of PowerApps or invoked by PowerApps to provide additional logic. The solution uses user and application identities maintained in Azure AD.
 
@@ -147,9 +147,9 @@ Before you begin the assessment, you need to configure the `ContosoInsurance` da
 
    ![The SqlServer2008 virtual machine is highlighted in the list of resources.](media/resources-sql-server-2008-vm.png "SQL Server 2008 VM")
 
-2. On the SqlServer2008 Virtual Machine's **Overview** blade, select **Connect** on the top menu.
+2. On the SqlServer2008 Virtual Machine's **Overview** blade, select **Connect** and **RDP** on the top menu.
 
-   ![The SqlServer2008 VM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-sqlserver2008.png "Connect to SqlServer2008 VM")
+   ![The SqlServer2008 VM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-vm-rdp.png "Connect to SqlServer2008 VM")
 
 3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
 
@@ -688,7 +688,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
     GO
 
     EXECUTE AS USER = 'DDMUser';
-    SELECT * FROM [dbo].[people];
+    SELECT TOP 10 * FROM [dbo].[people];
     REVERT;
     ```
 
@@ -699,7 +699,7 @@ In this task, you enable [Dynamic Data Masking](https://docs.microsoft.com/sql/r
 12. For comparison, run the following query in a new query window to see how the data looks when running as a privileged user.
 
     ```sql
-    SELECT TOP 100 * FROM [dbo].[people]
+    SELECT TOP 10 * FROM [dbo].[people]
     ```
 
     ![In the query results, the DOB field is highlighted, showing how all the birth dates appear as the actual birth date, and not a masked value.](media/ssms-unmasked-results.png "SSMS Query Results")
@@ -816,10 +816,8 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
    ```powershell
    $subscriptionId = "<your-subscription-id>"
    $resourceGroup = "<your-resource-group-name>"
-   az ad sp create-for-rbac -n "contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
+   az ad sp create-for-rbac -n "https://contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
    ```
-
-   ![The az ad sp create-for-rbac command is entered into the Cloud Shell, and the output of the command is displayed.](media/azure-cli-create-sp.png "Azure CLI")
 
 7. Copy the entire output from the command above into a text editor, as you need the `appId`, `name` and `password` values in upcoming tasks. The output should be similar to:
 
@@ -827,7 +825,7 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
    {
      "appId": "94ee2739-794b-4038-a378-573a5f52918c",
      "displayName": "contoso-apps",
-     "name": "http://contoso-apps",
+     "name": "https://contoso-apps",
      "password": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4",
      "tenant": "d280491c-b27a-XXXX-XXXX-XXXXXXXXXXXX"
    }
@@ -852,7 +850,7 @@ In this task, you assign the service principal you created above to a reader rol
 3. To assign permissions to your service principal to read Secrets from Key Vault, run the following command, replacing `<your-key-vault-name>` with the name of your Key Vault that you copied in the previous step and pasted into a text editor.
 
    ```powershell
-   az keyvault set-policy -n <your-key-vault-name> --spn http://contoso-apps --secret-permissions get list
+   az keyvault set-policy -n <your-key-vault-name> --spn https://contoso-apps --secret-permissions get list
    ```
 
 4. In the output, you should see your service principal appId listed with "get" and "list" permissions for secrets.
@@ -875,7 +873,7 @@ In this task, you open an RDP connection to the LabVM, and downloading a copy of
 
 2. On the LabVM's **Overview** blade, select **Connect** on the top menu.
 
-   ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-labvm.png "Connect to LabVM")
+   ![The LabVM blade is displayed, with the Connect button highlighted in the top menu.](./media/connect-vm-rdp.png "Connect to LabVM")
 
 3. On the Connect to virtual machine blade, select **Download RDP File**, then open the downloaded RDP file.
 
@@ -1008,7 +1006,7 @@ Before deploying the Web API to Azure, you need to add the required application 
    [
      {
        "name": "KeyVaultName",
-       "value": "contosokvjt7yc3zphxfda"
+       "value": "contoso-kv-jjbp34uowoybc"
      },
      {
        "name": "KeyVaultClientId",
@@ -1016,16 +1014,14 @@ Before deploying the Web API to Azure, you need to add the required application 
      },
      {
        "name": "KeyVaultClientSecret",
-       "value": "b9a3a8b7-574d-467f-8cae-d30d1d1c1ac4"
+       "value": "Ej4fUGhxP9D~8aXgk_HFNhJhN8lhSWEInX"
      }
    ]
    ```
 
 6. Select **OK**.
 
-   ![The OK button is highlighted on the Advanced edit dialog.](media/api-app-configuration-advanced-editor.png "Advanced edit")
-
-7. Select **Save** on the Configuration blade.
+7. Select **Save** on the Configuration blade and then select **Continue** when prompted about restarting the app.
 
    ![The Save button is highlighted on the toolbar.](media/api-app-configuration-save.png "Save")
 
@@ -1037,45 +1033,49 @@ In this task, you use Visual Studio to deploy the API project into an API App in
 
    ![The Contoso.WebApi project is selected, and Publish is highlighted in the context menu.](media/e4-02.png "Publish Web API")
 
-2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
+2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![On the Pick a publish target screen, App Service is selected, the Select Existing radio button is selected, and the Create Profile button is highlighted..](media/visual-studio-publish-app-service.png "Pick a publish target")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box. The Next button is highlighted.](media/vs-publish-to-azure.png "Publish API App to Azure")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your API App (resource starting with "contoso-**api**") under your hands-on-lab-SUFFIX resource group.
+3. Next, in the **Specific target** box, select **Azure App Service (Windows)**.
 
-   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-api App Service is highlighted.](media/visual-studio-publish-app-service-api.png "Select App Service")
+   ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish API App to Azure")
 
-4. Select **OK**.
+4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-5. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+   ![In the Publish dialog, The Contoso API App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-api-app-service.png "Publish API App to Azure")
+
+5. Select **Finish**.
+
+6. Back on the Visual Studio Publish page for the `Contoso.WebApi` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-api.png "Publish")
 
-6. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
+7. In the Visual Studio **Web Publish Activity** view, you should see a status that indicates the Web API was published successfully, along with the URL to the site.
 
    ![Web Publish Activity view with the publish process status and API site url](media/visual-studio-web-publish-activity-api.png "Web Publish Activity")
 
    > If you don't see the **Web Publish Activity** view, you can find it on View menu-> Other Windows -> Microsoft Azure Activity Log.
 
-7. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
+8. A web browser should open to the published site. If not, open the URL of the published Web API in a browser window. Initially, you should see a message that the page cannot be found.
 
    ![A page can't be found error message is displayed in the web browser.](media/web-api-publish-page-not-found.png "Page not found")
 
-8. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
+9. To validate the API App is function property, add `/swagger` to the end of the URL in your browser's address bar (e.g., <https://contoso-api-jjbp34uowoybc.azurewebsites.net/swagger/>). This brings up the Swagger UI page of your API, which displays a list of the available API endpoints.
 
    ![Swagger screen displayed for the API App.](media/swagger-ui.png "Validate published Web API")
 
    > **Note**: [Swagger UI](https://swagger.io/tools/swagger-ui/) automatically generates visual documentation for REST APIs following the OpenAPI Specification. It makes it easy for developers to visualize and interact with the API's endpoints without having any of the implementation logic in place.
 
-9. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
+10. You can test the functionality of the API by selecting one of the `GET` endpoints, and selecting **Try it out**.
 
-   ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
+    ![The Try it out button is highlighted under the Dependents GET endpoint](media/swagger-try-it-out.png "Swagger")
 
-10. Select **Execute**.
+11. Select **Execute**.
 
     ![The Execute button is displayed.](media/swagger-execute.png "Swagger")
 
-11. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
+12. In the Response, you should see a Response Code of 200, and JSON objects in the Response body.
 
     ![The response to the execute request is displayed.](media/swagger-execute-response.png "Swagger")
 
@@ -1117,7 +1117,7 @@ In this task, you prepare your Web App to work with the API App by adding the UR
 6. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
    - `<your-web-app-name>`: Replace with your Function App name, which you copied in the previous step.
-   - `<your-storage-account-sas-token>`: Replace with the `policies` container URL you copied into a text editor previously.
+   - `<your-api-default-host-name>`: Replace with the `policies` container URL you copied into a text editor previously.
 
    ```powershell
    $webAppName = "<your-web-app-name>"
@@ -1137,46 +1137,52 @@ In this task, you publish the `Contoso.Web` application into an Azure Web App.
 
    ![Publish in highlighted in the context menu for the Contoso.Web project.](media/vs-web-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **App Service** and choose **Select Existing**, and then select **Create Profile**.
+2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/visual-studio-publish-app-service.png "Publish")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box. The Next button is highlighted.](media/vs-publish-to-azure.png "Publish Web App to Azure")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Web App (resource starting with "contoso-**web**") under your hands-on-lab-SUFFIX resource group.
+3. Next, in the **Specific target** box, select **Azure App Service (Windows)**.
 
-   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-web App Service is highlighted.](media/vs-web-publish-app-service.png "Select App Service")
+   ![In the Publish dialog, Azure App Service (Windows) is selected and highlighted in the Specific Target box. The Next button is highlighted.](media/vs-publish-specific-target.png "Publish Web App to Azure")
 
-4. Select **OK**.
+4. Finally, in the **App Service** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-5. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
+   ![In the Publish dialog, The Contoso Web App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-web-app-service.png "Publish Web App to Azure")
+
+5. Select **Finish**.
+
+6. Back on the Visual Studio Publish page for the `Contoso.Web` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
    ![The Publish button is highlighted next to the newly created publish profile on the Publish page.](media/visual-studio-publish-web.png "Publish")
 
-6. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
+7. In the Visual Studio **Web Publish Activity** view, observe the Publish Succeeded message, along with the URL to the site.
 
    ![Web Publish Activity view with the publish process status and Web App url](media/vs-web-publish-succeeded.png "Web Publish Activity")
 
-7. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
+8. A web browser should open to the published site. If not, open the URL of the published Web App in a browser window.
 
-8. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
+9. In the PolicyConnect web page, enter the following credentials to log in, and then select **Log in**:
 
    - **Username**: demouser
    - **Password**: Password.1!!
 
    ![The credentials above are entered into the login screen for the PolicyConnect web site.](media/web-app-login.png "PolicyConnect")
 
-9. Once logged in, select **Managed Policy Holders** from the top menu.
+10. Once logged in, select **Managed Policy Holders** from the top menu.
 
-   ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
+    ![Manage Policy Holders is highlighted in the PolicyConnect web site's menu.](media/web-app-managed-policy-holders.png "PolicyConnect")
 
-10. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
+    > **Note**: It can take a few seconds for data to appear the first time the page is loaded, as the API must also be initialized.
+
+11. On the Policy Holders page, review the list of policy holder, and information about their policies. This information was pulled from your Azure SQL Database using the connection string stored in Azure Key Vault. Select the **Details** link next to one of the records.
 
     ![Policy holder data is displayed on the page.](media/web-app-policy-holders-data.png "PolicyConnect")
 
-11. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
+12. On the Policy Holder Details page, select the link under **File Path**, and notice that the result is a page not found error.
 
     ![The File Path link is highlighted on the Policy Holder Details page.](media/web-app-policy-holder-details.png "PolicyConnect")
 
-12. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
+13. Contoso is storing their policy documents on a network file share, so these are not accessible to the deployed web app. In the next exercises, you address that issue.
 
 ## Exercise 6: Upload policy documents into blob storage
 
@@ -1390,7 +1396,7 @@ In this task, you use Visual Studio to create an Azure Function. This Function s
 
 In this task, you run your Function locally through the Visual Studio debugger, to verify that it is properly configured and able to retrieve documents from the `policy` container in your Storage account.
 
-> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Chrome browser](https://www.google.com/chrome/) on your LabVM.
+> **IMPORTANT**: Internet Explorer on Windows Server 2019 does not include functionality to open PDF documents. To view the downloaded policy documents in this task, you need to [download and install the Microsoft Edge browser](https://www.microsoft.com/edge) for Windows 10 on your LabVM.
 
 1. In the Visual Studio Solution Explorer, right-click the `Contoso.FunctionApp` project, and then select **Debug** and **Start new instance**.
 
@@ -1437,15 +1443,15 @@ In this task, you deploy your function into an Azure Function App, where the web
 
    ![Publish in highlighted in the context menu for the Contoso.FunctionApp project.](media/vs-function-app-publish.png "Publish")
 
-2. On the **Pick a publish target** dialog, select **Azure Functions Consumption Plan**, choose **Select Existing**, leave Run from package file checked, and then select **Create Profile**.
+2. On the **Publish** dialog, select **Azure** in the Target box and select **Next**.
 
-   ![Select existing is selected and highlighted on the Pick a publish target dialog.](media/vs-function-app-publish-target.png "Publish")
+   ![In the Publish dialog, Azure is selected and highlighted in the Target box.](media/vs-publish-function-to-azure.png "Publish Function App to Azure")
 
-3. On the App Service dialog, select your Azure subscription, logging in if necessary on with your credentials and ensure the subscription you published earlier is selected, then select your Function App (resource starting with "contoso-**func**") under your hands-on-lab-SUFFIX resource group.
+3. Next, in the **Function instance** box, select your subscription, expand the hands-on-lab-SUFFIX resource group, and select the API App.
 
-   ![Select Existing App Service window. App Services are listed under hands-on lab resource group and contoso-func App Service is highlighted.](media/vs-function-app-publish-app-service.png "Select App Service")
+   ![In the Publish dialog, The Contoso Function App is selected and highlighted under the hands-on-lab-SUFFIX resource group.](media/vs-publish-function-app-service.png "Publish Function App to Azure")
 
-4. Select **OK**.
+4. Ensure **Run from package file** is checked and then select **Finish**.
 
 5. Back on the Visual Studio Publish page for the `Contoso.FunctionApp` project, select **Publish** to start the process of publishing your Web API to your Azure API App.
 
@@ -1463,15 +1469,15 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
    ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
 
-2. On the Function App blade, select the **Platform features** tab and then select **All settings** under the General Settings section.
+2. On the Function App blade, select **Application Insights** under Settings from the left-hand menu.
 
-   ![The Platform features tab is selected and highlighted and All settings is highlighted under the General Settings section.](media/function-app-platform-features-all-settings.png "Function App Platform Features")
+   ![The Application Insights menu is highlighted under Settings for the Function App.](media/function-app-application-insights-menu.png "Application Insights menu")
 
-3. On the Function App blade that opens, select **Application insights** under **Settings** from the left-hand menu and then select **Turn on Application Insights**.
+3. On the Application Insights blade, select **Turn on Application Insights**.
 
-   ![The Configure Application Insights to capture function logs is highlighted on the function app blade.](media/function-app-add-app-insights.png "Function App")
+   ![The Turn on Application Insights button is highlighted.](media/function-app-add-app-insights.png "Turn on Application Insights for Function App")
 
-4. On the Application Insights blade, select **Create new resource** and enter a globally unique name, such as contoso-app-insights-SUFFIX, and then select **Apply**.
+4. On the Application Insights blade, select **Create new resource**, accept the default name provided, and then select **Apply**.
 
    ![The Create New Application Insights blade is displayed with a unique name set under Create new resource.](media/function-app-app-insights.png "Add Application Insights")
 
@@ -1530,28 +1536,24 @@ In this task, you add the URL of your Azure Function App to the Application sett
 
    ![The Web App Name value is highlighted in the output of the command above.](media/azure-cloud-shell-az-webapp-list-web-app-name.png "Azure Cloud Shell")
 
-8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, and on the overview blade, select **Function app settings**.
-
-   ![Function app settings is highlighted under Configured Features](media/function-app-configured-features-app-settings.png "Function App")
-
-9. On the Function app settings tab, locate the **Host Keys** section, and copy the **default** key by selecting the **Copy** Action link to the right of the key. Paste the value into a text editor for reference below.
+8. The last setting you need is the Default Host Key for your Function App. To get this, navigate to your Function App resource in the Azure portal, select **App keys** under Functions from the left-hand menu, then select **default** under Host Keys, and copy the **Value**.
 
    ![The Copy button for the default host key is highlighted.](media/function-app-settings-default-host-key.png "Function App")
 
-10. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
+9. Next replace the tokenized values in the following command as specified below, and then run it from the Azure Cloud Shell command prompt.
 
-    - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
-    - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
-    - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
+   - `<your-web-app-name>`: Replace with your Web App name, which you copied in above.
+   - `<your-function-app-default-host-name>`: Replace with the `DefaultHostName` of your Function App, which you copied into a text editor above.
+   - `<your-function-app-default-host-key>`: Replace with the default host key of your Function App, which you copied into a text editor above.
 
-    ```powershell
-    $webAppName = "<your-web-app-name>"
-    $defaultHostName = "<your-function-app-default-host-name>"
-    $defaultHostKey = "<your-function-app-default-host-key>"
-    az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
-    ```
+   ```powershell
+   $webAppName = "<your-web-app-name>"
+   $defaultHostName = "<your-function-app-default-host-name>"
+   $defaultHostKey = "<your-function-app-default-host-key>"
+   az webapp config appsettings set -n $webAppName -g $resourceGroup --settings "PolicyDocumentsPath=https://$defaultHostName/api/policies/{policyHolder}/{policyNumber}?code=$defaultHostKey"
+   ```
 
-11. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
+10. In the output, the newly added `PolicyDocumentsPath` setting in your Web App's application settings is visible.
 
     ![The ApiUrl app setting in highlighted in the output of the previous command.](media/azure-cloud-shell-az-webapp-config-output-policy-documents-path.png "Azure Cloud Shell")
 
@@ -1623,9 +1625,9 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
    ![On the Connect to your data tab, the values specified above are entered in to the form.](media/add-azure-search-connect-to-your-data.png "Add Azure Search")
 
-5. Select **Next: Add cognitive search (Optional)**.
+5. Select **Next: Add cognitive skills (Optional)**.
 
-6. On the **Add cognitive search** tab, set the following configuration:
+6. On the **Add cognitive skills** tab, set the following configuration:
 
    - Expand Attach Cognitive Services, and select your Cognitive Services account.
    - Expand Add enrichments:
@@ -1832,7 +1834,7 @@ In this task, you import your Function App into APIM.
 
 2. On the Create from Function App dialog, select the **Browse** button next to the Function App field.
 
-3. In the Import Azure Functions blade, select **Function App** and then select your Function App from the list, and choose **Select**.
+3. In the Import Azure Functions blade, select **Function App Configure required settings** and then select your Function App from the list, and choose **Select**.
 
    ![The Select Function App dialog is displayed, and hands-on-lab-SUFFIX is entered into the filter box.](media/select-function-app.png "Select Function App")
 
@@ -1847,6 +1849,12 @@ In this task, you import your Function App into APIM.
    ![On the Create from Function App dialog, the values specified above are entered into the form.](media/apim-create-from-function-app.png "API Management")
 
 6. Select **Create**.
+
+7. After the Function App API is created, select it from the left-hand menu, select the **Settings** tab, and under **Products** select **Unlimited**.
+
+   ![On the Settings tab for the newly created Function App managed API, Unlimited is highlighted in the Products field.](media/apim-create-from-function-app-settings.png "API settings for Function App")
+
+8. Select **Save**.
 
 ### Task 3: Open Developer Portal and retrieve you API key
 
