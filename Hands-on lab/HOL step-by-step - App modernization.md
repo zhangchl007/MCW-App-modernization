@@ -1627,6 +1627,8 @@ Contoso has requested the ability to perform full-text searching on policy docum
 
 5. Select **Next: Add cognitive skills (Optional)**.
 
+   > **Note**: Skipping this step will cause issues in Task 2, as the Free (Limited enrichments) option restricts the number of documents indexed to 20. If you use the Free cognitive services option, you will receive a message that indexing was stopped after reaching the limit.
+
 6. On the **Add cognitive skills** tab, set the following configuration:
 
    - Expand Attach Cognitive Services, and select your Cognitive Services account.
@@ -1667,6 +1669,8 @@ In this task, you run a query against your search index to review the enrichment
 2. On the Search service blade, select **Indexers**.
 
    ![In Contoso Insurance search service, Indexers is highlighted and selected.](media/azure-search-indexers.png "Search Service")
+
+   > **Note**: If you see a message that the indexer was stopped because the free skillset execution quota has been reached, you will need to return to Exercise 8, Task 1, Step 6, and select your cognitive services account.
 
 3. Note the status of the policy-docs-indexer. Once the indexer has run, it should display a status of **Success**. If the status is **In progress**, select **Refresh** every 20-30 seconds until it changes to **Success**.
 
