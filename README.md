@@ -1,4 +1,4 @@
-# Effective November 30, 2020, this workshop will be archived.  Materials remain available through November but are no longer being maintained.
+## Effective November 30, 2020, this workshop will be archived.  Materials remain available through November but are no longer being maintained.
 
 # App modernization
 
