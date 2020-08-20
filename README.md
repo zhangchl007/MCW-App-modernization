@@ -1,4 +1,4 @@
-## Effective November 30, 2020, this workshop will be archived.  Materials remain available through November but are no longer being maintained.
+## Effective November 30, 2020 this workshop will be archived.  Materials remain available through November but are no longer being maintained.
 
 # App modernization
 
@@ -60,16 +60,3 @@ At the end of this hands-on lab, your ability to build solutions for modernizing
 - [Reference architecture for Managed Web Applications](https://docs.microsoft.com/azure/architecture/reference-architectures/app-service-web-app/basic-web-app)
 - [Azure application architecture guide](https://docs.microsoft.com/azure/architecture/guide/)
 
-## Help & Support
-
-We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.
-
-**_Having trouble?_**
-
-- First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
-- Next, submit an issue with a detailed description of the problem.
-- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.
-
-If you are planning to present a workshop, _review and test the materials early_! We recommend at least two weeks prior.
-
-### Please allow 5 - 10 business days for review and resolution of issues.
