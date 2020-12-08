@@ -818,7 +818,7 @@ In this task, you use the Azure Cloud Shell and Azure Command Line Interface (CL
    $resourceGroup = "<your-resource-group-name>"
    az ad sp create-for-rbac -n "https://contoso-apps" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
    ```
-  >**Note**: If you get insufficient access error, make sure you are assigned member role on AD tenant and your account is owner role for the Subscription.  Even after the above 2 conditions satisfied, you get a the same error that is possibly because the service principle name you used already being used in the same tenant, try the following command. (Remember to use the same name on upcoming tasks instead of `https://contoso-apps`.)
+  >**Note**: If you get an insufficient access error, make sure you have an assigned member role within your Azure AD tenant and that your account includes owner rights for the subscription. If the error persists, it’s possible the service principal name already exists in your tenant. Try the command below and remember you will need to use this modified service principal name in the upcoming tasks (instead of `https://contoso-apps`):
   
   ```powershell
   az ad sp create-for-rbac -n "https://contoso-apps-{SUFFIX}" --role reader --scopes subscriptions/$subscriptionId/resourceGroups/$resourceGroup
