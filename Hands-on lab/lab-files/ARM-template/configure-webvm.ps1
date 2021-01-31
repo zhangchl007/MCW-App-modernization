@@ -23,8 +23,15 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 $branchName = "2021updates"
 
 # Download and extract the starter solution files
-Invoke-WebRequest "https://github.com/microsoft/MCW-App-modernization/archive/$branchName.zip" -OutFile 'C:\MCW.zip'
-Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
+# ZIP File sometimes gets corrupted
+New-Item -ItemType directory -Path C:\MCW
+while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
+{
+    (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/archive/$branchName.zip", 'C:\MCW.zip')
+    Write-Host -NoNewLine 'Press any key to continue...';
+    $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
+    Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
+}
 
 # Copy Web Site Files
 Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
@@ -33,11 +40,11 @@ Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on l
 ((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.json
 
 # Download and install .NET Core 2.2
-Invoke-WebRequest 'https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe' -OutFile 'C:\dotnet-hosting-2.2.2-win.exe'
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe', 'C:\dotnet-hosting-2.2.2-win.exe')
 $pathArgs = {C:\dotnet-hosting-2.2.2-win.exe /Install /Quiet /Norestart /Logs log.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Download and install SQL Server Management Studio
-Invoke-WebRequest 'https://aka.ms/ssmsfullsetup' -OutFile 'C:\SSMS-Setup.exe'
+(New-Object System.Net.WebClient).DownloadFile('https://aka.ms/ssmsfullsetup', 'C:\SSMS-Setup.exe')
 $pathArgs = {C:\SSMS-Setup.exe /Install /Quiet /Norestart /Logs log.txt}
 Invoke-Command -ScriptBlock $pathArgs
