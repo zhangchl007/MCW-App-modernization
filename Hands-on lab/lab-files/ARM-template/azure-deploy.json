@@ -89,7 +89,7 @@
             "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', variables('webNetworkInterfaceName'))]",
-                "[concat('Microsoft.Compute/virtualMachines/', variables('sqlVirtualMachineName'))]"
+                "[concat('Microsoft.Network/networkInterfaces/', variables('sqlNetworkInterfaceName'))]"
             ],
             "properties": {
                 "hardwareProfile": {
