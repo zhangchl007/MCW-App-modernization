@@ -36,6 +36,6 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnectionString": "Server=DESKTOP-AEIDP4V\\SQL2019;Database=parts;Trusted_Connection=True;"
+    "DefaultConnectionString": ""
   }
 }

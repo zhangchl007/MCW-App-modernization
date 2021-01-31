@@ -40,6 +40,3 @@ Invoke-Command -ScriptBlock $pathArgs
 Invoke-WebRequest 'https://aka.ms/ssmsfullsetup' -OutFile 'C:\SSMS-Setup.exe'
 $pathArgs = {C:\SSMS-Setup.exe /Install /Quiet /Norestart /Logs log.txt}
 Invoke-Command -ScriptBlock $pathArgs
-
-
-https://raw.githubusercontent.com/microsoft/MCW-App-modernization/2021updates/Hands-on%20lab/lab-files/src/src/PartsUnlimitedWebsite/config.release.json
