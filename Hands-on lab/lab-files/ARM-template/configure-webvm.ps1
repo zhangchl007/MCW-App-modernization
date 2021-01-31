@@ -28,8 +28,6 @@ New-Item -ItemType directory -Path C:\MCW
 while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 {
     (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/archive/$branchName.zip", 'C:\MCW.zip')
-    Write-Host -NoNewLine 'Press any key to continue...';
-    $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown');
     Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
