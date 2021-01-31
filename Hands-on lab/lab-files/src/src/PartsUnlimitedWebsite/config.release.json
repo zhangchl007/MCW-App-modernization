@@ -21,7 +21,7 @@
     }
   },
   "ConnectionStrings": {
-    "DefaultConnectionString": ""
+    "DefaultConnectionString": "SETCONNECTIONSTRING"
   }
 }
 
