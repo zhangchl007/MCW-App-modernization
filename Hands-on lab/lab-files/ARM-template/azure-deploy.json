@@ -141,7 +141,7 @@
                             "fileUris": [
                                 "[variables('webCustomScriptUri')]"
                             ],
-                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('webCustomScriptFileName'), ' ', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('sqlPublicIpAddressName'))).IpAddress)]"
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('webCustomScriptFileName'), ' ', reference(resourceId('Microsoft.Network/publicIPAddresses',variables('sqlPublicIpAddressName'))).IpAddress, ' ', parameters('adminPassword'))]"
                         }
                     },
                     "dependsOn": [
@@ -211,7 +211,7 @@
                             "fileUris": [
                                 "[variables('sqlCustomScriptUri')]"
                             ],
-                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('sqlCustomScriptFileName'))]"
+                            "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -File ', variables('sqlCustomScriptFileName'), ' ', parameters('adminPassword'))]"
                         }
                     },
                     "dependsOn": [

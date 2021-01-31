@@ -1,3 +1,7 @@
+param (
+    [Parameter(Mandatory=$False)] [string] $SqlPass = ""
+)
+
 # Disable Internet Explorer Enhanced Security Configuration
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
@@ -50,7 +54,7 @@ function Setup-Sql {
     $Cmd = "USE [master] CREATE DATABASE [$DatabaseName]"
     Invoke-Sqlcmd $Cmd -QueryTimeout 3600 -ServerInstance $ServerName
 
-    Invoke-Sqlcmd "CREATE LOGIN PUWebSite WITH PASSWORD = 'r2gafWdLY7zwi7YbJqUs9@W33W6UY9';" -QueryTimeout 3600 -ServerInstance $ServerName
+    Invoke-Sqlcmd "CREATE LOGIN PUWebSite WITH PASSWORD = '$SqlPass';" -QueryTimeout 3600 -ServerInstance $ServerName
     Invoke-Sqlcmd "USE PartsUnlimited;CREATE USER PUWebSite FOR LOGIN [PUWebSite];EXEC sp_addrolemember 'db_owner', 'PUWebSite'; " -QueryTimeout 3600 -ServerInstance $ServerName
 
     Invoke-Sqlcmd "EXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'LoginMode', REG_DWORD, 2" -QueryTimeout 3600 -ServerInstance $ServerName

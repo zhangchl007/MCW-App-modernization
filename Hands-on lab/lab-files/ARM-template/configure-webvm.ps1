@@ -1,5 +1,6 @@
 param (
-    [Parameter(Mandatory=$False)] [string] $SqlIP = ""
+    [Parameter(Mandatory=$False)] [string] $SqlIP = "",
+    [Parameter(Mandatory=$False)] [string] $SqlPass = ""
 )
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
@@ -29,7 +30,7 @@ Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
 
 # Replace SQL Connection String
-((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=r2gafWdLY7zwi7YbJqUs9@W33W6UY9;") | Set-Content -Path C:\inetpub\wwwroot\config.json
+((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.json
 
 # Download and install .NET Core 2.2
 Invoke-WebRequest 'https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe' -OutFile 'C:\dotnet-hosting-2.2.2-win.exe'
