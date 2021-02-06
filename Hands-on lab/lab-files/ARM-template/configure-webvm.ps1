@@ -18,6 +18,8 @@ function Disable-InternetExplorerESC {
 # Disable IE ESC
 Disable-InternetExplorerESC
 
+
+
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 $branchName = "2021updates"
@@ -39,8 +41,8 @@ Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on l
 
 # Download and install App Service Migration Assistant
 (New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
-$pathArgs = {C:\AppServiceMigrationAssistant.msi /qn /l*v C:\asma_install.txt}
-Invoke-Command -ScriptBlock $pathArgs
+$pathArgs = {C:\AppServiceMigrationAssistant.msi /l* C:\asma_install.txt}
+Invoke-Command -ScriptBlock $pathArgs 
 
 # Download and install .NET Core 2.2
 (New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe', 'C:\dotnet-hosting-2.2.2-win.exe')
