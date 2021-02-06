@@ -46,3 +46,9 @@ Invoke-Command -ScriptBlock $pathArgs
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/ssmsfullsetup', 'C:\SSMS-Setup.exe')
 $pathArgs = {C:\SSMS-Setup.exe /Install /Quiet /Norestart /Logs log.txt}
 Invoke-Command -ScriptBlock $pathArgs
+
+# Download and install App Service Migration Assistant
+(New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
+Start-Process -file 'C:\AppServiceMigrationAssistant.msi' -arg '/qn /l*v C:\asma_install.txt' -passthru | wait-process
+
+
