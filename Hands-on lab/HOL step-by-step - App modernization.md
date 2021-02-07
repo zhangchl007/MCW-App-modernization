@@ -167,6 +167,10 @@ Duration: {TODO} minutes
 
 The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's web site for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
+### Task 1: Perform assessment for migration to Azure App Service
+
+Parts Unlimited would like an assessment to see what potential issues they might need to address in moving their application to Azure App Service. You will use the [App Service migration assistant](https://appmigration.microsoft.com/) to assess the application and run various readiness checks.
+
 1. In the [Azure portal](https://portal.azure.com), navigate to your **WebVM** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **WebVM** VM from the list of resources.
 
 ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
@@ -205,36 +209,40 @@ The first step for Parts Unlimited is to assess whether their apps have dependen
 9. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
 
    ![Assessment report result is shown. There are 13 success metrics presented. The next button is highlighted.](media/appservicemigration-report.png)
+   
+### Task 2: Migrate the web application to Azure App Service
 
-10. In order to continue with the migration of our web site Azure App Service Migration Assistant needs access to our Azure Subscription. Select **Copy Code & Open Browser** button to be redirected to the Azure Portal.
+After reviewing the assessment results, you have ensured the web application is a good candidate for migration to Azure App Service. Now, we will continue the process with the migration of the application.
+
+1. In order to continue with the migration of our web site Azure App Service Migration Assistant needs access to our Azure Subscription. Select **Copy Code & Open Browser** button to be redirected to the Azure Portal.
 
    ![Azure App Service Migration Assistant's Azure Login dialog is open. A device code is presented. Copy Code & Open Browser button is highlighted.](media/appservicemigration-azure-login.png)
    
-11. At its first launch, Internet Explorer will ask you to choose a security and compatibility profile. Make sure recommended settings **(1)** are selected. Select ** OK (2)** to move to the next step.
+2. At its first launch, Internet Explorer will ask you to choose a security and compatibility profile. Make sure recommended settings **(1)** are selected. Select ** OK (2)** to move to the next step.
 
     ![Internet Explorer security and compatibility dialog is open. Recommended settings are selected. OK button is highlighted](media/internet-explorer-security-dialog.png)
 
-12. Right-click the text box and select **Paste (1)** to paste your login code. Select **Next** to give subscription access to App Service Migration Assistant.
+3. Right-click the text box and select **Paste (1)** to paste your login code. Select **Next** to give subscription access to App Service Migration Assistant.
 
 ![Azure Code Login web site is open. Context menu for the code textbox is shown. Paste command from the context menu is highlighted. The next button is highlighted as a second step. ](media/appservicemigration-azure-login-code.png)
 
-13. Continue the login process with your Azure Subscription credentials. When you see the message that says **You have signed in to the Azure App Service Migration Assistant application on your device** close the browser window and return to the App Service Migration Assistant.
+4 Continue the login process with your Azure Subscription credentials. When you see the message that says **You have signed in to the Azure App Service Migration Assistant application on your device** close the browser window and return to the App Service Migration Assistant.
 
 ![Azure Login process is complete. A message dialog is shown that indicates the login process is a success. ](media/appservicemigration-azure-login-complete.png)
 
-13. Select the Azure Migrate project we created **(1)** in the previous exercise to submit the results of our migration. Select **Next** to continue.
+5. Select the Azure Migrate project we created **(1)** in the previous exercise to submit the results of our migration. Select **Next** to continue.
 
 ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png)
 
-14. In order to migrate Parts Unlimited web site we have to create an App Service Plan and an App Service. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. For the App Service in Azure we have to provude a site name that is globally unique. We suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
+6. In order to migrate Parts Unlimited web site we have to create an App Service Plan and an App Service. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. For the App Service in Azure we have to provude a site name that is globally unique. We suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
 
 ![Deployment options are presented. Existing lab resource group is selected as destination. Destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png)
 
-15. We have just completed the migration of Parts Unlimited web site from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
+7. We have just completed the migration of Parts Unlimited web site from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
 
 ![Azure Portal is open. The search box is filled with the migrate keyword. Azure Migrate is highlighted from the result list.](media/find-azure-migrate.png)
 
-16. Switch to the **Web Apps (1)** section. See the number of discovered web servers, assessed websites **(2)** and migrated websites change **(3)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. 
+8. Switch to the **Web Apps (1)** section. See the number of discovered web servers, assessed websites **(2)** and migrated websites change **(3)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. 
 
 ![Azure Migrate shows web app assessment and migration reports.](media/azure-migrate-web-app-migration-done.png)
 
