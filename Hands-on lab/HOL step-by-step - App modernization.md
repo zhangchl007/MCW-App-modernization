@@ -426,7 +426,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![In the SSMS Object Explorer, Databases, parts, and Tables are expanded, showing the tables created by the deploy schema script. Security, Users are expended to show database user PUWebSite is migrated as well.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
 
-### Task 4: Retrieve connection information for SQL databases
+### Task 3: Retrieve connection information for SQL databases
 
 In this task, you use the Azure Cloud shell to retrieve the IP address of the SqlServer2008 VM, which is needed to connect to your SqlServer2008 VM from DMS.
 
@@ -476,9 +476,9 @@ In this task, you use the Azure Cloud shell to retrieve the IP address of the Sq
 
 9. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
-### Task 5: Migrate the database using the Azure Database Migration Service
+### Task 4: Migrate the database using the Azure Database Migration Service
 
-At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `ContosoInsurance` database into the new Azure SQL Database using the Azure Database Migration Service.
+At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `PartsUnlimited` database into the new Azure SQL Database using the Azure Database Migration Service.
 
 > The [Azure Database Migration Service](https://docs.microsoft.com/azure/dms/dms-overview) integrates some of the functionality of Microsoft existing tools and services to provide customers with a comprehensive, highly available database migration solution. The service uses the Data Migration Assistant to generate assessment reports that provide recommendations to guide you through the changes required prior to performing a migration. When you're ready to begin the migration process, Azure Database Migration Service performs all of the required steps.
 
@@ -492,58 +492,56 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
 3. On the New migration project blade, enter the following:
 
-   - **Project name**: Enter DataMigration.
+   - **Project name (1)**: Enter DataMigration.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
    - **Choose type of activity**: Select **Offline data migration** and select **Save**.
 
    ![The New migration project blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-new-migration-project-blade.png "New migration project")
 
-4. Select **Create and run activity**.
+4. Select **Create and run activity (2)**.
 
 5. On the Migration Wizard **Select source** blade, enter the following:
 
-   - **Source SQL Server instance name**: Enter the IP address of your SqlServer2008 VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
-   - **Authentication type**: Select SQL Authentication.
-   - **Username**: Enter **WorkshopUser**
-   - **Password**: Enter **Password.1!!**
-   - **Connection properties**: Check both Encrypt connection and Trust server certificate.
+   - **Source SQL Server instance name (1)**: Enter the IP address of your SqlServer2008 VM that you copied into a text editor in the previous task. For example, `51.143.12.114`.
+   - **Authentication type (2)**: Select SQL Authentication.
+   - **Username (3)**: Enter **PUWebSite**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+   - **Connection properties (5)**: Check both Encrypt connection and Trust server certificate.
 
    ![The Migration Wizard Select source blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-source.png "Migration Wizard Select source")
 
-6. Select **Save**.
+6. Select **Next: Select target >> (6)**.
 
 7. On the Migration Wizard **Select target** blade, enter the following:
 
-   - **Target server name**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., contosoinsurance-jt7yc3zphxfda.database.windows.net), which you copied in the previous task.
-   - **Authentication type**: Select SQL Authentication.
-   - **Username**: Enter **demouser**
-   - **Password**: Enter **Password.1!!**
+   - **Target server name (1)**: Enter the `fullyQualifiedDomainName` value of your Azure SQL Database (e.g., parts-xwn4o7fy6bcbg.database.windows.net), which you copied in the previous task.
+   - **Authentication type (2)**: Select SQL Authentication.
+   - **Username (3)**: Enter **demouser**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
    - **Connection properties**: Check Encrypt connection.
 
    ![The Migration Wizard Select target blade is displayed, with the values specified above entered into the appropriate fields.](media/dms-migration-wizard-select-target.png "Migration Wizard Select target")
 
-8. Select **Save**.
+8. Select **Next: Map to target databases >> (5)**.
 
-9. On the Migration Wizard **Map to target databases** blade, confirm that **ContosoInsurance** is checked as the source database, and that it is also the target database on the same line, then select **Save**.
+9. On the Migration Wizard **Map to target databases** blade, confirm that **PartsUnlimited (1)** is checked as the source database, and **parts (2)** is the target database on the same line, then select **Next: Configuration migration settings >> (3)**.
 
    ![The Migration Wizard Map to target database blade is displayed, with the ContosoInsurance line highlighted.](media/dms-migration-wizard-map-to-target-databases.png "Migration Wizard Map to target databases")
 
-10. Select **Save**.
+10. On the Migration Wizard **Configure migration settings** blade, expand the **PartsUnlimited (1)** database and verify all the tables are selected **(2)**.
 
-11. On the Migration Wizard **Configure migration settings** blade, expand the **ContosoInsurance** database and verify all the tables are selected.
+    ![The Migration Wizard Configure migration settings blade is displayed, with the expand arrow for PartsUnlimited highlighted, and all the tables checked.](media/dms-migration-wizard-configure-migration-settings.png "Migration Wizard Configure migration settings")
 
-    ![The Migration Wizard Configure migration settings blade is displayed, with the expand arrow for ContosoInsurance highlighted, and all the tables checked.](media/dms-migration-wizard-configure-migration-settings.png "Migration Wizard Configure migration settings")
-
-12. Select **Save**.
+12. Select **Next: Summary >> (3)**.
 
 13. On the Migration Wizard **Summary** blade, enter the following:
 
-    - **Activity name**: Enter ContosoDataMigration.
+    - **Activity name**: Enter PartsUnlimitedDataMigration.
 
-    ![The Migration Wizard summary blade is displayed, with ContosoDataMigration entered into the name field.](media/dms-migration-wizard-migration-summary.png "Migration Wizard Summary")
+    ![The Migration Wizard summary blade is displayed, with PartsUnlimitedDataMigration entered into the name field.](media/dms-migration-wizard-migration-summary.png "Migration Wizard Summary")
 
-14. Select **Run migration**.
+14. Select **Start migration**.
 
 15. Monitor the migration on the status screen that appears. Select the refresh icon in the toolbar to retrieve the latest status.
 
@@ -551,15 +549,13 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     > The migration takes approximately 2 - 3 minutes to complete.
 
-16. When the migration is complete, you should see the status as **Completed**, but may also see a status of **Warning**.
+16. When the migration is complete, you should see the status as **Completed**.
 
     ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-complete.png "Migration with Completed status")
 
-    ![On the Migration job blade, the status of Completed is highlighted.](media/dms-migration-wizard-status-warning.png "Migration with Warning status")
+17. When the migration is complete, select the **PartsUnlimited** migration item.
 
-17. When the migration is complete, select the **ContosoInsurance** migration item.
-
-    ![The ContosoInsurance migration item is highlighted on the ContosoDataMigration blade.](media/dms-migration-completion.png "ContosoDataMigration details")
+    ![The ContosoInsurance migration item is highlighted on the PartsUnlimitedDataMigration blade.](media/dms-migration-completion.png "PartsUnlimitedDataMigration details")
 
 18. Review the database migration details.
 
