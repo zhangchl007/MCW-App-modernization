@@ -338,7 +338,27 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png)
     
-### Task 2: Migrate the database schema using the Data Migration Assistant
+### Task 2: Retrieve connection information for SQL databases
+
+In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. Both information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
+
+1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP addess from the list of resources.
+
+    ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png)
+
+2. In the **Overview** blade select **Copy** to copy the public IP address and paste the value into a text editor, such as Notepad.exe, for later reference.
+
+    ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png)
+
+3. Go back to the resource list and navigate to your **SQL database** resource by selecting the **parts** SQL database resource from the resources list.
+
+   ![The parts SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
+   
+4. On the Overview blade of your SQL database, copy the **Server name** and paste the value into a text editor, such as Notepad.exe, for later reference.
+
+   ![The server name value is highlighted on the SQL database Overview blade.](media/sql-database-server-name.png "SQL database")
+   
+### Task 3: Migrate the database schema using the Data Migration Assistant
 
 After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
@@ -370,17 +390,9 @@ After you have reviewed the assessment results and you have ensured the database
 
 5. Select **Next (7)**.
 
-6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **parts** SQL database resource from the list of resources.
+6. On the **Select target** tab, enter the following:
 
-   ![The parts SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
-
-7. On the Overview blade of your SQL database, copy the **Server name**.
-
-   ![The server name value is highlighted on the SQL database Overview blade.](media/sql-database-server-name.png "SQL database")
-
-8. Return to DMA, and on the **Select target** tab, enter the following:
-
-   - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
+   - **Server name (1)**: Paste the server name of your Azure SQL Database you copied into a text editor in the previous task.
    - **Authentication type (2)**: Select SQL Server Authentication.
    - **Username (3)**: Enter **demouser**
    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
@@ -390,27 +402,27 @@ After you have reviewed the assessment results and you have ensured the database
 
    ![The Select target tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/data-migration-assistant-migration-select-target.png "Data Migration Assistant Select target")
 
-9. Select **Next (8)**.
+7. Select **Next (8)**.
 
-10. On the **Select objects** tab, leave all the objects checked **(1)**, and select **Generate SQL script (2)**.
+8. On the **Select objects** tab, leave all the objects checked **(1)**, and select **Generate SQL script (2)**.
 
     ![The Select objects tab of the Data Migration Assistant is displayed, with all the objects checked.](media/data-migration-assistant-migration-select-objects.png "Data Migration Assistant Select target")
 
-11. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are not blocking issues **(1)**.
+9. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are not blocking issues **(1)**.
 
     ![The Script & deploy schema tab of the Data Migration Assistant is displayed, with the generated script shown.](media/data-migration-assistant-migration-script-and-deploy-schema.png "Data Migration Assistant Script & deploy schema")
 
-12. Select **Deploy schema (2)**.
+10. Select **Deploy schema (2)**.
 
-13. After the schema is deployed, review the deployment results, and ensure there were no errors.
+11. After the schema is deployed, review the deployment results, and ensure there were no errors.
 
     ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
     
-14. Launch SQL Server Management Studio (SSMS) on the SqlServer2008 VM from the Windows Start menu by typing "sql server management" **(1)** into the search bar, and then selecting **SQL Server Management Studio 17 (2)** in the search results.
+12. Launch SQL Server Management Studio (SSMS) on the SqlServer2008 VM from the Windows Start menu by typing "sql server management" **(1)** into the search bar, and then selecting **SQL Server Management Studio 17 (2)** in the search results.
 
    ![In the Windows Start menu, "sql server management" is entered into the search bar, and SQL Server Management Studio 17 is highlighted in the Windows start menu search results.](media/smss-windows-search.png "SQL Server Management Studio 17")
 
-14. Connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+13. Connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
 
     - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
     - **Authentication type (2)**: Select SQL Server Authentication.
@@ -420,61 +432,11 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
 
-15. Select **Connect (6)**.
+14. Select **Connect (6)**.
 
-16. Once connected, expand **Databases**, and expand **parts**, then expand **Tables**, and observe the schema has been created **(1)**. Expand **Security > Users** to observe that the database user is migrated as well **(2)**.
+15. Once connected, expand **Databases**, and expand **parts**, then expand **Tables**, and observe the schema has been created **(1)**. Expand **Security > Users** to observe that the database user is migrated as well **(2)**.
 
     ![In the SSMS Object Explorer, Databases, parts, and Tables are expanded, showing the tables created by the deploy schema script. Security, Users are expended to show database user PUWebSite is migrated as well.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
-
-### Task 3: Retrieve connection information for SQL databases
-
-In this task, you use the Azure Cloud shell to retrieve the IP address of the SqlServer2008 VM, which is needed to connect to your SqlServer2008 VM from DMS.
-
-1. In the [Azure portal](https://portal.azure.com), select the Azure Cloud Shell icon from the top menu.
-
-   ![The Azure Cloud Shell icon is highlighted in the Azure portal's top menu.](media/cloud-shell-icon.png "Azure Cloud Shell")
-
-2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
-
-   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
-
-3. If prompted that you have no storage mounted, select the subscription you are using for this hands-on lab and select **Create storage**.
-
-   ![In the You have no storage mounted dialog, a subscription has been selected, and the Create Storage button is highlighted.](media/cloud-shell-create-storage.png "Azure Cloud Shell")
-
-   > **Note**: If creation fails, you may need to select **Advanced settings** and specify the subscription, region and resource group for the new storage account.
-
-4. After a moment, a message that you have successfully requested a Cloud Shell appears, and a PS Azure prompt is displayed.
-
-   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
-
-5. At the prompt, enter the following command, **replacing `<your-resource-group-name>`** with the name resource group:
-
-   ```powershell
-   $resourceGroup = "<your-resource-group-name>"
-   ```
-
-6. Next, retrieve the public IP address of the SqlServer2008 VM, which is used to connect to the database on that server. Enter and run the following PowerShell command:
-
-   ```powershell
-   az vm list-ip-addresses -g $resourceGroup -n SqlServer2008 --output table
-   ```
-
-   > **Note**: If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab, and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
-
-7. Within the output of the command above, locate and copy the value of the `ipAddress` property within the `publicIPAddresses` object. Paste the value into a text editor, such as Notepad.exe, for later reference.
-
-   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the publicIpAddress for the SqlServer2008 VM is highlighted.](media/cloud-shell-az-vm-list-ip-addresses.png "Azure Cloud Shell")
-
-8. Next, run a second command to retrieve the server name of your Azure SQL Database:
-
-   ```powershell
-   az sql server list -g $resourceGroup
-   ```
-
-   ![The output from the az sql server list command is displayed in the Cloud Shell, and the fullyQualifiedDomainName for the server is highlighted.](media/cloud-shell-az-sql-server-list.png "Azure Cloud Shell")
-
-9. Copy the **fullyQualifiedDomainName** value into a text editor for use below.
 
 ### Task 4: Migrate the database using the Azure Database Migration Service
 
