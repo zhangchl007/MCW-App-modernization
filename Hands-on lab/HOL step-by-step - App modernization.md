@@ -338,7 +338,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png)
     
-### Task 3: Migrate the database schema using the Data Migration Assistant
+### Task 2: Migrate the database schema using the Data Migration Assistant
 
 After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
@@ -346,33 +346,33 @@ After you have reviewed the assessment results and you have ensured the database
 
 2. In the New project dialog, enter the following:
 
-   - **Project type**: Select Migration.
-   - **Project name**: Enter Migration.
+   - **Project type (1)**: Select Migration.
+   - **Project name (2)**: Enter Migration.
    - **Source server type**: Select SQL Server.
    - **Target server type**: Select Azure SQL Database.
-   - **Migration scope**: Select Schema only.
+   - **Migration scope (3)**: Select Schema only.
 
    ![The above information is entered in the New project dialog box.](media/data-migration-assistant-new-project-migration.png "New Project dialog")
 
-3. Select **Create**.
+3. Select **Create (4)**.
 
 4. On the **Select source** tab, enter the following:
 
-   - **Server name**: Enter **SQLSERVER2008**.
-   - **Authentication type**: Select **SQL Server Authentication**.
-   - **Username**: Enter **WorkshopUser**
-   - **Password**: Enter **Password.1!!**
+   - **Server name (1)**: Enter **SQLSERVER2008**.
+   - **Authentication type (2)**: Select **SQL Server Authentication**.
+   - **Username (3)**: Enter **PUWebSite**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
    - **Encrypt connection**: Check this box.
-   - **Trust server certificate**: Check this box.
-   - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
+   - **Trust server certificate (5)**: Check this box.
+   - Select **Connect (6)**, and then ensure the `PartsUnlimited` database is selected **(7)** from the list of databases.
 
    ![The Select source tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/data-migration-assistant-migration-select-source.png "Data Migration Assistant Select source")
 
-5. Select **Next**.
+5. Select **Next (7)**.
 
-6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **ContosoInsurance** SQL database resource from the list of resources.
+6. For the **Select target** tab, retrieve the server name associated with your Azure SQL Database. In the [Azure portal](https://portal.azure.com), navigate to your **SQL database** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and then selecting the **parts** SQL database resource from the list of resources.
 
-   ![The contosoinsurance SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
+   ![The parts SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
 
 7. On the Overview blade of your SQL database, copy the **Server name**.
 
@@ -380,47 +380,51 @@ After you have reviewed the assessment results and you have ensured the database
 
 8. Return to DMA, and on the **Select target** tab, enter the following:
 
-   - **Server name**: Paste the server name of your Azure SQL Database you copied above.
-   - **Authentication type**: Select SQL Server Authentication.
-   - **Username**: Enter **demouser**
-   - **Password**: Enter **Password.1!!**
+   - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
+   - **Authentication type (2)**: Select SQL Server Authentication.
+   - **Username (3)**: Enter **demouser**
+   - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
    - **Encrypt connection**: Check this box.
-   - **Trust server certificate**: Check this box.
-   - Select **Connect**, and then ensure the `ContosoInsurance` database is selected from the list of databases.
+   - **Trust server certificate (5)**: Check this box.
+   - Select **Connect (6)**, and then ensure the `parts` database is selected **(7)** from the list of databases.
 
    ![The Select target tab of the Data Migration Assistant is displayed, with the values specified above entered into the appropriate fields.](media/data-migration-assistant-migration-select-target.png "Data Migration Assistant Select target")
 
-9. Select **Next**.
+9. Select **Next (8)**.
 
-10. On the **Select objects** tab, leave all the objects checked, and select **Generate SQL script**.
+10. On the **Select objects** tab, leave all the objects checked **(1)**, and select **Generate SQL script (2)**.
 
     ![The Select objects tab of the Data Migration Assistant is displayed, with all the objects checked.](media/data-migration-assistant-migration-select-objects.png "Data Migration Assistant Select target")
 
-11. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are not blocking issues.
+11. On the **Script & deploy schema** tab, review the script. Notice the view also provides a note that there are not blocking issues **(1)**.
 
     ![The Script & deploy schema tab of the Data Migration Assistant is displayed, with the generated script shown.](media/data-migration-assistant-migration-script-and-deploy-schema.png "Data Migration Assistant Script & deploy schema")
 
-12. Select **Deploy schema**.
+12. Select **Deploy schema (2)**.
 
 13. After the schema is deployed, review the deployment results, and ensure there were no errors.
 
     ![The schema deployment results are displayed, with 23 commands executed and 0 errors highlighted.](media/data-migration-assistant-migration-deployment-results.png "Schema deployment results")
+    
+14. Launch SQL Server Management Studio (SSMS) on the SqlServer2008 VM from the Windows Start menu by typing "sql server management" **(1)** into the search bar, and then selecting **SQL Server Management Studio 17 (2)** in the search results.
 
-14. Next, open SSMS on the SqlServer2008 VM, and connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+   ![In the Windows Start menu, "sql server management" is entered into the search bar, and SQL Server Management Studio 17 is highlighted in the Windows start menu search results.](media/smss-windows-search.png "SQL Server Management Studio 17")
 
-    - **Server name**: Paste the server name of your Azure SQL Database you copied above.
-    - **Authentication type**: Select SQL Server Authentication.
-    - **Username**: Enter **demouser**
-    - **Password**: Enter **Password.1!!**
-    - **Remember password**: Check this box.
+14. Connect to your Azure SQL Database, by selecting **Connect->Database Engine** in the Object Explorer, and then entering the following into the Connect to server dialog:
+
+    - **Server name (1)**: Paste the server name of your Azure SQL Database you copied above.
+    - **Authentication type (2)**: Select SQL Server Authentication.
+    - **Username (3)**: Enter **demouser**
+    - **Password (4)**: Enter **{YOUR-ADMIN-PASSWORD}**
+    - **Remember password (5)**: Check this box.
 
     ![The SSMS Connect to Server dialog is displayed, with the Azure SQL Database name specified, SQL Server Authentication selected, and the demouser credentials entered.](media/ssms-connect-azure-sql-database.png "Connect to Server")
 
-15. Select **Connect**.
+15. Select **Connect (6)**.
 
-16. Once connected, expand **Databases**, and expand **ContosoInsurance**, then expand **Tables**, and observe the schema has been created.
+16. Once connected, expand **Databases**, and expand **parts**, then expand **Tables**, and observe the schema has been created **(1)**. Expand **Security > Users** to observe that the database user is migrated as well **(2)**.
 
-    ![In the SSMS Object Explorer, Databases, ContosoInsurance, and Tables are expanded, showing the tables created by the deploy schema script.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
+    ![In the SSMS Object Explorer, Databases, parts, and Tables are expanded, showing the tables created by the deploy schema script. Security, Users are expended to show database user PUWebSite is migrated as well.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
 
 ### Task 4: Retrieve connection information for SQL databases
 
