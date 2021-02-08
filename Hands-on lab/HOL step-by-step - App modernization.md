@@ -109,7 +109,7 @@ Parts Unlimited has a hosted web application on its internal infrastructure by u
   
 ## Exercise 1: Setting Up Azure Migrate
 
-Duration: {TODO} minutes
+Duration: 10 minutes
 
 Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure . It provides a single portal to start, run, and track your migration to Azure. Azure Migrate comes with a range of tools for assessment and migration that we will use during our lab. We will use Azure Migrate as the central location for our assessment and migration efforts.
 
@@ -137,7 +137,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
 ![Azure Migrate project settings page is shown. Project name is set to partsunlimitedweb. Create button is highlighted.](media/azure-migrate-create-project-settings.png)
 
-7. Once your project is created **Azure Migrate** will show you default **Web App Assessment (1)** and **Web App Migration (2)** tools. For Parts Unlimited web site, **App Service Migration Assistant** is the one we have to use. Download links are presented in Azure Migrate's Web Apps page. In our case, our lab environment comes with App Service Migration Assistant pre-installed on Parts Unlimited's web server. 
+7. Once your project is created **Azure Migrate** will show you default **Web App Assessment (1)** and **Web App Migration (2)** tools (You might need to refresh your browser). For Parts Unlimited web site, **App Service Migration Assistant** is the one we have to use. Download links are presented in Azure Migrate's Web Apps page. In our case, our lab environment comes with App Service Migration Assistant pre-installed on Parts Unlimited's web server. 
 
 ![Azure Migrate Web App assessment and migration tools are presented.](media/azure-migrate-web-app-migration.png)
 
@@ -163,7 +163,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
 ## Exercise 2: Migrate Your Application With App Service Migration Assistant
 
-Duration: {TODO} minutes
+Duration: 15 minutes
 
 The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's web site for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
@@ -175,9 +175,9 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
 
-2. On the WebVM Virtual Machine's **Overview** blade, select **Connect** and **RDP** on the top menu. 
+2. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu. 
 
-   ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-vm-rdp.png)
+   ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png)
 
 3. Select **Download RDP File** on the next page, and open the downloaded file.
 
@@ -242,13 +242,13 @@ After reviewing the assessment results, you have ensured the web application is 
 
 ![Azure Portal is open. The search box is filled with the migrate keyword. Azure Migrate is highlighted from the result list.](media/find-azure-migrate.png)
 
-8. Switch to the **Web Apps (1)** section. See the number of discovered web servers, assessed websites **(2)** and migrated websites change **(3)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. 
+8. Switch to the **Web Apps (1)** section. See the number of discovered web servers, assessed websites **(2)** and migrated websites change **(3)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
 
 ![Azure Migrate shows web app assessment and migration reports.](media/azure-migrate-web-app-migration-done.png)
 
 ## Exercise 3: Migrate the On-Premises Database to Azure SQL Database
 
-Duration: {TODO} minutes
+Duration: 50 minutes
 
 The next step of Part Unlimited's migration project is the assessment and migration of its database. Currently, the database lives on a SQL Server 2008 R2 on a virtual machine. You will use an **Azure Migrate: Database Assessment** tool called **Microsoft Data Migration Assistant (DMA)** to assess the `PartsUnlimited` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database. After the assessment, you will use an **Azure Migrate: Database Migration** service called **Azure Database Migration Service (DMS)**. During the exercise, you will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
@@ -259,6 +259,9 @@ Parts Unlimited would like an assessment to see what potential issues they might
 > **Note**: The Database Migration Assistant is already installed on your SqlServer2008 VM. It can be downloaded through Azure Migrate or from the [Microsoft Download Center](https://go.microsoft.com/fwlink/?linkid=2090807) as well.
 
 1. Connect to your SqlServer2008 VM with RDP. Your credentials are the same as the WebVM.
+
+   ![The SQLServer2008 virtual machine is highlighted in the list of resources.](media/find-sqlserver2008-resource.png)
+
 
 2. Launch DMA from the Windows Start menu by typing "data migration" into the search bar, and then selecting **Microsoft Data Migration Assistant** in the search results.
 
@@ -334,7 +337,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Assessment Uplaoded dialog shown.](media/dma-upload-complete.png)
     
-16. Select the **Databases (1)** page on Azure Migrate. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**.
+16. Select the **Databases (1)** page on Azure Migrate. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png)
     
