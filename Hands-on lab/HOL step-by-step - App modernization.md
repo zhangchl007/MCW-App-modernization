@@ -541,6 +541,100 @@ Now that we have both our application and database migrated to Azure. It is time
     
     ![Overview panel for the App Service is on screen. URL for the app service if highlighted.](media/app-service-navigate-to-app-url.png)
 
+## Exercise 4: Setup CI/CD Pipeline With GitHub Actions for the Web App
+
+Duration: {TODO}} minutes
+
+In this exercise, you will move the codebase to a Github Repo, create a staging environment in Azure App Service using App Service Deployment Slots, and finally connect the pieces with a CI/CD Pipeline built on Github Actions. 
+
+### Task 1: Moving the Codebase to a GitHub Repo
+
+1. Login to [Github](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alernative you can [navigate to the new repo site here](https://github.com/new).
+
+    ![Github.com Landing page is shown. New button to create a new repo is highlighted.](media/github-new-repo.png)
+    
+2. Type in `partsunlimited` **(1)** as your repository name. Select **Private (2)** to prevent public access to the repository. Select **Create repository (3)** to continue.
+
+    ![Repository name is set to partsunlimited. Private access is selected. Create repository button is highlighted.](media/github-partsunlimited-repo.png)
+    
+3. Select the **clipboard copy command** to copy the Git endpoint for your repo and paste the value into a text editor, such as Notepad.exe, for later reference.
+
+    ![Github repo page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png)
+
+So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-Premises IIS server. Now that we are done with the migration of Parts Unlimited's web site. We will use the VM to execute some development tasks. 
+    
+4. Connect to your WebVM VM with RDP. 
+
+   ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
+    
+5. Right-click on the Windows Start Menu and select **Windows Powershell (Admin)** to launch a terminal window.
+
+    ![Start Menu context menu is open. Windows Powershell (Admin) command is highlighted.](media/launch-powershell.png)
+
+6. The Parts Unlimited website's source code is already copied into the VM as part of the **Before the hands-on lab exercises**. Run the command below to navigate to the source code folder.
+
+    ```powershell
+    cd "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src"
+    ```
+
+6. Run the following command to initialize a local Git repo.
+
+    ```powershell
+    git init
+    ```
+
+    ![Powershell terminal is shown. Git init is highlighted and executed. ](media/git-init.png)
+
+7. Next, we will define the remote endpoint as an origin to our local repository. Replace `{YourEndpointURL}` with the endpoint URL you copied previously from Github. Run the final command in your Powershell terminal.
+
+    ```powershell
+    git remote add origin {YourEndpointURL}
+    ```
+    
+    ![Powershell terminal is shown. Git remote add origin is highlighted and executed. ](media/git-remote-add.png)
+
+8. Run the following commands to rename current branch to **Main** and add stage all the files for a git commit.
+
+    ```powershell
+    git branch -M main
+    git add .
+    ```
+    
+9. Before we commit our changes, we have to identify our git user name and e-mail. In the following command, replace `John Doe` with your name and `johndoe@example.com` with your e-mail address. Once ready, run the command in your Powershell terminal.
+
+    ```powershell
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
+    ```
+
+10. We are ready to commit the source code to our local Git repository. Run the following command to continue.
+
+    ```powershell
+    git commit -m "Initial Commit"
+    ```
+
+11. Let's push our code to Github. Run the following command in your Powershell terminal.
+
+    ```powershell
+    git push -u origin main
+    ```
+
+12. Github authentication screen will pop up. Select **Sign in with your browser (2)**. A new browser pop-up will appear with the Github login page.
+
+    ![Powershell terminal shows git push command and the Github Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png)
+
+13. Fill-in your Github account credentials on the browser window to Sign-In.
+
+14. On the **Authorize Git Credential Manager** screen select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to Github.
+
+    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png)
+    
+15. Close the browser.
+
+16. Go back to Github and observe the repo with the source code uploaded.
+
+    ![Github shown with the partsunlimited repo populated with source code.](media/github-partsunlimited-repo-loaded.png)
+
 ## After the hands-on lab
 
 Duration: 10 minutes
