@@ -29,58 +29,19 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 - [App modernization hands-on lab step-by-step](#app-modernization-hands-on-lab-step-by-step)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Overview](#overview)
-  - [Solution architecture](#solution-architecture)
   - [Requirements](#requirements)
-  - [Exercise 1: Migrate the on-premises database to Azure SQL Database](#exercise-1-migrate-the-on-premises-database-to-azure-sql-database)
-    - [Task 1: Configure the ContosoInsurance database on the SqlServer2008 VM](#task-1-configure-the-contosoinsurance-database-on-the-sqlserver2008-vm)
-    - [Task 2: Perform assessment for migration to Azure SQL Database](#task-2-perform-assessment-for-migration-to-azure-sql-database)
-    - [Task 3: Migrate the database schema using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
-    - [Task 4: Retrieve connection information for SQL databases](#task-4-retrieve-connection-information-for-sql-databases)
-    - [Task 5: Migrate the database using the Azure Database Migration Service](#task-5-migrate-the-database-using-the-azure-database-migration-service)
-  - [Exercise 2: Post upgrade database enhancements](#exercise-2-post-upgrade-database-enhancements)
-    - [Task 1: Configure SQL Data Discovery and Classification](#task-1-configure-sql-data-discovery-and-classification)
-    - [Task 2: Review Advanced Data Security Vulnerability Assessment](#task-2-review-advanced-data-security-vulnerability-assessment)
-    - [Task 3: Enable Dynamic Data Masking](#task-3-enable-dynamic-data-masking)
-  - [Exercise 3: Configure Key Vault](#exercise-3-configure-key-vault)
-    - [Task 1: Add Key Vault access policy](#task-1-add-key-vault-access-policy)
-    - [Task 2: Create a new secret to store the SQL connection string](#task-2-create-a-new-secret-to-store-the-sql-connection-string)
-    - [Task 3: Create a service principal](#task-3-create-a-service-principal)
-    - [Task 4: Assign the service principal access to Key Vault](#task-4-assign-the-service-principal-access-to-key-vault)
-  - [Exercise 4: Deploy Web API into Azure App Services](#exercise-4-deploy-web-api-into-azure-app-services)
-    - [Task 1: Connect to the LabVM](#task-1-connect-to-the-labvm)
-    - [Task 2: Open starter solution with Visual Studio](#task-2-open-starter-solution-with-visual-studio)
-    - [Task 3: Update Web API to use Key Vault](#task-3-update-web-api-to-use-key-vault)
-    - [Task 4: Copy KeyVault configuration section to API App in Azure](#task-4-copy-keyvault-configuration-section-to-api-app-in-azure)
-    - [Task 5: Deploy the API to Azure](#task-5-deploy-the-api-to-azure)
-  - [Exercise 5: Deploy web application into Azure App Services](#exercise-5-deploy-web-application-into-azure-app-services)
-    - [Task 1: Add API App URL to Web App Application settings](#task-1-add-api-app-url-to-web-app-application-settings)
-    - [Task 2: Deploy web application to Azure](#task-2-deploy-web-application-to-azure)
-  - [Exercise 6: Upload policy documents into blob storage](#exercise-6-upload-policy-documents-into-blob-storage)
-    - [Task 1: Create container for storing PDFs in Azure storage](#task-1-create-container-for-storing-pdfs-in-azure-storage)
-    - [Task 2: Create a SAS token](#task-2-create-a-sas-token)
-    - [Task 3: Bulk upload PDFs to blob storage using AzCopy](#task-3-bulk-upload-pdfs-to-blob-storage-using-azcopy)
-  - [Exercise 7: Create serverless API for accessing PDFs](#exercise-7-create-serverless-api-for-accessing-pdfs)
-    - [Task 1: Add application settings to your Function App](#task-1-add-application-settings-to-your-function-app)
-    - [Task 2: Add project environment variables](#task-2-add-project-environment-variables)
-    - [Task 3: Create an Azure Function in Visual Studio](#task-3-create-an-azure-function-in-visual-studio)
-    - [Task 4: Test the function locally](#task-4-test-the-function-locally)
-    - [Task 5: Deploy the function to your Azure Function App](#task-5-deploy-the-function-to-your-azure-function-app)
-    - [Task 6: Enable Application Insights on the Function App](#task-6-enable-application-insights-on-the-function-app)
-    - [Task 7: Add Function App URL to your Web App Application settings](#task-7-add-function-app-url-to-your-web-app-application-settings)
-    - [Task 8: Test document retrieval from web app](#task-8-test-document-retrieval-from-web-app)
-    - [Task 9: View Live Metrics Stream](#task-9-view-live-metrics-stream)
-  - [Exercise 8: Add Cognitive Search for policy documents](#exercise-8-add-cognitive-search-for-policy-documents)
-    - [Task 1: Add Azure Cognitive Search to Storage account](#task-1-add-azure-cognitive-search-to-storage-account)
-    - [Task 2: Review search results](#task-2-review-search-results)
-  - [Exercise 9: Create an app in PowerApps](#exercise-9-create-an-app-in-powerapps)
-    - [Task 1: Sign up for a PowerApps account](#task-1-sign-up-for-a-powerapps-account)
-    - [Task 2: Create new SQL connection](#task-2-create-new-sql-connection)
-    - [Task 3: Create a new app](#task-3-create-a-new-app)
-    - [Task 4: Design app](#task-4-design-app)
-    - [Task 5: Edit the app settings and run the app](#task-5-edit-the-app-settings-and-run-the-app)
+  - [Exercise 1: Setting Up Azure Migrate](#exercise-1-setting-up-azure-migrate)
+  - [Exercise 2: Migrate Your Application With App Service Migration Assistant](#exercise-2-migrate-your-application-with-app-service-migration-assistant)
+    - [Task 1: Perform Assessment for Migration to Azure App Service](#task-1-perform-assessment-for-migration-to-azure-app-service)
+    - [Task 2: Migrate the Web Application to Azure App Service](#task-2-migrate-the-web-application-to-azure-app-service)
+  - [Exercise 3: Migrate the On-Premises Database to Azure SQL Database](#exercise-3-migrate-the-on-premises-database-to-azure-sql-database)
+    - [Task 1: Perform Assessment for Migration to Azure SQL Database](#task-1-perform-assessment-for-migration-to-azure-sql-database)
+    - [Task 2: Retrieve Connection Information for SQL Databases](#task-2-retrieve-connection-information-for-sql-databases)
+    - [Task 3: Migrate the Database Schema Using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
+    - [Task 4: Migrate the Database Using the Azure Database Migration Service](#task-4-migrate-the-database-using-the-azure-database-migration-service)
+    - [Task 5: Configure the Application Connection to SQL Azure Database](#task-5-configure-the-application-connection-to-sql-azure-database)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
-    - [Task 2: Delete the contoso-apps service principal](#task-2-delete-the-contoso-apps-service-principal)
 
 <!-- /TOC -->
 
@@ -101,6 +62,7 @@ Parts Unlimited has a hosted web application on its internal infrastructure by u
 ## Requirements
 
 - Microsoft Azure subscription
+- Github account.
 - A virtual machine configured with Visual Studio Community 2019 or higher (setup in the Before the hands-on lab exercises)
 - **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
   - Create an Azure Active Directory application and service principal
@@ -167,7 +129,7 @@ Duration: 15 minutes
 
 The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's web site for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
-### Task 1: Perform assessment for migration to Azure App Service
+### Task 1: Perform Assessment for Migration to Azure App Service
 
 Parts Unlimited would like an assessment to see what potential issues they might need to address in moving their application to Azure App Service. You will use the [App Service migration assistant](https://appmigration.microsoft.com/) to assess the application and run various readiness checks.
 
@@ -210,7 +172,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![Assessment report result is shown. There are 13 success metrics presented. The next button is highlighted.](media/appservicemigration-report.png)
    
-### Task 2: Migrate the web application to Azure App Service
+### Task 2: Migrate the Web Application to Azure App Service
 
 After reviewing the assessment results, you have ensured the web application is a good candidate for migration to Azure App Service. Now, we will continue the process with the migration of the application.
 
@@ -252,7 +214,7 @@ Duration: 50 minutes
 
 The next step of Part Unlimited's migration project is the assessment and migration of its database. Currently, the database lives on a SQL Server 2008 R2 on a virtual machine. You will use an **Azure Migrate: Database Assessment** tool called **Microsoft Data Migration Assistant (DMA)** to assess the `PartsUnlimited` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database. After the assessment, you will use an **Azure Migrate: Database Migration** service called **Azure Database Migration Service (DMS)**. During the exercise, you will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
-### Task 1: Perform assessment for migration to Azure SQL Database
+### Task 1: Perform Assessment for Migration to Azure SQL Database
 
 Parts Unlimited would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017) (DMA) to assess the `PartsUnlimited` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
@@ -341,7 +303,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png)
     
-### Task 2: Retrieve connection information for SQL databases
+### Task 2: Retrieve Connection Information for SQL Databases
 
 In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. Both information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
 
@@ -361,7 +323,7 @@ In this task, you will retrieve the IP address of the SqlServer2008 VM and the F
 
    ![The server name value is highlighted on the SQL database Overview blade.](media/sql-database-server-name.png "SQL database")
    
-### Task 3: Migrate the database schema using the Data Migration Assistant
+### Task 3: Migrate the Database Schema Using the Data Migration Assistant
 
 After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
@@ -441,7 +403,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![In the SSMS Object Explorer, Databases, parts, and Tables are expanded, showing the tables created by the deploy schema script. Security, Users are expended to show database user PUWebSite is migrated as well.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
 
-### Task 4: Migrate the database using the Azure Database Migration Service
+### Task 4: Migrate the Database Using the Azure Database Migration Service
 
 At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `PartsUnlimited` database into the new Azure SQL Database using the Azure Database Migration Service.
 
