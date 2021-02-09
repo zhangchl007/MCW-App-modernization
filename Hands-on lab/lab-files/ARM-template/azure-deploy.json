@@ -59,7 +59,7 @@
         "dmsName": "[concat('parts-dms-', uniqueString(resourceGroup().id))]",
         "appServicePlanName": "[concat(resourceGroup().name, '-asp')]",
 		"webAppName": "[concat('parts-web-', uniqueString(resourceGroup().id))]",
-		"functionAppName": "[concat('contoso-func-', uniqueString(resourceGroup().id))]",
+		"functionAppName": "[concat('parts-func-', uniqueString(resourceGroup().id))]",
         "keyVaultName": "[concat('parts-kv-', uniqueString(resourceGroup().id))]"
     },
     "resources": [
