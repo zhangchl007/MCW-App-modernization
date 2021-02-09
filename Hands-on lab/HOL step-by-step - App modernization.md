@@ -535,6 +535,49 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 20. The reason for the warning can be found in the Validation Summary section. In the report below, you can see that a storage object schema difference triggered a warning. However, the report also reveals that everything was migrated successfully.
 
     ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
+    
+### Task 5: Configure the Application Connection to SQL Azure Database
+
+Now that we have both our application and database migrated to Azure. It is time to configure our application to use the SQL Azure Database. 
+
+1. In the [Azure portal](https://portal.azure.com), navigate to your `parts` SQL Database resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the `parts` SQL Database from the list of resources.
+
+   ![The parts SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
+   
+2. Switch to the **Connection strings (1)** blade, and copy the connection string by selecting the copy button **(2)**.
+
+   ![Connection string panel if SQL Database is open. Copy button for ADO.NET connection string is highlighted.](media/sql-connection-string-copy.png)
+
+3. Paste the value into a text editor, such as Notepad.exe, to replace the Password placeholder. Replace the `{your_password}` section with your admin password. Copy the full connection string with the replaced password for later use.
+    
+    ![Notepad is open. SQL Connection string is pasted in. {your_password} placeholder is highlighted.](media/sql-connection-string-password-replace.png)
+
+4. Go back to the resource list, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+
+   ![The search box for resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
+
+4. Switch to the **Configuration (1)** blade, and select **+New connection string (2)**.
+
+    ![App service configuration panel is open. +New connection string button is highlighted.](media/app-service-settings.png)
+
+5. On the **Add/Edit connection string** panel, enter the following:
+
+   - **Name(1)**: Enter `DefaultConnectionString`.
+   - **Value**: Enter SQL Connection String you copied in Step 3.
+   - **Type (3)**: Select **SQLAzure**
+   - **Deployment slot setting (4)**: Check this option to make sure connection strings stick to a deployment slot. This will be helpful when we add additional deployment slots during the next exercises.
+
+    ![Add/Edit Connection string panel is open. Name field is set to DefaultConnectionString. Value field is set to the connection string copied in a previous step. Type is set to SQL Azure. Deployment slot setting checkbox is checked. OK button is highlighted. ](media/app-service-connection-string.png)
+
+6. Select **OK (5)**.
+
+7. Select **Save** and **Yes** for the following confirmation dialog.
+
+    ![App Service Configuration page is open. Save button is highlighted.](media/app-service-settings-save.png)
+    
+8. Switch to the **Overview (1)** blade, and select **URL (2)** to navigate to the Parts Unlimited web site hosted in our Azure App Service using Azure SQL Database.
+    
+    ![Overview panel for the App Service is on screen. URL for the app service if highlighted.](media/app-service-navigate-to-app-url.png)
 
 ## After the hands-on lab
 
