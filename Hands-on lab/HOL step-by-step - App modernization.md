@@ -180,9 +180,9 @@ After reviewing the assessment results, you have ensured the web application is 
 
    ![Azure App Service Migration Assistant's Azure Login dialog is open. A device code is presented. Copy Code & Open Browser button is highlighted.](media/appservicemigration-azure-login.png)
    
-2. At its first launch, Internet Explorer will ask you to choose a security and compatibility profile. Make sure recommended settings **(1)** are selected. Select ** OK (2)** to move to the next step.
+2. At its first launch, you will be asked to choose a browser. Select **Microsoft Edge (1)**  and check **Always use this app (2)** checkbox. Select ** OK (2)** to move to the next step.
 
-    ![Internet Explorer security and compatibility dialog is open. Recommended settings are selected. OK button is highlighted](media/internet-explorer-security-dialog.png)
+    ![Browser choice dialog is shown. Microsoft Edge is selected. Always use this app checkbox is checked. OK button is highlighted.](media/browser-choice.png)
 
 3. Right-click the text box and select **Paste (1)** to paste your login code. Select **Next** to give subscription access to App Service Migration Assistant.
 
