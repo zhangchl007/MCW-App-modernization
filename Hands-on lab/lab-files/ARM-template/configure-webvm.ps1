@@ -18,8 +18,6 @@ function Disable-InternetExplorerESC {
 # Disable IE ESC
 Disable-InternetExplorerESC
 
-
-
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 $branchName = "2021updates"
@@ -39,12 +37,17 @@ Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on l
 # Replace SQL Connection String
 ((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.json
 
-# Download and schedule App Service Migration Assistant install for first Logon
+# Download App Service Migration Assistant / Install Deferred to first login
 (New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
-$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\install-asma.ps1`""
+
+# Download Edge / Install Deferred to first login
+(New-Object System.Net.WebClient).DownloadFile('https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/e2d06b69-9e44-45e1-bdf5-b3b827fe06b2/MicrosoftEdgeEnterpriseX64.msi', 'C:\MicrosoftEdgeEnterpriseX64.msi')
+
+# Schedule Installs for first Logon
+$argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1`""
 $triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
 $action = New-ScheduledTaskAction -Execute "powershell" -Argument $argument 
-Register-ScheduledTask -TaskName "Install App Service Migration Assistant" -Trigger $triggerAt -Action $action -User demouser
+Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt -Action $action -User demouser
 
 # Download and install .NET Core 2.2
 (New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe', 'C:\dotnet-hosting-2.2.2-win.exe')
@@ -55,10 +58,6 @@ Invoke-Command -ScriptBlock $pathArgs
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/ssmsfullsetup', 'C:\SSMS-Setup.exe')
 $pathArgs = {C:\SSMS-Setup.exe /Install /Quiet /Norestart /Logs log.txt}
 Invoke-Command -ScriptBlock $pathArgs
-
-# Install Edge
-(New-Object System.Net.WebClient).DownloadFile('https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/e2d06b69-9e44-45e1-bdf5-b3b827fe06b2/MicrosoftEdgeEnterpriseX64.msi', 'C:\MicrosoftEdgeEnterpriseX64.msi')
-Start-Process -file 'C:\MicrosoftEdgeEnterpriseX64.msi' -arg '/qn /l*v C:\edge_install.txt' -passthru | wait-process
 
 # Install Git
 (New-Object System.Net.WebClient).DownloadFile('https://github.com/git-for-windows/git/releases/download/v2.30.0.windows.2/Git-2.30.0.2-64-bit.exe', 'C:\Git-2.30.0.2-64-bit.exe')
