@@ -635,6 +635,25 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Github shown with the partsunlimited repo populated with source code.](media/github-partsunlimited-repo-loaded.png)
 
+### Task 2: Creating a Staging Deployment Slot
+
+1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+
+   ![The search box for resources is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
+   
+2. Switch to the **Deployment slots (1)** tab and select **Add Slot (2)**.
+
+    ![App Service Deployment Slots tab is open. Add slot button highlighted.](media/app-service-add-deployment-slot.png)
+    
+3. Type in **staging** as the name **(1)** of the new slot. Select your app service name from the **Clone settings from (2)** dropdown list. This will ensure our web site configurations for the production environment are copied over to the staging environment as a starting point. Select **Add (3)** to add the new slot.
+
+    ![Add a slot panel is open. Name is set staging. Partsunlimited-web-20 is selected for the clone settings from dropdown list. Add button is highlighted.](media/app-service-staging-slot.png)
+    
+4. Once you receive the success message, close **(1)** the panel. Observe **(2)** the two environments we have for the app service in the deployment slots list.
+
+    ![Successfully created slot staging message is shown. The close button is highlighted. The current list of slots is presented.](media/app-service-staging-slot-added.png)
+
+
 ## After the hands-on lab
 
 Duration: 10 minutes
