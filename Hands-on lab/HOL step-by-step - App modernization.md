@@ -806,6 +806,31 @@ Here is the final YAML file that you can use if needed.
 10. Navigate to the staging environment endpoint in your browser and observe the Title change.
 
     ![Parts Unlimited staging environment is open in a browser. New Home Page title is highlighted.](media/staging-code-changes.png)
+
+### Task 5: Swap Deployment Slots to Move Changes in Staging to Production
+
+1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+
+   ![The search box for resources is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
+   
+2. Switch to the **Deployment slots (1)** tab and select **Swap (2)**.
+
+    ![App Service Deployment Slots tab is open. Swap button highlighted.](media/app-service-slot-swap.png)
+
+3.  Select the **Swap** button to swap the staging slot with the production slow.
+
+    ![Deployment Slot Swap dialog is open. Swap button is highlighted.](media/app-service-slot-swap-panel.png)
+    
+4. Once you receive the success message, close the swap panel.
+
+5. Visit both production and staging slot endpoints and observe the Title change to move to production.
+
+> Once you move your staging slot to production, your production slot is moved to staging as well. This means that your current staging slot does not have the latest changes you have pushed to the repo. You can trigger a manual CI/CD workflow execution to push the latest changes to staging. 
+> 
+> To run a CI/CD workflow manually, go to Github actions page **(1)** in your repository. Select the workflow **(2)** to run. Open the **Run workflow (3)** menu and select **Run workflow (4)**.
+> 
+> ![Github Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png)
+
 ## After the hands-on lab
 
 Duration: 10 minutes
