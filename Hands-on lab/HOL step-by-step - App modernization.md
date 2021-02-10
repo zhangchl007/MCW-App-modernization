@@ -653,6 +653,117 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Successfully created slot staging message is shown. The close button is highlighted. The current list of slots is presented.](media/app-service-staging-slot-added.png)
 
+### Task 3: Setting Up CI/CD With GitHub Actions
+    
+1. Select your staging slot from the list of deployment slots. 
+
+    ![Deployment slots are listed. Staging slot named partsunlimited-web-20-staging is highlighted.](media/app-service-staging-select.png)
+
+2. Switch to the **Deployment Center (1)** tab. Select **Go to Settings (2)**.
+
+    ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png)
+    
+3. Select **Github (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service slot and the Github repository we previously prepared.
+
+    ![Deployment Settings page is open. Source is set to Github. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for Github is highlighted. ](media/app-service-deployment-settings.png)
+    
+4. Login with your Github credentials and provide authorization to AppService to access the repository by selecting **Authorize AzureAppService**.
+
+    ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png)
+
+5. Once Github authorization is complete go back to the browser with the Azure Portal. Select the Github **Organization (1)** where you created the Github repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
+
+    ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png)
+
+Once you select **Save**, the portal will add your app service publishing profile as a secret to your Github repository. This will allow Github Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository. 
+
+6. Visit your Github repository on Github.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf. 
+
+    ![Partsunlimited repository is open on Github.com. .github/workflows folder is shown. A new commit that includes a main_partsunlimited-web-20(staging).yml file is highlighted.](media/github-inital-yaml-commit.png)
+
+7. Select **Actions (1)** to navigate to the Actions page where you can see the list of workflow runs on the repository. Noticed that the latest run has failed **(2)**. Select the failed run (2) to investigate the issue.
+
+    ![Github Actions for the repository is open](media/github-actions-failed.png)
+
+8. Select the failed job to dig deeper.
+
+    ![Details for the Github workflow run is shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png)
+   
+9. In the error message, we can see a mismatch between the .NET Core version the build job is using and the one the project is built against. When we set up our CI/CD pipeline, the Azure Portal listed .NET Core LTS (Long Term Support) versions only. Unfortunately, Parts Unlimited uses a .NET Core version that hit the end of life on December 23, 2019. We will have to change our pipeline setup manually to accommodate project requirements.
+
+    ![Build-and-deploy job error message is shown. SDK version requirement 2.2.207 is highlighted.](media/github-actions-version-error.png)
+
+10. Select **Code (1)** to switch back to the repository code view. Select **.github/workflows (2)** to navigate to the location where the workflow YAML code is stored.
+
+    ![Partsunlimited Github repository root folder is shown. .github/workflows folders are highlighted. ](media/github-navigate-to-yaml.png)
+
+11. Select the YAML file name `main_partsunlimited-web-20(staging).yml`.
+
+    ![main_partsunlimited-web-20(staging).yml file is highlighted in the github / workflows folder.](media/github-select-yaml-file.png)
+
+12. Select the **Edit this file (1)** button to modify the YAML file. 
+
+    ![main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png)
+
+13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet buld and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase. 
+
+    ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png)
+    
+Here is the final YAML file that you can use if needed.
+
+    ```yaml   
+    
+    # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+    # More GitHub Actions for Azure: https://github.com/Azure/actions
+    
+    name: Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging)
+    
+    on:
+      push:
+        branches:
+          - main
+      workflow_dispatch:
+    
+    jobs:
+      build-and-deploy:
+        runs-on: windows-latest
+    
+        steps:
+        - uses: actions/checkout@master
+    
+        - name: Set up .NET Core
+          uses: actions/setup-dotnet@v1
+          with:
+            dotnet-version: '2.2.207'
+    
+        - name: Build with dotnet
+          run: dotnet build PartsUnlimited.sln --configuration Release
+    
+        - name: dotnet publish
+          run: dotnet publish src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    
+        - name: Deploy to Azure Web App
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: 'partsunlimited-web-20'
+            slot-name: 'staging'
+            publish-profile: ${{ secrets.AzureAppService_PublishProfile_a00d49c7adc84a028ccc74ff431024d5 }}
+            package: ${{env.DOTNET_ROOT}}/myapp
+    ```    
+    
+14. Once all changes are complete select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
+
+15. Select **Actions (1)** to switch to the workflows page. Notice the latest successfull run **(2)** of our workflow. 
+
+    ![](media/github-actions-success.png)
+
+16. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your staging app service deployment slot.
+
+    ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png)
+    
+17. Notice the dedicated web link for your staging slot. Select to navigate to the web site to see the result of your successfull deployment through the CI/CD pipeline.
+
+    ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png)
 
 ## After the hands-on lab
 
