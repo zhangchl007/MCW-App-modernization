@@ -549,17 +549,17 @@ In this exercise, you will move the codebase to a Github Repo, create a staging 
 
 ### Task 1: Moving the Codebase to a GitHub Repo
 
-1. Login to [Github](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alernative you can [navigate to the new repo site here](https://github.com/new).
+1. Login to [Github](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alernative you can [navigate to the new repository site here](https://github.com/new).
 
-    ![Github.com Landing page is shown. New button to create a new repo is highlighted.](media/github-new-repo.png)
+    ![Github.com Landing page is shown. New button to create a new repository is highlighted.](media/github-new-repo.png)
     
 2. Type in `partsunlimited` **(1)** as your repository name. Select **Private (2)** to prevent public access to the repository. Select **Create repository (3)** to continue.
 
     ![Repository name is set to partsunlimited. Private access is selected. Create repository button is highlighted.](media/github-partsunlimited-repo.png)
     
-3. Select the **clipboard copy command** to copy the Git endpoint for your repo and paste the value into a text editor, such as Notepad.exe, for later reference.
+3. Select the **clipboard copy command** to copy the Git endpoint for your repository and paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![Github repo page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png)
+    ![Github repository page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png)
 
 So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-Premises IIS server. Now that we are done with the migration of Parts Unlimited's web site. We will use the VM to execute some development tasks. 
     
@@ -577,7 +577,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
     cd "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src"
     ```
 
-6. Run the following command to initialize a local Git repo.
+6. Run the following command to initialize a local Git repository.
 
     ```powershell
     git init
@@ -631,9 +631,9 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
     
 15. Close the browser.
 
-16. Go back to Github and observe the repo with the source code uploaded.
+16. Go back to Github and observe the repository with the source code uploaded.
 
-    ![Github shown with the partsunlimited repo populated with source code.](media/github-partsunlimited-repo-loaded.png)
+    ![Github shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png)
 
 ### Task 2: Creating a Staging Deployment Slot
 
