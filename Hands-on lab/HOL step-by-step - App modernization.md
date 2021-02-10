@@ -765,6 +765,47 @@ Here is the final YAML file that you can use if needed.
 
     ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png)
 
+### Task 4: Pushing Code Changes to Staging and Production
+
+1. Connect to your WebVM VM with RDP. 
+
+   ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
+
+2. Select the Start menu and search for **Visual Studio Code**. Select **Visual Studio Code** to run it.
+
+    ![Start Menu is open. Visual Studio Code is typed in the search box. Visual Studio Code is highlighted from the list of search results.](media/vscode-start-menu.png)
+    
+3. Open the **File (1)** menu and select **Open Folder... (2)**.
+
+    ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png)
+
+4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
+
+    ![Visual Studio Code Open Folder dialog is open. Folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src and Select Folder button is highlighted.](media/vscode-select-folder.png)
+
+5. We are going to introduce a brand new change to Parts Unlimited's web site. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
+
+    ![Index.cshtml from src > PartsUnlimitedWebSite > Views > Home folder is open. Page Title is changed to New Home Page. One pending change in the source control is highlighted.](media/vscode-changing-source-code.png)
+
+6. Select **Source Control (1)** tab in Visual Studio Code. Since we worked on the codebase in our repo in the virtual machine, the codebase in the repo on Github has changed. Open the **Views and more actions... (2)** menu and select **Pull (3)** to get the latest from the remote repository. 
+
+    ![Views and more actions... menu is open. Pull command is highlighted.](media/vscode-pull.png)
+
+7. Select **Stage Changes (1)**. Type in a commit message **(2)** for the changes. Select **Commit (3)**.
+
+    ![Stage changes button for index.cshtml is highlighted. Commit message is set to New Home Page Title. Commut button is highlighted.](media/vscode-stage-commit.png)
+
+8. Open the **Views and more actions... (1)** menu and select **Push (2)** to push the changes to Github.
+
+    ![Views and more actions... menu is open. Push command is highlighted.](media/vscode-push.png)
+
+9. Open the Github repository and observe the Actions page for the latest execution of the CI/CD Pipeline.
+
+    ![PartsUnlimited repo is open. Actions page is shown. Successful CI/CD run for the new home page title is highlighted.](media/github-actions-success-commit.png)
+
+10. Navigate to the staging environment endpoint in your browser and observe the Title change.
+
+    ![Parts Unlimited staging environment is open in a browser. New Home Page title is highlighted.](media/staging-code-changes.png)
 ## After the hands-on lab
 
 Duration: 10 minutes
