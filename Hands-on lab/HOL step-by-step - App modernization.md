@@ -40,6 +40,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Migrate the Database Schema Using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
     - [Task 4: Migrate the Database Using the Azure Database Migration Service](#task-4-migrate-the-database-using-the-azure-database-migration-service)
     - [Task 5: Configure the Application Connection to SQL Azure Database](#task-5-configure-the-application-connection-to-sql-azure-database)
+  - [Exercise 4: Setup CI/CD Pipeline With GitHub Actions for the Web App](#exercise-4-setup-cicd-pipeline-with-gitHub-actions-for-the-web-app)
+    - [Task 1: Moving the Codebase to a GitHub Repo](#task-1-moving-the-codebase-to-a-github-repo)
+    - [Task 2: Creating a Staging Deployment Slot](#task-2-creating-a-staging-deployment-slot)
+    - [Task 3: Setting Up CI/CD With GitHub Actions](#task-3-setting-up-cicd-with-github-actions)
+    - [Task 4: Pushing Code Changes to Staging and Production](#task-4-pushing-code-changes-to-staging-and-production)
+    - [Task 5: Swap Deployment Slots to Move Changes in Staging to Production](#task-5-swap-seployment-slots-t-move-changes-in-staging-to-production)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
 
