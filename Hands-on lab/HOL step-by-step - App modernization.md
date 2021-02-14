@@ -72,11 +72,6 @@ Parts Unlimited has a hosted web application on its internal infrastructure by u
 
 - Microsoft Azure subscription
 - Github account.
-- A virtual machine configured with Visual Studio Community 2019 or higher (setup in the Before the hands-on lab exercises)
-- **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
-  - Create an Azure Active Directory application and service principal
-  - Assign roles on your subscription
-  - Register resource providers
   
 ## Exercise 1: Setting Up Azure Migrate
 
