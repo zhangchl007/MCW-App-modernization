@@ -46,6 +46,9 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Setting Up CI/CD With GitHub Actions](#task-3-setting-up-cicd-with-github-actions)
     - [Task 4: Pushing Code Changes to Staging and Production](#task-4-pushing-code-changes-to-staging-and-production)
     - [Task 5: Swap Deployment Slots to Move Changes in Staging to Production](#task-5-swap-seployment-slots-t-move-changes-in-staging-to-production)
+  - [Exercise 5: Using Serverless Azure Functions to Process Orders](#exercise-4-using-serverless-azure-functions-to-process-orders)
+    - [Task 1: Deploying Azure Functions](#task-1-deploying-azure-functions)
+    - [Task 2: Connecting Function App and App Service](#task-2-connecting-function-app-and-app-service)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
 
