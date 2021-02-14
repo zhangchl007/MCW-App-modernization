@@ -88,7 +88,8 @@ namespace PartsUnlimited.Controllers
                         queueClient.CreateIfNotExists();
                         if (queueClient.Exists())
                         {
-                            queueClient.SendMessage(order.OrderId.ToString());
+                            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(order.OrderId.ToString());
+                            queueClient.SendMessage(System.Convert.ToBase64String(plainTextBytes));
                         }
                     }
                     catch (Exception)
