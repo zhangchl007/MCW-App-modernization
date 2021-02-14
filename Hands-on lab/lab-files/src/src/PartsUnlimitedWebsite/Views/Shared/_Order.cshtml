@@ -78,6 +78,24 @@
                             <dd>
                                 @Html.DisplayFor(model => model.Order.Email)
                             </dd>
+                            @if (!string.IsNullOrEmpty(Model.Order.InvoiceURL))
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Order.InvoiceURL)
+                                </dt>
+                                <dd>
+                                    <a href="@Html.DisplayFor(model => model.Order.InvoiceURL)">Download</a>
+                                </dd>
+                            }
+                            else
+                            {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Order.InvoiceURL)
+                                </dt>
+                                <dd>
+                                    Processing order. Check back soon.
+                                </dd>
+                            }
                         </dl>
                     </div>
                 </div>

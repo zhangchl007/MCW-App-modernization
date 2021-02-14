@@ -65,6 +65,11 @@ namespace PartsUnlimited.Models
         [ScaffoldColumn(false)]
         public decimal Total { get; set; }
 
+        [ScaffoldColumn(false)]
+        [Display(Name = "Invoice")]
+        [StringLength(2048)]
+        public string InvoiceURL { get; set; }
+
         [BindNever]
         [ScaffoldColumn(false)]
         public bool Processed { get; set; }

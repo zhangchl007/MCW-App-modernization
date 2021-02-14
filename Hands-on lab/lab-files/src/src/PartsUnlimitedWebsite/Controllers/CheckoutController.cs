@@ -1,12 +1,15 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Azure.Storage.Queues;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PartsUnlimited.Models;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,11 +21,13 @@ namespace PartsUnlimited.Controllers
     {
         private readonly IPartsUnlimitedContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
+        public IConfiguration Configuration { get; }
 
-        public CheckoutController(IPartsUnlimitedContext context, UserManager<ApplicationUser> userManager)
+        public CheckoutController(IPartsUnlimitedContext context, UserManager<ApplicationUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _db = context;
+            Configuration = configuration;
         }
 
         private const string PromoCode = "FREE";
@@ -71,10 +76,25 @@ namespace PartsUnlimited.Controllers
 
                     //Process the order
                     var cart = ShoppingCart.GetCart(_db, HttpContext);
-                    cart.CreateOrder(order);
+                    cart.CreateOrder(order);                  
 
                     // Save all changes
                     await _db.SaveChangesAsync(HttpContext.RequestAborted);
+
+                    try
+                    {
+                        string connectionString = Configuration[ConfigurationPath.Combine("ConnectionStrings", "StorageConnectionString")];
+                        QueueClient queueClient = new QueueClient(connectionString, "orders");
+                        queueClient.CreateIfNotExists();
+                        if (queueClient.Exists())
+                        {
+                            queueClient.SendMessage(order.OrderId.ToString());
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        //return View("Error");
+                    }
 
                     return RedirectToAction("Complete",
                         new { id = order.OrderId });
