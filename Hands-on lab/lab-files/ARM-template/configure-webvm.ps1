@@ -51,12 +51,22 @@ Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt 
 
 # Download and install .NET Core 2.2
 (New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe', 'C:\dotnet-hosting-2.2.2-win.exe')
-$pathArgs = {C:\dotnet-hosting-2.2.2-win.exe /Install /Quiet /Norestart /Logs log.txt}
+$pathArgs = {C:\dotnet-hosting-2.2.2-win.exe /Install /Quiet /Norestart /Logs logCore22.txt}
+Invoke-Command -ScriptBlock $pathArgs
+
+# Download and install .NET Core 3.1
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/19a5a3cc-b297-4a10-9b22-1184a0aeb990/5af443d748d2c5fb444477f202a11470/dotnet-hosting-3.1.12-win.exe', 'C:\dotnet-hosting-3.1.12-win.exe')
+$pathArgs = {C:\dotnet-hosting-3.1.12-win.exe /Install /Quiet /Norestart /Logs logCore31.txt}
+Invoke-Command -ScriptBlock $pathArgs
+
+# Download and install .NET 5 SDK
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/674a9f7d-862e-4f92-91b6-f1cf3fed03ce/e07db4de77ada8da2c23261dfe9db138/dotnet-sdk-5.0.103-win-x64.exe', 'C:\dotnet-sdk-5.0.103-win-x64.exe')
+$pathArgs = {C:\dotnet-sdk-5.0.103-win-x64.exe /Install /Quiet /Norestart /Logs logDotNet5.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Download and install SQL Server Management Studio
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/ssmsfullsetup', 'C:\SSMS-Setup.exe')
-$pathArgs = {C:\SSMS-Setup.exe /Install /Quiet /Norestart /Logs log.txt}
+$pathArgs = {C:\SSMS-Setup.exe /Install /Quiet /Norestart /Logs logSSMS.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Install Git
