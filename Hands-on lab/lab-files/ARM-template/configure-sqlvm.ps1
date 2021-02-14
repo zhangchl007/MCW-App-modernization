@@ -64,6 +64,8 @@ function Setup-Sql {
     Invoke-Sqlcmd "EXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'LoginMode', REG_DWORD, 2" -QueryTimeout 3600 -ServerInstance $ServerName
 
     Restart-Service -Force MSSQLSERVER
+    #In case restart failed but service was shut down.
+    Start-Service -Name 'MSSQLSERVER' 
 }
 
 Setup-Sql

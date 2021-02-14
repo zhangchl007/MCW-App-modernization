@@ -33,7 +33,7 @@
         "databaseName": "parts",
         "uniqueSqlServerName": "[concat(parameters('sqlServerName'), '-', uniqueString(resourceGroup().id))]",
         "storageAccountName": "[concat('parts', uniqueString(resourceGroup().id))]",
-
+        
         "virtualMachineSize": "Standard_D2s_v3",
 
         "webVirtualMachineName": "WebVM",
@@ -57,10 +57,8 @@
         "sqlCustomScriptUri": "[concat('https://raw.githubusercontent.com/microsoft/MCW-App-modernization/', variables('githubBranchName'),'/Hands-on%20lab/lab-files/ARM-template/', variables('sqlCustomScriptFileName'))]",
 
         "dmsName": "[concat('parts-dms-', uniqueString(resourceGroup().id))]",
-        "appServicePlanName": "[concat(resourceGroup().name, '-asp')]",
-		"webAppName": "[concat('parts-web-', uniqueString(resourceGroup().id))]",
-		"functionAppName": "[concat('parts-func-', uniqueString(resourceGroup().id))]",
-        "keyVaultName": "[concat('parts-kv-', uniqueString(resourceGroup().id))]"
+        "hostingPlanName": "[concat(resourceGroup().name, '-asp-ln-fn')]",
+		"functionAppName": "[concat('parts-func-', uniqueString(resourceGroup().id))]"
     },
     "resources": [
         {
@@ -317,56 +315,13 @@
             }
         },
         {
-            "type": "Microsoft.Web/serverfarms",
-            "name": "[variables('appServicePlanName')]",
-            "apiVersion": "2018-02-01",
-            "location": "[variables('location')]",
-            "sku": {
-                "name": "S1",
-                "tier": "Standard",
-                "size": "S1",
-                "family": "S",
-                "capacity": 1
-            },
-            "tags": {
-            },
-            "properties": {
-                "workerSize": 0,
-                "workerSizeId": 0,
-                "numberOfWorkers": 1
-            }
-        },
-        {
-            "type": "Microsoft.Web/sites",
-            "name": "[variables('webAppName')]",
-            "apiVersion": "2018-11-01",
-            "location": "[variables('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.Web/serverfarms/', variables('appServicePlanName'))]"
-            ],
-            "properties": {
-                "enabled": true,
-                "siteConfig": {
-                    "connectionStrings": [
-                    ],
-                    "metadata": [
-                        {
-                            "name": "CURRENT_STACK",
-                            "value": "dotnetcore"
-                        }
-                    ],
-                    "alwaysOn": true
-                },
-                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('appServicePlanName'))]"
-            }
-        },
-        {
             "type": "Microsoft.Web/sites",
             "name": "[variables('functionAppName')]",
             "apiVersion": "2018-11-01",
             "location": "[variables('location')]",
-            "kind": "functionapp",
+            "kind": "functionapp,linux",
             "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                 "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
             ],
             "properties": {
@@ -386,35 +341,30 @@
                             "value": "~3"
                         },
                         {
-                            "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=',variables('storageAccountName'),';AccountKey=',listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName')), '2015-05-01-preview').key1)]"
-                        },
-                        {
-                            "name": "WEBSITE_CONTENTSHARE",
-                            "value": "[variables('storageAccountName')]"
-                        },
-                        {
                             "name": "WEBSITE_NODE_DEFAULT_VERSION",
                             "value": "10.14.1"
                         }
-                    ]
+                    ],
+                    "use32BitWorkerProcess": false,
+                    "linuxFxVersion": "dotnet|3.1"
                 },
                 "clientAffinityEnabled": false,
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]",
                 "reserved": false
             }
         },
-        {
-            "name": "[variables('keyVaultName')]",
-            "type": "Microsoft.KeyVault/vaults",
-            "apiVersion": "2018-02-14",
+                {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2019-08-01",
+            "name": "[variables('hostingPlanName')]",
             "location": "[variables('location')]",
+            "kind": "linux",
             "properties": {
-                "sku": {
-                    "name": "Standard",
-                    "family": "A"
-                },
-                "tenantId": "[subscription().tenantId]",
-                "accessPolicies": []
+                "reserved": true
+            },
+            "sku": {
+                "Tier": "Dynamic",
+                "Name": "Y1"
             }
         },
         {
