@@ -837,6 +837,106 @@ Here is the final YAML file that you can use if needed.
 > 
 > ![Github Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png)
 
+## Exercise 5: Using Serverless Azure Functions to Process Orders
+
+With its migration to Azure, Parts Unlimited plans to launch a series of campaigns to increase its sales. Their current architecture is processing purchase orders synchronously and is coupled with their front end. Parts Unlimited is looking for ways to decouple its order processing system and make sure it can scale independently from the web front end when orders increase. 
+
+You suggest a serverless approach that can handle order processing and the creation of invoices for processed orders. In this exercise, you will deploy a serverless Azure Function that will listen to an Azure Storage Queue and process orders as they come. Parts Unlimited has already implemented the changes required to push the jobs into a queue of your choice.
+
+### Task 1: Deploying Azure Functions
+
+1. Connect to your WebVM VM with RDP. 
+
+   ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
+
+2. Select the Start menu and search for **Visual Studio Code**. Select **Visual Studio Code** to run it.
+
+    ![Start Menu is open. Visual Studio Code is typed in the search box. Visual Studio Code is highlighted from the list of search results.](media/vscode-start-menu.png)
+    
+3. Open the **File (1)** menu and select **Open Folder... (2)**.
+
+    ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png)
+
+4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
+
+5. Select **Install** to install extensions required for your Azure Functions project. This will install C# for Visual Studio Code and Azure Functions Extension for Visual Studio Code.
+
+    ![Visual Studio Code is on screen. Install extensions button is highlighted.](media/vscode-extenstions-install.png)
+
+6. Once install is **Finished (1)** select **Restore (2)** to download dependencies for the project.
+
+    ![Visual Studio Code is on screen. Restore dependencies button is highlighted.](media/vscode-restore-dependencies.png)
+
+7. When restore is complete close the tabs titled **Extension (1) (2)** and the **welcome tab (3)**. Select **Azure (4)** from the left menu and select **Sign in to Azure (5)**. Select **Edge** as your browser if requested.
+
+    ![Clouse buttons for all tabs are highlighted. Azure button from the left bar is selected. Sign in to Azure link is highlighted.](media/vscode-azure-signin.png)
+
+8. Enter your Azure credentials and Sign In. 
+
+9. Close the browser window once your sign in is complete.
+
+10. Drill down **(1)** the resource in your subscription. Right click on your Azure Function named **parts-func-{uniquesuffix} (2)** and select **Deploy to Azure Function App... (3)**.
+
+    ![Azure subscription is shown. The function app **parts-func-{uniquesuffix} (2)** is selected. On the context menu Deploy to Function App is highlighted.](media/vscode-deploy-function-app.png)
+
+11. Select **Deploy**.
+
+    ![VS Code deployment approval dialog is open.](media/vscode-deploy-approval.png)
+
+### Task 2: Connecting Function App and App Service
+
+1. In the [Azure portal](https://portal.azure.com), navigate to your `parts` Storage Account resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the `parts{uniquesuffix}` Storage Account from the list of resources.
+
+    ![The parts{uniquesuffix} Storage Account is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-storage-account.png)
+
+2. Switch to the **Access keys (1)** blade, and select **Show keys (2)**. Select the copy button for the first connection string **(3)**. Paste the value into a text editor, such as Notepad.exe, for later reference.
+
+    ![Access keys blade is open. Show keys button is highlighted. The copy button for the first connection string is pointed.](media/storage-account-connection-copy.png)
+
+3. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+
+   ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
+   
+3. Switch to the **Configuration (1)** blade, and select **+New connection string (2)**.
+
+    ![App service configuration panel is open. +New connection string button is highlighted.](media/app-service-settings-new-connection.png)
+
+5. On the **Add/Edit connection string** panel, enter the following:
+
+   - **Name(1)**: Enter `StorageConnectionString`.
+   - **Value**: Enter Storage Connection String you copied in Step 2.
+   - **Type (3)**: Select **Custom**
+   - **Deployment slot setting (4)**: Check this option to make sure connection strings stick to a deployment slot. This will make sure you can have different settings for staging and production.
+
+    ![Add/Edit Connection string panel is open. The name field is set to StorageConnectionString. The value field is set to the connection string copied in a previous step. Type is set to Custom. The deployment slot setting checkbox is checked. OK button is highlighted. ](media/app-service-storage-connection.png)
+
+6. Select **OK (5)**.
+
+7. Select **Save** and **Continue** for the following confirmation dialog.
+
+    ![App Service Configuration page is open. Save button is highlighted.](media/app-service-settings-save.png)
+    
+8. Go back to the resource list and navigate to your `parts-func-{uniquesuffix}` **(2)** Function App resource. You can search for `func` **(1)** to find your function app.
+
+   ![The search box for the resource is filled in with func. The parts-func-{uniquesuffix} Function App is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-function-app.png)
+   
+9. Switch to the **Configuration (1)** blade, and select **+New application setting (2)**.
+
+    ![Function App configuration panel is open. +New application setting button is highlighted.](media/function-app-app-settings-new.png)
+    
+10. On the **Add/Edit connection string** panel, enter the following:
+
+    - **Name(1)**: Enter `DefaultConnection`.
+    - **Value**: Enter SQL Connection String you copied in Exercise 3, Task 5, Step 3.
+   
+    ![Add/Edit Connection string panel is open. The name field is set to StorageConnectionString. The value field is set to the connection string copied in a previous step. Type is set to Custom. The deployment slot setting checkbox is checked. OK button is highlighted.](media/function-app-sql-setting.png)
+
+11. Select **OK (3)**.
+
+12. Select **Save** and **Continue** for the following confirmation dialog.
+
+    ![Function App Configuration page is open. Save button is highlighted.](media/function-app-setting-save.png)
+    
 ## After the hands-on lab
 
 Duration: 10 minutes
