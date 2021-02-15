@@ -83,10 +83,10 @@ Wait-Install
 $pathArgs = {C:\dotnet-runtime-3.1.12-win-x64.exe /Install /Quiet /Norestart /Logs logCore31.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
-# Download and install .NET 5 SDK
+# Download and install .NET Core 3.1 SDK
 Wait-Install
-(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/674a9f7d-862e-4f92-91b6-f1cf3fed03ce/e07db4de77ada8da2c23261dfe9db138/dotnet-sdk-5.0.103-win-x64.exe', 'C:\dotnet-sdk-5.0.103-win-x64.exe')
-$pathArgs = {C:\dotnet-sdk-5.0.103-win-x64.exe /Install /Quiet /Norestart /Logs logDotNet5.txt}
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/cc28204e-58d7-4f2e-9539-aad3e71945d9/d4da77c35a04346cc08b0cacbc6611d5/dotnet-sdk-3.1.406-win-x64.exe', 'C:\dotnet-sdk-3.1.406-win-x64.exe')
+$pathArgs = {C:\dotnet-sdk-3.1.406-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Download and install SQL Server Management Studio

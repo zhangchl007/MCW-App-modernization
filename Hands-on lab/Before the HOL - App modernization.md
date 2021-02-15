@@ -105,8 +105,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
    - App Service Migration Assistant
    - Edge
    - .NET Core 2.2 
-   - .NET Core 3.1
-   - .NET 5 SDK
+   - .NET Core 3.1 SDK
    - SQL Server Management Studio
    - Git Tools
    - Visual Studio Code installed and configured
