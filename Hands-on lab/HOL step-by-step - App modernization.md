@@ -955,11 +955,46 @@ You suggest a serverless approach that can handle order processing and the creat
     
 ## After the hands-on lab
 
-Duration: 10 minutes
+Duration: 15 minutes
 
 In this exercise, you de-provision all Azure resources that were created in support of this hands-on lab.
 
 ### Task 1: Delete Azure resource groups
 
-1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** following resource group.
+1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** resource group.
 
+### Task 2: Delete Github Repository
+
+1. From your Github account, find your `partsunlimited` repository by searching for `parts` **(1)** and selecting the repository **(2)**.
+
+    ![Github main page is on display. The repository search box is filled with parts. Partsunlimited repository is highlighted.](media/github-find-repo.png)
+
+2. When you are on the repository page, select **Settings**.
+
+    ![Repository page is open. The settings tab is highlighted.](media/github-repo-settings.png)
+
+3. Scroll down on the Settings page and select the **Delete this repository** button in the Danger Zone.
+
+    ![Repository settings page is open. Delete this repository button is highlighted.](media/github-repo-delete.png)
+
+4. Type in the entire repository name **(2)** as displayed **(1)** and confirm the deletion by selection **I understand the consequences, delete this repository** button.
+
+    ![Repository name is highlighted and typed in into the confirmation textbox. "I understand the consequences, delete this repository" button is highlighted.](media/github-repo-delete-approval.png)
+
+    > You might be asked for your Github password for a second round of approval.
+
+### Task 3: Remove Github Authorized Apps
+
+1. Log in to Github with your account.
+
+2. Navigate to [https://github.com/settings/applications](https://github.com/settings/applications) in the same browser window/tab. 
+
+3. From the list of authorized app **Revoke (1)** access to applications listed below.
+
+    - Azure App Service
+    - Github for VSCode
+    - Git Credential Manager
+
+    ![Github Authorized Applications are listed. Azure App Service, Github for VSCode, and Git Credential Manager are highlighted. Revoke button for Azure App Service is shown.](media/github-authorized-apps.png)
+
+    > Revoking the permissions listed above will disconnect these applications from your Github Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your Github account might lose access as well. 
