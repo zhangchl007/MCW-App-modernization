@@ -49,8 +49,11 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Exercise 5: Using Serverless Azure Functions to Process Orders](#exercise-5-using-serverless-azure-functions-to-process-orders)
     - [Task 1: Deploying Azure Functions](#task-1-deploying-azure-functions)
     - [Task 2: Connecting Function App and App Service](#task-2-connecting-function-app-and-app-service)
+    - [Task 3: Testing Serverless Order Processing](#task-3-testing-serverless-order-processing)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
+    - [Task 2: Delete Github Repository](#task-2-delete-github-repository)
+    - [Task 3: Remove Github Authorized Apps](#task-3-remove-github-authorized-apps)
 
 <!-- /TOC -->
 
@@ -970,6 +973,61 @@ You suggest a serverless approach that can handle order processing and the creat
 12. Select **Save** and **Continue** for the following confirmation dialog.
 
     ![Function App Configuration page is open. Save button is highlighted.](media/function-app-setting-save.png)
+
+### Task 3: Testing Serverless Order Processing
+
+1. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+
+   ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
+
+2. Select **URL** and navigate to the Parts Unlimited web site hosted in your Azure App Service. 
+
+    ![Parts Unlimited App Service is on screen. URL is highlighted.](media/navigate-to-parts-unlimited-app-service.png)
+
+3. Select **Login (1)** and select **Register as a new user? (2)**.
+
+    ![Parts Unlimited web site login screen is presented. Log in and Register as a new user buttons are highlighted.](media/register-parts-unlimited.png)
+
+4. Type in `test@test.com` for the email **(1)** and `Password.1!!` **(2)** for the password. Select **Register (3)**.
+
+    ![Parts Unlimited web site user registration screen is presented. Email box is filled with test@test.com. Password boxes are filled in with Password.1!!. The register button is highlighted.](media/register-parts-unlimited-new-user.png)
+
+5. On the next screen, select **Click here to confirm your email** to confirm your e-mail.
+
+6. Select **Login (1)** and type the credentials listed below.
+
+    - **Email (2):** test@test.com
+    - **Password (3):** Password.1!!
+
+    ![Parts Unlimited web site login screen is presented. Email box is filled with test@test.com. Password boxes are filled in with Password.1!!. Login button is highlighted. ](media/parts-umlimited-login.png)
+
+7. Select **Login (4)**.
+
+8. Select a product from the home page, and select **Add to Card** once you are on the product detail page.
+
+    ![Product detail page is shown. Add to cart button is highlighted.](media/parts-unlimited-add-to-cart.png)
+
+9. Select **Checkout** on the next screen.
+
+10. Fill in sample shipping information **(1)** for testing purposes. Use coupon code **FREE (2)** and select **Submit Order (3)**.
+
+    ![Sample shipping information is filled in. FREE coupon code is typed in. Submit Order button is highlighted.](media/parts-unlimited-order.png)
+
+11. Once checkout is complete select **view your order** to see order details.
+
+    ![Checkout Complete page is shown. View your order link is highlighted.](media/parts-unlimited-view-order-details.png)
+
+12. Observe the invoice field. Right now, your order is flagged as in processing. An order job is submitted to the Azure Storage Queue to be processed by Azure Functions. Refresh the page every 15 seconds to see if anything changes about your order.
+
+    ![Order details page is open. Invoice field is highlighted.](media/parts-unlimited-invoice-processing.png)
+
+13. Once your order has been processed, an invoice will be created, and a download link will appear. Select the download link to download the PDF invoice created for your order by Azure Functions.
+
+    ![Order details page is open. Invoice field is highlighted to show a download link.](media/parts-unlimited-pdf-download.png)
+
+    Here is your invoice.
+
+    ![A sample Parts Unlimited Invoice is presented.](media/invoice-pdf.png)
     
 ## After the hands-on lab
 
