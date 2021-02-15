@@ -46,7 +46,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Setting Up CI/CD With GitHub Actions](#task-3-setting-up-cicd-with-github-actions)
     - [Task 4: Pushing Code Changes to Staging and Production](#task-4-pushing-code-changes-to-staging-and-production)
     - [Task 5: Swap Deployment Slots to Move Changes in Staging to Production](#task-5-swap-seployment-slots-t-move-changes-in-staging-to-production)
-  - [Exercise 5: Using Serverless Azure Functions to Process Orders](#exercise-4-using-serverless-azure-functions-to-process-orders)
+  - [Exercise 5: Using Serverless Azure Functions to Process Orders](#exercise-5-using-serverless-azure-functions-to-process-orders)
     - [Task 1: Deploying Azure Functions](#task-1-deploying-azure-functions)
     - [Task 2: Connecting Function App and App Service](#task-2-connecting-function-app-and-app-service)
   - [After the hands-on lab](#after-the-hands-on-lab)
@@ -149,7 +149,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
 ## Exercise 2: Migrate Your Application With App Service Migration Assistant
 
-Duration: 15 minutes
+Duration: 20 minutes
 
 The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's web site for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
@@ -161,38 +161,48 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
 
-2. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu. 
+2. On the WebVM Virtual Machine's **Overview (1)** blade, copy the **Public IP address (2)**.
+
+    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/web-vm-ip.png)
+
+3. Open a new browser window and navigate to the IP Address you copied. 
+
+    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png)
+
+    > For testing purposes you might want to create yourself an account on Parts Unlimited web site and purhcase some products. Use the coupon code **FREE** to buy everythong for free.
+
+3. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu. 
 
    ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png)
 
-3. Select **Download RDP File** on the next page, and open the downloaded file.
+4. Select **Download RDP File** on the next page, and open the downloaded file.
 
     ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png)
 
-3. Select **Connect** on the Remote Desktop Connection dialog.
+5. Select **Connect** on the Remote Desktop Connection dialog.
 
    ![In the Remote Desktop Connection Dialog Box, the Connect button is highlighted.](media/remote-desktop-connection-webvm.png "Remote Desktop Connection dialog")
 
-5. Enter the following credentials with your password when prompted, and then select **OK**:
+6. Enter the following credentials with your password when prompted, and then select **OK**:
 
    - **Username**: demouser
    - **Password**: {YOUR-ADMIN-PASSWORD}
 
    ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdp-credentials-webvm.png "Enter your credentials")
 
-6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
+7. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
 
    ![In the Remote Desktop Connection dialog box, a warning states that the identity of the remote computer cannot be verified, and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
-7. Once logged into the WebVM VM, open **AppServiceMigrationAssistant** that is located on the Desktop. 
+8. Once logged into the WebVM VM, open **AppServiceMigrationAssistant** that is located on the Desktop. 
 
    ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png)
 
-8. Once App Service Migration Assistant discovers the web sites availabie on the server choose **Default Web Site (1)** for migration and select **Next (2)** to start assessment.
+9. Once App Service Migration Assistant discovers the web sites availabie on the server choose **Default Web Site (1)** for migration and select **Next (2)** to start assessment.
 
    ![AppServiceMigrationAssistant is open. Default Web Site is selected. Next button is highlighted.](media/appservicemigration-choose-site.png)
 
-9. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
+20. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
 
    ![Assessment report result is shown. There are 13 success metrics presented. The next button is highlighted.](media/appservicemigration-report.png)
    
@@ -234,7 +244,7 @@ After reviewing the assessment results, you have ensured the web application is 
 
 ## Exercise 3: Migrate the On-Premises Database to Azure SQL Database
 
-Duration: 50 minutes
+Duration: 55 minutes
 
 The next step of Part Unlimited's migration project is the assessment and migration of its database. Currently, the database lives on a SQL Server 2008 R2 on a virtual machine. You will use an **Azure Migrate: Database Assessment** tool called **Microsoft Data Migration Assistant (DMA)** to assess the `PartsUnlimited` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database. After the assessment, you will use an **Azure Migrate: Database Migration** service called **Azure Database Migration Service (DMS)**. During the exercise, you will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
@@ -557,7 +567,7 @@ Now that we have both our application and database migrated to Azure. It is time
 
 6. Select **OK (5)**.
 
-7. Select **Save** and **Yes** for the following confirmation dialog.
+7. Select **Save** and **Continue** for the following confirmation dialog.
 
     ![App Service Configuration page is open. Save button is highlighted.](media/app-service-settings-save.png)
     
@@ -567,7 +577,7 @@ Now that we have both our application and database migrated to Azure. It is time
 
 ## Exercise 4: Setup CI/CD Pipeline With GitHub Actions for the Web App
 
-Duration: {TODO}} minutes
+Duration: 55 minutes
 
 In this exercise, you will move the codebase to a Github Repo, create a staging environment in Azure App Service using App Service Deployment Slots, and finally connect the pieces with a CI/CD Pipeline built on Github Actions. 
 
@@ -831,7 +841,11 @@ Once you select **Save**, the portal will add your app service publishing profil
 
     ![Parts Unlimited staging environment is open in a browser. New Home Page title is highlighted.](media/staging-code-changes.png)
 
+Now that Parts Unlimited has a separate staging environment for their e-commerce site, they can push new source code and functionality to the repo that will automatically be built and deployed to their staging for testing. 
+
 ### Task 5: Swap Deployment Slots to Move Changes in Staging to Production
+
+Once Parts Unlimited is happy with the changes tested in their staging environment, they can swap the two environments and have changes go to production. Environment Swap happens very fast and can help Parts Unlimited pull back changes by switching back if needed.
 
 1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
 
@@ -847,7 +861,7 @@ Once you select **Save**, the portal will add your app service publishing profil
     
 4. Once you receive the success message, close the swap panel.
 
-5. Visit both production and staging slot endpoints and observe the Title change to move to production.
+5. Visit both production and staging slot endpoints and observe how the Title change is moved to production.
 
     > Once you move your staging slot to production, your production slot is moved to staging as well. This means that your current staging slot does not have the latest changes you have pushed to the repo. You can trigger a manual CI/CD workflow execution to push the latest changes to staging. 
     > 
@@ -856,6 +870,8 @@ Once you select **Save**, the portal will add your app service publishing profil
     > ![Github Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png)
 
 ## Exercise 5: Using Serverless Azure Functions to Process Orders
+
+Duration: 20 minutes
 
 With its migration to Azure, Parts Unlimited plans to launch a series of campaigns to increase its sales. Their current architecture is processing purchase orders synchronously and is coupled with their front end. Parts Unlimited is looking for ways to decouple its order processing system and make sure it can scale independently from the web front end when orders increase. 
 
