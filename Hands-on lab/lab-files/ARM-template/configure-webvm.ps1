@@ -59,11 +59,13 @@ Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on l
 # Replace SQL Connection String
 ((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.json
 
-# Download App Service Migration Assistant / Install Deferred to first login
+# Downloading Deferred Installs
+# Download App Service Migration Assistant 
 (New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
-
-# Download Edge / Install Deferred to first login
+# Download Edge 
 (New-Object System.Net.WebClient).DownloadFile('https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/e2d06b69-9e44-45e1-bdf5-b3b827fe06b2/MicrosoftEdgeEnterpriseX64.msi', 'C:\MicrosoftEdgeEnterpriseX64.msi')
+# Download .NET Core 3.1 SDK 
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/cc28204e-58d7-4f2e-9539-aad3e71945d9/d4da77c35a04346cc08b0cacbc6611d5/dotnet-sdk-3.1.406-win-x64.exe', 'C:\dotnet-sdk-3.1.406-win-x64.exe')
 
 # Schedule Installs for first Logon
 $argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1`""
@@ -75,18 +77,6 @@ Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt 
 Wait-Install
 (New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe', 'C:\dotnet-hosting-2.2.2-win.exe')
 $pathArgs = {C:\dotnet-hosting-2.2.2-win.exe /Install /Quiet /Norestart /Logs logCore22.txt}
-Invoke-Command -ScriptBlock $pathArgs
-
-# Download and install .NET Core 3.1
-Wait-Install
-(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/2fdc3009-cf5c-4cf6-8f3b-a61e83200cbb/2c71ee04b48103a7464f4e28a8bf339b/dotnet-runtime-3.1.12-win-x64.exe', 'C:\dotnet-runtime-3.1.12-win-x64.exe')
-$pathArgs = {C:\dotnet-runtime-3.1.12-win-x64.exe /Install /Quiet /Norestart /Logs logCore31.txt}
-Invoke-Command -ScriptBlock $pathArgs
-
-# Download and install .NET Core 3.1 SDK
-Wait-Install
-(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/cc28204e-58d7-4f2e-9539-aad3e71945d9/d4da77c35a04346cc08b0cacbc6611d5/dotnet-sdk-3.1.406-win-x64.exe', 'C:\dotnet-sdk-3.1.406-win-x64.exe')
-$pathArgs = {C:\dotnet-sdk-3.1.406-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Download and install SQL Server Management Studio
