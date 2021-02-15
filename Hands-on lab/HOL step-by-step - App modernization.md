@@ -88,8 +88,10 @@ Finally, Parts Unlimited decides to decouple its order processing system and mov
 
 ## Requirements
 
-- Microsoft Azure subscription
-- Github account.
+- Microsoft Azure subscription must be pay-as-you-go or MSDN.
+  - Trial subscriptions will _not_ work.
+  - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
+- Github Account.
   
 ## Exercise 1: Setting Up Azure Migrate
 
