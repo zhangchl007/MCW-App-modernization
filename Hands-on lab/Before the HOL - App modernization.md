@@ -41,10 +41,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will _not_ work.
-- **IMPORTANT**: To complete this lab, you must have sufficient rights within your Azure AD tenant to:
-  - Create an Azure Active Directory application and service principal
-  - Assign roles on your subscription
-  - Register resource providers
+  - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
+- Github Account.
 
 ## Before the hands-on lab
 
@@ -68,19 +66,19 @@ In this task, you create an Azure resource group to serve as a container for the
 
 3. On the Create a resource group **Basics** tab, enter the following:
 
-   - **Subscription**: Select the subscription you are using for this hands-on lab.
-   - **Resource group**: Enter **hands-on-lab-SUFFIX** as the name of the new resource group.
-   - **Region**: Select the region you are using for this hands-on lab.
+   - **Subscription (1)**: Select the subscription you are using for this hands-on lab.
+   - **Resource group (2)**: Enter **hands-on-lab-SUFFIX** as the name of the new resource group.
+   - **Region (3)**: Select the region you are using for this hands-on lab.
 
    ![The values specified above are entered into the Create a resource group Basics tab.](media/create-resource-group.png "Create resource group")
 
-4. Select **Review + Create**.
+4. Select **Review + Create (4)**.
 
 5. On the **Review + create** tab, ensure the Validation passed message is displayed and then select **Create**.
 
 ### Task 2: Register required resource providers
 
-In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` resource providers within your Azure subscription. These resource providers allow Azure Cognitive Search and the Azure Database Migration Service to be provisioned within your subscription.
+In this task, you register the `Microsoft.DataMigration` resource provider within your Azure subscription. These resource providers allow Azure Database Migration Service to be provisioned within your subscription.
 
 1. In the [Azure portal](https://portal.azure.com), select **Subscriptions** from the Azure services list.
 
@@ -90,61 +88,59 @@ In this task, you register the `Microsoft.DataMigration` and `Microsoft.Search` 
 
    ![The Subscription blade is displayed, with Resource providers selected and highlighted under Settings. On the Resource providers blade, migration is entered into the filter box, and Register is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration.png "Resource provider registration")
 
+   > If the resource provider is already registered, there is no further action required.
+   > ![](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration-check.png)
+
 3. It can take a couple of minutes for the registration to complete. Make sure you see a status of **Registered** before moving on. You may need to select **Refresh** to see the updated status.
 
    ![Registered is highlighted next to the Microsoft.DataMigration resource provider.](media/resource-providers-datamigration-registered.png "Microsoft DataMigration Resource Provider")
-
-4. Next, enter "search" into the filter box to locate the `Microsoft.Search` resource provider. If the status is not **Registered**, select **Register**, and wait for the resource status to be registered.
-
-   ![The Register button is highlighted, search is entered into the filter box, and the Microsoft.Search resource provider is selected.](media/resource-providers-search.png "Microsoft Search Resource Provider")
-
-   > **Note**: You may need to select Refresh to see the updated status.
 
 ### Task 3: Run ARM template to provision lab resources
 
 In this task, you run an Azure Resource Manager (ARM) template to deploy and configure the resources used throughout this hands-on lab. The resources created by the ARM template include:
 
-- Azure Blob Storage account
-- A lab virtual machine (VM) with Visual Studio 2019 Community edition and SQL Server Management Studio (SSMS) installed.
-- A SQL Server 2008 R2 VM with the Microsoft Data Migration Assistant (DMA) installed and a copy of the ContosoInsurance database installed.
+- Azure Storage account
+- A Windows Server 2019 Web virtual machine (VM) with 
+   - Parts Unlimited E-Commerce site 
+   - App Service Migration Assistant
+   - Edge
+   - .NET Core 2.2 
+   - .NET Core 3.1
+   - .NET 5 SDK
+   - SQL Server Management Studio
+   - Git Tools
+   - Visual Studio Code installed and configured
+- A SQL Server 2008 R2 VM with the Microsoft Data Migration Assistant (DMA) installed and configured to work with Parts Unlimited E-Commerce site.
 - Azure SQL Database
 - Azure Database Migration Service (DMS)
 - Azure App Service Plan
-- App Service (Web App)
-- App Service (API App)
 - Function App
-- Key Vault
-- Azure Cognitive Search
-- Azure Cognitive Services account
 - Virtual Network
 
-> **Note**: You can review the steps to manually provision the lab resources in the [Manual resource setup guide](./Manual-resource-setup.md).
+> {TODO:Not Updated} **Note**: You can review the steps to manually provision the lab resources in the [Manual resource setup guide](./Manual-resource-setup.md).
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which opens a custom deployment screen in the Azure portal.
 
-   <a href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FMCW-App-modernization%2Fmaster%2FHands-on%20lab%2Flab-files%2FARM-template%2Fazure-deploy.json" target="_blank" title="Deploy to Azure">
+   <a href ="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FMCW-App-modernization%2F2021Updates%2FHands-on%20lab%2Flab-files%2FARM-template%2Fazure-deploy.json" target="_blank" title="Deploy to Azure">
       <img src="http://azuredeploy.net/deploybutton.png"/>
    </a>
 
 2. On the custom deployment screen in the Azure portal, enter the following:
 
-   - **Subscription**: Select the subscription you are using for this hands-on lab.
-   - **Resource group**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
-   - **Location**: Select the location you used for the hands-on-lab-SUFFIX resource group.
-   - **SQL Server Name**: Accept the default value, **contosoinsurance**.
-
+   - **Subscription (1)**: Select the subscription you are using for this hands-on lab.
+   - **Resource group (2)**: Select the hands-on-lab-SUFFIX resource group from the dropdown list.
+   - **SQL Server Name**: Accept the default value, **parts**.
 
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
     - **Admin Username**: Accept the default value, **demouser**.
-    - **Admin Password**: Accept the default value, **Password.1!!**.
-    - Check the box to agree to the Azure Marketplace terms and conditions.
+    - **Admin Password (3)**: Type in your custom password you will be using for the rest of lab.
 
     ![The Custom deployment blade displays, and the information above is entered on the Custom deployment blade.](media/azure-custom-deployment.png "Custom deployment blade")
 
-3. Select **Purchase** to start provisioning the lab resources.
+3. Select **Review + create** and select **Create** on the next step to start provisioning the lab resources.
 
-   > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete. If you receive any errors, you can manually provision the missing resources following the steps within the [Manual resource setup guide](./Manual-resource-setup.md). If the error indicates an issue with quotas in the region you selected for the resource group, you can delete the resource group, create a new resource group in a different region, and re-run the ARM template, or you can request a quota increase and then manually provision the missing resources.
+   > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete. If you receive any errors, you can manually provision the missing resources following the steps within the [{TODO:Not Updated}  Manual resource setup guide](./Manual-resource-setup.md). If the error indicates an issue with quotas in the region you selected for the resource group, you can delete the resource group, create a new resource group in a different region, and re-run the ARM template, or you can request a quota increase and then manually provision the missing resources.
 
 4. You can monitor the progress of the deployment by navigating to the hands-on-lab-SUFFIX resource group in the Azure portal and then selecting **Deployments** from the left-hand menu. The deployment should be named **Microsoft.Template**. Select the deployment item to view the progress of each individual component in the template.
 
