@@ -330,7 +330,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Upload to Azure Migrate page is open. Lab subscription and partsunlimited Azure Migrate Project are selected. Upload button is highlighted.](media/dma-azure-migrate-upload-2.png)
     
-    > If you encounter the Strong Authentication required you might not see some of your subscription because of MFA limitatations. You should still be able to see your lab subscription.
+    > **NOTE:** If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscription because of MFA limitatations. You should still be able to see your lab subscription.
 
 16. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
 
@@ -1095,10 +1095,11 @@ In this exercise, you de-provision all Azure resources that were created in supp
 
 3. From the list of authorized app **Revoke (1)** access to applications listed below.
 
+    > **WARNING:** Revoking the permissions listed above will disconnect these applications from your Github Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your Github account might lose access as well. 
+    
     - Azure App Service
     - Github for VSCode
     - Git Credential Manager
 
     ![Github Authorized Applications are listed. Azure App Service, Github for VSCode, and Git Credential Manager are highlighted. Revoke button for Azure App Service is shown.](media/github-authorized-apps.png)
 
-    > Revoking the permissions listed above will disconnect these applications from your Github Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your Github account might lose access as well. 
