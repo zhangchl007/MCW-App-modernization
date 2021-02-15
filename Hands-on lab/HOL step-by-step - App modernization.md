@@ -976,6 +976,8 @@ You suggest a serverless approach that can handle order processing and the creat
 
 ### Task 3: Testing Serverless Order Processing
 
+In this task, we will submit a new order on the Parts Unlimited website and observe the order's processing on the order details page. Once the order is submitted, the web front-end will put a job into an Azure Storage Queue. The Function App that we previously deployed is set to listen to the queue and pull jobs for processing. Once order processing is done, a PDF file will be created, and the link for the PDF file will be accessible on the order details page.
+
 1. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
 
    ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
@@ -1028,6 +1030,32 @@ You suggest a serverless approach that can handle order processing and the creat
     Here is your invoice.
 
     ![A sample Parts Unlimited Invoice is presented.](media/invoice-pdf.png)
+
+### Task 4: Enable Application Insights on the Function App
+
+In this task, you add Application Insights to your Function App in the Azure Portal, to be able to collect insights related to Function executions.
+
+1. In the [Azure portal](https://portal.azure.com), navigate to your **Function App** by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **parts-func-{uniquesuffix}** App service from the list of resources.
+
+   ![The Function App resource is highlighted in the list of resources.](media/azure-resources-function-app.png "Function App")
+
+2. On the Function App blade, select **Application Insights (1)** under Settings from the left-hand menu. On the Application Insights blade, select **Turn on Application Insights (2)**.
+
+   ![Application Insights blade is selected. The Turn on Application Insights button is highlighted.](media/function-app-add-app-insights.png "Turn on Application Insights for Function App")
+
+3. On the Application Insights blade, select **Create new resource (1)**, accept the default name provided, and then select **Apply (2)**. Select **Yes (3)** when prompted about restarting the Function App to apply monitoring settings.
+
+   ![The Create New Application Insights blade is displayed with a unique name set under Create new resource. Apply and the following Yes approval buttons are highlighted.](media/function-app-app-insights.png "Add Application Insights")
+
+4. After the Function App restarts, select **View Application Insights data**.
+
+   ![The View Application Insights data link is highlighted.](media/function-app-view-application-insights-data.png "View Application Insights data")
+
+7. On the Application Insights blade, select **Live Metrics Stream (1)** from the left-hand menu.
+
+   ![Live Metrics Stream is highlighted in the left-hand menu on the Application Insights blade.](media/app-insights-live-metrics-stream.png "Application Insights")
+
+   > While having Live Metric up, try submitting a new order on the Parts Unlimited web site. You will see access to blob storage in the telemetry to upload the PDF **(2)** and execution count on the graph **(3)**.
     
 ## After the hands-on lab
 
