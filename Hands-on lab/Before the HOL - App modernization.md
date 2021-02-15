@@ -89,7 +89,7 @@ In this task, you register the `Microsoft.DataMigration` resource provider withi
    ![The Subscription blade is displayed, with Resource providers selected and highlighted under Settings. On the Resource providers blade, migration is entered into the filter box, and Register is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration.png "Resource provider registration")
 
    > If the resource provider is already registered, there is no further action required.
-   > ![](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration-check.png)
+   > ![Resource providers is selected. On the Resource providers page, migration is entered into the filter box, and Registered is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration-check.png)
 
 3. It can take a couple of minutes for the registration to complete. Make sure you see a status of **Registered** before moving on. You may need to select **Refresh** to see the updated status.
 
@@ -134,7 +134,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
     - **Admin Username**: Accept the default value, **demouser**.
-    - **Admin Password (3)**: Type in your custom password you will be using for the rest of lab.
+    - **Admin Password (3)**: Type in your custom password you will be using for the rest of lab. Default password is `Password.1!!`
 
     ![The Custom deployment blade displays, and the information above is entered on the Custom deployment blade.](media/azure-custom-deployment.png "Custom deployment blade")
 
