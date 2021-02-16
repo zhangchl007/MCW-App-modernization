@@ -885,7 +885,7 @@ Once Parts Unlimited is happy with the changes tested in their staging environme
 
 ## Exercise 5: Using Serverless Azure Functions to Process Orders
 
-Duration: 20 minutes
+Duration: 30 minutes
 
 With its migration to Azure, Parts Unlimited plans to launch a series of campaigns to increase its sales. Their current architecture is processing purchase orders synchronously and is coupled with their front end. Parts Unlimited is looking for ways to decouple its order processing system and make sure it can scale independently from the web front end when orders increase. 
 
