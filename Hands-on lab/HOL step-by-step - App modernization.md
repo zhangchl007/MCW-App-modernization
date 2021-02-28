@@ -83,7 +83,7 @@ Below is a high-level architecture diagram of the solution you implement in this
 
 > **Note:** The solution provided is only one of many possible, viable approaches.
 
-The solution begins with setting up Azure Migrate as the central assessment and migration hub for Parts Unlimited's E-Commerce web site. Using the App Service Migration tool from Azure Migrate, Parts Unlimited found that their web site is fully compatible with Azure App Service. As a next step, they use App Service Migration to provision an Azure App Service environment and deploy their application to Azure. Following the success in moving the web application, Parts Unlimited uses the Data Migration Assistant (DMA) assessment to determine that they can migrate into a fully-managed SQL Database service in Azure. The assessment reveals no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. 
+The solution begins with setting up Azure Migrate as the central assessment and migration hub for Parts Unlimited's E-Commerce web site. Using the App Service Migration Assistant tool from Azure Migrate, Parts Unlimited found that their web site is fully compatible with Azure App Service. As a next step, they use App Service Migration Assistant to provision an Azure App Service environment and deploy their application to Azure. Following the success in moving the web application, Parts Unlimited uses the Data Migration Assistant (DMA) assessment to determine that they can migrate into a fully-managed SQL Database service in Azure. The assessment reveals no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. 
 
 Next, Parts Unlimited sets up a private Github repository and pushes their codebase to Github. They set up deployment slots to have a staging environment to test functionality before releasing to production. As a CI/CD solution, they decide to use Github Actions and Workflows. 
 
@@ -210,6 +210,8 @@ Parts Unlimited would like an assessment to see what potential issues they might
 20. Observe the result of the assessment report. In our case, our application has successfully passed 13 tests **(1)** with no additional actions needed. Now that our assessment is complete, select **Next (2)** to proceed to the migration.
 
    ![Assessment report result is shown. There are 13 success metrics presented. The next button is highlighted.](media/appservicemigration-report.png)
+
+   > For the details of the readiness checks, see [App Service Migration Assistant documentation](https://github.com/Azure/App-Service-Migration-Assistant/wiki/Readiness-Checks).
    
 ### Task 2: Migrate the Web Application to Azure App Service
 
@@ -235,7 +237,7 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png)
 
-6. In order to migrate Parts Unlimited web site we have to create an App Service Plan and an App Service. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. For the App Service in Azure we have to provude a site name that is globally unique. We suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
+6. In order to migrate Parts Unlimited web site we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name, we suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
 
     ![Deployment options are presented. Existing lab resource group is selected as destination. Destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png)
 
@@ -562,7 +564,7 @@ Now that we have both our application and database migrated to Azure. It is time
     
     ![Notepad is open. SQL Connection string is pasted in. {your_password} placeholder is highlighted.](media/sql-connection-string-password-replace.png)
 
-4. Go back to the resource list, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+4. Go back to the resource list, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan. 
 
    ![The search box for resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
 
@@ -685,7 +687,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
 ### Task 2: Creating a Staging Deployment Slot
 
-1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan
 
    ![The search box for resources is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
    
@@ -697,7 +699,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Add a slot panel is open. Name is set staging. Partsunlimited-web-20 is selected for the clone settings from dropdown list. Add button is highlighted.](media/app-service-staging-slot.png)
     
-4. Once you receive the success message, close **(1)** the panel. Observe **(2)** the two environments we have for the app service in the deployment slots list.
+4. Once you receive the success message, close **(1)** the panel. Observe **(2)** the two environments we have for the App Service in the deployment slots list.
 
     ![Successfully created slot staging message is shown. The close button is highlighted. The current list of slots is presented.](media/app-service-staging-slot-added.png)
 
@@ -711,11 +713,11 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png)
     
-3. Select **Github (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service slot and the Github repository we previously prepared.
+3. Select **Github (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the Github repository we previously prepared.
 
     ![Deployment Settings page is open. Source is set to Github. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for Github is highlighted. ](media/app-service-deployment-settings.png)
     
-4. Login with your Github credentials and provide authorization to AppService to access the repository by selecting **Authorize AzureAppService**.
+4. Login with your Github credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
 
     ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png)
 
@@ -723,7 +725,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png)
 
-Once you select **Save**, the portal will add your app service publishing profile as a secret to your Github repository. This will allow Github Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository. 
+Once you select **Save**, the portal will add your App Service publishing profile as a secret to your Github repository. This will allow Github Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository. 
 
 6. Visit your Github repository on Github.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf. 
 
@@ -805,7 +807,7 @@ Once you select **Save**, the portal will add your app service publishing profil
 
     ![Actions on the Github Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png)
 
-16. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your staging app service deployment slot.
+16. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
 
     ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png)
     
@@ -941,7 +943,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
     ![Access keys blade is open. Show keys button is highlighted. The copy button for the first connection string is pointed.](media/storage-account-connection-copy.png)
 
-3. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+3. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan
 
    ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
    
@@ -989,11 +991,11 @@ You suggest a serverless approach that can handle order processing and the creat
 
 In this task, we will submit a new order on the Parts Unlimited website and observe the order's processing on the order details page. Once the order is submitted, the web front-end will put a job into an Azure Storage Queue. The Function App that we previously deployed is set to listen to the queue and pull jobs for processing. Once order processing is done, a PDF file will be created, and the link for the PDF file will be accessible on the order details page.
 
-1. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your app service.
+1. Go back to the resource list and navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan.
 
    ![The search box for the resource is filled in with partsunlimited-web. The partsunlimited-web-20 Azure App Service is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/resource-group-appservice-resource.png "Resources")
 
-2. Select **URL** and navigate to the Parts Unlimited web site hosted in your Azure App Service. 
+2. Select **URL** and navigate to the Parts Unlimited web site hosted in Azure App Service. 
 
     ![Parts Unlimited App Service is on screen. URL is highlighted.](media/navigate-to-parts-unlimited-app-service.png)
 

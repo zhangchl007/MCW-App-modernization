@@ -204,7 +204,7 @@ The team at Parts Unlimited is terrified to touch anything on the servers as lon
 The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1. 
 The e-commerce application incurs ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported because of its .NET Core version being at the end of life. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
 
-Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Allegra wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says "We have to drive and scale our e-Commerce presence forward while controlling costs."
+Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Casey wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says "We have to drive and scale our e-Commerce presence forward while controlling costs."
 
 The engineering team is worried about their order processing subsystem. Currently, they have a strongly coupled order processing system that runs synchronously during checkout. When moved to the cloud, they do not want to be worried about their order processing system's scalability. They are looking for a modern approach with the least migration effort possible. They want to keep the changes and their investment into the current code base at a minimum.
 
@@ -230,7 +230,7 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
 
-3. Our engineers love Github. It looks like you bought it. Are you planning to merge it with Azure DevOps?
+3. Our engineers love Github. It looks like you bought it. Are you planning to merge it with Azure DevOps? Are you planning to integrate with Azure services?
 
 4. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
 
@@ -272,7 +272,7 @@ _Assessment and Migration_
 
 5. Would there be any problems with the .NET Core version being EoL (End-of-Life)?
 
-_Mondernization_
+_Modernization_
 
 1. What Azure service would provide a scalable, serverless solution for order processing that handles unexpected spikes and can be implemented with the least amount of code change required in the web application?
 
@@ -403,7 +403,7 @@ _High-level architecture_
 
    ![Architecture diagram of the preferred solution. Azure Functions is implemented to handle order processing. Azure Storage Queue is used to hold the jobs between the web front end and Azure Functions. Github is used to host source code, and Github Actions is used to run the CI/CD.](media/architecture-diagram.png "Preferred solution architecture")
 
-The solution begins with assessing Parts Unlimited's E-Commerce application with App Service Migration Assistant. Once the assessment succeeds, Parts Unlimited can move to migrate their e-commerce site to an App Service with the App Service Migration Assistant's help. In the case of Parts Unlimited, despite their fears of using an EoL (End-of-Live) .NET Core version, the assessment does not show any blockers. After having App Service Migration Assistant provision an App Service and migrating their application Parts, Unlimited is happy having the front-end moved to the cloud.
+The solution begins with assessing Parts Unlimited's E-Commerce application with App Service Migration Assistant. Once the assessment succeeds, Parts Unlimited can migrate their e-commerce site to App Service with the App Service Migration Assistant's help. In the case of Parts Unlimited, despite their fears of using an EoL (End-of-Life) .NET Core version, the assessment does not show any blockers. After using the App Service Migration Assistant to provision an App Service plan and migrate their application, Parts Unlimited is happy having the front-end moved to the cloud.
 
 The next step is to migrate Parts Unlimited's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Parts Unlimited determines that they can migrate into a fully-managed SQL Database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. 
 
@@ -421,7 +421,7 @@ _Assessment and Migration_
 
 2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these? 
 
-   The App Service Migration Assistant can be used to assess whether their apps have dependencies on unsupported features on Azure App Service. App Service Migration Assistant can run readiness checks and get potential remediation steps for common issues. The assistant provides step-by-step guidance for moving a web app to App Service. Parts Unlimited can use Azure Migrate to consolidate all assessment and migration projects.
+   Azure App Service is the best solution for running ASP.NET web apps on Azure. The App Service Migration Assistant can be used to assess whether their apps have dependencies on unsupported features on Azure App Service. App Service Migration Assistant can run readiness checks and get potential remediation steps for common issues. The assistant provides step-by-step guidance for moving a web app to App Service. Parts Unlimited can use Azure Migrate to consolidate all assessment and migration projects.
 
 3. What tools would you recommend Parts Unlimited use to migrate its database? How would you use these? Be specific.
 
@@ -473,17 +473,17 @@ _Assessment and Migration_
 
 4. What Azure service would host the website?
 
-   An App Service.
+   Azure App Service.
 
 5. Would there be any problems with the .NET Core version being EoL (End-of-Life)?
 
-   No, App Service Assessment indicates no issues. However, it is strongly suggested to move to a supported version post-migration. [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) can be used to assess how much work is required for a migration.
+   No, the App Service Migration Assistant indicates no issues. However, it is strongly suggested to move to a supported version post-migration. [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) can be used to assess how much work is required for a migration.
 
    Here is [the Excel report of Portability Analyzer](media/ApiPortAnalysis.xlsx) and the DGML file showing dependencies in Parts Unlimited web application. 
 
    ![A Directed Graph Markup Language file that shows the dependency findings of Portability Analyzer](media/portability-analyzer.png)
 
-_Mondernization_
+_Modernization_
 
 1. What Azure service would provide a scalable, serverless solution for order processing that handles unexpected spikes and can be implemented with the least amount of code change required in the web application?
 
@@ -509,7 +509,7 @@ _DevOps_
 
 2. Parts Unlimited team is familiar with Github. How would you suggest them to set up a CI/CD pipeline?
 
-   GitHub Actions is an excellent place to automate, customize, and execute your software development workflows right in your repository with. Developers can build, test, and deploy their code right from GitHub. App Services come with a Deployment Center functionality that streamlines Github integration. Parts Unlimited can use the Deployment Center to create a CI/CD pipeline targeting a staging App Service Deployment Slot.
+   GitHub Actions is an excellent place to automate, customize, and execute your software development workflows right in your repository with. Developers can build, test, and deploy their code right from GitHub. App Service comes with a Deployment Center functionality that streamlines Github integration. Parts Unlimited can use the Deployment Center to create a CI/CD pipeline targeting a staging App Service Deployment Slot.
 
 ## Checklist of preferred objection handling
 
@@ -521,15 +521,11 @@ _DevOps_
 
    After the End-Of-Lime time, .NET Core patch updates will no longer be available for .NET Core 2.2. Your application will still run. .NET Core 2.2 was released as a non-LTS (Long Term Support) release. A non-LTS ("Current") release is supported for three months after the next release. For hosting applications that you do not intend to update often, we suggest LTS releases. LTS releases include features and components that have been stabilized, requiring few updates over a longer support release lifetime. The supported upgrade path from .NET Core 2.2 is via .NET Core 3.1. .NET Core 3.1 is released December 3, 2019, as a long-term support release.
 
-3. Our engineers love Github. It looks like you bought it. Are you planning to merge it with Azure DevOps?
+3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
 
-   Both offerings are alive and well. We are happy to offer different options to our customers. You can use both Github and Azure DevOps with your Azure environment.  
+   Azure is an open cloud that offers multiple choices. We suggest App Service for web apps or back-end services in an N-Tier architecture. Azure Kubernetes Services is a better fit for Cloud-Native (Microservices) design.
 
-4. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
-
-   Azure is an open cloud that offers multiple choices. We suggest App Service if you have a single or a few back-end services in an N-Tier architecture. Azure Kubernetes Services is a better fit for Cloud-Native (Microservices) design.
-
-5. We have plans to scale to Mexico and Brazil. Anything we should be worried about while moving to Azure?
+4. We have plans to scale to Mexico and Brazil. Anything we should be worried about while moving to Azure?
 
    Azure has 60+ regions, more than any other cloud provider. Our physical infrastructure comprises 160+ physical datacenters arranged into regions and linked by one of the world's largest interconnected networks. We have services such as Azure Traffic Manager for DNS-based traffic load balancing, Azure Front Door, a global, scalable entry-point that uses the Microsoft global edge network to create fast, secure, and widely scalable web applications, and Azure CosmosDB, a globally-distributed planet-scale database service. All these services are ready for implementation and used by millions of customers every day. We would be more than happy to help Parts Unlimited scale its operations globally.
 
