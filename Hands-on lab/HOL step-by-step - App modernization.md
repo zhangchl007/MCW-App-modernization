@@ -172,7 +172,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png)
 
-    > For testing purposes you might want to create yourself an account on Parts Unlimited web site and purhcase some products. Use the coupon code **FREE** to buy everythong for free.
+    > For testing purposes, you might want to create yourself an account on Parts Unlimited web site and purchase some products. Use the coupon code **FREE** to buy everything for free.
 
 3. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu. 
 
@@ -203,7 +203,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png)
 
-9. Once App Service Migration Assistant discovers the web sites availabie on the server choose **Default Web Site (1)** for migration and select **Next (2)** to start assessment.
+9. Once App Service Migration Assistant discovers the web sites available on the server choose **Default Web Site (1)** for migration and select **Next (2)** to start assessment.
 
    ![AppServiceMigrationAssistant is open. Default Web Site is selected. Next button is highlighted.](media/appservicemigration-choose-site.png)
 
@@ -339,7 +339,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Upload to Azure Migrate page is open. Lab subscription and partsunlimited Azure Migrate Project are selected. Upload button is highlighted.](media/dma-azure-migrate-upload-2.png)
     
-    > **NOTE:** If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscription because of MFA limitatations. You should still be able to see your lab subscription.
+    > **NOTE:** If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscription because of MFA limitations. You should still be able to see your lab subscription.
 
 16. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
 
@@ -353,7 +353,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
 In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. Both information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP addess from the list of resources.
+1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
 
     ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png)
 
@@ -599,7 +599,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 ### Task 1: Moving the Codebase to a GitHub Repo
 
-1. Login to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alernative you can [navigate to the new repository site here](https://github.com/new).
+1. Login to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alternative you can [navigate to the new repository site here](https://github.com/new).
 
     ![GitHub.com Landing page is shown. New button to create a new repository is highlighted.](media/github-new-repo.png)
     
@@ -617,9 +617,9 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
    ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
     
-5. Right-click on the Windows Start Menu and select **Windows Powershell (Admin)** to launch a terminal window.
+5. Right-click on the Windows Start Menu and select **Windows PowerShell (Admin)** to launch a terminal window.
 
-    ![Start Menu context menu is open. Windows Powershell (Admin) command is highlighted.](media/launch-powershell.png)
+    ![Start Menu context menu is open. Windows PowerShell (Admin) command is highlighted.](media/launch-powershell.png)
 
 6. The Parts Unlimited website's source code is already copied into the VM as part of the **Before the hands-on lab exercises**. Run the command below to navigate to the source code folder.
 
@@ -633,15 +633,15 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
     git init
     ```
 
-    ![Powershell terminal is shown. Git init is highlighted and executed.](media/git-init.png)
+    ![PowerShell terminal is shown. Git init is highlighted and executed.](media/git-init.png)
 
-7. Next, we will define the remote endpoint as an origin to our local repository. Replace `{YourEndpointURL}` with the endpoint URL you copied previously from GitHub. Run the final command in your Powershell terminal.
+7. Next, we will define the remote endpoint as an origin to our local repository. Replace `{YourEndpointURL}` with the endpoint URL you copied previously from GitHub. Run the final command in your PowerShell terminal.
 
     ```powershell
     git remote add origin {YourEndpointURL}
     ```
     
-    ![Powershell terminal is shown. Git remote add origin is highlighted and executed. ](media/git-remote-add.png)
+    ![PowerShell terminal is shown. Git remote add origin is highlighted and executed. ](media/git-remote-add.png)
 
 8. Run the following commands to rename current branch to **Main** and add stage all the files for a git commit.
 
@@ -650,7 +650,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
     git add .
     ```
     
-9. Before we commit our changes, we have to identify our git user name and e-mail. In the following command, replace `John Doe` with your name and `johndoe@example.com` with your e-mail address. Once ready, run the command in your Powershell terminal.
+9. Before we commit our changes, we have to identify our git user name and e-mail. In the following command, replace `John Doe` with your name and `johndoe@example.com` with your e-mail address. Once ready, run the command in your PowerShell terminal.
 
     ```powershell
     git config --global user.name "John Doe"
@@ -663,7 +663,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
     git commit -m "Initial Commit"
     ```
 
-11. Let's push our code to GitHub. Run the following command in your Powershell terminal.
+11. Let's push our code to GitHub. Run the following command in your PowerShell terminal.
 
     ```powershell
     git push -u origin main
@@ -671,7 +671,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
 12. GitHub authentication screen will pop up. Select **Sign in with your browser (2)**. A new browser pop-up will appear with the GitHub login page.
 
-    ![Powershell terminal shows git push command and the GitHub Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png)
+    ![PowerShell terminal shows git push command and the GitHub Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png)
 
 13. Fill-in your GitHub account credentials on the browser window to Sign-In.
 
@@ -755,7 +755,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
     ![The main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png)
 
-13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet buld and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase. 
+13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet build and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase. 
 
     ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png)
     
@@ -803,7 +803,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
     
 14. Once all changes are complete select **Start commit (4)**. Type a commit message **(5)**. Select **Commit changes (6)** to submit your changes to the repository.
 
-15. Select **Actions (1)** to switch to the workflows page. Notice the latest successfull run **(2)** of our workflow. 
+15. Select **Actions (1)** to switch to the workflows page. Notice the latest successful run **(2)** of our workflow. 
 
     ![Actions on the GitHub Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png)
 
@@ -811,7 +811,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
     ![The search box for resources is filled in with staging. The staging (partsunlimited-web-{uniquesuffix}/staging) Azure App Service Deployment Slot is highlighted in the list of resources in the hands-on-lab-SUFFIX resource group.](media/select-staging-app-service.png)
     
-17. Notice the dedicated web link for your staging slot. Select to navigate to the web site to see the result of your successfull deployment through the CI/CD pipeline.
+17. Notice the dedicated web link for your staging slot. Select to navigate to the web site to see the result of your successful deployment through the CI/CD pipeline.
 
     ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png)
 
