@@ -52,8 +52,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Testing Serverless Order Processing](#task-3-testing-serverless-order-processing)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
-    - [Task 2: Delete Github Repository](#task-2-delete-github-repository)
-    - [Task 3: Remove Github Authorized Apps](#task-3-remove-github-authorized-apps)
+    - [Task 2: Delete GitHub Repository](#task-2-delete-github-repository)
+    - [Task 3: Remove GitHub Authorized Apps](#task-3-remove-github-authorized-apps)
 
 <!-- /TOC -->
 
@@ -673,7 +673,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Powershell terminal shows git push command and the GitHub Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png)
 
-13. Fill-in your Github account credentials on the browser window to Sign-In.
+13. Fill-in your GitHub account credentials on the browser window to Sign-In.
 
 14. On the **Authorize Git Credential Manager** screen select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
 
@@ -713,7 +713,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png)
     
-3. Select **Github (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
+3. Select **GitHub (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
 
     ![Deployment Settings page is open. Source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png)
     
