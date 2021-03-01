@@ -85,7 +85,7 @@ Below is a high-level architecture diagram of the solution you implement in this
 
 The solution begins with setting up Azure Migrate as the central assessment and migration hub for Parts Unlimited's E-Commerce web site. Using the App Service Migration Assistant tool from Azure Migrate, Parts Unlimited found that their web site is fully compatible with Azure App Service. As a next step, they use App Service Migration Assistant to provision an Azure App Service environment and deploy their application to Azure. Following the success in moving the web application, Parts Unlimited uses the Data Migration Assistant (DMA) assessment to determine that they can migrate into a fully-managed SQL Database service in Azure. The assessment reveals no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. 
 
-Next, Parts Unlimited sets up a private Github repository and pushes their codebase to Github. They set up deployment slots to have a staging environment to test functionality before releasing to production. As a CI/CD solution, they decide to use Github Actions and Workflows. 
+Next, Parts Unlimited sets up a private GitHub repository and pushes their codebase to GitHub. They set up deployment slots to have a staging environment to test functionality before releasing to production. As a CI/CD solution, they decide to use GitHub Actions and Workflows. 
 
 Finally, Parts Unlimited decides to decouple its order processing system and move to an event-driven serverless compute platform. Following a [web-queue-worker architecture](https://docs.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker), they build an Azure Function and use Azure Storage Queue to process orders and create invoices asynchronously. When new orders come in, the web front end adds jobs into the queue consumed by Azure Functions. The Functions App scales independently based on the number of jobs in the queue, helping Parts Unlimited elastically handle a variable amount of orders.
 
@@ -94,7 +94,7 @@ Finally, Parts Unlimited decides to decouple its order processing system and mov
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will _not_ work.
   - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
-- Github Account.
+- An active GitHub Account.
   
 ## Exercise 1: Setting Up Azure Migrate
 
@@ -595,13 +595,13 @@ Now that we have both our application and database migrated to Azure. It is time
 
 Duration: 55 minutes
 
-In this exercise, you will move the codebase to a Github Repo, create a staging environment in Azure App Service using App Service Deployment Slots, and finally connect the pieces with a CI/CD Pipeline built on Github Actions. 
+In this exercise, you will move the codebase to a GitHub Repo, create a staging environment in Azure App Service using App Service Deployment Slots, and finally connect the pieces with a CI/CD Pipeline built on GitHub Actions. 
 
 ### Task 1: Moving the Codebase to a GitHub Repo
 
-1. Login to [Github](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alernative you can [navigate to the new repository site here](https://github.com/new).
+1. Login to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alernative you can [navigate to the new repository site here](https://github.com/new).
 
-    ![Github.com Landing page is shown. New button to create a new repository is highlighted.](media/github-new-repo.png)
+    ![GitHub.com Landing page is shown. New button to create a new repository is highlighted.](media/github-new-repo.png)
     
 2. Type in `partsunlimited` **(1)** as your repository name. Select **Private (2)** to prevent public access to the repository. Select **Create repository (3)** to continue.
 
@@ -609,7 +609,7 @@ In this exercise, you will move the codebase to a Github Repo, create a staging 
     
 3. Select the **clipboard copy command** to copy the Git endpoint for your repository and paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![Github repository page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png)
+    ![GitHub repository page is shown. Endpoint copy to clipboard button is highlighted.](media/github-endpoint-copy.png)
 
 So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-Premises IIS server. Now that we are done with the migration of Parts Unlimited's web site. We will use the VM to execute some development tasks. 
     
@@ -635,7 +635,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Powershell terminal is shown. Git init is highlighted and executed.](media/git-init.png)
 
-7. Next, we will define the remote endpoint as an origin to our local repository. Replace `{YourEndpointURL}` with the endpoint URL you copied previously from Github. Run the final command in your Powershell terminal.
+7. Next, we will define the remote endpoint as an origin to our local repository. Replace `{YourEndpointURL}` with the endpoint URL you copied previously from GitHub. Run the final command in your Powershell terminal.
 
     ```powershell
     git remote add origin {YourEndpointURL}
@@ -663,27 +663,27 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
     git commit -m "Initial Commit"
     ```
 
-11. Let's push our code to Github. Run the following command in your Powershell terminal.
+11. Let's push our code to GitHub. Run the following command in your Powershell terminal.
 
     ```powershell
     git push -u origin main
     ```
 
-12. Github authentication screen will pop up. Select **Sign in with your browser (2)**. A new browser pop-up will appear with the Github login page.
+12. GitHub authentication screen will pop up. Select **Sign in with your browser (2)**. A new browser pop-up will appear with the GitHub login page.
 
-    ![Powershell terminal shows git push command and the Github Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png)
+    ![Powershell terminal shows git push command and the GitHub Sign In experoence. Sign in with your browser button is highlighted.](media/github-sign-in.png)
 
 13. Fill-in your Github account credentials on the browser window to Sign-In.
 
-14. On the **Authorize Git Credential Manager** screen select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to Github.
+14. On the **Authorize Git Credential Manager** screen select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
 
     ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png)
     
 15. Close the browser.
 
-16. Go back to Github and observe the repository with the source code uploaded.
+16. Go back to GitHub and observe the repository with the source code uploaded.
 
-    ![Github shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png)
+    ![GitHub shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png)
 
 ### Task 2: Creating a Staging Deployment Slot
 
@@ -713,31 +713,31 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png)
     
-3. Select **Github (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the Github repository we previously prepared.
+3. Select **Github (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
 
-    ![Deployment Settings page is open. Source is set to Github. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for Github is highlighted. ](media/app-service-deployment-settings.png)
+    ![Deployment Settings page is open. Source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png)
     
-4. Login with your Github credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
+4. Login with your GitHub credentials and provide authorization to App Service to access the repository by selecting **Authorize AzureAppService**.
 
     ![Authorize AzureAppService button is highlighted.](media/app-service-github-repo-access.png)
 
-5. Once Github authorization is complete go back to the browser with the Azure Portal. Select the Github **Organization (1)** where you created the Github repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
+5. Once GitHub authorization is complete go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
 
     ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png)
 
-Once you select **Save**, the portal will add your App Service publishing profile as a secret to your Github repository. This will allow Github Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository. 
+Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited web site to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository. 
 
-6. Visit your Github repository on Github.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf. 
+6. Visit your GitHub repository on GitHub.com to look for changes. Navigate to `.github/workflows` **(1)** to see the **YAML file (2)** and the commit **(3)** made to the repository on your behalf. 
 
-    ![Partsunlimited repository is open on Github.com. .github/workflows folder is shown. A new commit that includes a main_partsunlimited-web-20(staging).yml file is highlighted.](media/github-inital-yaml-commit.png)
+    ![Partsunlimited repository is open on GitHub.com. .github/workflows folder is shown. A new commit that includes a main_partsunlimited-web-20(staging).yml file is highlighted.](media/github-inital-yaml-commit.png)
 
 7. Select **Actions (1)** to navigate to the Actions page where you can see the list of workflow runs on the repository. Noticed that the latest run has failed **(2)**. Select the failed run (2) to investigate the issue.
 
-    ![Github Actions for the repository is open](media/github-actions-failed.png)
+    ![GitHub Actions for the repository is open](media/github-actions-failed.png)
 
 8. Select the failed job to dig deeper.
 
-    ![Details for the Github workflow run is shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png)
+    ![Details for the GitHub workflow run is shown. A failed job named build-and-deploy is highlighted.](media/github-actions-failed-net-core-version.png)
    
 9. In the error message, we can see a mismatch between the .NET Core version the build job is using and the one the project is built against. When we set up our CI/CD pipeline, the Azure Portal listed .NET Core LTS (Long Term Support) versions only. Unfortunately, Parts Unlimited uses a .NET Core version that hit the end of life on December 23, 2019. We will have to change our pipeline setup manually to accommodate project requirements.
 
@@ -745,15 +745,15 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
 10. Select **Code (1)** to switch back to the repository code view. Select **.github/workflows (2)** to navigate to the location where the workflow YAML code is stored.
 
-    ![Partsunlimited Github repository root folder is shown. .github/workflows folders are highlighted. ](media/github-navigate-to-yaml.png)
+    ![Partsunlimited GitHub repository root folder is shown. .github/workflows folders are highlighted. ](media/github-navigate-to-yaml.png)
 
 11. Select the YAML file name `main_partsunlimited-web-20(staging).yml`.
 
-    ![main_partsunlimited-web-20(staging).yml file is highlighted in the github / workflows folder.](media/github-select-yaml-file.png)
+    ![The main_partsunlimited-web-20(staging).yml file is highlighted in the GitHub / workflows folder.](media/github-select-yaml-file.png)
 
 12. Select the **Edit this file (1)** button to modify the YAML file. 
 
-    ![main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png)
+    ![The main_partsunlimited-web-20(staging).yml file is on screen. Edit this file button is highlighted.](media/github-yaml-edit.png)
 
 13. We have to change the **dotnet-version (1)** number to `2.2.207`. Additionally, we have to add the solution file name **(2)** and the project file name **(3)** to dotnet buld and publish commands. The reason behind this change is the fact that Parts Unlimited has multiple solutions and projects in their codebase. 
 
@@ -805,7 +805,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
 15. Select **Actions (1)** to switch to the workflows page. Notice the latest successfull run **(2)** of our workflow. 
 
-    ![Actions on the Github Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png)
+    ![Actions on the GitHub Repository is selected. The latest successful run of the workflow is highlighted.](media/github-actions-success.png)
 
 16. Go back to your lab resource group on the Azure Portal, navigate to your `staging (partsunlimited-web-{uniquesuffix}/staging)` **(2)** App Service resource. You can search for `staging` **(1)** to find your App Service (Slot) for staging.
 
@@ -837,7 +837,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
     ![Index.cshtml from src > PartsUnlimitedWebSite > Views > Home folder is open. Page Title is changed to New Home Page. One pending change in the source control is highlighted.](media/vscode-changing-source-code.png)
 
-6. Select **Source Control (1)** tab in Visual Studio Code. Since we worked on the codebase in our repo in the virtual machine, the codebase in the repo on Github has changed. Open the **Views and more actions... (2)** menu and select **Pull (3)** to get the latest from the remote repository. 
+6. Select **Source Control (1)** tab in Visual Studio Code. Since we worked on the codebase in our repo in the virtual machine, the codebase in the repo on GitHub has changed. Open the **Views and more actions... (2)** menu and select **Pull (3)** to get the latest from the remote repository. 
 
     ![Views and more actions... menu is open. Pull command is highlighted.](media/vscode-pull.png)
 
@@ -845,11 +845,11 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
     ![Stage changes button for index.cshtml is highlighted. Commit message is set to New Home Page Title. Commut button is highlighted.](media/vscode-stage-commit.png)
 
-8. Open the **Views and more actions... (1)** menu and select **Push (2)** to push the changes to Github.
+8. Open the **Views and more actions... (1)** menu and select **Push (2)** to push the changes to GitHub.
 
     ![Views and more actions... menu is open. Push command is highlighted.](media/vscode-push.png)
 
-9. Open the Github repository and observe the Actions page for the latest execution of the CI/CD Pipeline.
+9. Open the GitHub repository and observe the Actions page for the latest execution of the CI/CD Pipeline.
 
     ![PartsUnlimited repo is open. Actions page is shown. Successful CI/CD run for the new home page title is highlighted.](media/github-actions-success-commit.png)
 
@@ -881,9 +881,9 @@ Once Parts Unlimited is happy with the changes tested in their staging environme
 
     > Once you move your staging slot to production, your production slot is moved to staging as well. This means that your current staging slot does not have the latest changes you have pushed to the repo. You can trigger a manual CI/CD workflow execution to push the latest changes to staging. 
     > 
-    > To run a CI/CD workflow manually, go to Github actions page **(1)** in your repository. Select the workflow **(2)** to run. Open the **Run workflow (3)** menu and select **Run workflow (4)**.
+    > To run a CI/CD workflow manually, go to GitHub actions page **(1)** in your repository. Select the workflow **(2)** to run. Open the **Run workflow (3)** menu and select **Run workflow (4)**.
     > 
-    > ![Github Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png)
+    > ![GitHub Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png)
 
 ## Exercise 5: Using Serverless Azure Functions to Process Orders
 
@@ -1080,11 +1080,11 @@ In this exercise, you de-provision all Azure resources that were created in supp
 
 1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** resource group.
 
-### Task 2: Delete Github Repository
+### Task 2: Delete GitHub Repository
 
-1. From your Github account, find your `partsunlimited` repository by searching for `parts` **(1)** and selecting the repository **(2)**.
+1. From your GitHub account, find your `partsunlimited` repository by searching for `parts` **(1)** and selecting the repository **(2)**.
 
-    ![Github main page is on display. The repository search box is filled with parts. Partsunlimited repository is highlighted.](media/github-find-repo.png)
+    ![GitHub main page is on display. The repository search box is filled with parts. Partsunlimited repository is highlighted.](media/github-find-repo.png)
 
 2. When you are on the repository page, select **Settings**.
 
@@ -1098,21 +1098,23 @@ In this exercise, you de-provision all Azure resources that were created in supp
 
     ![Repository name is highlighted and typed in into the confirmation textbox. "I understand the consequences, delete this repository" button is highlighted.](media/github-repo-delete-approval.png)
 
-    > You might be asked for your Github password for a second round of approval.
+    > You might be asked for your GitHub password for a second round of approval.
 
-### Task 3: Remove Github Authorized Apps
+### Task 3: Remove GitHub Authorized Apps
 
-1. Log in to Github with your account.
+1. Log in to GitHub with your account.
 
 2. Navigate to [https://github.com/settings/applications](https://github.com/settings/applications) in the same browser window/tab. 
 
 3. From the list of authorized app **Revoke (1)** access to applications listed below.
 
-    > **WARNING:** Revoking the permissions listed above will disconnect these applications from your Github Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your Github account might lose access as well. 
+    > **WARNING:** Revoking the permissions listed above will disconnect these applications from your GitHub Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your GitHub account might lose access as well. 
     
     - Azure App Service
-    - Github for VSCode
+    - GitHub for VSCode
     - Git Credential Manager
 
-    ![Github Authorized Applications are listed. Azure App Service, Github for VSCode, and Git Credential Manager are highlighted. Revoke button for Azure App Service is shown.](media/github-authorized-apps.png)
+    ![GitHub Authorized Applications are listed. Azure App Service, GitHub for VSCode, and Git Credential Manager are highlighted. Revoke button for Azure App Service is shown.](media/github-authorized-apps.png)
+
+You should follow all steps provided *after* attending the Hands-on lab.
 
