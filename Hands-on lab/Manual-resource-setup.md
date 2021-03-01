@@ -56,7 +56,7 @@ In this task, you provision an Azure Storage account, which is used by the Azure
 
 ## Task 2: Create the WebVM
 
-In this task, you provision a virtual machine (VM) in Azure. The VM is used to host Parts Unlimiteds website and simulate the on-premises environment. The VM will be repurposed as a development machine once the website is migrated to Azure.
+In this task, you provision a virtual machine (VM) in Azure. The VM is used to host Parts Unlimited's website and simulate the on-premises environment. The VM will be repurposed as a development machine once the website is migrated to Azure.
 
 1. In the [Azure portal](https://portal.azure.com/), go to your hands-on-lab-SUFFIX resource group and select **+Add (1)** from the menu.
 
@@ -356,7 +356,7 @@ In this task, you create an RDP connection to your Web virtual machine (VM), and
 
 In this task, you configure the WebVM with the required software and downloads. 
 
-1. Right-click the Windows Start Menu and select **Windows Powershell (Admin)** to start a terminal session.
+1. Right-click the Windows Start Menu and select **Windows PowerShell (Admin)** to start a terminal session.
 
    ![Windows Start Menu is highlighted. The context menu is open, and Windows Powershell (Admin) is selected.](media/run-powershell-admin.png)
 
@@ -386,7 +386,7 @@ In this task, you configure the WebVM with the required software and downloads.
    Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-2021updates\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
    ```
 
-5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP addess from the list of resources.
+5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
 
     ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png)
 
@@ -394,7 +394,7 @@ In this task, you configure the WebVM with the required software and downloads.
 
     ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png)
 
-7. Replace the `<YourIP>` section in the code below and run it on the Windows Powershell terminal in the WebVM.
+7. Replace the `<YourIP>` section in the code below and run it on the Windows PowerShell terminal in the WebVM.
 
    ```PS
    ((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=<YourIP>;Database=PartsUnlimited;User Id=PUWebSite;Password=Password.1!!;") | Set-Content -Path C:\inetpub\wwwroot\config.json
@@ -419,9 +419,9 @@ In this task, you open an RDP connection to the SqlServer2008 VM, disable Intern
 
 > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard to read text on the screen. The workaround for this is to use a second monitor for the RDP display, which should allow you to scale up the resolution to make the text larger.
 
-1. As you did for the LabVM, connect to the SqlServer2008 VM with a Remote Desktop Connection connection. Enter the following credentials when prompted:
+1. As you did for the LabVM, connect to the SqlServer2008 VM with a Remote Desktop Connection. Enter the following credentials when prompted:
 
-   - **User name**: demouser
+   - **Username**: demouser
    - **Password**: Password.1!!
 
 2. Once logged in, launch the **Server Manager**. This should start automatically, but you can access it via the Start menu if it does not.
@@ -440,7 +440,7 @@ In this task, you install the Microsoft Data Migration Assistant (DMA) on the Sq
 
    ![Windows Start Menu is open. The search box has SQL in it. Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/sqlserver2008-ssms-launch.png)
 
-3. Selecct **Connect** to continue.
+3. Select **Connect** to continue.
 
    ![SQL Server Authentication dialog is open. SQLSERVER2008 is set as Server Name. Windows Authentication is set as Authentication method. Connect button is highlighted.](media/sqlserver2008-connect.png)
 
