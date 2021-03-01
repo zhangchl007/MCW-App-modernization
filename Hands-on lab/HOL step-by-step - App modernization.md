@@ -75,7 +75,7 @@ Additionally, Parts Unlimited has plans to increase its marketing investment, cu
 
 Finally, Parts Unlimited is looking to invest in DevOps practices to decrease human error in deployments. They are looking for options to have a staging environment to test functionality before shipping to production. However, their team does not have any experience in building CI/CD pipelines. They are not sure if this goal is achievable in the short term, and they do not want it to hold up their migration to the cloud.
 
-## Solution Architecture
+## Solution architecture
 
 Below is a high-level architecture diagram of the solution you implement in this hands-on lab. Please review this carefully, so you understand the whole of the solution as you are working on the various components.
 
@@ -180,7 +180,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 4. Select **Download RDP File** on the next page, and open the downloaded file.
 
-    > The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete. 
+    > **Note**: The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete. 
 
     ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png)
 
@@ -237,7 +237,7 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png)
 
-6. In order to migrate Parts Unlimited web site we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name, we suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
+6. In order to migrate Parts Unlimited web site, we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name, we suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
 
     ![Deployment options are presented. Existing lab resource group is selected as destination. Destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png)
 
@@ -339,7 +339,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Upload to Azure Migrate page is open. Lab subscription and partsunlimited Azure Migrate Project are selected. Upload button is highlighted.](media/dma-azure-migrate-upload-2.png)
     
-    > **NOTE:** If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscription because of MFA limitations. You should still be able to see your lab subscription.
+    > **Note**: If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscription because of MFA limitations. You should still be able to see your lab subscription.
 
 16. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
 
@@ -351,7 +351,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
     
 ### Task 2: Retrieve Connection Information for SQL Databases
 
-In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. Both information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
+In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. This information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
 
@@ -917,7 +917,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
     ![Visual Studio Code is on screen. Restore dependencies button is highlighted.](media/vscode-restore-dependencies.png)
 
-7. When restore is complete close the tabs titled **Extension (1) (2)** and the **welcome tab (3)**. Select **Azure (4)** from the left menu and select **Sign in to Azure (5)**. Select **Edge** as your browser if requested.
+7. When restore is complete close the tabs titled **Extension (1) (2)** and the **welcome tab (3)**. Select **Azure (4)** from the left menu and select **Sign into Azure (5)**. Select **Edge** as your browser if requested.
 
     ![Clouse buttons for all tabs are highlighted. Azure button from the left bar is selected. Sign in to Azure link is highlighted.](media/vscode-azure-signin.png)
 
@@ -1074,7 +1074,7 @@ In this task, you add Application Insights to your Function App in the Azure Por
 
 Duration: 15 minutes
 
-In this exercise, you de-provision all Azure resources that were created in support of this hands-on lab.
+In this exercise, you will de-provision all Azure resources that were created in support of this hands-on lab.
 
 ### Task 1: Delete Azure resource groups
 
