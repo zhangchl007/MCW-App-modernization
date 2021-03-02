@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-June 2020
+February 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2020 Microsoft Corporation. All rights reserved.
+© 2021 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -193,7 +193,7 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals. 
 
-In its first year, Parts Unlimited opened fourteen stores in three states: Washington, Idaho, and Oregon. The company established a 12,000 square foot distribution center to serve customers in the area. In two years, annual sales volume rose to 11$ million. Parts Unlimited saw its business come from 40% professional and 60% do-it-yourself (DIY) omnichannel customers. With the situation surrounding COVID-19, the company saw a surge in online orders from professional and DIY customers. Unfortunately, their infrastructure and their team were not ready for the spike in e-commerce transactions. 
+In its first year, Parts Unlimited opened fourteen stores in three states: Washington, Idaho, and Oregon. The company established a 12,000 square foot distribution center to serve customers in the area. In two years, annual sales volume rose to $11 million. Parts Unlimited saw its business come from 40% professional and 60% do-it-yourself (DIY) omnichannel customers. With the situation surrounding COVID-19, the company saw a surge in online orders from professional and DIY customers. Unfortunately, their infrastructure and their team were not ready for the spike in e-commerce transactions. 
 
 Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia. 
 
@@ -228,9 +228,9 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version? 
 
-2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
+2. When a .NET Core version is EoL (End-of-Life), does that mean we cannot host our solution in Azure?
 
-3. Our engineers love Github. It looks like you bought it. Are you planning to merge it with Azure DevOps? Are you planning to integrate with Azure services?
+3. Our engineers love GitHub. It looks like you bought it. Are you planning to merge it with Azure DevOps? Are you planning to integrate with Azure services?
 
 4. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
 
@@ -286,7 +286,7 @@ _DevOps_
 
 1. Parts Unlimited wants to test new functionality and bugfixes before shipping to production. What would you suggest?
 
-2. Parts Unlimited team is familiar with Github. How would you suggest them to set up a CI/CD pipeline?
+2. Parts Unlimited team is familiar with GitHub. How would you suggest them to set up a CI/CD pipeline?
 
 **Prepare**
 
@@ -401,7 +401,7 @@ _High-level architecture_
 
 1. Without getting into the details, which you address below, diagram your initial vision for handling the top-level requirements for the e-commerce site, database, DevOps, and order processing.
 
-   ![Architecture diagram of the preferred solution. Azure Functions is implemented to handle order processing. Azure Storage Queue is used to hold the jobs between the web front end and Azure Functions. Github is used to host source code, and Github Actions is used to run the CI/CD.](media/architecture-diagram.png "Preferred solution architecture")
+   ![Architecture diagram of the preferred solution. Azure Functions is implemented to handle order processing. Azure Storage Queue is used to hold the jobs between the web front end and Azure Functions. GitHub is used to host source code, and GitHub Actions is used to run the CI/CD.](media/architecture-diagram.png "Preferred solution architecture")
 
 The solution begins with assessing Parts Unlimited's E-Commerce application with App Service Migration Assistant. Once the assessment succeeds, Parts Unlimited can migrate their e-commerce site to App Service with the App Service Migration Assistant's help. In the case of Parts Unlimited, despite their fears of using an EoL (End-of-Life) .NET Core version, the assessment does not show any blockers. After using the App Service Migration Assistant to provision an App Service plan and migrate their application, Parts Unlimited is happy having the front-end moved to the cloud.
 
@@ -409,7 +409,7 @@ The next step is to migrate Parts Unlimited's SQL Server 2008 R2 database to Azu
 
 For order processing, Parts Unlimited will modify its e-commerce site to submit order jobs into an Azure Storage Queue. The code change will be minimal. An Azure Function will be implemented to take the jobs from the queue and process orders, create PDF invoices for each order, and finally upload invoices into an Azure Storage Blob to be served to customers through the e-commerce site directly from blobs using SAS links.
 
-For DevOps, Parts Unlimited will use a git repository on Github to host its codebase. A CI/CD pipeline will be hosted on top of Github Actions building and deploying the solution to a staging deployment slot in the Azure App Service. Parts Unlimited can swap slots once they are happy with the changes deployed to staging.
+For DevOps, Parts Unlimited will use a git repository on GitHub to host its codebase. A CI/CD pipeline will be hosted on top of GitHub Actions building and deploying the solution to a staging deployment slot in the Azure App Service. Parts Unlimited can swap slots once they are happy with the changes deployed to staging.
 
    > **Note:** The preferred solution is only one of many possible, viable approaches.
 
@@ -466,6 +466,7 @@ _Assessment and Migration_
    DEA guides you through running A/B testing by completing three steps:
 
    1. **Capture**: The first step of SQL Server A/B testing is to capture your source server's trace. Trace files capture the entire query workload on that server.
+   
    2. **Replay**: The second step of SQL Server A/B testing is to replay the trace file captured on your target servers and then collect extensive traces from the replay for analysis.
    3. **Analysis**: The final step is to generate an analysis report using the replay traces. The analysis report can help you gain insight into the implications of the proposed change.
 
@@ -507,9 +508,9 @@ _DevOps_
 
    When you deploy your web app to Azure App Service, you can use a separate deployment slot instead of the default production slot. Deployment slots are live apps with their hostnames. App content and configuration elements can be swapped between two deployment slots, including the production slot. Deploying your application to a non-production slot helps you validate app changes in a staging deployment slot before swapping it with the production slot. After a swap, the slot with the previously staged app now has the previous production app. If the changes swapped into the production slot aren't as you expect, you can immediately perform the same swap to get your "last known good site" back.
 
-2. Parts Unlimited team is familiar with Github. How would you suggest them to set up a CI/CD pipeline?
+2. Parts Unlimited team is familiar with GitHub. How would you suggest them to set up a CI/CD pipeline?
 
-   GitHub Actions is an excellent place to automate, customize, and execute your software development workflows right in your repository with. Developers can build, test, and deploy their code right from GitHub. App Service comes with a Deployment Center functionality that streamlines Github integration. Parts Unlimited can use the Deployment Center to create a CI/CD pipeline targeting a staging App Service Deployment Slot.
+   GitHub Actions is an excellent place to automate, customize, and execute your software development workflows right in your repository with. Developers can build, test, and deploy their code right from GitHub. App Service comes with a Deployment Center functionality that streamlines GitHub integration. Parts Unlimited can use the Deployment Center to create a CI/CD pipeline targeting a staging App Service Deployment Slot.
 
 ## Checklist of preferred objection handling
 
@@ -517,7 +518,7 @@ _DevOps_
 
    We have [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) that can be used to assess how much work is required for a migration. We know projects that can migrate with a single configuration change and others who had to do some work based on the application's complexity and code dependencies. The .NET Portability Analyzer can give you a good idea of how much effort is required to migrate to a newer version including an assessment of all your code dependencies. 
 
-2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
+2. When a .NET Core version is EoL (End-of-Life), does that mean we cannot host our solution in Azure?
 
    After the End-Of-Lime time, .NET Core patch updates will no longer be available for .NET Core 2.2. Your application will still run. .NET Core 2.2 was released as a non-LTS (Long Term Support) release. A non-LTS ("Current") release is supported for three months after the next release. For hosting applications that you do not intend to update often, we suggest LTS releases. LTS releases include features and components that have been stabilized, requiring few updates over a longer support release lifetime. The supported upgrade path from .NET Core 2.2 is via .NET Core 3.1. .NET Core 3.1 is released December 3, 2019, as a long-term support release.
 
