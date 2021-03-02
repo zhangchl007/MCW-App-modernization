@@ -105,11 +105,9 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
 
-3. Our engineers love GitHub. It looks like you bought it. Are you planning to merge it with Azure DevOps?
+3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
 
-4. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
-
-5. We have plans to scale to Mexico and Brazil. Anything we should be worried about while moving to Azure?
+4. We have plans to scale to Mexico and Brazil. Anything we should be worried about while moving to Azure?
 
 ## Step 2: Design a proof of concept solution
 
