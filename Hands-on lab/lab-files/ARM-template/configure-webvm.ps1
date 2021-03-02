@@ -42,7 +42,7 @@ Disable-InternetExplorerESC
 
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
-$branchName = "2021updates"
+$branchName = "master"
 
 # Download and extract the starter solution files
 # ZIP File sometimes gets corrupted

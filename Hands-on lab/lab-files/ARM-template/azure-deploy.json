@@ -28,7 +28,7 @@
         }
     },
     "variables": {
-		"githubBranchName": "2021updates",
+		"githubBranchName": "master",
         "location": "[resourceGroup().location]",
         "databaseName": "parts",
         "uniqueSqlServerName": "[concat(parameters('sqlServerName'), '-', uniqueString(resourceGroup().id))]",

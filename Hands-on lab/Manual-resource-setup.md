@@ -372,7 +372,7 @@ In this task, you configure the WebVM with the required software and downloads.
    New-Item -ItemType directory -Path C:\MCW
    while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
    {
-      (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/archive/2021updates.zip", 'C:\MCW.zip')
+      (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/archive/master.zip", 'C:\MCW.zip')
       Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
    }
    ```
@@ -384,7 +384,7 @@ In this task, you configure the WebVM with the required software and downloads.
 4. Run the code below to copy Parts Unlimited web site files to the wwwroot folder targeted by the local web server.
 
    ```PS
-   Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-2021updates\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
+   Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
    ```
 
 5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
