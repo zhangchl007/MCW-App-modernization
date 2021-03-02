@@ -16,7 +16,7 @@ February 2021
   - [Task 5: Create Azure Database Migration Service](#task-5-create-azure-database-migration-service)
   - [Task 6: Provision a Function App](#task-6-provision-a-function-app)
   - [Task 7: Connect to the Web VM](#task-7-connect-to-the-web-vm)
-  - [Task 8: Setting Up the WebVM](#task-13-setting-up-the-webvm)
+  - [Task 8: Setting Up the WebVM](#task-8-setting-up-the-webvm)
   - [Task 9: Connect to SqlServer2008 VM](#task-9-connect-to-sqlserver2008-vm)
   - [Task 10: Setting Up the SqlServer2008 VM](#task-10-setting-up-the-sqlserver2008-vm)
 
@@ -96,11 +96,11 @@ In this task, you provision a virtual machine (VM) in Azure. The VM is used to h
 
    > **Note**: Default settings are used for the remaining tabs so that they can be skipped.
 
-5. Select **Review + create (10)** to validate the configuration.
+4. Select **Review + create (10)** to validate the configuration.
 
-6. On the **Review + create** tab, ensure the Validation passed message is displayed, and then select **Create** to provision the virtual machine.
+5. On the **Review + create** tab, ensure the Validation passed message is displayed, and then select **Create** to provision the virtual machine.
 
-7. It takes approximately 10 minutes for the VM to finish provisioning. You can move on to the next task while you wait.
+6. It takes approximately 10 minutes for the VM to finish provisioning. You can move on to the next task while you wait.
 
 ## Task 3: Create SQL Server 2008 R2 Virtual Machine
 
@@ -319,13 +319,13 @@ In this task, you create an RDP connection to your Web virtual machine (VM), and
 
     ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png "WebVM Resource Selection")
 
-2. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu. 
+2. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu.
 
    ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png "Remote Desktop Connection")
 
 3. Select **Download RDP File** on the next page, and open the downloaded file.
 
-    > The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete. 
+    > The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete.
 
     ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png "Remote Desktop Connection Download")
 
@@ -354,7 +354,7 @@ In this task, you create an RDP connection to your Web virtual machine (VM), and
 
 ## Task 8: Setting Up the WebVM
 
-In this task, you configure the WebVM with the required software and downloads. 
+In this task, you configure the WebVM with the required software and downloads.
 
 1. Right-click the Windows Start Menu and select **Windows PowerShell (Admin)** to start a terminal session.
 
@@ -365,6 +365,7 @@ In this task, you configure the WebVM with the required software and downloads.
    ```PS
    Install-WindowsFeature -name Web-Server -IncludeManagementTools
    ```
+
 3. Run the code below to download the lab files and extract the content into `C:\MCW` folder.
 
    ```PS
@@ -448,7 +449,7 @@ In this task, you install the Microsoft Data Migration Assistant (DMA) on the Sq
 
    ![Sql Server Management Studio is open. New Query button is clicked. A new query window is presented. T-SQL Commands are pasted in and Execute command is highlighted.](media/sqlserver2008-setup-script.png "Sql Script")
 
-   ```sql   
+   ```sql
    USE [master];
    CREATE DATABASE [PartsUnlimited]; 
    GO

@@ -32,7 +32,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/legal/intellec
     - [Customer situation](#customer-situation)
     - [Customer needs](#customer-needs)
     - [Customer objections](#customer-objections)
-    - [Infographic for common scenarios](#infographic-for-common-scenarios)
   - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
   - [Step 3: Present the solution](#step-3-present-the-solution)
   - [Wrap-up](#wrap-up)
@@ -66,17 +65,17 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 ### Customer situation  
 
-Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals. 
+Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals.
 
-In its first year, Parts Unlimited opened fourteen stores in three states: Washington, Idaho, and Oregon. The company established a 12,000 square foot distribution center to serve customers in the area. In two years, annual sales volume rose to $11 million. Parts Unlimited saw its business come from 40% professional and 60% do-it-yourself (DIY) omnichannel customers. With the situation surrounding COVID-19, the company saw a surge in online orders from professional and DIY customers. Unfortunately, their infrastructure and their team were not ready for the spike in e-commerce transactions. 
+In its first year, Parts Unlimited opened fourteen stores in three states: Washington, Idaho, and Oregon. The company established a 12,000 square foot distribution center to serve customers in the area. In two years, annual sales volume rose to $11 million. Parts Unlimited saw its business come from 40% professional and 60% do-it-yourself (DIY) omnichannel customers. With the situation surrounding COVID-19, the company saw a surge in online orders from professional and DIY customers. Unfortunately, their infrastructure and their team were not ready for the spike in e-commerce transactions.
 
-Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia. 
+Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia.
 
 The web server that hosts the e-commerce website is recently updated to Windows Server 2019 Datacenter. The e-commerce application is tailor-made by a software development company that is now out of business. The application is built on .NET Core 2.2.207 that hit the end of life on December 23, 2019. Their team tried to change the version number in a configuration file to a recent version, but it crashed the website. They rolled back and left it as it is. They understand that they have to migrate to a newer version of .NET Core, but they do not have the resources internally to make it happen. "We have to fix our scaling problems first. Then we can think of updating to something new." says Casey Jensen, Parts Unlimited's CEO. The source code left from the vendor has many solution files and codes that the team does not know if they are used.  They open the primary solution file named PartsUnlimited.sln and deploy from Visual Studio into a folder on the server.  
 
-The team at Parts Unlimited is terrified to touch anything on the servers as long as it works. When they have to introduce new functionality or a bug fix, they schedule overnight deployments at 2 AM. This strategy has worked well so far, but it is not ideal. When a fix is ready, the team has to schedule deployment for 2 AM and wait. The scheduling of overnight shifts puts too much stress on the team and increases turnover in IT staff. 
+The team at Parts Unlimited is terrified to touch anything on the servers as long as it works. When they have to introduce new functionality or a bug fix, they schedule overnight deployments at 2 AM. This strategy has worked well so far, but it is not ideal. When a fix is ready, the team has to schedule deployment for 2 AM and wait. The scheduling of overnight shifts puts too much stress on the team and increases turnover in IT staff.
 
-The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1. 
+The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1.
 The e-commerce application incurs ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported because of its .NET Core version being at the end of life. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
 
 Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Allegra wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says "We have to drive and scale our e-Commerce presence forward while controlling costs."
@@ -87,25 +86,25 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 ### Customer needs
 
-1. Parts Unlimited wants to assess its current environment to see if it can move its e-commerce site to the cloud as it is. 
+1. Parts Unlimited wants to assess its current environment to see if it can move its e-commerce site to the cloud as it is.
 
 2. Parts Unlimited wants to move to the cloud and be able to scale its e-commerce solution.
 
-3. They want to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. 
+3. They want to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure.
 
-4. Parts Unlimited wants to find a solution for their testing in production problem. They want to be able to test functionality before pushing it to their servers. 
+4. Parts Unlimited wants to find a solution for their testing in production problem. They want to be able to test functionality before pushing it to their servers.
 
-5. They want to minimize human errors in deployments. They heard about DevOps practices and that publishing from developer machines is not ideal. 
+5. They want to minimize human errors in deployments. They heard about DevOps practices and that publishing from developer machines is not ideal.
 
 6. Parts Unlimited is looking to separate its order processing subsystem and scale it independently to accommodate a large number of orders.
 
 ### Customer objections
 
-1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version? 
+1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version?
 
 2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
 
-3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
+3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes?
 
 4. We have plans to scale to Mexico and Brazil. Anything we should be worried about while moving to Azure?
 
@@ -137,7 +136,7 @@ _Assessment and Migration_
 
 1. Where should Parts Unlimited start its assessment and migration journey? Is there a single place to start and find all the tools and services?
 
-2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these? 
+2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these?
 
 3. What tools would you recommend Parts Unlimited use to migrate its database? How would you use these? Be specific.
 

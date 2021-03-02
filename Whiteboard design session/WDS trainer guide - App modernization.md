@@ -191,17 +191,17 @@ Directions: With all participants in the session, the facilitator/SME presents a
 
 ### Customer situation  
 
-Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals. 
+Parts Unlimited is an online auto parts store. Founded in Spokane, WA, in 2008, they are providing both genuine OEM and aftermarket parts for cars, sport utility vehicles, vans, and trucks, including new and remanufactured complex parts, maintenance items, and accessories. Its mission is to make buying vehicle replacement parts easy for consumers and professionals.
 
-In its first year, Parts Unlimited opened fourteen stores in three states: Washington, Idaho, and Oregon. The company established a 12,000 square foot distribution center to serve customers in the area. In two years, annual sales volume rose to $11 million. Parts Unlimited saw its business come from 40% professional and 60% do-it-yourself (DIY) omnichannel customers. With the situation surrounding COVID-19, the company saw a surge in online orders from professional and DIY customers. Unfortunately, their infrastructure and their team were not ready for the spike in e-commerce transactions. 
+In its first year, Parts Unlimited opened fourteen stores in three states: Washington, Idaho, and Oregon. The company established a 12,000 square foot distribution center to serve customers in the area. In two years, annual sales volume rose to $11 million. Parts Unlimited saw its business come from 40% professional and 60% do-it-yourself (DIY) omnichannel customers. With the situation surrounding COVID-19, the company saw a surge in online orders from professional and DIY customers. Unfortunately, their infrastructure and their team were not ready for the spike in e-commerce transactions.
 
-Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia. 
+Parts Unlimited has a hosted web application on its internal infrastructure and using a Windows Server, Internet Information Services (IIS), and Microsoft SQL Server to host the solution. All servers are located in an onsite server room in their distribution center. The office for their IT staff is just across the server room. Their IT staff includes a hardware technician, a system/network administrator, two software engineers. Their technical support is outsourced to a third-party service provider in Indonesia.
 
 The web server that hosts the e-commerce website is recently updated to Windows Server 2019 Datacenter. The e-commerce application is tailor-made by a software development company that is now out of business. The application is built on .NET Core 2.2.207 that hit the end of life on December 23, 2019. Their team tried to change the version number in a configuration file to a recent version, but it crashed the website. They rolled back and left it as it is. They understand that they have to migrate to a newer version of .NET Core, but they do not have the resources internally to make it happen. "We have to fix our scaling problems first. Then we can think of updating to something new." says Casey Jensen, Parts Unlimited's CEO. The source code left from the vendor has many solution files and codes that the team does not know if they are used.  They open the primary solution file named PartsUnlimited.sln and deploy from Visual Studio into a folder on the server.  
 
-The team at Parts Unlimited is terrified to touch anything on the servers as long as it works. When they have to introduce new functionality or a bug fix, they schedule overnight deployments at 2 AM. This strategy has worked well so far, but it is not ideal. When a fix is ready, the team has to schedule deployment for 2 AM and wait. The scheduling of overnight shifts puts too much stress on the team and increases turnover in IT staff. 
+The team at Parts Unlimited is terrified to touch anything on the servers as long as it works. When they have to introduce new functionality or a bug fix, they schedule overnight deployments at 2 AM. This strategy has worked well so far, but it is not ideal. When a fix is ready, the team has to schedule deployment for 2 AM and wait. The scheduling of overnight shifts puts too much stress on the team and increases turnover in IT staff.
 
-The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1. 
+The SQL database used by Parts Unlimited e-commerce site is deployed on a separate server that has been there since the company was founded. It is a SQL Server 2008 R2 SP3 deployed on a Windows Server 2008 R2 SP1.
 The e-commerce application incurs ongoing maintenance costs in hardware, operating system updates, and licensing fees. These maintenance costs make Microsoft Azure App Service an attractive alternative. Their team is looking to migrate Microsoft ASP.NET applications and any SQL Server database to Azure App Service and Azure SQL Database. However, they are worried that their application might not be supported because of its .NET Core version being at the end of life. They wonder if they can move to the cloud now and migrate their application later or if the old version will be a show stopper.
 
 Parts Unlimited has plans to increase its marketing investment, currently on hold because of scaling issues. The company is stuck and cannot grow without increasing its infrastructure footprint. Casey wants to finalize their cloud vs. on-premises decision based on the current migration effort's success. CFO Jára Cimrman says "We have to drive and scale our e-Commerce presence forward while controlling costs."
@@ -212,25 +212,25 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 ### Customer needs
 
-1. Parts Unlimited wants to assess its current environment to see if it can move its e-commerce site to the cloud as it is. 
+1. Parts Unlimited wants to assess its current environment to see if it can move its e-commerce site to the cloud as it is.
 
 2. Parts Unlimited wants to move to the cloud and be able to scale its e-commerce solution.
 
 3. They want to migrate their SQL Server 2008 R2 database to a fully-managed SQL database in Azure. They are not sure how to manage SQL resources during unexpected peak times.
 
-4. Parts Unlimited wants to find a solution for their testing in production problem. They want to be able to test functionality before pushing it to their servers. 
+4. Parts Unlimited wants to find a solution for their testing in production problem. They want to be able to test functionality before pushing it to their servers.
 
-5. They want to minimize human errors in deployments. They heard about DevOps practices and that publishing from developer machines is not ideal. 
+5. They want to minimize human errors in deployments. They heard about DevOps practices and that publishing from developer machines is not ideal.
 
 6. Parts Unlimited is looking to separate its order processing subsystem and scale it independently to accommodate a large number of orders.
 
 ### Customer objections
 
-1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version? 
+1. Our developers were not able to migrate our .NET Core 2.2 application to a newer version. Should we expect a steep upgrade path with every new version?
 
 2. When a .NET Core version is EoL (End-of-Life), does that mean we cannot host our solution in Azure?
 
-3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
+3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes?
 
 4. We have plans to scale to Mexico and Brazil. Anything we should be worried about while moving to Azure?
 
@@ -262,7 +262,7 @@ _Assessment and Migration_
 
 1. Where should Parts Unlimited start its assessment and migration journey? Is there a single place to start and find all the tools and services?
 
-2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these? 
+2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these?
 
 3. What tools would you recommend Parts Unlimited use to migrate its database? How would you use these? Be specific.
 
@@ -389,7 +389,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 Casey Jensen, CEO, Parts Unlimited, Ltd.
 
-The primary audience is business and technology decision-makers. From the case study scenario, it would include the CEO, Casey Jensen. Usually, we talk to the infrastructure managers who report to the chief information officer (CIO), or to application sponsors, such as a line of business (LOB) vice president (VP), chief marketing officer (CMO), or to those who represent the business unit IT or developers who report to application sponsors. 
+The primary audience is business and technology decision-makers. From the case study scenario, it would include the CEO, Casey Jensen. Usually, we talk to the infrastructure managers who report to the chief information officer (CIO), or to application sponsors, such as a line of business (LOB) vice president (VP), chief marketing officer (CMO), or to those who represent the business unit IT or developers who report to application sponsors.
 
 ## Preferred solution
 
@@ -403,7 +403,7 @@ _High-level architecture_
 
 The solution begins with assessing Parts Unlimited's E-Commerce application with App Service Migration Assistant. Once the assessment succeeds, Parts Unlimited can migrate their e-commerce site to App Service with the App Service Migration Assistant's help. In the case of Parts Unlimited, despite their fears of using an EoL (End-of-Life) .NET Core version, the assessment does not show any blockers. After using the App Service Migration Assistant to provision an App Service plan and migrate their application, Parts Unlimited is happy having the front-end moved to the cloud.
 
-The next step is to migrate Parts Unlimited's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Parts Unlimited determines that they can migrate into a fully-managed SQL Database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database. 
+The next step is to migrate Parts Unlimited's SQL Server 2008 R2 database to Azure SQL Database using the Azure Database Migration Service (DMS). Using the Data Migration Assistant (DMA) assessment, Parts Unlimited determines that they can migrate into a fully-managed SQL Database service in Azure. The assessment revealed no compatibility issues or unsupported features that would prevent them from using Azure SQL Database.
 
 For order processing, Parts Unlimited will modify its e-commerce site to submit order jobs into an Azure Storage Queue. The code change will be minimal. An Azure Function will be implemented to take the jobs from the queue and process orders, create PDF invoices for each order, and finally upload invoices into an Azure Storage Blob to be served to customers through the e-commerce site directly from blobs using SAS links.
 
@@ -417,7 +417,7 @@ _Assessment and Migration_
 
    Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure. It provides a single portal to start, run, and track your migration to Azure. Azure Migrate comes with a range of tools for assessment and migration. Parts Unlimited can use Azure Migrate as the central location for their assessment and migration efforts.
 
-2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these? 
+2. What tools would you recommend Parts Unlimited use to assess and migrate its web application? How would you use these?
 
    Azure App Service is the best solution for running ASP.NET web apps on Azure. The App Service Migration Assistant can be used to assess whether their apps have dependencies on unsupported features on Azure App Service. App Service Migration Assistant can run readiness checks and get potential remediation steps for common issues. The assistant provides step-by-step guidance for moving a web app to App Service. Parts Unlimited can use Azure Migrate to consolidate all assessment and migration projects.
 
@@ -464,7 +464,7 @@ _Assessment and Migration_
    DEA guides you through running A/B testing by completing three steps:
 
    1. **Capture**: The first step of SQL Server A/B testing is to capture your source server's trace. Trace files capture the entire query workload on that server.
-   
+
    2. **Replay**: The second step of SQL Server A/B testing is to replay the trace file captured on your target servers and then collect extensive traces from the replay for analysis.
    3. **Analysis**: The final step is to generate an analysis report using the replay traces. The analysis report can help you gain insight into the implications of the proposed change.
 
@@ -478,7 +478,7 @@ _Assessment and Migration_
 
    No, the App Service Migration Assistant indicates no issues. However, it is strongly suggested to move to a supported version post-migration. [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) can be used to assess how much work is required for a migration.
 
-   Here is [the Excel report of Portability Analyzer](media/ApiPortAnalysis.xlsx) and the DGML file showing dependencies in Parts Unlimited web application. 
+   Here is [the Excel report of Portability Analyzer](media/ApiPortAnalysis.xlsx) and the DGML file showing dependencies in Parts Unlimited web application.
 
    ![A Directed Graph Markup Language file that shows the dependency findings of Portability Analyzer](media/portability-analyzer.png "Portability Analyzer Result")
 
@@ -512,15 +512,15 @@ _DevOps_
 
 ## Checklist of preferred objection handling
 
-1. Our developers were not able to migrate our .NET Core 2.2 application to a more recent version. Should we expect a steep upgrade path with every new version? 
+1. Our developers were not able to migrate our .NET Core 2.2 application to a more recent version. Should we expect a steep upgrade path with every new version?
 
-   We have [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) that can be used to assess how much work is required for a migration. We know projects that can migrate with a single configuration change and others who had to do some work based on the application's complexity and code dependencies. The .NET Portability Analyzer can give you a good idea of how much effort is required to migrate to a newer version including an assessment of all your code dependencies. 
+   We have [The .NET Portability Analyzer](https://docs.microsoft.com/en-us/dotnet/standard/analyzers/portability-analyzer) that can be used to assess how much work is required for a migration. We know projects that can migrate with a single configuration change and others who had to do some work based on the application's complexity and code dependencies. The .NET Portability Analyzer can give you a good idea of how much effort is required to migrate to a newer version including an assessment of all your code dependencies.
 
 2. When a .NET Core version is EoL (End-of-Life), does that mean we cannot host our solution in Azure?
 
    After the End-Of-Lime time, .NET Core patch updates will no longer be available for .NET Core 2.2. Your application will still run. .NET Core 2.2 was released as a non-LTS (Long Term Support) release. A non-LTS ("Current") release is supported for three months after the next release. For hosting applications that you do not intend to update often, we suggest LTS releases. LTS releases include features and components that have been stabilized, requiring few updates over a longer support release lifetime. The supported upgrade path from .NET Core 2.2 is via .NET Core 3.1. .NET Core 3.1 is released December 3, 2019, as a long-term support release.
 
-3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
+3. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes?
 
    Azure is an open cloud that offers multiple choices. We suggest App Service for web apps or back-end services in an N-Tier architecture. Azure Kubernetes Services is a better fit for Cloud-Native (Microservices) design.
 

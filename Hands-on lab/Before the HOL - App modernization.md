@@ -89,7 +89,7 @@ In this task, you register the `Microsoft.DataMigration` resource provider withi
    ![The Subscription blade is displayed, with Resource providers selected and highlighted under Settings. On the Resource providers blade, migration is entered into the filter box, and Register is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration.png "Resource provider registration")
 
    > If the resource provider is already registered, there is no further action required.
-   > 
+   >
    > ![Resource providers is selected. On the Resource providers page, migration is entered into the filter box, and Registered is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration-check.png "Resource provider registration complete")
 
 3. It can take a couple of minutes for the registration to complete. Make sure you see a status of **Registered** before moving on. You may need to select **Refresh** to see the updated status.
@@ -101,15 +101,15 @@ In this task, you register the `Microsoft.DataMigration` resource provider withi
 In this task, you run an Azure Resource Manager (ARM) template to deploy and configure the resources used throughout this hands-on lab. The resources created by the ARM template include:
 
 - Azure Storage account
-- A Windows Server 2019 Web virtual machine (VM) with 
-   - Parts Unlimited E-Commerce site 
-   - App Service Migration Assistant
-   - Edge
-   - .NET Core 2.2 
-   - .NET Core 3.1 SDK
-   - SQL Server Management Studio
-   - Git Tools
-   - Visual Studio Code installed and configured
+- A Windows Server 2019 Web virtual machine (VM) with
+  - Parts Unlimited E-Commerce site
+  - App Service Migration Assistant
+  - Edge
+  - .NET Core 2.2
+  - .NET Core 3.1 SDK
+  - SQL Server Management Studio
+  - Git Tools
+  - Visual Studio Code installed and configured
 - A SQL Server 2008 R2 VM with the Microsoft Data Migration Assistant (DMA) installed and configured to work with Parts Unlimited E-Commerce site.
 - Azure SQL Database
 - Azure Database Migration Service (DMS)
