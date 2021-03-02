@@ -75,8 +75,8 @@ Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt 
 
 # Download and install .NET Core 2.2
 Wait-Install
-(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/ba001109-03c6-45ef-832c-c4dbfdb36e00/e3413f9e47e13f1e4b1b9cf2998bc613/dotnet-hosting-2.2.8-win.exe', 'C:\dotnet-hosting-2.2.8-win.exe')
-$pathArgs = {C:\dotnet-hosting-2.2.8-win.exe /Install /Quiet /Norestart /Logs logCore22.txt}
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/5efd5ee8-4df6-4b99-9feb-87250f1cd09f/552f4b0b0340e447bab2f38331f833c5/dotnet-hosting-2.2.2-win.exe', 'C:\dotnet-hosting-2.2.2-win.exe')
+$pathArgs = {C:\dotnet-hosting-2.2.2-win.exe /Install /Quiet /Norestart /Logs logCore22.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Download and install SQL Server Management Studio
