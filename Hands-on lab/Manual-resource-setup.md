@@ -1,4 +1,4 @@
-# Manual Resource Setup Guide
+# Manual resource setup guide
 
 This guide provides step-by-step instructions to manually provision and configure the resources created by the ARM template used before the hands-on lab guide.
 

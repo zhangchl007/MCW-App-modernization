@@ -30,29 +30,29 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Overview](#overview)
   - [Requirements](#requirements)
-  - [Exercise 1: Setting Up Azure Migrate](#exercise-1-setting-up-azure-migrate)
-  - [Exercise 2: Migrate Your Application With App Service Migration Assistant](#exercise-2-migrate-your-application-with-app-service-migration-assistant)
-    - [Task 1: Perform Assessment for Migration to Azure App Service](#task-1-perform-assessment-for-migration-to-azure-app-service)
-    - [Task 2: Migrate the Web Application to Azure App Service](#task-2-migrate-the-web-application-to-azure-app-service)
-  - [Exercise 3: Migrate the On-Premises Database to Azure SQL Database](#exercise-3-migrate-the-on-premises-database-to-azure-sql-database)
-    - [Task 1: Perform Assessment for Migration to Azure SQL Database](#task-1-perform-assessment-for-migration-to-azure-sql-database)
-    - [Task 2: Retrieve Connection Information for SQL Databases](#task-2-retrieve-connection-information-for-sql-databases)
-    - [Task 3: Migrate the Database Schema Using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
-    - [Task 4: Migrate the Database Using the Azure Database Migration Service](#task-4-migrate-the-database-using-the-azure-database-migration-service)
-    - [Task 5: Configure the Application Connection to SQL Azure Database](#task-5-configure-the-application-connection-to-sql-azure-database)
-  - [Exercise 4: Setup CI/CD Pipeline With GitHub Actions for the Web App](#exercise-4-setup-cicd-pipeline-with-gitHub-actions-for-the-web-app)
-    - [Task 1: Moving the Codebase to a GitHub Repo](#task-1-moving-the-codebase-to-a-github-repo)
-    - [Task 2: Creating a Staging Deployment Slot](#task-2-creating-a-staging-deployment-slot)
-    - [Task 3: Setting Up CI/CD With GitHub Actions](#task-3-setting-up-cicd-with-github-actions)
-    - [Task 4: Pushing Code Changes to Staging and Production](#task-4-pushing-code-changes-to-staging-and-production)
-    - [Task 5: Swap Deployment Slots to Move Changes in Staging to Production](#task-5-swap-seployment-slots-t-move-changes-in-staging-to-production)
-  - [Exercise 5: Using Serverless Azure Functions to Process Orders](#exercise-5-using-serverless-azure-functions-to-process-orders)
+  - [Exercise 1: Setting up Azure Migrate](#exercise-1-setting-up-azure-migrate)
+  - [Exercise 2: Migrate your application with App Service Migration Assistant](#exercise-2-migrate-your-application-with-app-service-migration-assistant)
+    - [Task 1: Perform assessment for migration to Azure App Service](#task-1-perform-assessment-for-migration-to-azure-app-service)
+    - [Task 2: Migrate the web application to Azure App Service](#task-2-migrate-the-web-application-to-azure-app-service)
+  - [Exercise 3: Migrate the on-premises database to Azure SQL Database](#exercise-3-migrate-the-on-premises-database-to-azure-sql-database)
+    - [Task 1: Perform assessment for migration to Azure SQL Database](#task-1-perform-assessment-for-migration-to-azure-sql-database)
+    - [Task 2: Retrieve connection information for SQL Databases](#task-2-retrieve-connection-information-for-sql-databases)
+    - [Task 3: Migrate the database schema using the Data Migration Assistant](#task-3-migrate-the-database-schema-using-the-data-migration-assistant)
+    - [Task 4: Migrate the database using the Azure Database Migration Service](#task-4-migrate-the-database-using-the-azure-database-migration-service)
+    - [Task 5: Configure the application connection to SQL Azure Database](#task-5-configure-the-application-connection-to-sql-azure-database)
+  - [Exercise 4: Setup CI/CD pipeline with GitHub Actions for the web app](#exercise-4-setup-cicd-pipeline-with-gitHub-actions-for-the-web-app)
+    - [Task 1: Moving the codebase to a GitHub repo](#task-1-moving-the-codebase-to-a-github-repo)
+    - [Task 2: Creating a staging deployment slot](#task-2-creating-a-staging-deployment-slot)
+    - [Task 3: Setting up CI/CD with GitHub Actions](#task-3-setting-up-cicd-with-github-actions)
+    - [Task 4: Pushing code changes to staging and production](#task-4-pushing-code-changes-to-staging-and-production)
+    - [Task 5: Swap deployment slots to move changes in staging to production](#task-5-swap-seployment-slots-t-move-changes-in-staging-to-production)
+  - [Exercise 5: Using serverless Azure Functions to process orders](#exercise-5-using-serverless-azure-functions-to-process-orders)
     - [Task 1: Deploying Azure Functions](#task-1-deploying-azure-functions)
     - [Task 2: Connecting Function App and App Service](#task-2-connecting-function-app-and-app-service)
-    - [Task 3: Testing Serverless Order Processing](#task-3-testing-serverless-order-processing)
+    - [Task 3: Testing serverless order processing](#task-3-testing-serverless-order-processing)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete Azure resource groups](#task-1-delete-azure-resource-groups)
-    - [Task 2: Delete GitHub Repository](#task-2-delete-github-repository)
+    - [Task 2: Delete GitHub repository](#task-2-delete-github-repository)
     - [Task 3: Remove GitHub Authorized Apps](#task-3-remove-github-authorized-apps)
 
 <!-- /TOC -->
@@ -96,7 +96,7 @@ Finally, Parts Unlimited decides to decouple its order processing system and mov
   - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
 - An active GitHub Account.
   
-## Exercise 1: Setting Up Azure Migrate
+## Exercise 1: Setting up Azure Migrate
 
 Duration: 10 minutes
 
@@ -150,13 +150,13 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
     ![Azure Migrate databases section is open. Azure Migrate Database Assessment and Database Migration tools are presented.](media/azure-migrate-database-migration-ready.png)
 
-## Exercise 2: Migrate Your Application With App Service Migration Assistant
+## Exercise 2: Migrate your application with App Service Migration Assistant
 
 Duration: 20 minutes
 
 The first step for Parts Unlimited is to assess whether their apps have dependencies on unsupported features on Azure App Service. In this exercise, you use an **Azure Migrate** tool called the [App Service migration assistant](https://appmigration.microsoft.com/) to evaluate Parts Unlimited's web site for a migration to Azure App Service. The assessment runs readiness checks and provides potential remediation steps for common issues. Once the assessment succeeds, we will proceed with the migration as well. You will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
-### Task 1: Perform Assessment for Migration to Azure App Service
+### Task 1: Perform assessment for migration to Azure App Service
 
 Parts Unlimited would like an assessment to see what potential issues they might need to address in moving their application to Azure App Service. You will use the [App Service migration assistant](https://appmigration.microsoft.com/) to assess the application and run various readiness checks.
 
@@ -213,7 +213,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    > For the details of the readiness checks, see [App Service Migration Assistant documentation](https://github.com/Azure/App-Service-Migration-Assistant/wiki/Readiness-Checks).
    
-### Task 2: Migrate the Web Application to Azure App Service
+### Task 2: Migrate the web application to Azure App Service
 
 After reviewing the assessment results, you have ensured the web application is a good candidate for migration to Azure App Service. Now, we will continue the process with the migration of the application.
 
@@ -253,13 +253,13 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Azure Migrate shows web app assessment and migration reports.](media/azure-migrate-web-app-migration-done.png)
 
-## Exercise 3: Migrate the On-Premises Database to Azure SQL Database
+## Exercise 3: Migrate the on-premises database to Azure SQL Database
 
 Duration: 55 minutes
 
 The next step of Part Unlimited's migration project is the assessment and migration of its database. Currently, the database lives on a SQL Server 2008 R2 on a virtual machine. You will use an **Azure Migrate: Database Assessment** tool called **Microsoft Data Migration Assistant (DMA)** to assess the `PartsUnlimited` database for a migration to Azure SQL Database. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and Azure SQL Database. After the assessment, you will use an **Azure Migrate: Database Migration** service called **Azure Database Migration Service (DMS)**. During the exercise, you will use a simulated on-premises environment hosted in virtual machines running on Azure.
 
-### Task 1: Perform Assessment for Migration to Azure SQL Database
+### Task 1: Perform assessment for migration to Azure SQL Database
 
 Parts Unlimited would like an assessment to see what potential issues they might need to address in moving their database to Azure SQL Database. In this task, you will use the [Microsoft Data Migration Assistant](https://docs.microsoft.com/sql/dma/dma-overview?view=sql-server-2017) (DMA) to assess the `PartsUnlimited` database against Azure SQL Database (Azure SQL DB). Data Migration Assistant (DMA) enables you to upgrade to a modern data platform by detecting compatibility issues that can impact database functionality on your new version of SQL Server or Azure SQL Database. It recommends performance and reliability improvements for your target environment. The assessment generates a report detailing any feature parity and compatibility issues between the on-premises database and the Azure SQL DB service.
 
@@ -349,7 +349,7 @@ The DMA assessment for migrating the `PartsUnlimited` database to a target platf
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png)
     
-### Task 2: Retrieve Connection Information for SQL Databases
+### Task 2: Retrieve connection information for SQL Databases
 
 In this task, you will retrieve the IP address of the SqlServer2008 VM and the Fully Qualified Domain Name for the Azure SQL Database. This information is needed to connect to your SqlServer2008 VM and Azure SQL Database from Azure Data Migration Service and Azure Data Migration Assistant.
 
@@ -369,7 +369,7 @@ In this task, you will retrieve the IP address of the SqlServer2008 VM and the F
 
    ![The server name value is highlighted on the SQL database Overview blade.](media/sql-database-server-name.png "SQL database")
    
-### Task 3: Migrate the Database Schema Using the Data Migration Assistant
+### Task 3: Migrate the database schema using the Data Migration Assistant
 
 After you have reviewed the assessment results and you have ensured the database is a candidate for migration to Azure SQL Database, use the Data Migration Assistant to migrate the schema to Azure SQL Database.
 
@@ -449,7 +449,7 @@ After you have reviewed the assessment results and you have ensured the database
 
     ![In the SSMS Object Explorer, Databases, parts, and Tables are expanded, showing the tables created by the deploy schema script. Security, Users are expended to show database user PUWebSite is migrated as well.](media/ssms-databases-contosoinsurance-tables.png "SSMS Object Explorer")
 
-### Task 4: Migrate the Database Using the Azure Database Migration Service
+### Task 4: Migrate the database using the Azure Database Migration Service
 
 At this point, you have migrated the database schema using DMA. In this task, you migrate the data from the `PartsUnlimited` database into the new Azure SQL Database using the Azure Database Migration Service.
 
@@ -548,7 +548,7 @@ At this point, you have migrated the database schema using DMA. In this task, yo
 
     ![The output of the database migration report is displayed.](media/dms-migration-wizard-report.png "Database migration report")
     
-### Task 5: Configure the Application Connection to SQL Azure Database
+### Task 5: Configure the application connection to SQL Azure Database
 
 Now that we have both our application and database migrated to Azure. It is time to configure our application to use the SQL Azure Database. 
 
@@ -591,13 +591,13 @@ Now that we have both our application and database migrated to Azure. It is time
     
     ![Overview panel for the App Service is on screen. URL for the app service if highlighted.](media/app-service-navigate-to-app-url.png)
 
-## Exercise 4: Setup CI/CD Pipeline With GitHub Actions for the Web App
+## Exercise 4: Setup CI/CD pipeline with GitHub Actions for the web app
 
 Duration: 55 minutes
 
 In this exercise, you will move the codebase to a GitHub Repo, create a staging environment in Azure App Service using App Service Deployment Slots, and finally connect the pieces with a CI/CD Pipeline built on GitHub Actions. 
 
-### Task 1: Moving the Codebase to a GitHub Repo
+### Task 1: Moving the codebase to a GitHub repo
 
 1. Login to [GitHub](https://github.com) with your account. Select the New button positioned on top of the repositories list. As an alternative you can [navigate to the new repository site here](https://github.com/new).
 
@@ -685,7 +685,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![GitHub shown with the partsunlimited repository populated with source code.](media/github-partsunlimited-repo-loaded.png)
 
-### Task 2: Creating a Staging Deployment Slot
+### Task 2: Creating a staging deployment slot
 
 1. Go back to your lab resource group, navigate to your `partsunlimited-web-{uniquesuffix}` **(2)** App Service resource. You can search for `partsunlimited-web` **(1)** to find your Web App and App Service Plan
 
@@ -703,7 +703,7 @@ So far, we have used the WebVM virtual machine to simulate Parts Unlimited's On-
 
     ![Successfully created slot staging message is shown. The close button is highlighted. The current list of slots is presented.](media/app-service-staging-slot-added.png)
 
-### Task 3: Setting Up CI/CD With GitHub Actions
+### Task 3: Setting up CI/CD with GitHub Actions
     
 1. Select your staging slot from the list of deployment slots. 
 
@@ -815,7 +815,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
     ![Staging slot for partsunlimited app service is open. URL endpont for the deployment slot is highlighted.](media/staging-slot-link.png)
 
-### Task 4: Pushing Code Changes to Staging and Production
+### Task 4: Pushing code changes to staging and production
 
 1. Connect to your WebVM VM with RDP. 
 
@@ -859,7 +859,7 @@ Once you select **Save**, the portal will add your App Service publishing profil
 
 Now that Parts Unlimited has a separate staging environment for their e-commerce site, they can push new source code and functionality to the repo that will automatically be built and deployed to their staging for testing. 
 
-### Task 5: Swap Deployment Slots to Move Changes in Staging to Production
+### Task 5: Swap deployment slots to move changes in staging to production
 
 Once Parts Unlimited is happy with the changes tested in their staging environment, they can swap the two environments and have changes go to production. Environment Swap happens very fast and can help Parts Unlimited pull back changes by switching back if needed.
 
@@ -885,7 +885,7 @@ Once Parts Unlimited is happy with the changes tested in their staging environme
     > 
     > ![GitHub Actions page is shown. Build and deploy ASP.Net Core app to Azure Web App - partsunlimited-web-20(staging) workflow is selected. Run workflow menu is open. Run workflow button is highlighted.](media/github-actions-manual-run.png)
 
-## Exercise 5: Using Serverless Azure Functions to Process Orders
+## Exercise 5: Using serverless Azure Functions to process orders
 
 Duration: 30 minutes
 
@@ -987,7 +987,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
     ![Function App Configuration page is open. Save button is highlighted.](media/function-app-setting-save.png)
 
-### Task 3: Testing Serverless Order Processing
+### Task 3: Testing serverless order processing
 
 In this task, we will submit a new order on the Parts Unlimited website and observe the order's processing on the order details page. Once the order is submitted, the web front-end will put a job into an Azure Storage Queue. The Function App that we previously deployed is set to listen to the queue and pull jobs for processing. Once order processing is done, a PDF file will be created, and the link for the PDF file will be accessible on the order details page.
 
@@ -1080,7 +1080,7 @@ In this exercise, you will de-provision all Azure resources that were created in
 
 1. In the Azure portal, select **Resource groups** from the Azure services list, and locate and delete the **hands-on-lab-SUFFIX** resource group.
 
-### Task 2: Delete GitHub Repository
+### Task 2: Delete GitHub repository
 
 1. From your GitHub account, find your `partsunlimited` repository by searching for `parts` **(1)** and selecting the repository **(2)**.
 
