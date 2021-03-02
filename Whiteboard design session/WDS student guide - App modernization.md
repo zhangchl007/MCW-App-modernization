@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-June 2020
+February 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2020 Microsoft Corporation. All rights reserved.
+© 2021 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -105,7 +105,7 @@ Finally, Parts Unlimited is looking to invest in DevOps practices to decrease hu
 
 2. When a .NET Core version is EoL (End-of-life), does that mean we cannot host our solution in Azure?
 
-3. Our engineers love Github. It looks like you bought it. Are you planning to merge it with Azure DevOps?
+3. Our engineers love GitHub. It looks like you bought it. Are you planning to merge it with Azure DevOps?
 
 4. We hear a lot about Kubernetes. What is the difference between App Services and Kubernetes? 
 
@@ -147,7 +147,7 @@ _Assessment and Migration_
 
 5. Would there be any problems with the .NET Core version being EoL (End-of-Life)?
 
-_Mondernization_
+_Modernization_
 
 1. What Azure service would provide a scalable, serverless solution for order processing that handles unexpected spikes and can be implemented with the least amount of code change required in the web application?
 
@@ -161,7 +161,7 @@ _DevOps_
 
 1. Parts Unlimited wants to test new functionality and bugfixes before shipping to production. What would you suggest?
 
-2. Parts Unlimited team is familiar with Github. How would you suggest them to set up a CI/CD pipeline?
+2. Parts Unlimited team is familiar with GitHub. How would you suggest them to set up a CI/CD pipeline?
 
 **Prepare**
 
