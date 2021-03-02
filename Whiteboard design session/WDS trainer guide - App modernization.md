@@ -480,7 +480,7 @@ _Assessment and Migration_
 
    Here is [the Excel report of Portability Analyzer](media/ApiPortAnalysis.xlsx) and the DGML file showing dependencies in Parts Unlimited web application. 
 
-   ![A Directed Graph Markup Language file that shows the dependency findings of Portability Analyzer](media/portability-analyzer.png)
+   ![A Directed Graph Markup Language file that shows the dependency findings of Portability Analyzer](media/portability-analyzer.png "Portability Analyzer Result")
 
 _Modernization_
 

@@ -317,17 +317,17 @@ In this task, you create an RDP connection to your Web virtual machine (VM), and
 
 1. In the [Azure portal](https://portal.azure.com), navigate to your **WebVM** VM by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **WebVM** VM from the list of resources.
 
-    ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png)
+    ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png "WebVM Resource Selection")
 
 2. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu. 
 
-   ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png)
+   ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png "Remote Desktop Connection")
 
 3. Select **Download RDP File** on the next page, and open the downloaded file.
 
     > The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete. 
 
-    ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png)
+    ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png "Remote Desktop Connection Download")
 
 4. Select **Connect** on the Remote Desktop Connection dialog.
 
@@ -358,7 +358,7 @@ In this task, you configure the WebVM with the required software and downloads.
 
 1. Right-click the Windows Start Menu and select **Windows PowerShell (Admin)** to start a terminal session.
 
-   ![Windows Start Menu is highlighted. The context menu is open, and Windows Powershell (Admin) is selected.](media/run-powershell-admin.png)
+   ![Windows Start Menu is highlighted. The context menu is open, and Windows Powershell (Admin) is selected.](media/run-powershell-admin.png "Windows PowerShell")
 
 2. Run the code below install Windows's Web Server features, including related management tools.
 
@@ -378,7 +378,7 @@ In this task, you configure the WebVM with the required software and downloads.
 
    > **INFO**: You can copy multiline code from outside the RDP window and paste it into the terminal in the RDP session. In case of difficulty copying the content, go to the RDP terminal and right-click the top left terminal logo **(1)**. This will open a context menu where you can find Edit > Paste **(3)** command. After you paste the code, hit **Enter** to execute the final line.
 
-   ![Terminal menu is open. Edit > Paste command is highlighted.](media/paste-terminal.png)
+   ![Terminal menu is open. Edit > Paste command is highlighted.](media/paste-terminal.png "Pasta to terminal")
 
 4. Run the code below to copy Parts Unlimited web site files to the wwwroot folder targeted by the local web server.
 
@@ -388,11 +388,11 @@ In this task, you configure the WebVM with the required software and downloads.
 
 5. In the [Azure portal](https://portal.azure.com), navigate to your **SqlServer2008-ip** resource by selecting **Resource groups** from Azure services list, selecting the **hands-on-lab-SUFFIX** resource group, and selecting the **SqlServer2008-ip** Public IP address from the list of resources.
 
-    ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png)
+    ![The SqlServer2008-ip IP address is highlighted in the list of resources.](media/sqlip-selection.png "SqlServer2008 Public IP resource")
 
 6. In the **Overview** blade select **Copy** to copy the public IP address and paste the value into a text editor, such as Notepad.exe, for later reference.
 
-    ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png)
+    ![SqlServer2008-ip resource is open. Public IP Address copy button is highlighted.](media/sqlip-copy-public-ip.png "SqlServer2008 Public IP")
 
 7. Replace the `<YourIP>` section in the code below and run it on the Windows PowerShell terminal in the WebVM.
 
@@ -438,15 +438,15 @@ In this task, you install the Microsoft Data Migration Assistant (DMA) on the Sq
 
 2. Open the Start Menu and search for `sql` **(1)**. Launch **Microsoft SQL Server Management Studio 17 (2)**.
 
-   ![Windows Start Menu is open. The search box has SQL in it. Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/sqlserver2008-ssms-launch.png)
+   ![Windows Start Menu is open. The search box has SQL in it. Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/sqlserver2008-ssms-launch.png "SQL Server Management Studio")
 
 3. Select **Connect** to continue.
 
-   ![SQL Server Authentication dialog is open. SQLSERVER2008 is set as Server Name. Windows Authentication is set as Authentication method. Connect button is highlighted.](media/sqlserver2008-connect.png)
+   ![SQL Server Authentication dialog is open. SQLSERVER2008 is set as Server Name. Windows Authentication is set as Authentication method. Connect button is highlighted.](media/sqlserver2008-connect.png "Sql Server Login")
 
 4. Select **New Query (1)** from the toolbar to lunch a new query window. Copy and paste the code **(2)** below and select **Execute (3)** to run it.
 
-   ![Sql Server Management Studio is open. New Query button is clicked. A new query window is presented. T-SQL Commands are pasted in and Execute command is highlighted.](media/sqlserver2008-setup-script.png)
+   ![Sql Server Management Studio is open. New Query button is clicked. A new query window is presented. T-SQL Commands are pasted in and Execute command is highlighted.](media/sqlserver2008-setup-script.png "Sql Script")
 
    ```sql   
    USE [master];

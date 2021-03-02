@@ -90,7 +90,7 @@ In this task, you register the `Microsoft.DataMigration` resource provider withi
 
    > If the resource provider is already registered, there is no further action required.
    > 
-   > ![Resource providers is selected. On the Resource providers page, migration is entered into the filter box, and Registered is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration-check.png)
+   > ![Resource providers is selected. On the Resource providers page, migration is entered into the filter box, and Registered is highlighted next to Microsoft.DataMigration.](media/azure-portal-subscriptions-resource-providers-register-microsoft-datamigration-check.png "Resource provider registration complete")
 
 3. It can take a couple of minutes for the registration to complete. Make sure you see a status of **Registered** before moving on. You may need to select **Refresh** to see the updated status.
 
@@ -117,7 +117,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
 - Function App
 - Virtual Network
 
-> {TODO:Not Updated} **Note**: You can review the steps to manually provision the lab resources in the [Manual resource setup guide](./Manual-resource-setup.md).
+> **Note**: You can review the steps to manually provision the lab resources in the [Manual resource setup guide](./Manual-resource-setup.md).
 
 1. To run the ARM template deployment, select the **Deploy to Azure** button below, which opens a custom deployment screen in the Azure portal.
 
@@ -140,7 +140,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
 
 3. Select **Review + create** and select **Create** on the next step to start provisioning the lab resources.
 
-   > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete. If you receive any errors, you can manually provision the missing resources following the steps within the [{TODO:Not Updated}  Manual resource setup guide](./Manual-resource-setup.md). If the error indicates an issue with quotas in the region you selected for the resource group, you can delete the resource group, create a new resource group in a different region, and re-run the ARM template, or you can request a quota increase and then manually provision the missing resources.
+   > **Note**: The deployment of the custom ARM template takes about 30 minutes to complete. If you receive any errors, you can manually provision the missing resources following the steps within the [Manual resource setup guide](./Manual-resource-setup.md). If the error indicates an issue with quotas in the region you selected for the resource group, you can delete the resource group, create a new resource group in a different region, and re-run the ARM template, or you can request a quota increase and then manually provision the missing resources.
 
 4. You can monitor the progress of the deployment by navigating to the hands-on-lab-SUFFIX resource group in the Azure portal and then selecting **Deployments** from the left-hand menu. The deployment should be named **Microsoft.Template**. Select the deployment item to view the progress of each individual component in the template.
 
