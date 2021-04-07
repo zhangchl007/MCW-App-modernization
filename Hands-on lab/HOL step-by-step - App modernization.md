@@ -655,7 +655,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ```powershell
     git config --global user.name "John Doe"
-    git config --global user. e-mail johndoe@example.com
+    git config --global user.e-mail johndoe@example.com
     ```
 
 11. We are ready to commit the source code to our local Git repository. Run the following command to continue.
