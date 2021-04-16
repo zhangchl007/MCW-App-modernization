@@ -12,7 +12,7 @@ Additionally, Parts Unlimited has plans to increase its marketing investment, cu
 
 Finally, Parts Unlimited is looking to invest in DevOps practices to decrease human error in deployments. They are looking for options to have a staging environment to test functionality before shipping to production. However, their team does not have any experience in building CI/CD pipelines. They are not sure if this goal is achievable in the short term, and they do not want it to hold up their migration to the cloud.
 
-February 2021
+April 2021
 
 ## Target audience
 
