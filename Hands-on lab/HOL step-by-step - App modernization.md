@@ -195,7 +195,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
    - **Username**: demouser
    - **Password**: {YOUR-ADMIN-PASSWORD}
   
-    > **Note** default password is `Password.1!!`
+    > **Note**: default password is `Password.1!!`
 
     ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdp-credentials-webvm.png "Enter your credentials")
 
@@ -276,7 +276,7 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
 2. Launch DMA from the Windows Start menu by typing "data migration" into the search bar and then selecting **Microsoft Data Migration Assistant** in the search results.
 
-    > **Note**: If you do not see the migration assistant, install it from the `c:\DataMigrationAssistant.msi` file
+    > **Note**: If you do not see the migration assistant, install it from the `c:\DataMigrationAssistant.msi` file.
 
     > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard-to-read text on the screen. The workaround for this is to use a second monitor for the RDP display, allowing you to scale up the resolution to make the text larger.
 
@@ -302,8 +302,9 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![Check database compatibility and check feature parity are checked on the Options screen.](media/dma-options.png "DMA options")
 
-7. On the **Sources** screen, select **Add sources**
-8. Enter the following into the **Connect to a server** dialog that appears on the right-hand side:
+7. On the **Sources** screen, select **Add sources**.
+8. 
+9. Enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
     - **Server name (1)**: Enter **SQLSERVER2008**.
     - **Authentication type (2)**: Select **SQL Server Authentication**.
@@ -370,7 +371,7 @@ In this task, you will retrieve the IP address of the SqlServer2008 VM and the F
 
 3. Go back to the resource list and navigate to your **SQL database** resource by selecting the **parts** SQL database resource from the resources list.
 
-    > **Note** If you do not see the database resource, navigate to the SQL Server resource, then select **SQL Databases** and then the **parts** database.
+    > **Note**: If you do not see the database resource, navigate to the SQL Server resource, then select **SQL Databases** and then the **parts** database.
 
    ![The parts SQL database resource is highlighted in the list of resources.](media/resources-azure-sql-database.png "SQL database")
 
