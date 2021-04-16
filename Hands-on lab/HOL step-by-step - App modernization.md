@@ -9,7 +9,7 @@ Hands-on lab step-by-step guide
 </div>
 
 <div class="MCWHeader3">
-February 2021
+April 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -625,7 +625,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 6. The Parts Unlimited website's source code is already copied into the VM as part of the **Before the hands-on lab exercises**. Run the command below to navigate to the source code folder.
 
     ```powershell
-    cd "C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src"
+    cd "C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src"
     ```
 
 7. Run the following command to initialize a local Git repository.
@@ -780,7 +780,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
         runs-on: windows-latest
     
         steps:
-        - uses: actions/checkout@master
+        - uses: actions/checkout@main
     
         - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
@@ -830,9 +830,9 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png "Open Folder")
 
-4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
+4. Navigate to `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src` and select **Select Folder (1)**.
 
-    ![Visual Studio Code Open Folder dialog is open. The folder path is set to C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src, and the Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
+    ![Visual Studio Code Open Folder dialog is open. The folder path is set to C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src, and the Select Folder button is highlighted.](media/vscode-select-folder.png "Select Folder")
 
 5. We are going to introduce a brand new change to Parts Unlimited's website. In the Explorer window navigate to **src > PartsUnlimitedWebSite > Views > Home** and select **Index.cshtml (4)** for editing. Change the Title of the page **(5)** and save the file by using going to the File menu and selecting **Save**. Notice the underlying git repository detecting a change (6) in the codebase.
 
@@ -908,7 +908,7 @@ You suggest a serverless approach that can handle order processing and the creat
 
     ![File menu is open in Visual Studio Code. Open Folder... command is highlighted.](media/vscode-open-folder.png "Open Folder")
 
-4. Navigate to `C:\MCW\MCW-App-modernization-master\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
+4. Navigate to `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src-invoicing-functions\FunctionApp` and select **Select Folder**.
 
 5. Select **Install** to install extensions required for your Azure Functions project. This will install C# for Visual Studio Code and Azure Functions Extension for Visual Studio Code.
 
