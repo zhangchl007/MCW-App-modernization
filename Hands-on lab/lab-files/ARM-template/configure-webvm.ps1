@@ -53,6 +53,10 @@ while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
     Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
+#rename the random branch name
+$item = get-item "c:\mcw\*"
+Rename-Item $item -NewName "MCW-App-modernization-$branchName"
+
 # Copy Web Site Files
 Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-site-publish.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
 
