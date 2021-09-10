@@ -239,6 +239,7 @@ After reviewing the assessment results, you have ensured the web application is 
     ![Azure Login process is complete. A message dialog is shown that indicates the login process is a success.](media/appservicemigration-azure-login-complete.png "App Service Migration Assistant authentication approval")
 
 5. Select the Azure Migrate project we created **(1)** in the previous exercise to submit our migration results. Select **Next** to continue.
+    >**Note:** If you do not see your Azure Migrate Project, you may have switch user directory (subscriptions) to the directory where the project was created.
 
     ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png "Azure Migrate Hub integration")
 
@@ -246,15 +247,24 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Deployment options are presented. The existing lab resource group is selected as the destination. The destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png "Azure App Service Migration Assistant Options")
 
+
+
+7. Verify your migration. Select **Go to your website**.
+
+    ![The image shows a successful migration results message. The Go to your website button is highlighted.](media/azure-migrate-verify-app-svc-migration.png "Successful Migration Results")
+
     > **WARNING:** If your migration fails with a **WindowsWorkersNotAllowedInLinuxResourceGroup (1)** try the migration process again, but this time selecting a different Resource Group for your deployment. If that is not possible, select a different Region.  
     >
     > ![Migration failed error screen is shown. WindowsWorkersNotAllowedInLinuxResourceGroup message is highlighted.](media/app-migration-windowsworkersnotallowed.png "Migration failed")
 
-7. We have just completed the Parts Unlimited website's migration from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
+8. We have just completed the Parts Unlimited website's migration from IIS on a Virtual Machine to Azure App Service. Congratulations. Let's go back to the Azure Portal and look into Azure Migrate. Search for `migrate` **(1)** on the Azure Portal and select **Azure Migrate (2)**.
 
     ![Azure Portal is open. The search box is filled with the migrate keyword. Azure Migrate is highlighted from the result list.](media/find-azure-migrate.png "Azure Migrate on Azure Portal Search")
 
-8. Switch to the **Web Apps (1)** section. See the number of discovered web servers, assessed websites **(2)** and migrated websites change **(3)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
+9. Verify your migrations.
+    - Select the **Web Apps** section. View the number of discovered web servers, assessed websites.
+    - Select the **Refresh** button.
+    - View the assessed and migrated websites. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up.
 
     ![Azure Migrate shows web app assessment and migration reports.](media/azure-migrate-web-app-migration-done.png "Azure Migrate Web Apps Tools")
 
@@ -721,9 +731,10 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 2. Switch to the **Deployment Center (1)** tab. Select **Go to Settings (2)**.
 
-    ![Deployment Center tab is selected. Go to Settings button is highlighted.](media/app-service-goto-deployment-settings.png "Deployment Center")
+    ![Deployment Center tab is selected. Settings tab is highlighted.](media/app-service-goto-deployment-settings.png "Deployment Center")
 
-3. Select **GitHub (1)** as your source; **.NET Core (2)** as the runtime stack and **.NET Core 2.1 (LTS) (3)** for version. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
+
+3. Select **Authorize** to create the connection between the App Service deployment slot and the GitHub repository we previously prepared.
 
     ![Deployment Settings page is open. The source is set to GitHub. Runtime stack is set to .NET Core. Version is set to .NET Core 2.1 (LTS). Authorize button for GitHub is highlighted. ](media/app-service-deployment-settings.png "Deployment Center Settings")
 
@@ -733,7 +744,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 5. Once GitHub authorization is complete, go back to the browser with the Azure Portal. Select the GitHub **Organization (1)** where you created the GitHub repository. This might be your personal account name if that is where you created the repository. Select the repository **partsunlimited (2)** and the branch **main (3)** as the source for the CI/CD pipeline. Select **Save (4)** to create CI/CD pipeline.
 
-    ![Authorize AzureAppService button is highlighted.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
+    ![Deployment configuration fields are listed.](media/app-service-cicd-settings-save.png "Deployment Center Settings")
 
     Once you select **Save**, the portal will add your App Service publishing profile as a secret to your GitHub repository. This will allow GitHub Actions to publish the Parts Unlimited website to the staging deployment slot. Additionally, the portal will create a YAML file that describes the steps required to build and publish the code in the partsunlimited repository.
 
