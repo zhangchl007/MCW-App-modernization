@@ -16,12 +16,15 @@ namespace PartsUnlimited.Security
         {
             if (loginProviders.Azure.Use)
             {
-                services.AddAuthentication(options => {
-                                            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                                            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                                        })
+
+                services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                })
                         .AddCookie()
-                        .AddOpenIdConnect(options => {
+                        .AddOpenIdConnect(options =>
+                        {
                             options.Authority = Configuration["auth:oidc:authority"];
                             options.ClientId = Configuration["auth:oidc:clientid"];
                         });

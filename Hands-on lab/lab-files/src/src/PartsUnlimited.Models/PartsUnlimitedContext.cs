@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace PartsUnlimited.Models
@@ -44,7 +45,7 @@ namespace PartsUnlimited.Models
                 optionsBuilder.UseSqlServer(_connectionString);
             }else
             {
-                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(_connectionString);
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(_connectionString);
                 optionsBuilder.UseInMemoryDatabase("Test");
             }
         }
