@@ -697,7 +697,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
 15. On the **Authorize Git Credential Manager** screen, select **Authorize GotCredentialManager**. This will give your local environment permission to push the code to GitHub.
 
-    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager buttin is highligted.](media/github-access.png "Authorize Git Credential Manager")
+    ![Authorize Git Credential Manager is open. Authorize GotCredentialManager button is highlighted.](media/github-access.png "Authorize Git Credential Manager")
 
 16. Close the browser.
 
@@ -780,7 +780,7 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![main_partsunlimited-web-20(staging).yml is open in edit mode. dotnet-version is set to 2.2.207. dotnet build command is changed to include PartsUnlimited.sln as a parameter. dotnet publish command is changed to include src/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj as a parameter.](media/github-yaml-commit.png "GitHub YAML Editing")
 
-    Here is the final YAML file that you can use if needed.
+    Here is an example of the final YAML file you can use, if needed. Be aware you may have to change the publish-profile GUID.
 
     ```yaml
     
