@@ -46,12 +46,14 @@ $branchName = "main"
 
 # Download and extract the starter solution files
 # ZIP File sometimes gets corrupted
+Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Green
 New-Item -ItemType directory -Path C:\MCW
 while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 {
     (New-Object System.Net.WebClient).DownloadFile("https://github.com/timahenning/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
     Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
+
 
 #rename the random branch name
 $item = get-item "c:\mcw\*"
