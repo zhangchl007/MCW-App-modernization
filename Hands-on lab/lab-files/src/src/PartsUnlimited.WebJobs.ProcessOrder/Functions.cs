@@ -3,22 +3,20 @@
 
 using System;
 using System.Linq;
+using Microsoft.Azure.Storage.Queue;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using PartsUnlimited.Models;
-using Azure.Storage.Queues;
-using Microsoft.Azure.Storage.Queue;
-using Microsoft.Azure.Storage;
 
 namespace PartsUnlimited.WebJobs.ProcessOrder
 {
     public class Functions
     {
         [NoAutomaticTrigger]
-        public static void CreateOrderProcessTask()
+        public static void CreateOrderProcessTask([Queue("orders")] CloudQueue orderQueue)
         {
             Console.WriteLine("Starting Create Order Process Task");
             try
@@ -63,13 +61,6 @@ namespace PartsUnlimited.WebJobs.ProcessOrder
                         };
                         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
                         var message = JsonConvert.SerializeObject(queueOrder, settings);
-
-                        var storageAccount = CloudStorageAccount.Parse(
-                            config["Data:AzureWebJobsStorage:ConnectionString"]);
-
-                        var queueClient = storageAccount.CreateCloudQueueClient();
-                        var orderQueue = queueClient.GetQueueReference("orders");
-
                         orderQueue.AddMessageAsync(new CloudQueueMessage(message));
                         order.Processed = true;
                     }

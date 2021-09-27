@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace PartsUnlimited.Queries
 {
@@ -22,7 +21,7 @@ namespace PartsUnlimited.Queries
 
         public async Task<IEnumerable<Raincheck>> GetAllAsync()
         {
-            var rainchecks = await _context.RainChecks.ToListAsync();
+            var rainchecks = _context.RainChecks.ToList();
 
             foreach (var raincheck in rainchecks)
             {
@@ -34,7 +33,7 @@ namespace PartsUnlimited.Queries
 
         public async Task<Raincheck> FindAsync(int id)
         {
-            var raincheck = await _context.RainChecks.FirstOrDefaultAsync(r => r.RaincheckId == id);
+            var raincheck = _context.RainChecks.FirstOrDefault(r => r.RaincheckId == id);
 
             if (raincheck == null)
             {
@@ -60,9 +59,9 @@ namespace PartsUnlimited.Queries
         /// </summary>
         private async Task FillRaincheckValuesAsync(Raincheck raincheck)
         {
-            raincheck.IssuerStore = await _context.Stores.FirstAsync(s => s.StoreId == raincheck.StoreId);
-            raincheck.Product = await _context.Products.FirstAsync(p => p.ProductId == raincheck.ProductId);
-            raincheck.Product.Category = await _context.Categories.FirstAsync(c => c.CategoryId == raincheck.Product.CategoryId);
+            raincheck.IssuerStore =  _context.Stores.First(s => s.StoreId == raincheck.StoreId);
+            raincheck.Product = _context.Products.First(p => p.ProductId == raincheck.ProductId);
+            raincheck.Product.Category = _context.Categories.ToList().First(c => c.CategoryId == raincheck.Product.CategoryId);
         }
     }
 }

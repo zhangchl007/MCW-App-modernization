@@ -93,7 +93,13 @@ namespace PartsUnlimited
             ContentDeliveryNetworkExtensions.Configuration = new ContentDeliveryNetworkConfiguration(Configuration.GetSection("CDN"));
 
             // Add MVC services to the services container
-            services.AddMvc();
+            services.AddMvc(x => x.EnableEndpointRouting = false);
+
+            services.AddControllers();
+
+            services.AddMemoryCache();
+
+            services.AddDistributedMemoryCache();
 
             //Add InMemoryCache
             services.AddSingleton<IMemoryCache, MemoryCache>();
@@ -128,7 +134,6 @@ namespace PartsUnlimited
             //During development use the ErrorPage middleware to display error information in the browser
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
-            app.UseRouting();
 
             Configure(app);
         }
@@ -164,17 +169,30 @@ namespace PartsUnlimited
             // Add login providers (Microsoft/AzureAD/Google/etc).  This must be done after `app.UseIdentity()`
             //app.AddLoginProviders( new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
 
+            app.UseRouting();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(name: "areaRoute",
-                    pattern: "{area:exists}/{controller}/{action}",
-                    defaults: new { action = "Index" });
-                endpoints.MapControllerRoute(name: "default",
-                    pattern: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" });
-                endpoints.MapControllerRoute(name: "api",
-                    pattern: "{controller}/{id?}");
+                endpoints.MapControllers();
             });
+
+            // Add MVC to the request pipeline
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller}/{action}",
+                    defaults: new { action = "Index" });
+
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" });
+
+                routes.MapRoute(
+                    name: "api",
+                    template: "{controller}/{id?}");
+            });            
         }
     }
 }
