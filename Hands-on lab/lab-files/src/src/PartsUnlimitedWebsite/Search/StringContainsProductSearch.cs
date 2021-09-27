@@ -24,7 +24,7 @@ namespace PartsUnlimited.Search
             var q = _context.Products
                 .Where(p => p.Title.ToLower().Contains(lowercase_query));
 
-            return q.ToList();
+            return await q.ToAsyncEnumerable().ToList();
         }
     }
 }

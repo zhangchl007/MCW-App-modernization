@@ -5,9 +5,6 @@ using System;
 using System.Linq;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration.Json;
 
 namespace PartsUnlimited.WebJobs.ProcessOrder
@@ -17,13 +14,10 @@ namespace PartsUnlimited.WebJobs.ProcessOrder
         public int Main(string[] args)
         {
             var builder = new ConfigurationBuilder();
-            
             builder.Add(new JsonConfigurationSource { Path = "config.json" });
-            
             var config = builder.Build();
             var webjobsConnectionString = config["Data:AzureWebJobsStorage:ConnectionString"];
             var dbConnectionString = config["Data:DefaultConnection:ConnectionString"];
-            
             if (string.IsNullOrWhiteSpace(webjobsConnectionString))
             {
                 Console.WriteLine("The configuration value for Azure Web Jobs Connection String is missing.");
@@ -36,13 +30,11 @@ namespace PartsUnlimited.WebJobs.ProcessOrder
                 return 10;
             }
 
-            
             var jobHostConfig = new JobHostConfiguration(config["Data:AzureWebJobsStorage:ConnectionString"]);
             var host = new JobHost(jobHostConfig);
             var methodInfo = typeof(Functions).GetMethods().First();
 
             host.Call(methodInfo);
-
             return 0;
         }
     }

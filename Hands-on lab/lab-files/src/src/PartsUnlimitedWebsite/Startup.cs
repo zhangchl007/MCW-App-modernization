@@ -93,13 +93,7 @@ namespace PartsUnlimited
             ContentDeliveryNetworkExtensions.Configuration = new ContentDeliveryNetworkConfiguration(Configuration.GetSection("CDN"));
 
             // Add MVC services to the services container
-            services.AddMvc(x => x.EnableEndpointRouting = false);
-
-            services.AddControllers();
-
-            services.AddMemoryCache();
-
-            services.AddDistributedMemoryCache();
+            services.AddMvc();
 
             //Add InMemoryCache
             services.AddSingleton<IMemoryCache, MemoryCache>();
@@ -169,13 +163,6 @@ namespace PartsUnlimited
             // Add login providers (Microsoft/AzureAD/Google/etc).  This must be done after `app.UseIdentity()`
             //app.AddLoginProviders( new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
 
-            app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
             // Add MVC to the request pipeline
             app.UseMvc(routes =>
             {
@@ -192,7 +179,7 @@ namespace PartsUnlimited
                 routes.MapRoute(
                     name: "api",
                     template: "{controller}/{id?}");
-            });            
+            });
         }
     }
 }
