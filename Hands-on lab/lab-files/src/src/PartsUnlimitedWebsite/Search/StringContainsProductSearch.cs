@@ -10,9 +10,9 @@ namespace PartsUnlimited.Search
 {
     public class StringContainsProductSearch : IProductSearch
     {
-        private readonly IPartsUnlimitedContext _context;
+        private readonly PartsUnlimitedContext _context;
 
-        public StringContainsProductSearch(IPartsUnlimitedContext context)
+        public StringContainsProductSearch(PartsUnlimitedContext context)
         {
             _context = context;
         }

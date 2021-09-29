@@ -12,9 +12,9 @@ namespace PartsUnlimited.Queries
 {
     public class RaincheckQuery : IRaincheckQuery
     {
-        private readonly IPartsUnlimitedContext _context;
+        private readonly PartsUnlimitedContext _context;
 
-        public RaincheckQuery(IPartsUnlimitedContext context)
+        public RaincheckQuery(PartsUnlimitedContext context)
         {
             _context = context;
         }
