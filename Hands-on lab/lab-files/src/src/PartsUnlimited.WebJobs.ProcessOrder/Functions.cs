@@ -16,17 +16,13 @@ namespace PartsUnlimited.WebJobs.ProcessOrder
     public class Functions
     {
         [NoAutomaticTrigger]
-        public static void CreateOrderProcessTask([Queue("orders")] CloudQueue orderQueue)
+        public static void CreateOrderProcessTask([Queue("orders")] CloudQueue orderQueue, PartsUnlimitedContext context)
         {
             Console.WriteLine("Starting Create Order Process Task");
             try
             {
-                var builder = new ConfigurationBuilder();
-                builder.Add(new JsonConfigurationSource { Path = "config.json" });
-                var config = builder.Build();
-                var connectionString = config["Data:DefaultConnection:ConnectionString"];
-
-                using (var context = new PartsUnlimitedContext(connectionString))
+                
+                using (context)
                 {
                     var orders = context.Orders.Where(x => !x.Processed).ToList();
                     Console.WriteLine("Found {0} orders to process", orders.Count);

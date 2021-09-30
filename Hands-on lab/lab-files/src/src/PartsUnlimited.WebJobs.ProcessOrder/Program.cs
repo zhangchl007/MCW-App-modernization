@@ -9,40 +9,56 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration.Json;
+using System.Threading.Tasks;
+using PartsUnlimited.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace PartsUnlimited.WebJobs.ProcessOrder
 {
     public class Program
     {
-        public int Main(string[] args)
-        {
-            var builder = new ConfigurationBuilder();
-            
-            builder.Add(new JsonConfigurationSource { Path = "config.json" });
-            
-            var config = builder.Build();
-            var webjobsConnectionString = config["Data:AzureWebJobsStorage:ConnectionString"];
-            var dbConnectionString = config["Data:DefaultConnection:ConnectionString"];
-            
-            if (string.IsNullOrWhiteSpace(webjobsConnectionString))
+        public static async Task<int> Main(string[] args)
+        {                  
+            var builder = new HostBuilder();
+            builder.ConfigureWebJobs(b =>
             {
-                Console.WriteLine("The configuration value for Azure Web Jobs Connection String is missing.");
-                return 10;
+                b.AddAzureStorageCoreServices();
+                b.AddAzureStorage();
+            })            
+            .ConfigureLogging(b => {
+                b.AddConsole();
+            })
+            .ConfigureAppConfiguration((hostContext, config) =>
+            {
+                config.AddJsonFile("appsettings.json", optional: true);
+                config.AddEnvironmentVariables();
+            })
+            .ConfigureServices((hostContext, services) => {
+                services.AddDbContext<PartsUnlimitedContext>(options => {
+                    var configBuilder = new ConfigurationBuilder();
+                    configBuilder.Add(new JsonConfigurationSource { Path = "appsettings.json" });
+                    var config = configBuilder.Build();
+                    var dbConnectionString = config["Data:DefaultConnection:ConnectionString"];
+
+                    if (!string.IsNullOrWhiteSpace(dbConnectionString))
+                    {
+                        options.UseSqlServer("sqlConnectionString");
+                    }
+                    else
+                    {
+                        options.UseInMemoryDatabase("Test");
+                    }
+                });
+            });
+
+            var host = builder.Build();
+           
+            using (host)
+            {
+                await host.RunAsync();
             }
 
-            if (string.IsNullOrWhiteSpace(dbConnectionString))
-            {
-                Console.WriteLine("The configuration value for Database Connection String is missing.");
-                return 10;
-            }
-
-            
-            var jobHostConfig = new JobHostConfiguration(config["Data:AzureWebJobsStorage:ConnectionString"]);
-            var host = new JobHost(jobHostConfig);
-            var methodInfo = typeof(Functions).GetMethods().First();
-
-            host.Call(methodInfo);
-
+            Console.ReadLine();
             return 0;
         }
     }
