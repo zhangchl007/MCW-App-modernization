@@ -33,7 +33,7 @@ Start-Process -file 'C:\MicrosoftEdgeEnterpriseX64.msi' -arg '/qn /l*v C:\edge_i
 # Install .NET Core 3.1 SDK
 Wait-Install
 Write-Host "Installing .NET Core 3.1 SDK..."
-$pathArgs = {C:\dotnet-sdk-3.1.406-win-x64.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
+$pathArgs = {C:\dotnet-hosting-3.1.4-win.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
