@@ -30,10 +30,9 @@ Wait-Install
 Write-Host "Installing Edge..."
 Start-Process -file 'C:\MicrosoftEdgeEnterpriseX64.msi' -arg '/qn /l*v C:\edge_install.txt' -passthru | wait-process
 
-# Install .NET Core 3.1 SDK
-Wait-Install
-Write-Host "Installing .NET Core 3.1 SDK..."
-$pathArgs = {C:\dotnet-hosting-3.1.4-win.exe /Install /Quiet /Norestart /Logs logCore31SDK.txt}
-Invoke-Command -ScriptBlock $pathArgs
+#Wait-Install
+#Write-Host "Installing Hosting package..."
+#$pathArgs = {C:\dotnet-hosting-5.0.10-win.exe /Install /Quiet /Norestart /Logs logHostingPackage.txt}
+#Invoke-Command -ScriptBlock $pathArgs
 
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false

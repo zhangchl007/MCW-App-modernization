@@ -85,9 +85,14 @@ Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt 
 #https://download.visualstudio.microsoft.com/download/pr/70062b11-491c-403c-91db-9d84462ee292/5db435e39128cbb608e76bf5111ab3dc/dotnet-sdk-3.1.413-win-x64.exe
 
 # Download and install .NET Core 3.1.4
+#Wait-Install
+#(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/70062b11-491c-403c-91db-9d84462ee292/5db435e39128cbb608e76bf5111ab3dc/dotnet-sdk-3.1.413-win-x64.exe', 'C:\dotnet-hosting-3.1.4-win.exe')
+#$pathArgs = {C:\dotnet-hosting-3.1.4-win.exe /Install /Quiet /Norestart /Logs logCore31.txt}
+#Invoke-Command -ScriptBlock $pathArgs
+# Download Windows Hosting
 Wait-Install
-(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/70062b11-491c-403c-91db-9d84462ee292/5db435e39128cbb608e76bf5111ab3dc/dotnet-sdk-3.1.413-win-x64.exe', 'C:\dotnet-hosting-3.1.4-win.exe')
-$pathArgs = {C:\dotnet-hosting-3.1.4-win.exe /Install /Quiet /Norestart /Logs logCore31.txt}
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/a0da9621-68f0-439a-b617-4697ee0669e3/38eb4aa6e879b9f06b73599ea2e1535f/dotnet-hosting-5.0.10-win.exe', 'C:\dotnet-hosting-5.0.10-win.exe')
+$pathArgs = {C:\dotnet-hosting-5.0.10-win.exe /Install /Quiet /Norestart /Logs logHostingPackage.txt}
 Invoke-Command -ScriptBlock $pathArgs
 
 # Download and install SQL Server Management Studio
