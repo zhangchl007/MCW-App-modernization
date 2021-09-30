@@ -3,6 +3,7 @@
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,15 +17,12 @@ namespace PartsUnlimited.Security
         {
             if (loginProviders.Azure.Use)
             {
-
-                services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
-                })
+                services.AddAuthentication(options => {
+                                            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                                            options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                                        })
                         .AddCookie()
-                        .AddOpenIdConnect(options =>
-                        {
+                        .AddOpenIdConnect(options => {
                             options.Authority = Configuration["auth:oidc:authority"];
                             options.ClientId = Configuration["auth:oidc:clientid"];
                         });

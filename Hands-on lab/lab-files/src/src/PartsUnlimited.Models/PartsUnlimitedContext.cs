@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace PartsUnlimited.Models
@@ -16,6 +15,10 @@ namespace PartsUnlimited.Models
             _connectionString = connectionString;
         }
 
+        public PartsUnlimitedContext(DbContextOptions<PartsUnlimitedContext> options) : base(options)
+        {
+
+        }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -37,6 +40,8 @@ namespace PartsUnlimited.Models
             base.OnModelCreating(builder);
         }
 
+        /*
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
@@ -45,9 +50,10 @@ namespace PartsUnlimited.Models
                 optionsBuilder.UseSqlServer(_connectionString);
             }else
             {
-                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(_connectionString);
+                System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder(_connectionString);
                 optionsBuilder.UseInMemoryDatabase("Test");
             }
         }
+        */
     }
 }
