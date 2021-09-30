@@ -14,14 +14,9 @@ namespace PartsUnlimited.WebJobs.UpdateProductInventory
 {
     public class Functions
     {
-        public async static Task UpdateProductProcessTaskAsync([QueueTrigger("product")] ProductMessage message)
-        {
-            var builder = new ConfigurationBuilder();
-            builder.Add(new JsonConfigurationSource { Path = "config.json" });
-            var config = builder.Build();
-            var connectionString = config["Data:DefaultConnection:ConnectionString"];
-
-            using (var context = new PartsUnlimitedContext(connectionString))
+        public async static Task UpdateProductProcessTaskAsync([QueueTrigger("product")] ProductMessage message, PartsUnlimitedContext context)
+        {            
+            using (context)
             {
                 var dbProductList = await context.Products.ToListAsync();
                 foreach (var queueProduct in message.ProductList)
