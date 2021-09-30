@@ -96,8 +96,7 @@ namespace PartsUnlimited
             
             // We need access to these settings in a static extension method, so DI does not help us :(
             ContentDeliveryNetworkExtensions.Configuration = new ContentDeliveryNetworkConfiguration(Configuration.GetSection("CDN"));
-
-           
+                       
             services.AddControllersWithViews();
 
             services.AddMemoryCache();
@@ -163,19 +162,18 @@ namespace PartsUnlimited
 
             // Add cookie-based authentication to the request pipeline
             app.UseAuthentication();
-
+           
             AppBuilderLoginProviderExtensions.AddLoginProviders(service, new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
             // Add login providers (Microsoft/AzureAD/Google/etc).  This must be done after `app.UseIdentity()`
             //app.AddLoginProviders( new ConfigurationLoginProviders(Configuration.GetSection("Authentication")));
 
             app.UseRouting();
-
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-                endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller}/{action}", new { action = "Index" });
-                endpoints.MapControllerRoute("api", "{controller}/{id?}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller}/{action}", new { action = "Index" });
+                endpoints.MapControllerRoute("api", "api/{controller}/{id?}");                              
             });           
         }
     }
