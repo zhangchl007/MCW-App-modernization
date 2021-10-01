@@ -57,9 +57,6 @@ while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 $item = get-item "c:\mcw\*"
 Rename-Item $item -NewName "MCW-App-modernization-$branchName"
 
-# Copy Web Site Files
-Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-deploy-files.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
-
 # Replace SQL Connection String
 ((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.json
 
@@ -68,18 +65,14 @@ Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on l
 (New-Object System.Net.WebClient).DownloadFile('https://appmigration.microsoft.com/api/download/windows/AppServiceMigrationAssistant.msi', 'C:\AppServiceMigrationAssistant.msi')
 # Download Edge 
 (New-Object System.Net.WebClient).DownloadFile('https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/e2d06b69-9e44-45e1-bdf5-b3b827fe06b2/MicrosoftEdgeEnterpriseX64.msi', 'C:\MicrosoftEdgeEnterpriseX64.msi')
+# Download 3.1.4 SDK
+(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/70062b11-491c-403c-91db-9d84462ee292/5db435e39128cbb608e76bf5111ab3dc/dotnet-sdk-3.1.413-win-x64.exe', 'C:\dotnet-sdk-3.1.413-win-x64.exe')
 
 # Schedule Installs for first Logon
 $argument = "-File `"C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\ARM-template\webvm-logon-install.ps1`""
 $triggerAt = New-ScheduledTaskTrigger -AtLogOn -User demouser
 $action = New-ScheduledTaskAction -Execute "powershell" -Argument $argument 
 Register-ScheduledTask -TaskName "Install Lab Requirements" -Trigger $triggerAt -Action $action -User demouser
-
-# Download and install .NET Core 3.1.4
-Wait-Install
-(New-Object System.Net.WebClient).DownloadFile('https://download.visualstudio.microsoft.com/download/pr/70062b11-491c-403c-91db-9d84462ee292/5db435e39128cbb608e76bf5111ab3dc/dotnet-sdk-3.1.413-win-x64.exe', 'C:\dotnet-sdk-3.1.413-win-x64.exe')
-$pathArgs = {C:\dotnet-sdk-3.1.413-win-x64.exe /Install /Quiet /Norestart /Logs logCore31.txt}
-Invoke-Command -ScriptBlock $pathArgs
 
 # Download Windows Hosting
 Wait-Install

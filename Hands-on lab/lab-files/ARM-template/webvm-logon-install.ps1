@@ -19,7 +19,7 @@ function Wait-Install {
         Start-Sleep -Seconds 1
     }
 }
-
+$branchName = "main"
 # Install App Service Migration Assistant
 Wait-Install
 Write-Host "Installing App Service Migration Assistant..."
@@ -30,9 +30,13 @@ Wait-Install
 Write-Host "Installing Edge..."
 Start-Process -file 'C:\MicrosoftEdgeEnterpriseX64.msi' -arg '/qn /l*v C:\edge_install.txt' -passthru | wait-process
 
-#Wait-Install
-#Write-Host "Installing Hosting package..."
-#$pathArgs = {C:\dotnet-hosting-5.0.10-win.exe /Install /Quiet /Norestart /Logs logHostingPackage.txt}
-#Invoke-Command -ScriptBlock $pathArgs
+Wait-Install
+Write-Host "Installing 3.1.413 SDK..."
+Start-Process -file 'C:\dotnet-sdk-3.1.413-win-x64.exe' -arg '/qn /l*v C:\sdk_install.txt' -passthru | wait-process
+
+# Copy Web Site Files
+Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-deploy-files.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
 
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
+
+iisreset.exe /restart
