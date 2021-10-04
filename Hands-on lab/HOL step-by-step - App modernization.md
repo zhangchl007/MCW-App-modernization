@@ -104,13 +104,13 @@ Duration: 10 minutes
 
 Azure Migrate provides a centralized hub to assess and migrate on-premises servers, infrastructure, applications, and data to Azure. It provides a single portal to start, run, and track your migration to Azure. Azure Migrate comes with a range of assessment tools and migration that we will use during our lab. We will use Azure Migrate as the central location for our assessment and migration efforts.
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your lab resource group. Select **Add** to add a new resource.
+1. In the [Azure portal](https://portal.azure.com), navigate to your lab resource group. Select **Create** to add a new resource.
 
-    ![Lab resource group is open. Resource Add button is highlighted.](media/portal-add-resource.png "Lab Resource Group")
+    ![The lab resource group is open with the Create button highlighted in the toolbar.](media/portal-add-resource.png "Lab Resource Group")
 
-2. Type **Azure Migrate** into the search box and hit **Enter** to start the search.
+2. On the Create a resource screen, search for **Azure Migrate** and select it from the list of suggestions.
 
-    ![Azure Portal new resource page is open. The search box is filled with Azure Migrate.](media/azure-migrate-search.png "Marketplace Search for Azure Migrate")
+    ![Azure Portal new resource page is open. The search box is filled with Azure Migrate. Azure Migrate is selected in the search results suggestions list.](media/azure-migrate-search.png "Marketplace Search for Azure Migrate")
 
 3. Select **Create** to continue.
 
