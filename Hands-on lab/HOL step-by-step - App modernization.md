@@ -140,7 +140,7 @@ Azure Migrate provides a centralized hub to assess and migrate on-premises serve
 
     ![Azure Migrate Database Assessment option is selected for Azure Migrate tools. Add tool button is highlighted.](media/azure-migrate-database-assessment-tool.png "Azure Migrate Database Assessment Tools")
 
-10. Now, we can see a download link for the **Data Migration Assessment (1)** tool under assessment tools in Azure Migrate. In our case, our lab environment comes with the Data Migration Assessment pre-installed on Parts Unlimited's database server. Select **Click here (2)** under the **Migration Tools** section to continue.
+10. **This step is for informational purposes only.**  Now, we can see a download link for the **Data Migration Assessment (1)** tool under assessment tools in Azure Migrate. In our case, our lab environment comes with the Data Migration Assessment pre-installed on Parts Unlimited's database server. Select **Click here (2)** under the **Migration Tools** section to continue.
 
     ![Data Migration Assessment tool's download link is shown. Click here link for migration tools is highlighted.](media/azure-migrate-database-migration.png "Azure Migrate DMA Download")
 
@@ -166,31 +166,21 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The WebVM virtual machine is highlighted in the list of resources.](media/webvm-selection.png "WebVM Selection")
 
-2. On the WebVM Virtual Machine's **Overview (1)** blade, copy the **Public IP address (2)**.
-
-    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/web-vm-ip.png "WebVM Overview and Public IP")
-
-3. Open a new browser window and navigate to the IP Address you copied.
-
-    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png "Parts Unlimited Web Site")
-
-    > For testing purposes, you might want to create yourself an account on the Parts Unlimited website and purchase some products. Use the coupon code **FREE** to buy everything for free.
-
-4. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu.
+2. Go back to the Azure Portal. On the WebVM Virtual Machine's **Overview** blade, select **Connect (1)** and **RDP (2)** on the top menu.
 
    ![The WebVM VM blade is displayed, with the Connect button highlighted in the top menu.](media/connect-rdp-webvm.png "WebVM RDP Connect")
 
-5. Select **Download RDP File** on the next page, and open the downloaded file.
+3. Select **Download RDP File** on the next page, and open the downloaded file.
 
     > **Note**: The first time you connect to the WebVM Virtual Machine, you will see a blue pop-up terminal dialog taking you through a couple of software installs. Don't be alarmed, and wait until the installs are complete.
 
     ![RDP Window is open. Download RDP File button is highlighted.](media/rdp-download.png "WebVM RDP File Download")
 
-6. Select **Connect** on the Remote Desktop Connection dialog.
+4. Select **Connect** on the Remote Desktop Connection dialog.
 
     ![In the Remote Desktop Connection Dialog Box, the Connect button is highlighted.](media/remote-desktop-connection-webvm.png "Remote Desktop Connection dialog")
 
-7. Enter the following credentials with your password when prompted, and then select **OK**:
+5. Enter the following credentials with your password when prompted, and then select **OK**:
 
    - **Username**: demouser
    - **Password**: {YOUR-ADMIN-PASSWORD}
@@ -199,11 +189,27 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![The credentials specified above are entered into the Enter your credentials dialog.](media/rdp-credentials-webvm.png "Enter your credentials")
 
-8. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
+6. Select **Yes** to connect, if prompted that the identity of the remote computer cannot be verified.
 
     ![In the Remote Desktop Connection dialog box, a warning states that the remote computer's identity cannot be verified and asks if you want to continue anyway. At the bottom, the Yes button is circled.](media/remote-desktop-connection-identity-verification-webvm.png "Remote Desktop Connection dialog")
 
-9. Once logged into the WebVM VM, a script will execute to install the various items needed for the remaining lab steps.
+7. Once logged into the WebVM VM, a script will execute to install the various items needed for the remaining lab steps.
+    >**Warning:** You must wait for all of the scripts to finish installing and configuring the software when you first log in. DO NOT shutdown the PowerShell script.
+
+    ![The image shows the Windows PowerShell opening screen.](media/windows-powershell.png "PowerShell Opening Screen")
+
+8. Once the PowerSell script has completed, the web server should be configured now. Return to the Azure Portal, on the WebVM Virtual Machine's **Overview (1)** blade, copy the **Public IP address (2)**.
+
+    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/web-vm-ip.png "WebVM Overview and Public IP")
+
+9. Open a new browser window and navigate to the IP Address you copied.
+
+    >**Note:** If you cannot see the web page properly display, then your web server configuration may be incorrect.
+
+    ![The WebVM VM blade is displayed, Public IP Address copy button is highlighted.](media/parts-umlimited-web-site.png "Parts Unlimited Web Site")
+
+    > For testing purposes, you might want to create yourself an account on the Parts Unlimited website and purchase some products. Use the coupon code **FREE** to buy everything for free.
+
 10. Once the script completes, open **AppServiceMigrationAssistant** that is located on the desktop.
 
     ![AppServiceMigrationAssistant is highlighted on the desktop.](media/appservicemigrationassistant-desktop.png "App Service Migration Assistant")
@@ -247,7 +253,7 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Deployment options are presented. The existing lab resource group is selected as the destination. The destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png "Azure App Service Migration Assistant Options")
 
-
+    ![The image shows the migration steps progress.](media/app-service-migration-progress.png "App migration progress")
 
 7. Verify your migration. Select **Go to your website**.
 
