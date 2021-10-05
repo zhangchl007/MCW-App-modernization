@@ -766,23 +766,33 @@ In this exercise, you will move the codebase to a GitHub Repo, create a staging 
 
     ![The Get started with GitHub Actions screen displays with the set up a workflow yourself link highlighted.](media/github_setupworkflowyourself.png "Set up a workflow yourself")
 
-9. On the workflow editor screen, provide the file name **stagingdeploy.yml**.
+9. On the workflow editor screen, provide the file name **stagingdeploy.yml**. Commit your changes by selecting the Start Commit button.
 
     ![The workflow editor screen displays with the file name set to stagingdeploy.yml](media/github_workflownaming.png "Workflow naming")
 
-10. In a text editor, open the file `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\workflow\stagingdeploy.yml`.
+10. Return the Web VM. Open a Command window. Execute the following code to pull your newly created GitHub stagingdeploy.yml file locally. You are going to update the file content with the template stagingdeploy.yml.
 
-11. Replace the suffix value on lines 7 and 11 to match your lab.
+    ```cmd
+        cd C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src
+        git pull
+    ```
+
+    ![The image shows successfully pulling down the new GitHub workflow.](media/git-pull-workflow-file-locally.png "Pull Git Workflow")
+
+11. Open Windows Explorer. Copy the solution template yml file `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\workflow\stagingdeploy.yml` to `C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src\.github\workflows\stagingdeploy.yml`.  You are going to replace the default GitHub workflow yml content.
+
+12. Open the `stagingdeploy.yml` in Visual Studio Code. Replace the suffix value on lines 7 and 11 to match your lab.
 
     ![YML file is displayed with the suffix values highlighted.](media/ymlreplacesuffix.png "YML file")
 
-12. Copy the contents of the YML file to the clipboard, and use it to replace the code of the workflow editor in GitHub.
+13. You have just updated the `partsunlimited` GitHub project. It is time to save and push your changes. Execute these commands in a Web VM Command window.
 
-    ![The GitHub workflow editor displays with the code replaced with that from the previous step.](media/github_yml_editor.png "Workflow editor")
-
-13. On the GitHub workflow editor window, expand the **Start commit** button, optionally add a comment, then select the **Commit new file** button.
-
-    ![The commit window displays with a comment and the Commit new file button highlighted.](media/github_commitnewworkflow.png "Commit new file")
+    ```cmd
+        cd C:\MCW\MCW-App-modernization-main\Hands-on lab\lab-files\src
+        git add .
+        git commit -am "Updated the stagingdeploy.yml with my changes"
+        git push 
+    ```
 
 14. In GitHub, select **Actions**. The workflow will display as in progress.
 
