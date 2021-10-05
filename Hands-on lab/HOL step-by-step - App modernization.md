@@ -95,7 +95,7 @@ Finally, Parts Unlimited decides to decouple its order processing system and mov
 
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will _not_ work.
-  - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
+  - **Important:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
 - An active GitHub Account.
   
 ## Exercise 1: Setting up Azure Migrate
@@ -259,7 +259,7 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![The image shows a successful migration results message. The Go to your website button is highlighted.](media/azure-migrate-verify-app-svc-migration.png "Successful Migration Results")
 
-    > **WARNING:** If your migration fails with a **WindowsWorkersNotAllowedInLinuxResourceGroup (1)** try the migration process again, but this time selecting a different Resource Group for your deployment. If that is not possible, select a different Region.  
+    > **Warning:** If your migration fails with a **WindowsWorkersNotAllowedInLinuxResourceGroup (1)** try the migration process again, but this time selecting a different Resource Group for your deployment. If that is not possible, select a different Region.  
     >
     > ![Migration failed error screen is shown. WindowsWorkersNotAllowedInLinuxResourceGroup message is highlighted.](media/app-migration-windowsworkersnotallowed.png "Migration failed")
 
@@ -1099,7 +1099,7 @@ In this exercise, you will de-provision all Azure resources created in support o
 
 3. From the list of authorized app **Revoke (1)** access to applications listed below.
 
-    > **WARNING:** Revoking the permissions listed above will disconnect these applications from your GitHub Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your GitHub account might lose access as well.
+    > **Warning:** Revoking the permissions listed above will disconnect these applications from your GitHub Account. If you have been using these applications before this lab, you might want to keep the permissions. Otherwise, other environments that you control and have access to your GitHub account might lose access as well.
 
     - Azure App Service
     - GitHub for VSCode
