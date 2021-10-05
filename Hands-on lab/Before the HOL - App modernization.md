@@ -41,7 +41,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 - Microsoft Azure subscription must be pay-as-you-go or MSDN.
   - Trial subscriptions will _not_ work.
-  - **IMPORTANT:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
+  - **Important:** To complete this lab, you must have sufficient rights within your Azure AD tenant to register resource providers in your Azure Subscription.
 - An active GitHub Account.
 
 ## Before the hands-on lab
@@ -50,7 +50,7 @@ Duration: 45 minutes
 
 In this exercise, you set up an environment for use in the rest of the hands-on lab. You should follow all steps provided _before_ attending the Hands-on lab.
 
-> **IMPORTANT**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
+> **Important**: Many Azure resources require globally unique names. Throughout these steps, the word "SUFFIX" appears as part of resource names. You should replace this with your Microsoft alias, initials, or another value to ensure resources are uniquely named.
 
 ### Task 1: Provision a resource group
 
@@ -134,7 +134,7 @@ In this task, you run an Azure Resource Manager (ARM) template to deploy and con
     > **Note**: The actual name must be globally unique, so a unique string is generated from your Resource Group Id and appended to the name during provisioning.
 
     - **Admin Username**: Accept the default value, **demouser**.
-    - **Admin Password (3)**: Type in your custom password you will be using for the rest of the lab. The default password is `Password.1!!`
+    - **Admin Password (3)**: Type in your custom password you will be using for the rest of the lab. The default password is `Password.1!!`.
 
     ![The Custom deployment blade displays and the information above is entered on the Custom deployment blade.](media/azure-custom-deployment.png "Custom deployment blade")
 
