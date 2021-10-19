@@ -39,7 +39,7 @@ namespace PartsUnlimited.Models
                 if (dbNewlyCreated || tablesEmpty)
                 {
                     await InsertTestData(serviceProvider);
-                    await CreateAdminUser(serviceProvider);
+                    //await CreateAdminUser(serviceProvider);
                 }
             }
         }
