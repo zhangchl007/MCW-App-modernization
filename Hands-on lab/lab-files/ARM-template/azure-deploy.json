@@ -52,7 +52,7 @@
         "subnetPrefix": "176.16.0.0/24",
 
         "webCustomScriptFileName": "configure-webvm.ps1",
-        "webCustomScriptUri": "[concat('https://raw.githubusercontent.com/microsoft/MCW-App-modernization/', variables('githubBranchName'),'/Hands-on%20lab/lab-files/ARM-template/', variables('webCustomScriptFileName'))]",
+        "webCustomScriptUri": "https://github.com/timahenning/MCW-App-modernization/blob/main/Hands-on%20lab/lab-files/ARM-template/configure-webvm.ps1",
         "sqlCustomScriptFileName": "configure-sqlvm.ps1",
         "sqlCustomScriptUri": "[concat('https://raw.githubusercontent.com/microsoft/MCW-App-modernization/', variables('githubBranchName'),'/Hands-on%20lab/lab-files/ARM-template/', variables('sqlCustomScriptFileName'))]",
 

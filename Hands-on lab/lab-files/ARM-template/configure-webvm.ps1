@@ -60,7 +60,7 @@ $item = get-item "c:\mcw\*"
 Rename-Item $item -NewName "MCW-App-modernization-$branchName"
 
 # Replace SQL Connection String
-((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.release.json -Raw
+((Get-Content -path C:\inetpub\wwwroot\config.release.json -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path C:\inetpub\wwwroot\config.release.json
 
 # Downloading Deferred Installs
 # Download App Service Migration Assistant 
