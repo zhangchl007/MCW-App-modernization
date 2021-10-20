@@ -42,7 +42,7 @@ namespace PartsUnlimited.Models
                     //await CreateAdminUser(serviceProvider);
                 }
             }
-        }
+        } 
 
         public static async Task InsertTestData(IServiceProvider serviceProvider)
         {
