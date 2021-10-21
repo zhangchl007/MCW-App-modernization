@@ -50,7 +50,7 @@ Write-Host "Downloading MCW-App-modernization from GitHub" -ForegroundColor Gree
 New-Item -ItemType directory -Path C:\MCW
 while((Get-ChildItem -Directory C:\MCW | Measure-Object).Count -eq 0 )
 {
-    (New-Object System.Net.WebClient).DownloadFile("https://github.com/timahenning/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
+    (New-Object System.Net.WebClient).DownloadFile("https://github.com/microsoft/MCW-App-modernization/zipball/$branchName", 'C:\MCW.zip')
     Expand-Archive -LiteralPath 'C:\MCW.zip' -DestinationPath 'C:\MCW' -Force
 }
 
@@ -61,7 +61,9 @@ Rename-Item $item -NewName "MCW-App-modernization-$branchName"
 
 # Replace SQL Connection String
 $item = "C:\MCW\MCW-App-modernization-$branchName"
-((Get-Content -path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json"
+Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;"
+# The config.release.json file is populated with configuration data during compile and release from VS.  config.json is used by the solution on the WebM.
+((Get-Content -path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json"
 
 # Downloading Deferred Installs
 # Download App Service Migration Assistant 
