@@ -61,6 +61,7 @@ Rename-Item $item -NewName "MCW-App-modernization-$branchName"
 
 # Replace SQL Connection String
 $item = "C:\MCW\MCW-App-modernization-$branchName"
+Write-Host "Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;"
 ((Get-Content -path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Raw) -replace 'SETCONNECTIONSTRING',"Server=$SqlIP;Database=PartsUnlimited;User Id=PUWebSite;Password=$SqlPass;") | Set-Content -Path "$item\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json"
 
 # Downloading Deferred Installs
