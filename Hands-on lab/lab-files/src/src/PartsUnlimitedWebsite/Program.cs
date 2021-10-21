@@ -20,6 +20,8 @@ namespace PartsUnlimited
 
                 try
                 {
+                    PartsUnlimitedContext context = services.GetRequiredService<PartsUnlimitedContext>();
+                    context.Database.EnsureCreated();
                     //Populates the PartsUnlimited sample data
                     SampleData.InitializePartsUnlimitedDatabaseAsync(services).Wait();
                 }
@@ -32,6 +34,7 @@ namespace PartsUnlimited
 
             host.Run();
         }
+
 
         public static IHostBuilder BuildWebHost(string[] args) =>
             Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostContext, config) =>
