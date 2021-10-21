@@ -39,7 +39,9 @@ namespace PartsUnlimited
         public static IHostBuilder BuildWebHost(string[] args) =>
             Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.AddJsonFile("config.json", optional: true);
+                    // This is the only configuration file used, development and production.
+                    // ENHANCEMENT: Conditionally check the environment variable and load the config based on the environment.
+                    config.AddJsonFile("config.json", optional: true, reloadOnChange: true);
                     config.AddEnvironmentVariables();
                 })
                 .ConfigureWebHostDefaults(webBuilder =>

@@ -40,8 +40,8 @@ Invoke-Command -ScriptBlock $pathArgs
 Wait-Install
 Write-Host "Copying default website files..."
 Expand-Archive -LiteralPath "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\web-deploy-files.zip" -DestinationPath 'C:\inetpub\wwwroot' -Force
-Write-Host "Updating config.release.json with the SQL IP Address and connection string information."
-Copy-Item "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.release.json" -Destination 'C:\inetpub\wwwroot' -Force
+Write-Host "Updating config.json with the SQL IP Address and connection string information."
+Copy-Item "C:\MCW\MCW-App-modernization-$branchName\Hands-on lab\lab-files\src\src\PartsUnlimitedWebsite\config.json" -Destination 'C:\inetpub\wwwroot' -Force
 
 Unregister-ScheduledTask -TaskName "Install Lab Requirements" -Confirm:$false
 

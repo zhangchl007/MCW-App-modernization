@@ -209,6 +209,7 @@ namespace PartsUnlimited.Models
                         {
                             var product = products.Single(x => x.RecommendationId == id);
                             var orderDetail = GetOrderDetail(product, order);
+                            // ENHANCEMENT: Add Order Details data.
                             // db.OrderDetails.Add(orderDetail);
                             total += orderDetail.UnitPrice;
                         }
