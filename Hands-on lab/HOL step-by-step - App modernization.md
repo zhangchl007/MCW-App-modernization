@@ -247,7 +247,7 @@ After reviewing the assessment results, you have ensured the web application is 
 
     ![Azure Migrate Project is set to partsunlimitedweb. The next button is highlighted.](media/appservicemigration-azure-migrate.png "Azure Migrate Hub integration")
 
-6. In order to migrate Parts Unlimited website, we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name. We suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
+6. Verify you are in the correct subscription. In order to migrate Parts Unlimited website, we have to create an App Service Plan. The Azure App Service Migration Assistant will take care of all the requirements needed. Select **Use existing (1)** and select the lab resource group as your deployment target. App Service requires a globally unique Site Name. We suggest using a pattern that matches `partsunlimited-web-{uniquesuffix}` **(2)**. Select **Migrate** to start the migration process.
 
     ![Deployment options are presented. The existing lab resource group is selected as the destination. The destination site name is set to partsunlimited-web-20X21. Migrate button is highlighted.](media/appservicemigration-migrate.png "Azure App Service Migration Assistant Options")
 
@@ -288,19 +288,19 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![The SQLServer2008 virtual machine is highlighted in the list of resources.](media/find-sqlserver2008-resource.png "SqlServer2008 Selection")
 
-2. Launch DMA from the Windows Start menu by typing "data migration" into the search bar and then selecting **Microsoft Data Migration Assistant** in the search results.
+2. Open Windows explorer and install the migration assistant from `c:\DataMigrationAssistant.msi`.
 
-    > **Note**: If you do not see the migration assistant, install it from the `c:\DataMigrationAssistant.msi` file.
+3. Launch DMA from the Windows desktop icon or Start menu by typing "data migration" into the search bar and then selecting **Microsoft Data Migration Assistant** in the search results.
 
     > **Note**: There is a known issue with screen resolution when using an RDP connection to Windows Server 2008 R2, which may affect some users. This issue presents itself as very small, hard-to-read text on the screen. The workaround for this is to use a second monitor for the RDP display, allowing you to scale up the resolution to make the text larger.
 
    ![In the Windows Start menu, "data migration" is entered into the search bar, and Microsoft Data Migration Assistant is highlighted in the Windows start menu search results.](media/windows-start-menu-dma.png "Data Migration Assistant")
 
-3. In the DMA dialog, select **+** from the left-hand menu to create a new project.
+4. In the DMA dialog, select **+** from the left-hand menu to create a new project.
 
    ![The new project icon is highlighted in DMA.](media/dma-new.png "New DMA project")
 
-4. In the New project pane, set the name of the project **(1)** and make sure the following value are selected:
+5. In the New project pane, set the name of the project **(1)** and make sure the following value are selected:
 
    - **Project type**: Select Assessment.
    - **Project name (1)**: Enter **Assessment**.
@@ -310,15 +310,15 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
    ![New project settings for doing an assessment of a migration from SQL Server to Azure SQL Database.](media/dma-new-project-to-azure-sql-db.png "New project settings")
 
-5. Select **Create (2)**.
+6. Select **Create (2)**.
 
-6. On the **Options** screen, ensure **Check database compatibility (1)** and **Check feature parity (1)** are both checked, and then select **Next (2)**.
+7. On the **Options** screen, ensure **Check database compatibility (1)** and **Check feature parity (1)** are both checked, and then select **Next (2)**.
 
    ![Check database compatibility and check feature parity are checked on the Options screen.](media/dma-options.png "DMA options")
 
-7. On the **Sources** screen, select **Add sources**.
-8. 
-9. Enter the following into the **Connect to a server** dialog that appears on the right-hand side:
+8. On the **Sources** screen, select **Add sources**.
+
+9. Connect to the local SQL Server named SQLSERVER2008. Enter the following into the **Connect to a server** dialog that appears on the right-hand side:
 
     - **Server name (1)**: Enter **SQLSERVER2008**.
     - **Authentication type (2)**: Select **SQL Server Authentication**.
@@ -329,45 +329,45 @@ Parts Unlimited would like an assessment to see what potential issues they might
 
     ![In the Connect to a server dialog, the values specified above are entered into the appropriate fields.](media/dma-connect-to-a-server.png "Connect to a server")
 
-9. Select **Connect (6)**.
+10. Select **Connect (6)**.
 
-10. On the **Add sources** dialog that appears next, check the box for `PartsUnlimited` **(1)** and select **Add (2)**.
+11. On the **Add sources** dialog that appears next, check the box for `PartsUnlimited` **(1)** and select **Add (2)**.
 
     ![The PartsUnlimited box is checked on the Add sources dialog.](media/dma-add-sources.png "Add sources")
 
-11. Select **Start Assessment**.
+12. Select **Start Assessment**.
 
     ![Start assessment](media/dma-start-assessment-to-azure-sql-db.png "Start assessment")
 
-12. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report **(1)** shows that Analysis Services and SQL Server Reporting Services are unsupported **(2)**, but these do not affect any objects in the `PartsUnlimited` database, so they won't block a migration.
+13. Take a moment to review the assessment for migrating to Azure SQL DB. The SQL Server feature parity report **(1)** shows that Analysis Services and SQL Server Reporting Services are unsupported **(2)**, but these do not affect any objects in the `PartsUnlimited` database, so they won't block a migration.
 
     ![The feature parity report is displayed, and the two unsupported features are highlighted.](media/dma-feature-parity-report.png "Feature parity")
 
-13. Now, select **Compatibility issues (1)** so you can review that report as well.
+14. Now, select **Compatibility issues (1)** so you can review that report as well.
 
     ![The Compatibility issues option is selected and highlighted.](media/dma-compatibility-issues.png "Compatibility issues")
 
     The DMA assessment for migrating the `PartsUnlimited` database to a target platform of Azure SQL DB reveals that no issues or features are preventing Parts Unlimited from migrating their database to Azure SQL DB.
 
-14. Select **Upload to Azure Migrate** to upload assessment results to Azure.
+15. Select **Upload to Azure Migrate** to upload assessment results to Azure.
 
     ![Upload to Azure Migrate button is highlighted.](media/dma-upload-azure-migrate.png "Azure Migrate Upload")
 
-15. Select the right Azure environment **(1)** your subscription lives. Select **Connect (2)** to proceed to the Azure login screen.
+16. Select the right Azure environment **(1)** your subscription lives. Select **Connect (2)** to proceed to the Azure login screen.
 
     ![Azure is selected as the Azure Environment on the connect to Azure screen. Connect button is highlighted.](media/dma-azure-migrate-upload.png "Azure Environment Selection")
 
-16. Select your subscription **(2)** and the `partsunlimited` Azure Migrate project **(3)**. Select **Upload (4)** to start the upload to Azure.
+17. Select your subscription **(2)** and the `partsunlimited` Azure Migrate project **(3)**. Select **Upload (4)** to start the upload to Azure.
 
     ![Upload to Azure Migrate page is open. Lab subscription and partsunlimited Azure Migrate Project are selected. Upload button is highlighted.](media/dma-azure-migrate-upload-2.png "Azure Migrate upload settings")
 
     > **Note**: If you encounter **Failed to fetch subscription list from Azure, Strong Authentication required (1)** you might not see some of your subscriptions because of MFA limitations. You should still be able to see your lab subscription.
 
-17. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
+18. Once the upload is complete select **OK** and navigate to the Azure Migrate page on the Azure Portal.
 
     ![Assessment Uploaded dialog shown.](media/dma-upload-complete.png "Assessment Uploaded")
 
-18. Select the **Databases (1)** page on Azure Migrate. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up. You can use the **Refresh** button on the page to see the latest status.
+19. Return the Azure Portal. Select the **Databases (1)** page on Azure Migrate. Select the **Refresh** link. Observe the number of assessed database instances **(2)** and the number of databases ready for Azure SQL DB **(2)**. Keep in mind that you might need to wait for 5 to 10 minutes for results to show up.
 
     ![Azure Migrate Databases page is open. The number of assessed database instances and the number of databases ready for Azure SQL DB shows one.](media/dma-azure-migrate-web.png "Azure Migrate Database Assessment")
 
